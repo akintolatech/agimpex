@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
-    <link type="x-icon" href="{% static 'img/logo.png' %}" rel="icon" />
+    <link type="x-icon" href="{% static 'img/ag.png' %}" rel="icon" />
     <script src="{% static 'js/jquery.js' %}"></script>
     <link type="text/css" href="{% static 'styles/shop.css' %}" rel="stylesheet" />
    
@@ -20,7 +20,12 @@
         <div class="header_contact_bar">
             <div class="contact-wrap">
                 <p>Working hours – 09:00 to 18:00, Mon–Sat</p>
-                <p>+234 703922827</p>
+                
+                <div class="contact-wrap-item">
+                    <img src="{% static 'img/hy.png' %}" class="language" width="24px"/>
+                    <p>+234 703922827</p>
+                </div>
+                
             </div>
             
         </div>
@@ -29,7 +34,6 @@
 
             <div class="wrap">
 
-                
                 <div class="siteid-container">
                      
                     <a href="{% url 'website:index' %}"><img src="{% static 'img/agimpexhlogo.png' %}" class="logo" /></a>
@@ -160,12 +164,12 @@
 
                 <ul>
                     <li class="footer-heading">Quick Links</li>
-                    <a href="index.html"><li>Special Offer (Disocunt 25%)</li></a>
-                    <a href="index.html"><li>Construction Materials</li></a>
-                    <a href="index.html"><li>Natural Stones</li></a>
-                    <a href="index.html"><li>Services</li></a>
-                    <a href="index.html"><li>Catologs</li></a>
-                    <a href="index.html"><li>Contact</li></a>
+                    <a href="#"><li>Special Offer (Disocunt 25%)</li></a>
+                    <a href="#"><li>Construction Materials</li></a>
+                    <a href="#"><li>Natural Stones</li></a>
+                    <a href="#"><li>Services</li></a>
+                    <a href="#"><li>Catologs</li></a>
+                    <a href="#"><li>Contact</li></a>
                 </ul> 
 
                 <ul>

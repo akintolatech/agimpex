@@ -1,0 +1,257 @@
+{% extends "website/website_base.html" %}
+{% load static %}
+
+{% block title %}
+  Your shopping cart
+{% endblock %}
+
+{% block style %}
+ <link type="text/css" href="{% static 'styles/cart.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
+{% block content %}
+
+<div id="main">
+    <div class="section" style="margin-top: 100px;">
+
+     
+      
+      {% with total_items=cart|length %}
+
+        {% if total_items > 0 %}
+          <h2>
+            Your shopping cart
+            <a href="{% url 'cart:cart_detail' %}">
+              {{ total_items }} item{{ total_items|pluralize }},
+              <b class="formatted-price">{{ cart.get_total_price }}</b>
+            </a>  
+          </h2>
+
+          <div class="cart-container">
+
+            <div class="cart-item">
+               <div class="cart-item-container">
+
+                  {% for item in cart %}
+                    {% with product=item.product %}
+
+                      <div class="cart-item-card">
+
+                        <div class="cart-img-details">
+
+                            <div class="cart-item-img-box">
+                                <a href="{{ product.get_absolute_url }}">
+                                  <img src="{% if product.image %}{{ product.image.url }}
+                                  {% else %}{% static 'img/no_image.png' %}{% endif %}">
+                                </a>
+                            </div>
+
+                            <div class="cart-item-details">
+                                <p>{{ product.name }}</p>
+                                <p style="margin: 0;"><b class="formatted-price">{{ item.total_price }}</b></p>
+                                <!-- ${{ item.price }} @  -->
+                            </div>
+                        </div>
+
+                        <div class="cart-qty-control">
+
+                          <div class="qty-control-card">
+
+                              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="update-qty">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.override }}
+                                <input type=image src="{% static 'img/icons/addcircle.svg' %}" alt="Submit feedback">
+                                {% csrf_token %}
+                              </form>
+
+                          </div>
+
+                          <div class="qty-control-card">
+                              <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                                <input type="image" src="{% static 'img/icons/delete.svg' %}" value="Remove" >
+                                {% csrf_token %}
+                              </form>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    {% endwith %}
+                  {% endfor %}
+
+                </div>
+
+                <a href="{% url 'shop:product_list' %}" >
+                    <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+                </a>
+            </div>
+
+            <div class="cart-summary-box">
+                  <h3>Order Summary</h3>
+                  <ol>
+                    {% for item in cart %}
+                      <li>
+                        {{ item.quantity }}x {{ item.product.name }} @
+                        <span><b class="formatted-price">{{ item.total_price }}</b></span>
+                      </li>
+                    {% endfor %}
+                  </ol>
+                  <h4><b>Total:</b> <b class="formatted-price">{{ cart.get_total_price }}</b></h4>
+
+                  <form method="post" action= "{% url 'orders:order_create' %}">
+                    {{ form.as_p }}
+                    <p><input type="submit" value="Place order"></p>
+                    {% csrf_token %}
+                  </form>
+
+                   <!-- <a href="{% url 'orders:order_create' %}" >Checkout</a> -->
+
+            </div>
+
+          </div>
+
+          {% comment %}
+          <div class="shop-container for-cart">
+
+            <div class="container-of-containers">
+
+                <div class="cart-item-container">
+
+                  {% for item in cart %}
+                    {% with product=item.product %}
+
+                      <div class="cart-item-card">
+
+                        <div class="cart-img-details">
+
+                            <div class="cart-item-img-box">
+                                <a href="{{ product.get_absolute_url }}">
+                                  <img src="{% if product.image %}{{ product.image.url }}
+                                  {% else %}{% static 'img/no_image.png' %}{% endif %}">
+                                </a>
+                            </div>
+
+                            <div class="cart-item-details">
+                                <p>{{ product.name }}</p>
+                                <p style="margin: 0;"><b class="formatted-price">{{ item.total_price }}</b></p>
+                                <!-- ${{ item.price }} @  -->
+                            </div>
+                        </div>
+
+                        <div class="cart-qty-control">
+
+                          <div class="qty-control-card">
+
+                              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="update-qty">
+                                {{ item.update_quantity_form.quantity }}
+                                {{ item.update_quantity_form.override }}
+                                <input type=image src="{% static 'img/icons/addcircle.svg' %}" alt="Submit feedback">
+                                {% csrf_token %}
+                              </form>
+
+                          </div>
+
+                          <div class="qty-control-card">
+                              <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                                <input type="image" src="{% static 'img/icons/delete.svg' %}" value="Remove" >
+                                {% csrf_token %}
+                              </form>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    {% endwith %}
+                  {% endfor %}
+
+                </div>
+
+                <a href="{% url 'shop:product_list' %}" >
+                    <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+                </a>
+
+            </div>
+
+            <div class="aside-container aside-container-for-cart" >
+
+                <!-- <h4>Categories</h4> -->
+
+                <div class="user-profile">
+
+                    <h4>Order Summary</h4>
+
+                </div>
+
+                <div class="cart-summary-box">
+
+                  <ol>
+                    {% for item in cart %}
+                      <li>
+                        {{ item.quantity }}x {{ item.product.name }} @
+                        <span><b class="formatted-price">{{ item.total_price }}</b></span>
+                      </li>
+                    {% endfor %}
+                  </ol>
+                  <h4>Total:<b class="formatted-price">{{ cart.get_total_price }}</b></h4>
+
+                  <form method="post" action= "{% url 'orders:order_create' %}">
+                    {{ form.as_p }}
+                    <p><input type="submit" value="Place order"></p>
+                    {% csrf_token %}
+                  </form>
+
+                   <!-- <a href="{% url 'orders:order_create' %}" >Checkout</a> -->
+
+                </div>
+
+                
+
+            </div>
+
+          </div>
+
+          {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {% elif not order %}
+
+          <h1>Your cart is empty.</h1>
+          <div class="message-container">
+            <center>
+              <div class="message-container-image-box">
+                <img src="{% static 'img/none.png' %}" width="240px"/>
+              </div>
+              <a href="{% url 'shop:product_list' %}" >
+                <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+            </a>
+            </center>
+            
+          </div>
+
+        {% endif %}
+      {% endwith %}
+      
+        
+
+   
+
+      </div>
+</div>
+
+
+
+{% endblock %}

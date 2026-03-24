@@ -1,0 +1,25 @@
+{% extends "webcms/base.html" %}
+{% load static %}
+
+{% block title %}
+  Thank you
+{% endblock %}
+
+{% block content %}
+  <h1>Thank you</h1>
+  <p>Your order has been successfully completed. Your Tracking code has been sent to 
+  <strong>{{ order.email }}</strong>.</p>
+  <div class="message-container">
+    <center>
+      <div class="message-container-image-box">
+        <img src="{% static 'img/check.svg' %}" width="320px"/>
+      </div>
+      <p class="text-right">
+        <a href="{% url 'shop:product_list' %}" class="button
+        light">Continue shopping</a>
+    
+      </p>
+    </center>
+    
+  </div>
+{% endblock %}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credits Section</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .credits {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .credits h2 {
+      font-size: 24px;
+      margin: 0 0 15px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .credits h3 {
+      position: relative;
+      display: inline-block;
+      font-size: 18px;
+      margin: 0 0 40px;
+      color: #d14d2e;
+      font-weight: 500;
+    }
+
+    .credits h3::before,
+    .credits h3::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 150px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #f48fb1, transparent);
+    }
+
+    .credits h3::before {
+      left: -170px;
+    }
+
+    .credits h3::after {
+      right: -170px;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 30px;
+      align-items: center;
+      justify-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .logo-grid img {
+      max-width: 140px;
+      max-height: 80px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-grid img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <section class="credits">
+    <h2>Credits</h2>
+    <h3>Corporate Patron</h3>
+    <div class="logo-grid">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+      <img src="../img/logo.png" alt="Aras Nesnausk logo">
+    </div>
+  </section>
+</body>
+</html>

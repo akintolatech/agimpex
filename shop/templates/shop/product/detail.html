@@ -1,0 +1,143 @@
+{% extends "website/website_base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div id="main">
+  <div class="product-detail-container">
+
+    <div class="product-gallery">
+      <div class="main-image-container">
+        <span class="discount-badge">-15%</span>
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="main-image"
+          alt="{{ product.name }}"
+        >
+      </div>
+
+      <div class="thumbnails">
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb active"
+          alt="{{ product.name }}"
+        >
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+      </div>
+    </div>
+
+    <div class="product-specs">
+      <div class="info-box">
+        <h1 class="title">{{ product.name }}</h1>
+
+        <h2>
+          <a href="{{ product.category.get_absolute_url }}">
+            {{ product.category }}
+          </a>
+        </h2>
+
+        <p class="description">{{ product.description|linebreaks }}</p>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+          {% csrf_token %}
+
+          {% for attribute in product.attributes.all %}
+            <div class="spec-row">
+              <label for="attribute_{{ attribute.id }}">{{ attribute.name }}</label>
+              <select
+                name="attribute_{{ attribute.id }}"
+                id="attribute_{{ attribute.id }}"
+                required
+              >
+                <option value="">Select {{ attribute.name }}</option>
+
+                {% for value in attribute.values.all %}
+                  <option value="{{ value.id }}">
+                    {{ value.value }}
+                    {% if value.price_adjustment > 0 %}
+                      (+{{ value.price_adjustment }})
+                    {% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+
+          <input type="hidden" name="override" value="False">
+
+          <div class="purchase-bar" style="margin-top: 40px;">
+            <div class="price-section">
+              <h2 class="sub-title">{{ product.name }}</h2>
+
+              <div class="price-row">
+                <span class="old-price">{{ product.old_price }}</span>
+                <span class="current-price">
+                  <b class="formatted-price">{{ product.price }}</b> դրամ/հատ
+                </span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <div class="quantity-selector">
+                <button type="button" id="minus-btn">
+                  <img src="{% static 'img/remove.svg' %}" class="icon" alt="Decrease quantity">
+                </button>
+
+                <input
+                  type="number"
+                  name="quantity"
+                  id="quantity-input"
+                  value="1"
+                  min="1"
+                  readonly
+                >
+
+                <button type="button" id="plus-btn">
+                  <img src="{% static 'img/add.svg' %}" class="icon" alt="Increase quantity">
+                </button>
+              </div>
+
+              <button type="submit" class="cart-btn">
+                <img src="{% static 'img/blue_cart.svg' %}" class="icon" alt="Add to cart">
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const minusBtn = document.getElementById("minus-btn");
+    const plusBtn = document.getElementById("plus-btn");
+    const quantityInput = document.getElementById("quantity-input");
+
+    minusBtn.addEventListener("click", function () {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    plusBtn.addEventListener("click", function () {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      quantityInput.value = currentValue + 1;
+    });
+  });
+</script>
+{% endblock %}

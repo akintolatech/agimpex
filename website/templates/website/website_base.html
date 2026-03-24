@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
+    <link type="x-icon" href="{% static 'img/logo.png' %}" rel="icon" />
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <link type="text/css" href="{% static 'styles/shop.css' %}" rel="stylesheet" />
+   
+    {% block style %} {% endblock %}
+</head>
+<body>
+   
+    <div id="header">
+
+        <div class="header_contact_bar">
+            <div class="contact-wrap">
+                <p>Working hours – 09:00 to 18:00, Mon–Sat</p>
+                <p>+234 703922827</p>
+            </div>
+            
+        </div>
+
+        <div class="header_main_bar">
+
+            <div class="wrap">
+
+                
+                <div class="siteid-container">
+                     
+                    <a href="{% url 'website:index' %}"><img src="{% static 'img/agimpexhlogo.png' %}" class="logo" /></a>
+    
+                    <script src="{% static 'js/toggle.js' %}"></script>
+            
+                    <div class="nav">
+            
+
+                        <svg version="1.1"  x="0px" y="0px"
+                            viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+                            
+                            <g>
+                            <rect x="4.6" y="10.5" class="st0 bar1" width="30.8" height="4"/>
+                            <rect x="4.6" y="18" class="st0 bar2" width="30.8" height="4"/>
+                            <rect x="4.6" y="25.5" class="st0 bar3" width="30.8" height="4"/>
+                            </g>
+
+                        </svg>
+
+                    </div>  
+                </div>
+
+
+               
+                
+
+                <div class="searchbox">
+                    <input type="search" placeholder="Search" />
+                    <button>Catalogs</button>
+                </div>
+
+                <div class="app_functions">
+                    <div class="icontext">
+                        <img src="{% static 'img/account.svg' %}" class="icon" />
+                        <h6>Login/Sign in</h6>
+                    </div>
+                    <div class="icontext">
+                        <img src="{% static 'img/fave.svg' %}" class="icon" />
+                        <h6>Favourites</h6>
+                    </div>
+                    <a href="{% url 'cart:cart_detail' %}">
+                        <div class="icontext">
+                            <img src="{% static 'img/cart.svg' %}" class="icon" />
+                            <h6>Cart</h6>
+                        </div>
+                    </a>
+                    
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="header_bottom_bar">
+
+            <div class="wrap">
+                <a href="{% url 'website:discount' %}"><h3>SPECIAL OFFER <b style="color: red;">(UP TO 25%)</b></h3></a>
+                <h3>Construction Materials</h3>
+                <h3>Natural Stones</h3>
+                <h3>Services</h3>
+                <h3>Contact</h3>
+            </div>
+          
+        </div>
+
+
+        {% comment %}
+
+        <div class="wrap">
+           
+            <!-- <a href="{% url 'website:index' %}"><img src="{% static 'img/agimpex.png' %}" class="logo" /></a> -->
+
+            <div class="pry-nav">
+                <ul>
+                    <a href="{% url 'website:index' %}"><li>Home</li></a> 
+                    <a href="{% url 'website:about' %}"><li>About us</li></a>
+                    <a href="{% url 'website:gallery' %}"><li>Our Projects</li></a>
+                    <a href="{% url 'website:contact' %}"><li>Contact us</li></a>
+                    <a href="{% url 'website:gallery' %}"><li>News and Stories</li></a>
+  
+                </ul>     
+            </div>
+
+            <script src="{% static 'js/toggle.js' %}"></script>
+            
+            <div class="site-id nav">
+       
+
+                <svg version="1.1"  x="0px" y="0px"
+                    viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
+                    
+                    <g>
+                    <rect x="4.6" y="10.5" class="st0 bar1" width="30.8" height="4"/>
+                    <rect x="4.6" y="18" class="st0 bar2" width="30.8" height="4"/>
+                    <rect x="4.6" y="25.5" class="st0 bar3" width="30.8" height="4"/>
+                    </g>
+
+                </svg>
+
+             </div>  
+             
+        </div>
+
+        {% endcomment %}
+
+
+
+
+    </div>
+
+    <!-- <div class="back-drop"></div> -->
+    <div  class ="heading_spacer"></div>
+
+    {% block content %}
+
+    {% endblock %}
+
+
+  
+    <div class="footer">
+
+        <div class="footer-wrap">
+
+            <div class="footer-text-container">
+
+                <ul>
+                    <li class="footer-heading">Quick Links</li>
+                    <a href="index.html"><li>Special Offer (Disocunt 25%)</li></a>
+                    <a href="index.html"><li>Construction Materials</li></a>
+                    <a href="index.html"><li>Natural Stones</li></a>
+                    <a href="index.html"><li>Services</li></a>
+                    <a href="index.html"><li>Catologs</li></a>
+                    <a href="index.html"><li>Contact</li></a>
+                </ul> 
+
+                <ul>
+                    <center>
+                    <img src="{% static 'img/agimpexfooterlogo.png' %}"  alt="" width="260px"/>
+                   
+                    <li>
+                
+                        <div class="social-media">
+
+                             <div class="contact-icon">
+                                <img src="{% static 'img/fb.svg' %}"/>
+                            </div>
+                        
+                            <div class="contact-icon">
+                                <img src="{% static 'img/insta.svg' %}"/>
+                            </div>
+
+                        
+                            <div class="contact-icon">
+                                <img src="{% static 'img/link.svg' %}"/>
+                            </div>
+
+                            <div class="contact-icon">
+                                <img src="{% static 'img/tiktok.svg' %}"/>
+                            </div>
+
+                            <div class="contact-icon">
+                                <img src="{% static 'img/youtube.svg' %}"/> 
+                            </div>
+
+                    </li>
+                     </center>
+                   
+                </ul>
+                
+                
+                <ul>
+                    <li class="footer-heading">Contact us</li>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt=""></span>Address: Yerevan,<br/>Davit Anhaght 23/10 floor 5</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt=""></span>Phone: +374 33 40 44 40</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt=""></span>Email: info@agimpex.am</li></a>
+
+                </ul>   
+
+            </div>
+           
+       
+
+          
+        </div>
+
+
+    </div>
+   
+
+</body>
+</html>

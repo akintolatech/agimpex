@@ -1,0 +1,62 @@
+
+.aboutland {
+    background-image: url("../img/about.jpg");
+    /* background-size: cover; */
+}
+
+.contactland {
+    background-image: url("../img/contact.jpg");
+    /* background-size: contain; */
+}
+
+
+.full{
+    width:100%;
+    line-height: 2rem;
+    text-align: justify;
+    padding: 0;
+}
+
+.contact-map-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+
+
+.contact-map-details {
+    width: 100%;
+    /* border: 1px solid red; */
+    margin-bottom: 30px;
+}
+
+.contact-map-box {
+    width: 100%;
+    /* border: 1px solid red; */
+
+}
+
+/* for larger screens */
+@media screen and (min-width: 760px){
+
+    .contact-map-container{
+        flex-direction: row;
+        height: 450px;
+    }
+    .contact-map-details{
+        width: 30%;
+    }
+    
+    .contact-map-box {
+        width: 68%;
+    }
+
+    iframe {
+        width: 100%;
+    }
+
+
+}

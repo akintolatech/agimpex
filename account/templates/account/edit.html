@@ -1,0 +1,37 @@
+{% extends "webcms/base.html" %}
+{% load static %}
+{% block title %}Edit your account{% endblock %}
+
+{% block header %}
+    <div id="header">
+
+      <div class="header-wrap">
+          <a href="{% url 'browser:index' %}">
+              <div class="site-id">
+                  <img src="{% static '/img/back.svg' %}" />
+              </div>
+          </a>
+      </div>
+
+  </div>
+    <div class="header-pad"></div>
+{% endblock %}
+
+{% block content %}
+
+    <div class="auth-form">
+        <h1>Edit your account</h1>
+        <p>You can edit your account using the following form:</p>
+        <form method="post" enctype="multipart/form-data">
+        <div class="long-form">
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+        </div>
+
+        {% csrf_token %}
+        <p><input type="submit" value="Save changes"></p>
+        </form>
+    </div>
+
+   
+{% endblock %}

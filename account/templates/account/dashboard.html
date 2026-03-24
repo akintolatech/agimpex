@@ -1,0 +1,121 @@
+{% extends "webcms/base.html" %}
+{% load static %}
+
+{% block title %}{{ business.name_of_business }} {{ request.user.first_name|default:request.user.username }}'s-Dashboard{% endblock %}
+
+
+{% block landing %}
+    <div class="landing" id="contact-landing">
+        <!-- <video src="media/vid.mp4"
+               autoplay="true">
+        </video> -->
+
+        <div class="text">
+            <h1>Welcome {{ request.user.first_name|default:request.user.username }}</h1>
+            <p>
+                Find the products you love <br/>
+                Shop for original and quality products from our store with amazing discounts!
+            </p>
+            <p><a href="{% url 'password_change' %}">Change password</a> | <a href="{% url 'edit' %}">Edit account</a></p>
+<!--            <button>Send a Message</button>-->
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block content %}
+      <!-- section -->
+  <div class="section">
+    <!--        <h1>Products</h1>-->
+            <h1>{% if category %}{{ category.name }}{% else %}All Products{% endif %}</h1>
+    
+            <div class="shop-container">
+    
+                <div class="aside-container">
+    
+    
+                    <div class="search-box">
+                        <input type="search" placeholder="Search products" />
+                        <div class="icn-box">
+                            <img src="{% static 'img/icons/search.svg' %}" />
+                        </div>
+                    </div>
+    
+                    <h4>Categories</h4>
+    
+                    <div class="user-profile">
+    
+                        <!-- Categories -->
+                        <a href="{% url 'shop:product_list' %}">
+                            <div class="user-func"  {% if not category %}class="selected"{% endif %}>
+                                <div class="icon-and-text">
+                                    <div class="func-icon"><img src="{% static 'img/icons/terminal.svg' %}"></div>
+                                    <h4>All</h4>
+                                </div>
+                                <h4>(3)</h4>
+                            </div>
+                        </a>
+    
+                        {% for c in categories %}
+                        <a href="{{ c.get_absolute_url }}">
+                            <div class="user-func">
+                                <div class="icon-and-text" {% if category.slug == c.slug %}class="selected"{% endif %} >
+                                    <div class="func-icon"><img src="{% static 'img/icons/terminal.svg' %}"></div>
+                                    <h4>{{ c.name }}</h4>
+                                </div>
+                                <h4>(3)</h4>
+                            </div>
+                        </a>
+                        {% endfor %}
+    
+                    </div>
+    
+                </div>
+    
+                <div class="container-of-containers">
+    
+                    <div class="product-container">
+                        {% for product in products %}
+                        <!-- Product Card -->
+                        <div class="product-card-box">
+    
+                            <!-- Product image -->
+                            <div class="product-card-image-box">
+                                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"/>
+                            </div>
+    
+                            <!-- Product meta -->
+                            <div class="product-card-meta">
+    
+                                <div class="product-card-price">
+                                    <p>{{ product.name |truncatewords:5|linebreaks }}</p>
+                                    <h4>${{ product.price }}</h4>
+                                </div>
+    
+                                <div class="product-qty-controls-container">
+    
+                                    <a href="{{ product.get_absolute_url }}">
+                                        <div class="product-qty-controls" >
+                                            <img src="{% static 'img/icons/add_to_cart.svg' %}" alt="">
+                                        </div>
+                                    </a>
+    
+                                </div>
+    
+                            </div>
+    
+                        </div>
+    
+                        {% endfor %}
+                    </div>
+    
+                </div>
+    
+            </div>
+    
+        </div>
+
+{% endblock %}
+
+
+

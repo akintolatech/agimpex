@@ -1,20 +1,19 @@
 
 
 .cart-container {
-    
     /* border: 1px solid red; */
     height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
-
 .cart-item {
-    width: 63%;
+    /* width: 63%; */
 }
 
 .cart-summary-box {
-    width: 35%;
+    /* width: 35%; */
 }
 
 .cart-summary-box h3 {
@@ -34,6 +33,24 @@
     border-radius: 12px;
 }
 
+
+/* for large screens */
+@media screen and (min-width: 760px){
+
+    .cart-container {
+        flex-direction: row;
+    }
+
+    .cart-item {
+        width: 63%;
+    }
+
+    .cart-summary-box {
+        width: 35%;
+    }
+
+
+}
 
 ul.errorlist {
    float:left;

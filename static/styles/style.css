@@ -88,6 +88,10 @@ a {
     margin-right: 12px;
 }
 
+.language-container{
+    border: 1px solid red;
+}
+
 
 .header_main_bar {
     width: 100%;
@@ -394,10 +398,11 @@ button {
 
 
 .stats_box {
-    width: 90%;
+    /* width: 90%; */
     border-radius: var(--radius);
     background-color: rgb(235, 234, 234);
     padding: 40px;
+    box-sizing: border-box;
     box-shadow: 1px 1px 1px var(--dark);
     display: flex;
     flex-direction: column;

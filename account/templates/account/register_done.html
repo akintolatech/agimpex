@@ -1,10 +1,16 @@
-{% extends "webcms/base.html" %}
+{% extends "website/website_base.html" %}
 {% load static %}
 
 
 {% block title %}Welcome{% endblock %}
 
+{% block style %} 
+  <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
 {% block content %}
+
   <div class="auth-form">
     <img src="{% static 'img/check.svg' %}">
     <h1>Welcome {{ new_user.first_name }}!</h1>

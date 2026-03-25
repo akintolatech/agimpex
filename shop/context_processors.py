@@ -9,4 +9,5 @@ def product_list(request):
         'category': category,
         'categories': categories,
         'products': products,
+        # 'discounted_products': Product.objects.filter()
     }

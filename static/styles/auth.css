@@ -1,7 +1,7 @@
 /* Global Styles */
 :root {
 
-    --light: aliceblue;
+    /* --light: aliceblue;
     --lighter: #f0fff5;
     --radius: 10px;
     --product-rad: 12px;
@@ -11,7 +11,8 @@
     --rad: 10px;
     --pry-color: #396649;
     --sec-color: #caffc5;
-    --box-shadow: 0 4px 6px rgba(1, 9, 37, 0.1);
+    --box-shadow: 0 4px 6px rgba(1, 9, 37, 0.1); */
+    --pry-color: #003151;
 }
 
 html, body {
@@ -108,7 +109,8 @@ img {
 .login-button {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(45deg, var(--pry-color), #f1edf5);
+    /* background: linear-gradient(45deg, var(--pry-color), #f1edf5); */
+    background-color: var(--pry-color);
     border: none;
     border-radius: 10px;
     color: #fff;
@@ -191,15 +193,19 @@ img {
     width: 100%;
 }
 
-.authform {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.auth-form {
+    max-width: 600px;
     /* border: 1px solid greenyellow; */
+    margin: auto;
+    margin-block: 120px;
+    background-color: white;
+    padding: 30px;
+    box-sizing: border-box;
+    border-radius: 24px;
 }
 
-.auth-form {
-    min-width: 500px;
+.auth-form p a {
+    color: var(--pry-color);
 }
 
 #content {
@@ -237,19 +243,12 @@ input[type="submit"] {
     border-radius: var(--rad);
     border: none;
     cursor: pointer;
-    /* background-color: var(--pry-color); */
+    background-color: var(--pry-color);
     color: white;
-    background: linear-gradient(45deg, var(--pry-color), var(--sec-color));
-    /* border: none; */
-    /* border-radius: 10px; */
-    /* color: #fff; */
     font-size: 16px;
     font-weight: 600;
     /* cursor: pointer; */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* margin-top: 1rem; */
-
-
 }
 
 input[type="submit"]:hover {
@@ -264,7 +263,7 @@ ul {
     padding: 0;
 }
 
-/* messages */
+
 ul.messages {
     margin:10px 100px;
     padding:0;
@@ -308,12 +307,6 @@ ul.messages li a.close {
 }
 
 .toggle-password {
-    /* position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: none; */
     cursor: pointer;
     color: #666;
 }

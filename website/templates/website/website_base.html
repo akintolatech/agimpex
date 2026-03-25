@@ -22,7 +22,9 @@
                 <p>Working hours – 09:00 to 18:00, Mon–Sat</p>
                 
                 <div class="contact-wrap-item">
-                    <img src="{% static 'img/hy.png' %}" class="language" width="24px"/>
+                    <div class="language-container">
+                        <img src="{% static 'img/hy.png' %}" class="language" width="24px"/>
+                    </div>
                     <p>+234 703922827</p>
                 </div>
                 
@@ -67,14 +69,20 @@
                 </div>
 
                 <div class="app_functions">
-                    <div class="icontext">
-                        <img src="{% static 'img/account.svg' %}" class="icon" />
-                        <h6>Login/Sign in</h6>
-                    </div>
+
+                     <a href="{% url 'login' %}">
+                        <div class="icontext">
+                            <img src="{% static 'img/account.svg' %}" class="icon" />
+                            <h6>Login/Sign in</h6>
+                        </div>
+                    </a>
+
+
                     <div class="icontext">
                         <img src="{% static 'img/fave.svg' %}" class="icon" />
                         <h6>Favourites</h6>
                     </div>
+
                     <a href="{% url 'cart:cart_detail' %}">
                         <div class="icontext">
                             <img src="{% static 'img/cart.svg' %}" class="icon" />
@@ -168,7 +176,7 @@
                     <a href="#"><li>Construction Materials</li></a>
                     <a href="#"><li>Natural Stones</li></a>
                     <a href="#"><li>Services</li></a>
-                    <a href="#"><li>Catologs</li></a>
+                    <a href="#"><li>Catalogs</li></a>
                     <a href="#"><li>Contact</li></a>
                 </ul> 
 

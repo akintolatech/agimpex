@@ -1,28 +1,15 @@
-{% extends "webcms/base.html" %}
+{% extends "website/website_base.html" %}
 {% load static %}
 
 {% block title %}Create an account{% endblock %}
-
-{% block header %}
-  <div id="header">
-
-      <div class="header-wrap">
-          <a href="{% url 'login' %}">
-              <div class="site-id">
-                  <img src="{% static '/img/back.svg' %}" />
-              </div>
-          </a>
-      </div>
-
-  </div>
-  <div class="header-pad"></div>
+{% block style %} 
+  <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" />
 {% endblock %}
-
 
 {% block content %}
   <div class="auth-form">
     <h1>Create an account</h1>
-    <p>Enjoy amazing discounts, coupons, and games when you create an account:</p>
+    <p>Enjoy amazing discounts and coupons when you create an account:</p>
     <form method="post">
       <div class="long-form">
           {{ user_form.as_p }}

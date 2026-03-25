@@ -1,0 +1,242 @@
+/* Banner */
+.banner {
+    width: 100%;
+    height: 270px;
+    border-radius: 18px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a5a, #f66b3d, #de4d52, #a63b66);
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+    radial-gradient(circle at 15% 60%, rgba(255,255,255,0.18), transparent 30%),
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.08), transparent 28%),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.10), transparent 25%);
+    filter: blur(8px);
+}
+
+/* Profile card overlapping banner */
+.profile-card {
+    margin: -55px 22px 20px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: relative;
+    z-index: 5;
+    border: 1px solid rgba(255,255,255,0.6);
+}
+
+.avatar-wrap {
+    position: relative;
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 66px;
+    height: 66px;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+    background: #ddd;
+}
+
+.edit-avatar {
+    position: absolute;
+    right: -8px;
+    bottom: -6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: none;
+    background: #eef2ff;
+    color: #334155;
+    font-size: 13px;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-text h2 {
+    font-size: 17px;
+    color: #32476b;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.profile-text p {
+    font-size: 14px;
+    color: #5b6e92;
+    font-weight: 600;
+}
+
+/* Form section */
+.form-card {
+    background: #f8f8f9;
+    border-radius: 18px;
+    padding: 24px 16px 36px;
+    border: 1px solid #ececec;
+    min-height: 440px;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #32476b;
+}
+
+.profile-form {
+    width: 100%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
+    margin-bottom: 18px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #32476b;
+}
+
+input,
+textarea {
+    width: 100%;
+    border: 1px solid #d8dde6;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #4b5563;
+    background: #fff;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 3px rgba(148, 163, 184, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a0a8b5;
+}
+
+textarea {
+    min-height: 78px;
+    resize: vertical;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 36px;
+}
+
+.save-btn {
+    background: #23294d;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 13px;
+       font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(35, 41, 77, 0.2);
+    transition: 0.2s ease;
+}
+
+.save-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .banner {
+    height: 220px;
+    }
+
+    .profile-card {
+    margin: -45px 12px 18px;
+    padding: 14px;
+    gap: 14px;
+    }
+
+    .grid {
+    grid-template-columns: 1fr;
+    }
+
+    .form-title {
+    font-size: 22px;
+    }
+
+    .btn-row {
+    justify-content: stretch;
+    }
+
+    .save-btn {
+    width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+    padding: 8px;
+    }
+
+    .banner {
+    height: 180px;
+    border-radius: 14px;
+    }
+
+    .profile-card {
+    flex-direction: row;
+    align-items: center;
+    }
+
+    .avatar-wrap,
+    .avatar {
+    width: 58px;
+    height: 58px;
+    }
+
+    .profile-text h2 {
+    font-size: 15px;
+    }
+
+    .profile-text p {
+    font-size: 13px;
+    }
+
+    .form-card {
+    padding: 18px 12px 24px;
+    }
+}

@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 
 
@@ -23,6 +24,11 @@ class Category(models.Model):
         return reverse(
             'shop:product_list_by_category', args=[self.slug]
         )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Product(models.Model):

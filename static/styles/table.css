@@ -1,3 +1,9 @@
+:root {
+    --pry-color: #003151;
+}
+
+
+
 .table_container {
     /* max-width: 1200px; */
     margin: 0 auto;
@@ -9,6 +15,11 @@
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(1, 9, 37, 0.1);
     overflow-x: auto;
+}
+
+.title_container {
+    display: flex;
+    justify-content: space-between;
 }
 
 td img {
@@ -40,7 +51,7 @@ td img {
 }
 
 .modern-table td {
-    padding: 1rem;
+    padding: 0.5rem;
     border-bottom: 1px solid #e2e8f0;
 }
 

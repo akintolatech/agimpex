@@ -21,17 +21,17 @@
 
       <div class="thumbnails">
         <img
-          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% else %} {{ product.image.url }} {% endif %}"
           class="thumb active"
           alt="{{ product.name }}"
         >
         <img
-          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% else %} {{ product.image.url }} {% endif %}"
           class="thumb"
           alt="{{ product.name }}"
         >
         <img
-          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          src="{% if product.thumbnail3 %}{{ product.thumbnail2.url }}{% else %} {{ product.image.url }} {% endif %}"
           class="thumb"
           alt="{{ product.name }}"
         >

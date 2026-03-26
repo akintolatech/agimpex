@@ -63,26 +63,6 @@
 
 
 
-/* Product Container */
-/* .product-container{
-  width: 90%;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 12px;
-  row-gap: 12px;
-  border: 1px solid red;
-} */
-
-.product-index-container{
-  /* width: 90%; */
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 12px;
-  row-gap: 12px;
-  /* border: 1px solid red; */
-}
-
-
-
-
 
 
 /* for large screens: progressive enhancement */
@@ -110,12 +90,6 @@
       margin-left: 24px;
     }
 
-    /* .product-container{
-          display: grid;
-    } */
-    .product-index-container{
-          display: grid;
-    }
 
 }
 

@@ -6,7 +6,8 @@ $(document).ready(
 
             function(){
                 $('.header_bottom_bar').toggleClass('open');
-
+                $('.app_functions').toggleClass('open');
+                $('.searchbox').toggleClass('open');
                 // ham nav animation
                 $('.bar1').toggleClass('active');
                 $('.bar2').toggleClass('active');

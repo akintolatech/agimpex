@@ -1,4 +1,6 @@
 from .models import Category, Product
+from django.db.models import F
+
 
 def product_list(request):
     category = None
@@ -9,5 +11,36 @@ def product_list(request):
         'category': category,
         'categories': categories,
         'products': products,
-        # 'discounted_products': Product.objects.filter()
+        'construction_goods': Product.objects.filter(
+            category__slug='construction-materials',
+            available=True
+        ).order_by('-created')[:5],
+
+        'all_construction_goods': Product.objects.filter(
+            category__slug='construction-materials',
+            available=True
+        ).order_by('-created')[:6],
+
+        'natural_stones': Product.objects.filter(
+            category__slug='natural-stones',
+            available=True
+        ).order_by('-created')[:5],
+
+        'all_natural_stones': Product.objects.filter(
+            category__slug='natural-stones',
+            available=True
+        ).order_by('-created'),
+
+       'discounted_products': Product.objects.filter(
+        available=True,
+        old_price__isnull=False,
+        old_price__gt=F('price')
+        ).order_by('-created')[:4],
+
+        'top_products': Product.objects.filter(
+            available=True,
+            old_price__isnull=False,
+            old_price__gt=F('price')
+        ).order_by('-created')[:5],
+
     }

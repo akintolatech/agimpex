@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,14 +19,38 @@
     <div id="header">
 
         <div class="header_contact_bar">
+
             <div class="contact-wrap">
-                <p>Working hours – 09:00 to 18:00, Mon–Sat</p>
+                <p>{% trans "Working hours – 09:00 to 18:00, Mon–Sat" %}</p>
                 
                 <div class="contact-wrap-item">
-                    <div class="language-container">
-                        <img src="{% static 'img/hy.png' %}" class="language" width="24px"/>
+
+                   <div class="language-dropdown">
+                        <button class="language-btn">
+                            <img src="{% static 'img/hy.png' %}" class="language-flag" alt="Armenian">
+                            <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down"/> -->
+                        </button>
+
+                        <div class="language-menu">
+                            <a href="/hy/" class="language-option">
+                                <img src="{% static 'img/hy.png' %}" alt="Armenian">
+                                <span>Arm</span>
+                            </a>
+
+                            <a href="/ru/" class="language-option">
+                                <img src="{% static 'img/ru.png' %}" alt="Russian">
+                                <span>Ru</span>
+                            </a>
+
+                            <a href="/en/" class="language-option">
+                                <img src="{% static 'img/en.png' %}" alt="English">
+                                <span>En</span>
+                            </a>
+                        </div>
                     </div>
-                    <p>+234 703922827</p>
+                    
+                     <p>+234 703922827</p>
+                     
                 </div>
                 
             </div>
@@ -58,38 +83,33 @@
 
                     </div>  
                 </div>
-
-
-               
                 
-
                 <div class="searchbox">
-                    <input type="search" placeholder="Search" />
-                    <button>Catalogs</button>
+                    <input type="search" placeholder="{% trans 'Search' %}" />
+                    <button>{% trans 'Catalogs' %}</button>
                 </div>
 
                 <div class="app_functions">
 
-                     <a href="{% url 'login' %}">
+                    <a href="{% url 'login' %}">
                         <div class="icontext">
                             <img src="{% static 'img/account.svg' %}" class="icon" />
-                            <h6>Login/Sign in</h6>
+                            <h6>{% trans 'Login/Sign in' %}</h6>
                         </div>
                     </a>
 
-
                     <div class="icontext">
                         <img src="{% static 'img/fave.svg' %}" class="icon" />
-                        <h6>Favourites</h6>
+                        <h6>{% trans 'Favourites' %}</h6>
                     </div>
 
                     <a href="{% url 'cart:cart_detail' %}">
                         <div class="icontext">
                             <img src="{% static 'img/cart.svg' %}" class="icon" />
-                            <h6>Cart</h6>
+                            <h6>{% trans 'Cart' %}</h6>
                         </div>
                     </a>
-                    
+
                 </div>
 
 
@@ -98,60 +118,39 @@
 
         </div>
 
-        <div class="header_bottom_bar">
-
+       <div class="header_bottom_bar">
             <div class="wrap">
-                <a href="{% url 'website:discount' %}"><h3>SPECIAL OFFER <b style="color: red;">(UP TO 25%)</b></h3></a>
-                <h3>Construction Materials</h3>
-                <h3>Natural Stones</h3>
-                <h3>Services</h3>
-                <h3>Contact</h3>
+                <a href="{% url 'website:discount' %}" class="nav-item">
+                    {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b>
+                </a>
+
+                {% for cat in categories %}
+                {% if cat.slug == "construction-materials" or cat.slug == "natural-stones" %}
+                    <a href="{% url 'shop:product_list_by_category' cat.slug %}">
+                        <h3>{{ cat.name }}</h3>
+                    </a>
+                {% endif %}
+            {% endfor %}
+
+                <a href="" class="nav-item">{% trans "Services" %}</a>
+                <a href="" class="nav-item">{% trans "Contact" %}</a>
             </div>
-          
         </div>
 
+        <script>
+            // Get current path
+            const currentPath = window.location.pathname;
 
-        {% comment %}
+            // Select all nav links
+            const navLinks = document.querySelectorAll('.wrap .nav-item');
 
-        <div class="wrap">
-           
-            <!-- <a href="{% url 'website:index' %}"><img src="{% static 'img/agimpex.png' %}" class="logo" /></a> -->
-
-            <div class="pry-nav">
-                <ul>
-                    <a href="{% url 'website:index' %}"><li>Home</li></a> 
-                    <a href="{% url 'website:about' %}"><li>About us</li></a>
-                    <a href="{% url 'website:gallery' %}"><li>Our Projects</li></a>
-                    <a href="{% url 'website:contact' %}"><li>Contact us</li></a>
-                    <a href="{% url 'website:gallery' %}"><li>News and Stories</li></a>
-  
-                </ul>     
-            </div>
-
-            <script src="{% static 'js/toggle.js' %}"></script>
-            
-            <div class="site-id nav">
-       
-
-                <svg version="1.1"  x="0px" y="0px"
-                    viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
-                    
-                    <g>
-                    <rect x="4.6" y="10.5" class="st0 bar1" width="30.8" height="4"/>
-                    <rect x="4.6" y="18" class="st0 bar2" width="30.8" height="4"/>
-                    <rect x="4.6" y="25.5" class="st0 bar3" width="30.8" height="4"/>
-                    </g>
-
-                </svg>
-
-             </div>  
-             
-        </div>
-
-        {% endcomment %}
-
-
-
+            navLinks.forEach(link => {
+                // Compare link href with current path
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active-link');
+                }
+            });
+        </script>
 
     </div>
 
@@ -171,14 +170,14 @@
             <div class="footer-text-container">
 
                 <ul>
-                    <li class="footer-heading">Quick Links</li>
-                    <a href="#"><li>Special Offer (Disocunt 25%)</li></a>
-                    <a href="#"><li>Construction Materials</li></a>
-                    <a href="#"><li>Natural Stones</li></a>
-                    <a href="#"><li>Services</li></a>
-                    <a href="#"><li>Catalogs</li></a>
-                    <a href="#"><li>Contact</li></a>
-                </ul> 
+                    <li class="footer-heading">{% trans "Quick Links" %}</li>
+                    <a href="#"><li>{% trans "Special Offer Discount 25%" %}</li></a>
+                    <a href="#"><li>{% trans "Construction Materials" %}</li></a>
+                    <a href="#"><li>{% trans "Natural Stones" %}</li></a>
+                    <a href="#"><li>{% trans "Services" %}</li></a>
+                    <a href="#"><li>{% trans "Catalogs" %}</li></a>
+                    <a href="#"><li>{% trans "Contact" %}</li></a>
+                </ul>
 
                 <ul>
                     <center>
@@ -216,7 +215,7 @@
                 
                 
                 <ul>
-                    <li class="footer-heading">Contact us</li>
+                    <li class="footer-heading">{% trans "Contact us" %}</li>
                     <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt=""></span>Address: Yerevan,<br/>Davit Anhaght 23/10 floor 5</li></a>
                     <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt=""></span>Phone: +374 33 40 44 40</li></a>
                     <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt=""></span>Email: info@agimpex.am</li></a>

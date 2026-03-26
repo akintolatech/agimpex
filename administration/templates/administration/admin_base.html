@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html><html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} </title>
+
+    <!-- Dasboard v3.0 Beta -->
+    <link type="text/css" href="{% static 'styles/dashboard.css' %}" rel="stylesheet" >
+    <!-- <link type="text/css" href="{% static 'styles/table.css' %}" rel="stylesheet" /> -->
+    <link type="x-icon" href="{% static 'img/ag.png' %}" rel="icon" />
+
+    {% block styles %}
+    <!-- <link type="text/css" href="{% static 'styles/table.css' %}" rel="stylesheet" /> -->
+    {% endblock %}
+
+</head>
+<body>
+
+    <div class="dashboard">
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+      <div class="sidebar-header">
+        <div class="logo-mark">
+           <img src="{% static 'img/ag.png' %}"/>
+        </div>
+        <div class="logo-text">Agimpex</div>
+      </div>
+
+      <nav class="menu">
+
+        <a href="{% url 'administration:administration' %}" class="menu-item active">
+          <div class="menu-icon"><img src="{% static 'img/dashboard.svg' %}"/></div>
+          <span>Dashboard</span>
+        </a>
+
+
+        <a href="{% url 'administration:user_details' user.id %}" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/accounts.svg' %}"/></div>
+          <span>User Profile</span>
+        </a>
+
+
+        <a href="{% url 'administration:category_list' %}" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/categories.svg' %}"/></div>
+          <span>Category</span>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
+          <span>Unit of Measure</span>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
+          <span>Product Property</span>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/product.svg' %}"/></div>
+          <span>Products</span>
+        </a>
+
+        <a href="#" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/bag.svg' %}"/></div>
+          <span>Orders</span>
+        </a>
+
+         <a href="#" class="menu-item">
+          <div class="menu-icon"><img src="{% static 'img/love_icn.svg' %}"/></div>
+          <span>Subscribers</span>
+        </a>
+
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <!-- <div class="breadcrumb">Aglmpex / Dashboard</div> -->
+          <div class="page-title">Dashboard</div>
+        </div>
+
+        <div class="topbar-right">
+          <button class="icon-btn menu-toggle" id="menuToggle">☰</button>
+          
+          <form method="POST" action="{% url 'logout' %}" id="logoutForm">
+                {% csrf_token %}
+                
+                <a onclick="document.getElementById('logoutForm').submit();">
+                  <div class="top-action">👤 Sign Out</div>
+                </a>
+            </form>
+
+
+          <button class="icon-btn">⚙</button>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <section class="content">
+      {% block content %}
+
+      {% endblock %}
+      </section>
+
+
+    </main>
+
+  </div>
+
+
+
+
+
+
+
+  <script>
+    // Mobile Sidebar Toggle
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("show");
+      overlay.classList.toggle("show");
+    });
+
+    overlay.addEventListener("click", () => {
+      sidebar.classList.remove("show");
+      overlay.classList.remove("show");
+    });
+
+    // Mini bar chart data
+    const barData = [72, 32, 18, 36, 78, 18, 64, 38, 78];
+    const barGroup = document.getElementById("barGroup");
+
+    barData.forEach(val => {
+      const bar = document.createElement("div");
+      bar.className = "bar";
+      bar.style.height = `${val}%`;
+      barGroup.appendChild(bar);
+    });
+
+    // SVG line chart
+    const yellowData = [50, 30, 300, 220, 500, 250, 400, 230, 500];
+    const redData    = [35, 90, 40, 150, 300, 290, 340, 230, 400];
+
+    function createSmoothPath(points) {
+      if (points.length < 2) return "";
+
+      let d = `M ${points[0].x} ${points[0].y}`;
+
+      for (let i = 0; i < points.length - 1; i++) {
+        const p0 = points[i === 0 ? i : i - 1];
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const p3 = points[i + 2 < points.length ? i + 2 : i + 1];
+
+        const cp1x = p1.x + (p2.x - p0.x) / 6;
+        const cp1y = p1.y + (p2.y - p0.y) / 6;
+
+        const cp2x = p2.x - (p3.x - p1.x) / 6;
+        const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+        d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+      }
+
+      return d;
+    }
+
+    function buildChart() {
+      const width = 1000;
+      const height = 300;
+      const maxValue = 500;
+
+      const xStep = width / (yellowData.length - 1);
+
+      const toPoints = (data) =>
+        data.map((val, i) => ({
+          x: i * xStep,
+          y: height - (val / maxValue) * height
+        }));
+
+      const yellowPoints = toPoints(yellowData);
+      const redPoints = toPoints(redData);
+
+      const yellowPath = createSmoothPath(yellowPoints);
+      const redPath = createSmoothPath(redPoints);
+
+      const yellowFill = `${yellowPath} L ${width} ${height} L 0 ${height} Z`;
+      const redFill = `${redPath} L ${width} ${height} L 0 ${height} Z`;
+
+      document.getElementById("yellowLine").setAttribute("d", yellowPath);
+      document.getElementById("redLine").setAttribute("d", redPath);
+      document.getElementById("yellowFill").setAttribute("d", yellowFill);
+      document.getElementById("redFill").setAttribute("d", redFill);
+    }
+
+    buildChart();
+  </script>
+
+  
+</body>
+</html>

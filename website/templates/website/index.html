@@ -1,4 +1,5 @@
 {% extends "website/website_base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}Agimpex: Home{% endblock %}
@@ -11,8 +12,8 @@
 
     <div class="hero-text">
         <div class="hero-text-box">
-            <h2>Construction Materials</h2>
-            <h3>Everything on One place</h3>
+             <h2>{% trans "Construction Materials" %}</h2>
+            <h3>{% trans "Everything on One place" %}</h3>
         </div>
       
     </div>
@@ -28,38 +29,36 @@
             <div class="icon-box">
                 <img src="{% static 'img/trust.svg' %}" />
             </div>
-            <p>Reliable Partner</p>
+            <p>{% trans "Reliable Partner" %}</p>
         </div>
 
         <div class="stat-item">
             <div class="icon-box">
                 <img src="{% static 'img/community.svg' %}" />
             </div>
-            <p>Specialized Team</p>
+            <p>{% trans "Specialized Team" %}</p>
         </div>
 
         <div class="stat-item">
             <div class="icon-box">
                 <img src="{% static 'img/material.svg' %}" />
             </div>
-            <p>Quality Product Range</p>
+            <p>{% trans "Quality Product Range" %}</p>
         </div>
 
         <div class="stat-item">
             <div class="icon-box">
                 <img src="{% static 'img/fastdelivery.svg' %}" />
             </div>
-            <p>Fast and Reliable Delivery</p>
+            <p>{% trans "Fast and Reliable Delivery" %}</p>
         </div>
 
-         <div class="stat-item">
+        <div class="stat-item">
             <div class="icon-box">
                 <img src="{% static 'img/discount.svg' %}" />
             </div>
-            <p>Competitive Prices</p>
+            <p>{% trans "Competitive Prices" %}</p>
         </div>
-
-       
 
     </div>
 
@@ -67,43 +66,38 @@
 
     <div class="section">
         
-        <div class="cat_container">
+       <div class="cat_container">
 
             <div class="cat_item">
-
                 <img src="{% static 'img/high-quality-industrial-photo-of-modern-constructi 1.png' %}" />
                 
                 <div class="cat_item_textbox">
-                    <h3>Construction Materials</h3>
+                    <h3>{% trans "Construction Materials" %}</h3>
                 </div>
-
             </div>
 
-             <div class="cat_item">
+            <div class="cat_item">
                 <img src="{% static 'img/stone.png' %}" />
                 
                 <div class="cat_item_textbox">
-                    <h3>Natural Stones</h3>
+                    <h3>{% trans "Natural Stones" %}</h3>
                 </div>
-
             </div>
 
-             <div class="cat_item">
+            <div class="cat_item">
                 <img src="{% static 'img/polymer.png' %}" />
                 
                 <div class="cat_item_textbox">
-                    <h3>Polymer Materials</h3>
+                    <h3>{% trans "Polymer Materials" %}</h3>
                 </div>
-
             </div>
 
             <div class="cat_item">
                 <img src="{% static 'img/asphalt-production-and-road-construction-process-- 1.png' %}" />
                 
                 <div class="cat_item_textbox">
-                    <h3>Bituminous Materials</h3>
+                    <h3>{% trans "Bituminous Materials" %}</h3>
                 </div>
-
             </div>
 
         </div>
@@ -111,140 +105,53 @@
     </div>
 
 
-
+    <!-- NO translations -->
     <div class="section">
 
         <div class="section-header">
-            <h1>Top Categories</h1>
+            <h1>{% trans "Top Categories" %}</h1>
         </div>
 
 
-        <div class="product-container">
+        <div class="index_product-container">
 
-            <div class="product-item">
+           
+            {% for product in top_products %}
+
+            <div class="index_product-item">
                 <div class="product-card">
-                <div class="badge-discount">-15%</div>
+                    {% if product.discount_amount%}
+                        <div class="badge-discount">-{{ product.discount_percent }}%</div>
+                    {% endif %}
                     <button class="wishlist-btn">❤</button>
                     <div class="product-image">
-                        <img src="{% static 'img/rod.png' %}" alt="Metal Pipes">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
                     </div>
                 </div>
 
                 <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
+                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
                     <div class="price-row">
                         <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
+                            <span class="old-price">{{ product.old_price }}</span>
+                            <span class="current-price">{{ product.price }}</span>
+                            <span class="currency">$</span>
                         </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
+                         <a href="{{ product.get_absolute_url }}">
+                            <button class="cart-btn">
+                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                            </button>
+                        </a>
                     </div>
                 </div>
 
             </div>
 
-            <div class="product-item">
-                <div class="product-card">
-                <div class="badge-discount">-15%</div>
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/squarerod.png' %}"  alt="Metal Pipes">
-                    </div>
-                </div>
+            {% endfor %}
 
-                <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-                <div class="badge-discount">-15%</div>
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/screw rod.png' %}"  alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-                <div class="badge-discount">-15%</div>
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/tri rod.png' %}"  alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-                <div class="badge-discount">-15%</div>
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/wire.png' %}" alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
 
 
 
@@ -252,16 +159,18 @@
 
     </div>
 
-    <div class="narrative">
+   <div class="narrative">
 
         <div class="text-box">
-            <h1>About us</h1>
+            <h1>{% trans "About us" %}</h1>
             <p>
+                {% blocktrans %}
                 "AG IMPEX" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
                 For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.
                 Starting from 2026, "AG IMPEX" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.
+                {% endblocktrans %}
             </p>
-            <button style="width: 160px;height: 48px;">Read more</button>
+            <button style="width: 160px;height: 48px;">{% trans "Read more" %}</button>
         </div>
 
         <div class="img-box">
@@ -278,35 +187,46 @@
         </div>
 
 
-        <div class="product-container">
+        <div class="index_product-container">
 
-            <div class="product-item">
+            {% for product in all_construction_goods %}
+
+            <div class="index_product-item">
                 <div class="product-card">
-              
+                    {% if product.discount_amount%}
+                        <div class="badge-discount">-{{ product.discount_percent }}%</div>
+                    {% endif %}
                     <button class="wishlist-btn">❤</button>
                     <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
                     </div>
                 </div>
 
                 <div class="product-info">
-                    <h3 class="product-title">Մետաղական ամրան</h3>
+                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
                     <div class="price-row">
                         <div class="price-container">
-                        <span class="old-price">2,000</span>
-                        <span class="current-price">1,000</span>
-                        <span class="currency">դրամ/հատ</span>
+                            <span class="old-price">{{ product.old_price }}</span>
+                            <span class="current-price">{{ product.price }}</span>
+                            <span class="currency">դրամ/հատ</span>
                         </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
+                         <a href="{{ product.get_absolute_url }}">
+                            <button class="cart-btn">
+                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                            </button>
+                        </a>
                     </div>
                 </div>
 
             </div>
 
+            {% endfor %}
 
-            <div class="product-item">
+
+            <!-- <div class="product-item">
                 <div class="product-card">
                 
                     <button class="wishlist-btn">❤</button>
@@ -403,11 +323,15 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
+
+
         </div>
+
+
     </div>
 
-     <div class="section">
+    <div class="section">
 
         <div class="section-header">
              <h1>Natural Stones</h1>
@@ -415,14 +339,18 @@
         </div>
 
 
-        <div class="product-container">
+        <div class="index_product-container">
 
-            <div class="product-item">
+            {% for product in all_natural_stones %}
+            <div class="index_product-item">
                 <div class="product-card">
               
                     <button class="wishlist-btn">❤</button>
                     <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
                     </div>
                 </div>
 
@@ -430,113 +358,26 @@
                  
                     <div class="price-row">
                         <div class="price-container">
-                            <h3 class="product-title">Մետաղական ամրան</h3>
+                            <h3 class="product-title">{{ product.name|truncatewords:3|linebreaks }}</h3>
                         </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
+                         <a href="{{ product.get_absolute_url }}">
+                            <button class="cart-btn">
+                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                            </button>
+                        </a>
                     </div>
                 </div>
 
             </div>
+            {% endfor %}
 
-            <div class="product-item">
-                <div class="product-card">
-              
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
-                    </div>
-                </div>
 
-                <div class="product-info">
-                 
-                    <div class="price-row">
-                        <div class="price-container">
-                            <h3 class="product-title">Մետաղական ամրան</h3>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-              
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                 
-                    <div class="price-row">
-                        <div class="price-container">
-                            <h3 class="product-title">Մետաղական ամրան</h3>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-              
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                 
-                    <div class="price-row">
-                        <div class="price-container">
-                            <h3 class="product-title">Մետաղական ամրան</h3>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="product-item">
-                <div class="product-card">
-              
-                    <button class="wishlist-btn">❤</button>
-                    <div class="product-image">
-                        <img src="{% static 'img/construction4.png' %}" alt="Metal Pipes">
-                    </div>
-                </div>
-
-                <div class="product-info">
-                 
-                    <div class="price-row">
-                        <div class="price-container">
-                            <h3 class="product-title">Մետաղական ամրան</h3>
-                        </div>
-                        <button class="cart-btn">
-                            <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                        </button>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 
 
     <div class="banner-container">
-        
+
         <div class="blue-bar">
             <h1 class="banner-text">Բեռնափոխադրում</h1>
             
@@ -720,7 +561,7 @@
         #file-input {
             display: none;
         } */
-    </style>
+</style>
 
 
 

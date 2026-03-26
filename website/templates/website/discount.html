@@ -35,7 +35,7 @@
             <div class="container-of-containers">
                 <div class="product-container">
 
-                    {% for product in products %}
+                    {% for product in discounted_products %}
                         <div class="product-item" style="width: 252px;">
                             <div class="product-card">
                                 {% if product.discount_amount%}
@@ -53,7 +53,7 @@
 
                             <div class="product-info">
                                 <h3 class="product-title">
-                                    {{ product.name|truncatewords:5|linebreaks }}
+                                    {{ product.name|truncatewords:3|linebreaks }}
                                 </h3>
 
                                 <div class="price-row">

@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-26 03:44+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: website/templates/website/index.html:15
+#: website/templates/website/index.html:75
+#: website/templates/website/website_base.html:175
+msgid "Construction Materials"
+msgstr "Строительные материалы"
+
+#: website/templates/website/index.html:16
+msgid "Everything on One place"
+msgstr "Всё в одном месте"
+
+#: website/templates/website/index.html:32
+msgid "Reliable Partner"
+msgstr "Надёжный партнёр"
+
+#: website/templates/website/index.html:39
+msgid "Specialized Team"
+msgstr "Специализированная команда"
+
+#: website/templates/website/index.html:46
+msgid "Quality Product Range"
+msgstr "Качественный ассортимент продукции"
+
+#: website/templates/website/index.html:53
+msgid "Fast and Reliable Delivery"
+msgstr "Быстрая и надёжная доставка"
+
+#: website/templates/website/index.html:60
+msgid "Competitive Prices"
+msgstr "Конкурентные цены"
+
+#: website/templates/website/index.html:83
+#: website/templates/website/website_base.html:176
+msgid "Natural Stones"
+msgstr "Натуральный камень"
+
+#: website/templates/website/index.html:91
+#, fuzzy
+#| msgid "Construction Materials"
+msgid "Polymer Materials"
+msgstr "Строительные материалы"
+
+#: website/templates/website/index.html:99
+#, fuzzy
+#| msgid "Construction Materials"
+msgid "Bituminous Materials"
+msgstr "Строительные материалы"
+
+#: website/templates/website/index.html:165
+msgid "About us"
+msgstr "О нас"
+
+#: website/templates/website/index.html:167
+msgid ""
+"\n"
+"                \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to "
+"become a reliable and long-term partner in the construction sector in "
+"Armenia.\n"
+"                For more than 7 years, we have been providing the Armenian "
+"market with high-quality, certified construction goods at competitive prices "
+"through both import and wholesale/retail sales, satisfying the requirements "
+"of both large construction companies and individual customers.\n"
+"                Starting from 2026, \"AG IMPEX\" LLC is also entering the "
+"market with two new brands: Metals Holding and Prime Stone.\n"
+"                "
+msgstr ""
+"\n"
+"                ООО \"AG IMPEX\" была основана в 2018 году с одной ясной "
+"целью: стать надежным и долгосрочным партнером в строительном секторе "
+"Армении.\n"
+"                Более 7 лет мы обеспечиваем армянский рынок "
+"высококачественными, сертифицированными строительными товарами по "
+"конкурентоспособным ценам как через импорт, так и через оптовую/розничную "
+"продажу, удовлетворяя потребности как крупных строительных компаний, так и "
+"частных клиентов.\n"
+"                Начиная с 2026 года, ООО \"AG IMPEX\" также выходит на рынок "
+"с двумя новыми брендами: Metals Holding и Prime Stone.\n"
+"                "
+
+#: website/templates/website/index.html:173
+msgid "Read more"
+msgstr "Подробнее"
+
+#: website/templates/website/website_base.html:24
+msgid "Working hours – 09:00 to 18:00, Mon–Sat"
+msgstr ""
+
+#: website/templates/website/website_base.html:88
+msgid "Search"
+msgstr "Поиск"
+
+#: website/templates/website/website_base.html:89
+#: website/templates/website/website_base.html:178
+msgid "Catalogs"
+msgstr "Каталоги"
+
+#: website/templates/website/website_base.html:97
+msgid "Login/Sign in"
+msgstr "Войти/Регистрация"
+
+#: website/templates/website/website_base.html:103
+msgid "Favourites"
+msgstr "Избранное"
+
+#: website/templates/website/website_base.html:109
+msgid "Cart"
+msgstr "Корзина"
+
+#: website/templates/website/website_base.html:124
+msgid "SPECIAL OFFER"
+msgstr "СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ"
+
+#: website/templates/website/website_base.html:124
+#, python-format
+msgid "UP TO 25%%"
+msgstr "ДО 25%%"
+
+#: website/templates/website/website_base.html:135
+#: website/templates/website/website_base.html:177
+msgid "Services"
+msgstr "Услуги"
+
+#: website/templates/website/website_base.html:136
+#: website/templates/website/website_base.html:179
+msgid "Contact"
+msgstr "Контакты"
+
+#: website/templates/website/website_base.html:173
+msgid "Quick Links"
+msgstr "Быстрые ссылки"
+
+#: website/templates/website/website_base.html:174
+#, python-format
+msgid "Special Offer (Discount 25%%)"
+msgstr "Специальное предложение (Скидка 25%%)"
+
+#: website/templates/website/website_base.html:218
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact us"
+msgstr "Связаться с нами"

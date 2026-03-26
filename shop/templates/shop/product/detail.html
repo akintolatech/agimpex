@@ -11,7 +11,9 @@
 
     <div class="product-gallery">
       <div class="main-image-container">
-        <span class="discount-badge">-15%</span>
+        {% if product.discount_amount%}
+        <span class="discount-badge">-{{ product.discount_percent }}%</span>
+        {% endif %}
         <img
           src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
           class="main-image"

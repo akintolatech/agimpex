@@ -28,10 +28,10 @@ def favorite_list(request):
     favorites = Favorites(request)
     favorite_ids = favorites.get_ids()
 
-    products = Product.objects.filter(id__in=favorite_ids, available=True)
+    favorite_products = Product.objects.filter(id__in=favorite_ids, available=True)
 
     context = {
-        'products': products,
+        'favorite_products': favorite_products,
         'favorite_product_ids': favorite_ids,
     }
     return render(request, 'shop/product/favorite_list.html', context)

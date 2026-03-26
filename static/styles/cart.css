@@ -26,12 +26,12 @@
     height: 44px;
 }
 
-.cart-summary-box input[type="submit"] {
+/* .cart-summary-box input[type="submit"] {
     background-color: var(--pry-color);
     color: white;
     border: none;
     border-radius: 12px;
-}
+} */
 
 
 /* for large screens */

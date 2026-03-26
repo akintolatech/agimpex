@@ -1,4 +1,5 @@
 {% extends "website/website_base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
@@ -7,29 +8,79 @@
 
 {% block content %}
 
-    <h2>My Favorites</h2>
+<div id="main">
+        <div class="section">
 
-    <div class="product-container">
-        {% for product in products %}
-            <div class="product-item">
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                    <h3>{{ product.name }}</h3>
-                    <p>{{ product.price }}</p>
-                </a>
+        <div class="section-header">
+            <h1>{% trans "My favourites" %}</h1>
+        </div>
 
-                <button 
-                    class="wishlist-btn active"
-                    data-product-id="{{ product.id }}"
-                    type="button"
-                >
-                    ❤
-                </button>
+
+        <div class="index_product-container">
+
+           
+            {% for product in favorite_products %}
+
+            <div class="index_product-item">
+                <div class="product-card">
+                    {% if product.discount_amount%}
+                        <div class="badge-discount">-{{ product.discount_percent }}%</div>
+                    {% endif %}
+
+                    <button
+                        class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
+                        data-product-id="{{ product.id }}"
+                        data-url="{% url 'shop:toggle_favorite' product.id %}"
+                    >
+                        {% if product.id in favorite_product_ids %}
+                         <img
+                            src="{% static 'img/faved.svg'%}"
+                            alt="{{ product.name }}"
+                            />
+                        {% else %}
+                             <img
+                            src="{% static 'img/fave.svg'%}"
+                            alt="{{ product.name }}"
+                            />
+                        {% endif %}
+                    </button>
+
+                    <div class="product-image">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="old-price">{{ product.old_price }}</span>
+                            <span class="current-price">{{ product.price }}</span>
+                            <span class="currency">$</span>
+                        </div>
+                         <a href="{{ product.get_absolute_url }}">
+                            <button class="cart-btn">
+                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-        {% empty %}
-            <p>No favorite products yet.</p>
-        {% endfor %}
+
+            {% endfor %}
+
+
+        </div>
+
     </div>
+
+</div>
+
+
 
 
 {% endblock %}

@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
     'shop.apps.ShopConfig',
-    "administration.apps.AdministrationConfig"
+    "administration.apps.AdministrationConfig",
+    'modeltranslation',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +138,8 @@ LANGUAGES = [
     ('hy', 'Armenian'),
     ('ru', 'Russian'),
 ]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',

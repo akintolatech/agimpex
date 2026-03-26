@@ -1,0 +1,37 @@
+{% extends "website/website_base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ product.name }}
+{% endblock %}
+
+{% block content %}
+
+    <h2>My Favorites</h2>
+
+    <div class="product-container">
+        {% for product in products %}
+            <div class="product-item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>{{ product.price }}</p>
+                </a>
+
+                <button 
+                    class="wishlist-btn active"
+                    data-product-id="{{ product.id }}"
+                    type="button"
+                >
+                    ❤
+                </button>
+            </div>
+        {% empty %}
+            <p>No favorite products yet.</p>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}
+
+

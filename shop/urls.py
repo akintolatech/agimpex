@@ -6,6 +6,8 @@ app_name = 'shop'
 
 urlpatterns = [
     path('', views.product_list, name='product_list'),
+    path('favorite/toggle/<int:product_id>/', views.toggle_favorite, name='toggle_favorite'),
+    path('favorites/', views.favorite_list, name='favorite_list'),
     path(
         '<slug:category_slug>/',
         views.product_list,
@@ -16,4 +18,5 @@ urlpatterns = [
         views.product_detail,
         name='product_detail',
     ),
+
 ]

@@ -123,7 +123,24 @@
                     {% if product.discount_amount%}
                         <div class="badge-discount">-{{ product.discount_percent }}%</div>
                     {% endif %}
-                    <button class="wishlist-btn">❤</button>
+
+
+                    <button
+                        class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
+                        data-product-id="{{ product.id }}"
+                        data-url="{% url 'shop:toggle_favorite' product.id %}"
+                    >
+                        {% if product.id in favorite_product_ids %}
+                            ❤
+                        {% else %}
+                            ♡
+                        {% endif %}
+                    </button>
+
+                    
+
+
+
                     <div class="product-image">
                         <img
                             src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
@@ -465,20 +482,6 @@
 
     </div>
 
-
-
-
-
-   
-
-
-
-        
-
-
-    
-
-
     <!--Contact section -->
     <div class="section">
         <h1>Contact Us</h1>
@@ -562,6 +565,62 @@
             display: none;
         } */
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".wishlist-btn");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const url = this.dataset.url;
+
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCookie("csrftoken"),
+                    "X-Requested-With": "XMLHttpRequest",
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.is_favorite) {
+                    button.classList.add("active");
+                    button.innerHTML = "❤";
+                } else {
+                    button.classList.remove("active");
+                    button.innerHTML = "♡";
+                }
+
+                const favCount = document.getElementById("favorite-count");
+                if (favCount) {
+                    favCount.textContent = data.favorite_count;
+                }
+            })
+            .catch(error => console.error("Favorite error:", error));
+        });
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+});   
+</script>
 
 
 

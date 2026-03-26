@@ -27,8 +27,16 @@
 
                    <div class="language-dropdown">
                         <button class="language-btn">
-                            <img src="{% static 'img/hy.png' %}" class="language-flag" alt="Armenian">
-                            <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down"/> -->
+                            {% get_current_language as LANGUAGE_CODE %}
+
+                            {% if LANGUAGE_CODE == 'hy' %}
+                                <img src="{% static 'img/hy.png' %}" class="language-flag" alt="Armenian">
+                            {% elif LANGUAGE_CODE == 'ru' %}
+                                <img src="{% static 'img/ru.png' %}" class="language-flag" alt="Russian">
+                            {% else %}
+                                <img src="{% static 'img/en.png' %}" class="language-flag" alt="English">
+                            {% endif %}
+                            <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" width="20px" /> -->
                         </button>
 
                         <div class="language-menu">
@@ -98,10 +106,12 @@
                         </div>
                     </a>
 
-                    <div class="icontext">
-                        <img src="{% static 'img/fave.svg' %}" class="icon" />
-                        <h6>{% trans 'Favourites' %}</h6>
-                    </div>
+                    <a href="{% url 'shop:favorite_list' %}">
+                        <div class="icontext">
+                            <img src="{% static 'img/fave.svg' %}" class="icon" />
+                            <h6>{% trans 'Favourites' %}</h6>
+                        </div>
+                    </a>
 
                     <a href="{% url 'cart:cart_detail' %}">
                         <div class="icontext">

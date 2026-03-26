@@ -293,3 +293,16 @@
 }
 
 
+.wishlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #999;
+    transition: 0.2s ease;
+}
+
+.wishlist-btn.active {
+    color: red;
+}
+

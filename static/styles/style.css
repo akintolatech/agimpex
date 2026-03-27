@@ -286,6 +286,10 @@ input[type="search"]{
     margin-block: 24px;
 }
 
+.header_bottom_bar a {
+    /* color: var(--pry-color); */
+}
+
 .wrap {
     display: flex;
     align-items: center;
@@ -324,7 +328,7 @@ input[type="search"]{
 
 
 .heading_spacer {
-    height: 90px;
+    height: 130px;
 }
 
 .back-drop {
@@ -946,6 +950,120 @@ input[type="submit"] {
 
 
 }
+
+
+/* Contact Section */
+.contact-container {
+    /* max-width: 800px; */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.input-row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-row input {
+    flex: 1;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+}
+
+textarea {
+    height: 180px;
+    resize: vertical;
+}
+
+.contact-items{
+    height: 450px;
+    margin-bottom: 30px;
+    
+}
+
+.contact-map-container {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    justify-content: space-between;
+}
+
+.contact-map-box {
+    margin-bottom: 24px;
+}
+
+/* for larger screens */
+@media screen and (min-width: 760px){
+
+    /* .contact-container{
+        flex-direction: row;
+        height: 450px;
+    } */
+
+    .contact-items {
+        width: 49%;
+    }
+
+    .contact-map-container {
+        flex-direction: row;
+        
+    }
+
+    .contact-map-details {
+        width: 30%;
+    }
+
+    .contact-map-box {
+        width: 69%;
+    }
+
+
+
+}
+
+.ctext {
+    /* height: 300px; */
+
+    /* border: 1px solid red; */
+    border-radius: var(--radius);
+    background-image: url("../img/talk.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 120px 0 0px 30px;
+    box-sizing: border-box;
+}
+
+/* form {
+    width: 100%;
+}
+
+input[type="text"] {
+    width: 100%;
+    height: 44px;
+    margin-bottom: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+} */
 
 
 

@@ -1,4 +1,5 @@
 {% extends "website/website_base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}Agimpex: Discount {% endblock %}
@@ -13,7 +14,7 @@
                     <a href="{% url 'shop:product_list' %}">
                         <div class="user-func {% if not category %}selected{% endif %}" style="background-color: var(--pry-color);">
                             <div class="icon-and-text">
-                                <h4>Product Categories</h4>
+                                <h3>{% trans "Product Categories" %}</h3>
                             </div>
                         </div>
                     </a>

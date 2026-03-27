@@ -18,17 +18,6 @@
 
 
 .form_container button {
-    /* width: 220px;
-    height: 54px;
-    font-weight: bolder;
-    border: 2px solid var(--contrast-color);
-    cursor: pointer;
-    border-radius: 30px;
-    background-color: var(--pry-color);
-    color: white;
-    transition: all ease 200ms;
-    margin-block: 24px; */
-
     background: #23294d;
     color: #fff;
     border: none;
@@ -65,10 +54,8 @@
 }
 
 
-
-
 input[type="text"], input[type="password"], input[type="email"], input[type="number"]{
-    min-width: 500px;
+    /* min-width: 500px; */
     height: 40px;
     margin-block: 12px;
     padding: 12px;
@@ -88,15 +75,8 @@ input[type="submit"] {
     border-radius: var(--rad);
     border: none;
     cursor: pointer;
-    /* background-color: var(--pry-color); */
     color: white;
-
-    /* width: 100%; */
-    /* padding: 15px; */
     background: linear-gradient(45deg, var(--pry-color), #ffffff);
-    /* border: none; */
-    /* border-radius: 10px; */
-    /* color: #fff; */
     font-size: 16px;
     font-weight: 600;
     /* cursor: pointer; */
@@ -111,9 +91,10 @@ input[type="submit"]:hover {
     box-shadow: 0 5px 20px rgba(61, 50, 253, 0.4);
 }
 
-
-
-
+textarea {
+    width: 100%;
+    height: 220px;
+}
 
 ul {
     /* display: none; */

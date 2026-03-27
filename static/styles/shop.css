@@ -23,9 +23,17 @@
 
 .user-func h4 {
   font-weight: 100;
-  color: dimgray;
+  color: var(--pry-color);
   margin: 0;
 }
+
+
+.user-func h3 {
+  font-weight: 100;
+  color: white;
+  margin: 0;
+}
+
 
 .user-func {
     height: 60px;

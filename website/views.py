@@ -14,8 +14,8 @@ def about(request):
 def contact(request):
     return render(request, 'website/contact.html')
 
-def gallery(request):
-    return render(request, 'website/gallery.html')
+def services(request):
+    return render(request, 'website/services.html')
 
 def discount(request):
     return render(request, 'website/discount.html')

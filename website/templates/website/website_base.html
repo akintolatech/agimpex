@@ -11,7 +11,7 @@
     <link type="x-icon" href="{% static 'img/ag.png' %}" rel="icon" />
     <script src="{% static 'js/jquery.js' %}"></script>
     <link type="text/css" href="{% static 'styles/shop.css' %}" rel="stylesheet" />
-   
+    <link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
     {% block style %} {% endblock %}
 </head>
 <body>
@@ -76,8 +76,7 @@
                     <script src="{% static 'js/toggle.js' %}"></script>
             
                     <div class="nav">
-            
-
+        
                         <svg version="1.1"  x="0px" y="0px"
                             viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
                             
@@ -90,6 +89,7 @@
                         </svg>
 
                     </div>  
+
                 </div>
                 
                 <div class="searchbox">
@@ -136,14 +136,14 @@
 
                 {% for cat in categories %}
                 {% if cat.slug == "construction-materials" or cat.slug == "natural-stones" %}
-                    <a href="{% url 'shop:product_list_by_category' cat.slug %}">
-                        <h3>{{ cat.name }}</h3>
+                    <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="nav-item" >
+                        {{ cat.name }}
                     </a>
-                {% endif %}
-            {% endfor %}
+                    {% endif %}
+                {% endfor %}
 
-                <a href="" class="nav-item">{% trans "Services" %}</a>
-                <a href="" class="nav-item">{% trans "Contact" %}</a>
+                <a href="{% url 'website:services' %}" class="nav-item">{% trans "Services" %}</a>
+                <a href="{% url 'website:contact' %}" class="nav-item">{% trans "Contact" %}</a>
             </div>
         </div>
 
@@ -181,12 +181,16 @@
 
                 <ul>
                     <li class="footer-heading">{% trans "Quick Links" %}</li>
-                    <a href="#"><li>{% trans "Special Offer Discount 25%" %}</li></a>
-                    <a href="#"><li>{% trans "Construction Materials" %}</li></a>
-                    <a href="#"><li>{% trans "Natural Stones" %}</li></a>
-                    <a href="#"><li>{% trans "Services" %}</li></a>
-                    <a href="#"><li>{% trans "Catalogs" %}</li></a>
-                    <a href="#"><li>{% trans "Contact" %}</li></a>
+                    <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b></li></a>
+                    {% for cat in categories %}
+                    {% if cat.slug == "construction-materials" or cat.slug == "natural-stones" %}
+                        <a href="{% url 'shop:product_list_by_category' cat.slug %}">
+                            <li>{{ cat.name }}</li>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                    <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>
+                    <a href="{% url 'website:contact' %}"><li>{% trans "Contact" %}</li></a>
                 </ul>
 
                 <ul>

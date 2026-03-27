@@ -41,7 +41,7 @@
         <span>Dashboard</span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{% url 'administration:order_list' %}" class="menu-item {% if request.resolver_match.url_name == 'order_list' %}active{% endif %}">
         <div class="menu-icon"><img src="{% static 'img/bag.svg' %}"/></div>
         <span>Orders</span>
     </a>
@@ -62,7 +62,7 @@
         <span>Product Property</span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item">
         <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
         <span>Unit of Measure</span>
     </a>

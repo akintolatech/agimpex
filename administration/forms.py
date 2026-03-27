@@ -1,11 +1,23 @@
 from django import forms
+
+from orders.models import Order, OrderItem
 from shop.models import Category, Product, ProductProperty, ProductPropertyValue
+
+
+class OrderApprovalForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['paid']
+        # widgets = {
+        #     'email': forms.TextInput(attrs={'readonly': 'readonly'}),
+        #     'address': forms.NumberInput(attrs={'readonly': 'readonly'}),
+        # }
+
 
 
 class CreateCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        # We include slug here if you want the user to type it manually
         fields = ['name', 'icon']
 
 

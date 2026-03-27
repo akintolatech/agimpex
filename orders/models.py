@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 
@@ -42,8 +44,18 @@ class OrderItem(models.Model):
     )
     quantity = models.PositiveIntegerField(default=1)
 
+    reference_code = models.CharField(max_length=12, unique=True, blank=True)
+
     def __str__(self):
         return str(self.id)
 
     def get_cost(self):
         return self.price * self.quantity
+
+    def save(self, *args, **kwargs):
+        from account.models import Profile  # Import inside to prevent circular imports
+
+        if not self.reference_code:
+            self.reference_code = str(uuid.uuid4())[:12]  # Generate unique 12-character code
+
+        super().save(*args, **kwargs)

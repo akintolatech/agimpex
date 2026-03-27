@@ -10,8 +10,9 @@ from django.shortcuts import render
 # from .forms import DepositApprovalForm, WithdrawApprovalForm, WhatsappScreenshotApprovalForm
 import json
 
-from administration.forms import EditCategoryForm, CreateCategoryForm
-from shop.models import Category
+from administration.forms import EditCategoryForm, CreateCategoryForm, OrderApprovalForm
+from orders.models import OrderItem
+from shop.models import Category, UnitOfMeasure
 
 
 @staff_member_required
@@ -74,9 +75,6 @@ def administration_dashboard(request):
 
 # Users
 @staff_member_required
-
-
-@staff_member_required
 def user_details(request, user_id):
     user_account = get_object_or_404(Profile, id=user_id)
 
@@ -85,8 +83,37 @@ def user_details(request, user_id):
     }
     return render(request, "administration/users/user_details.html", context)
 
+#Orders
+@staff_member_required
+def order_list(request):
 
-# CATEGORY
+    context = {
+        "order_item": OrderItem.objects.all(),
+    }
+
+    return render(request, "administration/order/order_list.html", context)
+
+@staff_member_required
+def order_action(request, order_id):
+    order_request = get_object_or_404(OrderItem, reference_code=order_id)
+
+    if request.method == "POST":
+        form = OrderApprovalForm(request.POST, instance=order_request)
+        if form.is_valid():
+            form.save()
+            return redirect('administration:order_list')
+
+    else:
+        form = OrderApprovalForm(instance=order_request)
+
+    context = {
+        "form": form,
+        "order_request": order_request
+    }
+
+    return render(request, "administration/order/approve_order.html", context)
+
+# Category
 @staff_member_required
 def category_list(request):
 
@@ -137,6 +164,59 @@ def delete_category(request, category_id):
         category.delete()
 
     return redirect("administration:category_list")
+
+
+#Unit of Measurement
+@staff_member_required
+def unit_of_measurement_list(request):
+
+    context = {
+        "unit_of_measurement": UnitOfMeasure.objects.all(),
+    }
+
+    return render(request, "administration/unitofmeasure/unitofmeasure_list.html", context)
+
+#
+# @staff_member_required
+# def create_category(request):
+#     if request.method == "POST":
+#         form = CreateCategoryForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("administration:category_list")
+#     else:
+#         form = CreateCategoryForm()
+#
+#     return render(request, "administration/category/create_category.html", {"form": form})
+#
+#
+# @staff_member_required
+# def edit_category(request, category_id):
+#     category = get_object_or_404(Category, pk=category_id)
+#
+#     if request.method == "POST":
+#         form = EditCategoryForm(request.POST, request.FILES, instance=category)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("administration:category_list") # Fixed typo here
+#     else:
+#         form = EditCategoryForm(instance=category)
+#
+#     context = {
+#         "form": form,
+#         "category": category
+#     }
+#     return render(request, "administration/category/edit_category.html", context)
+#
+#
+# @staff_member_required
+# def delete_category(request, category_id):
+#     category = get_object_or_404(Category, pk=category_id)
+#
+#     if request.method == "POST":
+#         category.delete()
+#
+#     return redirect("administration:category_list")
 
 
 

@@ -145,3 +145,9 @@ class ProductPropertyValue(models.Model):
 
     def __str__(self):
         return f"{self.attribute.name}: {self.value}"
+
+
+class UnitOfMeasure(models.Model):
+    unit = models.CharField(max_length=200)
+    def __str__(self):
+        return f"{self.unit}"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-26 03:44+0100\n"
+"POT-Creation-Date: 2026-03-27 01:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,58 +18,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: website/templates/website/index.html:15
-#: website/templates/website/index.html:75
-#: website/templates/website/website_base.html:175
+#: shop/templates/shop/product/favorite_list.html:15
+#, fuzzy
+#| msgid "Favourites"
+msgid "My favourites"
+msgstr "Հավանածներ"
+
+#: shop/templates/shop/product/list.html:20
+#: website/templates/website/discount.html:17
+msgid "Product Categories"
+msgstr ""
+
+#: website/templates/website/index.html:13
+#: website/templates/website/index.html:73
 msgid "Construction Materials"
 msgstr "Շինարարական նյութեր"
 
-#: website/templates/website/index.html:16
+#: website/templates/website/index.html:14
 msgid "Everything on One place"
 msgstr "Ամեն ինչ մեկ տեղում"
 
-#: website/templates/website/index.html:32
+#: website/templates/website/index.html:30
 msgid "Reliable Partner"
 msgstr "Արժանահավատ գործընկեր"
 
-#: website/templates/website/index.html:39
+#: website/templates/website/index.html:37
 msgid "Specialized Team"
 msgstr "Մասնագիտացված թիմ"
 
-#: website/templates/website/index.html:46
+#: website/templates/website/index.html:44
 msgid "Quality Product Range"
 msgstr "Որակյալ արտադրանքի տեսականի"
 
-#: website/templates/website/index.html:53
+#: website/templates/website/index.html:51
 msgid "Fast and Reliable Delivery"
 msgstr "Արագ և վստահելի առաքում"
 
-#: website/templates/website/index.html:60
+#: website/templates/website/index.html:58
 msgid "Competitive Prices"
 msgstr "Բարձր մրցունակ գներ"
 
-#: website/templates/website/index.html:83
-#: website/templates/website/website_base.html:176
+#: website/templates/website/index.html:81
 msgid "Natural Stones"
 msgstr "Բնական քարեր"
 
-#: website/templates/website/index.html:91
+#: website/templates/website/index.html:89
 #, fuzzy
 #| msgid "Construction Materials"
 msgid "Polymer Materials"
 msgstr "Շինարարական նյութեր"
 
-#: website/templates/website/index.html:99
+#: website/templates/website/index.html:97
 #, fuzzy
 #| msgid "Construction Materials"
 msgid "Bituminous Materials"
 msgstr "Շինարարական նյութեր"
 
-#: website/templates/website/index.html:165
+#: website/templates/website/index.html:108
+msgid "Top Categories"
+msgstr ""
+
+#: website/templates/website/index.html:177
+#: website/templates/website/services.html:29
 msgid "About us"
 msgstr "Մեր մասին"
 
-#: website/templates/website/index.html:167
+#: website/templates/website/index.html:179
 msgid ""
 "\n"
 "                \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to "
@@ -96,64 +110,107 @@ msgstr ""
 "նոր բրենդով՝ Metals Holding և Prime Stone։\n"
 "                "
 
-#: website/templates/website/index.html:173
+#: website/templates/website/index.html:185
+#: website/templates/website/services.html:37
 msgid "Read more"
 msgstr "Ավելին կարդալ"
+
+#: website/templates/website/services.html:17
+msgid "Order Now"
+msgstr ""
+
+#: website/templates/website/services.html:31
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                \"AG IMPEX\" LLC was founded in 2018 with one clear goal: "
+#| "to become a reliable and long-term partner in the construction sector in "
+#| "Armenia.\n"
+#| "                For more than 7 years, we have been providing the "
+#| "Armenian market with high-quality, certified construction goods at "
+#| "competitive prices through both import and wholesale/retail sales, "
+#| "satisfying the requirements of both large construction companies and "
+#| "individual customers.\n"
+#| "                Starting from 2026, \"AG IMPEX\" LLC is also entering the "
+#| "market with two new brands: Metals Holding and Prime Stone.\n"
+#| "                "
+msgid ""
+"\n"
+"                    \"AG IMPEX\" LLC was founded in 2018 with one clear "
+"goal: to become a reliable and long-term partner in the construction sector "
+"in Armenia.\n"
+"                    For more than 7 years, we have been providing the "
+"Armenian market with high-quality, certified construction goods at "
+"competitive prices through both import and wholesale/retail sales, "
+"satisfying the requirements of both large construction companies and "
+"individual customers.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
+"the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    "
+msgstr ""
+"\n"
+"                \"AG IMPEX\" ՍՊԸ-ն հիմնադրվել է 2018 թվականին մեկ պարզ "
+"նպատակով՝ դառնալ Արտադրության ոլորտում վստահելի և երկարաժամկետ գործընկեր "
+"Հայաստանում։\n"
+"                Մեր ընկերությունը արդեն ավելի քան 7 տարի ապահովում է "
+"հայկական շուկան բարձրորակ, վկայագրաված շինարարական ապրանքներով մրցակցային "
+"գներով՝ ինչպես ներկրմամբ, այնպես էլ մեծածախ/փոքրածախ վաճառքով, բավարարման "
+"նպատակով ինչպես մեծ շինարարական ընկերությունների, այնպես էլ անհատական "
+"հաճախորդների պահանջները։\n"
+"                2026 թվականից \"AG IMPEX\" ՍՊԸ-ն նաև մտնում է շուկա երկու "
+"նոր բրենդով՝ Metals Holding և Prime Stone։\n"
+"                "
 
 #: website/templates/website/website_base.html:24
 msgid "Working hours – 09:00 to 18:00, Mon–Sat"
 msgstr ""
 
-#: website/templates/website/website_base.html:88
+#: website/templates/website/website_base.html:96
 msgid "Search"
 msgstr "Փնտրել"
 
-#: website/templates/website/website_base.html:89
-#: website/templates/website/website_base.html:178
+#: website/templates/website/website_base.html:97
 msgid "Catalogs"
 msgstr "Կատալոգներ"
 
-#: website/templates/website/website_base.html:97
+#: website/templates/website/website_base.html:105
 msgid "Login/Sign in"
 msgstr "Մուտք/Գրանցվել"
 
-#: website/templates/website/website_base.html:103
+#: website/templates/website/website_base.html:112
 msgid "Favourites"
 msgstr "Հավանածներ"
 
-#: website/templates/website/website_base.html:109
+#: website/templates/website/website_base.html:119
 msgid "Cart"
 msgstr "Զամբյուղ"
 
-#: website/templates/website/website_base.html:124
+#: website/templates/website/website_base.html:134
+#: website/templates/website/website_base.html:184
 msgid "SPECIAL OFFER"
 msgstr "Հատուկ Առաջարկ"
 
-#: website/templates/website/website_base.html:124
+#: website/templates/website/website_base.html:134
+#: website/templates/website/website_base.html:184
 #, python-format
 msgid "UP TO 25%%"
 msgstr "Մինչև 25%%"
 
-#: website/templates/website/website_base.html:135
-#: website/templates/website/website_base.html:177
+#: website/templates/website/website_base.html:145
+#: website/templates/website/website_base.html:192
 msgid "Services"
 msgstr "Ծառայություններ"
 
-#: website/templates/website/website_base.html:136
-#: website/templates/website/website_base.html:179
+#: website/templates/website/website_base.html:146
+#: website/templates/website/website_base.html:193
 msgid "Contact"
 msgstr "Կապ"
 
-#: website/templates/website/website_base.html:173
+#: website/templates/website/website_base.html:183
 msgid "Quick Links"
 msgstr "Արագ հղումներ"
 
-#: website/templates/website/website_base.html:174
-#, python-format
-msgid "Special Offer (Discount 25%%)"
-msgstr ""
-
-#: website/templates/website/website_base.html:218
+#: website/templates/website/website_base.html:232
 #, fuzzy
 #| msgid "Contact"
 msgid "Contact us"

@@ -5,7 +5,7 @@
     --text: #2f436e;
     --muted: #8a94a6;
     --border: #ececec;
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
     --red: #ff4b4b;
     --green: #69c12d;
     --orange1: #ffbe3d;
@@ -76,32 +76,6 @@ a {
     height: 100%;
 }
 
-
-/* 
-.logo-mark::before,
-.logo-mark::after {
-    content: "";
-    position: absolute;
-    border-radius: 4px;
-}
-
-.logo-mark::before {
-    width: 18px;
-    height: 18px;
-    background: linear-gradient(135deg, #28a5ff, #005dff);
-    left: 0;
-    top: 4px;
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
-}
-
-.logo-mark::after {
-    width: 18px;
-    height: 18px;
-    background: linear-gradient(135deg, #ff4d4d, #ff1f1f);
-    right: 0;
-    top: 4px;
-    clip-path: polygon(100% 0, 0 50%, 100% 100%);
-} */
 
 .logo-text {
     font-weight: 600;

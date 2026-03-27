@@ -13,7 +13,7 @@
     background: white;
     padding: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(1, 9, 37, 0.1);
+    box-shadow: var(--shadow);
     overflow-x: auto;
 }
 

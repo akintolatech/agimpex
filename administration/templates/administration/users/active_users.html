@@ -1,0 +1,237 @@
+{% extends "administration/admin_base.html" %}
+{% load static %}
+{% block title %} Package {% endblock %}
+{% block content %}
+
+<!-- Main dashboard section-->
+<div id="home" class="tabcontent">
+
+    <a href="{% url 'administration:users' %}">
+    <div class="back_icn_container">
+        <img src="{% static 'img/icons/back.svg' %}" />
+    </div>
+    </a>
+    <div class="status-container">
+
+        <!-- <div class="back_icn_container">
+            <img src="{% static 'img/icons/back.svg' %}" />
+        </div> -->
+
+        <!-- <div class="status-tab">
+            <h3>Active Users</h3>
+            <h2 class="status-text"> <b class="formatted-price">{{ total_users }}</b> </h2>
+
+        </div>
+
+        <div class="status-tab">
+            <h3>{{ total_deposits }} Active Users</h3>
+            <h2><b class="formatted-price">{{ total_active_users}}</b></h2>
+        </div>
+
+        <div class="status-tab">
+            <h3>In Active Users</h3>
+            <h2><b class="formatted-price">{{ total_dormant_users }}</b></h2>
+        </div>
+
+        <div class="status-tab">
+            <h3>Top Users</h3>
+            <h2><b class="formatted-price">12000</b></h2>
+        </div> -->
+
+
+    </div>
+
+    <div class="table_container"></div>
+        <div class="table-wrapper">
+            <h2 class="table-title"> Active Users</h2>
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>Photo</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Join Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for active_user in active_users_list%}
+                    <tr>
+                        <td data-label="Photo">
+                            <!-- {{ profile.user.username }} -->
+                            {% if active_user.photo %} 
+                                <img src="{{ active_user.photo.url }}" />
+                            {% else %} 
+                                <img src="{% static 'img/user.jpg' %}" />
+                            {% endif %}
+                        </td>
+                        <td data-label="Username">{{ active_user.user.username }}</td>
+                        <td data-label="Email">{{ active_user.user.email }}</td>
+                        <td data-label="Position">{{ active_user.phone_number }}</td>
+                      
+                        {% if active_user.account_status == active_user.AccountStatus.ACTIVE %}
+                            <td data-label="Status">
+                                <span class="status status-active">Active</span>
+                            </td>
+                        {% else %}
+                            <td data-label="Status">
+                                <span class="status status-inactive">Dormant</span>
+                            </td>
+                        {% endif %}
+                    
+                        
+                        <td data-label="Join Date">{{ active_user.user.date_joined }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <!-- Dashboard Analytics -->
+    <!-- <div class="dashboard-analytics">
+
+        <div class="chartbox">
+
+            <canvas id="dashboardChart">
+
+            </canvas>
+
+        </div>
+
+        <div class="list-box" >
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3>Recent Deposits</h3>
+
+                <a href="#">
+                    <div class="icn-box small">
+                        <img src="{% static 'img/icons/x.svg' %}" />
+                    </div>
+                </a>
+            </div>
+
+            <div id="recentLogsContainer">...
+       
+            </div>
+
+        </div>
+
+    </div> -->
+
+    
+
+</div>
+
+<!--    <script type="application/json" id="chart-data">-->
+<!--        {-->
+<!--            "days": {{ days|safe }},-->
+<!--            "daily_deposits": {{ daily_deposits|safe }},-->
+<!--            "daily_withdrawals": {{ daily_withdrawals|safe }},-->
+<!--            "daily_transfers": {{ daily_transfe3rs|safe }}-->
+<!--        }-->
+<!--    </script>-->
+
+
+
+<!--    <script>-->
+
+<!--        // Parse JSON safely from script tag-->
+<!--        const chartData = JSON.parse(document.getElementById('chart-data').textContent);-->
+
+<!--        const days = chartData.days;-->
+<!--        const dailyDeposits = chartData.daily_deposits;-->
+<!--        const dailyWithdrawals = chartData.daily_withdrawals;-->
+<!--        const dailyTransfers = chartData.daily_transfers;-->
+
+
+<!--        // Create Chart-->
+<!--        const ctx = document.getElementById('dashboardChart').getContext('2d');-->
+<!--        new Chart(ctx, {-->
+<!--            type: 'line',-->
+<!--            data: {-->
+<!--                labels: days,-->
+<!--                datasets: [-->
+<!--                    {-->
+<!--                        label: 'Deposits',-->
+<!--                        data: dailyDeposits,-->
+<!--                        borderColor: 'rgba(75, 192, 192, 1)',-->
+<!--                        backgroundColor: 'rgba(75, 192, 192, 0.2)',-->
+<!--                        borderWidth: 2,-->
+<!--                        fill: true-->
+<!--                    },-->
+<!--                    {-->
+<!--                        label: 'Withdrawals',-->
+<!--                        data: dailyWithdrawals,-->
+<!--                        borderColor: 'rgba(255, 99, 132, 1)',-->
+<!--                        backgroundColor: 'rgba(255, 99, 132, 0.2)',-->
+<!--                        borderWidth: 2,-->
+<!--                        fill: true-->
+<!--                    },-->
+<!--                    {-->
+<!--                        label: 'Transfers',-->
+<!--                        data: dailyTransfers,-->
+<!--                        borderColor: 'rgba(54, 162, 235, 1)',-->
+<!--                        backgroundColor: 'rgba(54, 162, 235, 0.2)',-->
+<!--                        borderWidth: 2,-->
+<!--                        fill: true-->
+<!--                    }-->
+<!--                ]-->
+<!--            },-->
+<!--            options: {-->
+<!--                responsive: true,-->
+<!--                maintainAspectRatio: false,-->
+<!--                plugins: {-->
+<!--                    legend: {-->
+<!--                        display: true,-->
+<!--                        position: 'top'-->
+<!--                    }-->
+<!--                },-->
+<!--                scales: {-->
+<!--                    x: {-->
+<!--                        title: {-->
+<!--                            display: true,-->
+<!--                            text: 'Date'-->
+<!--                        }-->
+<!--                    },-->
+<!--                    y: {-->
+<!--                        title: {-->
+<!--                            display: true,-->
+<!--                            text: 'Count'-->
+<!--                        },-->
+<!--                        beginAtZero: true-->
+<!--                    }-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+
+<!-- <script>
+
+    var ctx = document.getElementById("dashboardChart").getContext("2d");
+    var chartConfig = new Chart(ctx,  {
+        type: "line",
+        data: {
+            datasets: [{
+                data: [`{{ total_deposits|safe }}`, `{{ total_withdrawals|safe }}`, `{{ total_transfer|safe }}`,],
+                backgroundColor: [
+                    "red", "orange", "blue", 
+                ],
+                label: "Legend"
+                
+            }],
+            labels: ["Deposits", "Withdrawal", "transfer"]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+</script> -->
+
+
+{% endblock %}

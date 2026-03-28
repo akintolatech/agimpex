@@ -46,7 +46,7 @@
         <span>Orders</span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{% url 'administration:product_list' %}" class="menu-item {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}">
         <div class="menu-icon"><img src="{% static 'img/product.svg' %}"/></div>
         <span>Products</span>
     </a>
@@ -57,12 +57,12 @@
         <span>Category</span>
     </a>
 
-    <a href="#" class="menu-item">
+    <a href="{% url 'administration:product_property_list' %}" class="menu-item {% if request.resolver_match.url_name == 'product_property_list' %}active{% endif %} ">
         <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
         <span>Product Property</span>
     </a>
 
-    <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item">
+    <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item {% if request.resolver_match.url_name == 'unit_of_measure_list' %}active{% endif %}">
         <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
         <span>Unit of Measure</span>
     </a>

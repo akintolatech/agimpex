@@ -1,0 +1,45 @@
+{% extends "administration/admin_base.html" %}
+{% load static %}
+{% block title %} Package {% endblock %}
+{% block content %}
+
+{% block page_style %}
+<!-- <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" /> -->
+<link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
+{% endblock %}
+<!-- Main dashboard section-->
+<div id="home" class="tabcontent">
+
+    <a href="{% url 'administration:administration' %}">
+        <div class="back_icn_container">
+            <img src="{% static 'img/icons/back.svg' %}" />
+        </div>
+    </a>
+    
+    <div class="form_container">
+        <h3>Deposit Action for {{ deposit_request.user.username }}</h3>
+        {% if deposit_request.paid %}
+               
+            <span class="status status-active">Approved</span>
+            
+        {% else %}
+            
+            <span class="status status-pending">Processing</span>
+            
+        {% endif %}
+        <p>Date: {{ deposit_request.created }}</h3>
+            
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <center>
+                <button type="submit">Save Action</button>
+            </center>
+        </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

@@ -21,23 +21,25 @@
         >
       </div>
 
-      <div class="thumbnails">
-        <img
-          src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% else %} {{ product.image.url }} {% endif %}"
-          class="thumb active"
-          alt="{{ product.name }}"
-        >
-        <img
-          src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% else %} {{ product.image.url }} {% endif %}"
-          class="thumb"
-          alt="{{ product.name }}"
-        >
-        <img
-          src="{% if product.thumbnail3 %}{{ product.thumbnail2.url }}{% else %} {{ product.image.url }} {% endif %}"
-          class="thumb"
-          alt="{{ product.name }}"
-        >
-      </div>
+     <div class="thumbnails">
+      <img
+        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}/static/images/no-image.png{% endif %}"
+        class="thumb active"
+        alt="{{ product.name }}"
+      >
+
+      <img
+        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}/static/images/no-image.png{% endif %}"
+        class="thumb"
+        alt="{{ product.name }}"
+      >
+
+      <img
+        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %} /static/images/no-image.png{% endif %}"
+        class="thumb"
+        alt="{{ product.name }}"
+      >
+    </div>
     </div>
 
     <div class="product-specs">
@@ -55,27 +57,27 @@
         <form action="{% url 'cart:cart_add' product.id %}" method="post">
           {% csrf_token %}
 
-          {% for attribute in product.attributes.all %}
-            <div class="spec-row">
-              <label for="attribute_{{ attribute.id }}">{{ attribute.name }}</label>
-              <select
-                name="attribute_{{ attribute.id }}"
-                id="attribute_{{ attribute.id }}"
-                required
-              >
-                <option value="">Select {{ attribute.name }}</option>
+         {% for property in product.properties.all %}
+        <div class="spec-row">
+          <label for="property_{{ property.id }}">{{ property.name }}</label>
+          <select
+            name="property_{{ property.id }}"
+            id="property_{{ property.id }}"
+            required
+          >
+            <option value="">Select {{ property.name }}</option>
 
-                {% for value in attribute.values.all %}
-                  <option value="{{ value.id }}">
-                    {{ value.value }}
-                    {% if value.price_adjustment > 0 %}
-                      (+{{ value.price_adjustment }})
-                    {% endif %}
-                  </option>
-                {% endfor %}
-              </select>
-            </div>
-          {% endfor %}
+            {% for value in property.property_values.all %}
+              <option value="{{ value.id }}">
+                {{ value.value }}
+                {% if value.price_adjustment > 0 %}
+                  (+{{ value.price_adjustment }})
+                {% endif %}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endfor %}
 
           <input type="hidden" name="override" value="False">
 

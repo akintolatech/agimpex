@@ -1,0 +1,23 @@
+{% extends "administration/admin_base.html" %}
+{% load static %}
+{% block title %} Admin: Edit Unit {% endblock %}
+{% block styles %}
+<link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+    <div class="form_container">
+        <h3>Edit Unit: {{ unit_of_measure.unit }}</h3>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+            
+            <button type="submit">Update</button><br/>
+            <a href="{% url 'administration:unit_of_measure_list' %}">Cancel</a>
+        </form>
+    </div>
+    
+
+{% endblock %}

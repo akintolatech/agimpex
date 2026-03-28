@@ -58,7 +58,7 @@
 
                           <div class="qty-control-card">
 
-                              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="update-qty">
+                              <form action="{% url 'cart:cart_add' item.product.id %}" method="post" class="update-qty">
                                 {{ item.update_quantity_form.quantity }}
                                 {{ item.update_quantity_form.override }}
                                 <input type=image src="{% static 'img/icons/addcircle.svg' %}" alt="Submit feedback">
@@ -144,12 +144,12 @@
 
                           <div class="qty-control-card">
 
-                              <form action="{% url 'cart:cart_add' product.id %}" method="post" class="update-qty">
-                                {{ item.update_quantity_form.quantity }}
-                                {{ item.update_quantity_form.override }}
-                                <input type=image src="{% static 'img/icons/addcircle.svg' %}" alt="Submit feedback">
-                                {% csrf_token %}
-                              </form>
+                         <form action="{% url 'cart:cart_add' item.product.id %}" method="post" class="update-qty">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.override }}
+                            <input type="image" src="{% static 'img/icons/addcircle.svg' %}" alt="Update quantity">
+                            {% csrf_token %}
+                        </form>
 
                           </div>
 

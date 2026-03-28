@@ -1,6 +1,6 @@
 {% extends "administration/admin_base.html" %}
 {% load static %}
-{% block title %} Admin: Category {% endblock %}
+{% block title %} Admin: Product Property {% endblock %}
 {% block styles %}
 <link type="text/css" href="{% static 'styles/table.css' %}" rel="stylesheet" />
 {% endblock %}
@@ -10,48 +10,43 @@
    <div class="table_container"></div>
         <div class="table-wrapper">
             <div class="title_container">
-                <h2 class="table-title"> Categories</h2>
-                <a href="{% url 'administration:create_category' %}">Create Category</a>
+                <h2 class="table-title">Product Property</h2>
+                <a href="{% url 'administration:create_product_property' %}">Create</a>
             </div>
             
             <table class="modern-table">
                 <thead>
                     <tr>
-                        <th>Photo</th>
                         <th>Name</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for category in categories %}
+                    {% for property in product_property %}
                     <tr>
-                        <td data-label="Photo">
-                            <img src="{% if category.icon %} {{ category.icon.url }} {% else %} {% static 'img/categories.svg' %}  {% endif %}" />
-                        </td>
-                        <td data-label="Name">{{ category.name }}</td>
+                        <td data-label="Name">{{ product.name }}</td>
                         
                         <td data-label="Action">
 
-                            <a href="{% url 'administration:edit_category' category.id %}">
+                            <a href="{% comment %}{% url 'administration:edit_unit_of_measure' unit.id %} {% endcomment %}">
                                 <img src="{% static 'img/edit.svg' %}" />
                             </a>
 
-                          <form action="{% url 'administration:delete_category' category.id %}" method="post" style="display:inline;">
+                          <form action="{% comment %}{% url 'administration:delete_unit_of_measure' unit.id %}{% endcomment %}" method="post" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" 
-                                    onclick="return confirm('Are you sure you want to delete this category?')" 
+                                    onclick="return confirm('Are you sure you want to delete')" 
                                     style="background: none; border: none; padding: 0; cursor: pointer;"
-                                    title="Delete Category">
+                                    title="Delete Unit">
                                 <img src="{% static 'img/delete.svg' %}" alt="Delete"/>
                             </button>
                         </form>
 
                         </td>
-
                     </tr>
                     {% empty %}
-                     <tr >
-                        <td colspan="2"><span class="status status-inactive">There are no categories here</span></td>
+                    <tr >
+                        <td colspan="2"><span class="status status-inactive">There are no product properties here</span></td>
                     </tr>
                     {% endfor %}
                 </tbody>

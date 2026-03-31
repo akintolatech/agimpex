@@ -151,11 +151,7 @@
                     </a>
 
                 </div>
-
-
             </div>
-
-
         </div>
 
        <div class="header_bottom_bar">
@@ -173,7 +169,7 @@
                 {% endfor %}
 
                 <a href="{% url 'website:services' %}" class="nav-item">{% trans "Services" %}</a>
-                <a href="{% url 'website:contact' %}" class="nav-item">{% trans "Contact" %}</a>
+                <a href="{% url 'website:index' %}#contact-map" class="nav-item">{% trans "Contact" %}</a>
             </div>
         </div>
 
@@ -220,7 +216,7 @@
                         {% endif %}
                     {% endfor %}
                     <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>
-                    <a href="{% url 'website:contact' %}"><li>{% trans "Contact" %}</li></a>
+                    <a href="#contact-map"><li>{% trans "Contact" %}</li></a>
                 </ul>
 
                 <ul>

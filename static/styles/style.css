@@ -237,6 +237,7 @@ input[type="search"]{
 
 .search-icon {
     width: 24px;
+    margin-inline: 4px;
     display: flex;
     align-items: center;
 }

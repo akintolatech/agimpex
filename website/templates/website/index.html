@@ -153,7 +153,7 @@
                         <div class="price-container">
                             <span class="old-price">{{ product.old_price }}</span>
                             <span class="current-price">{{ product.price }}</span>
-                            <span class="currency">$</span>
+                            <!-- <span class="currency">$</span> -->
                         </div>
                          <a href="{{ product.get_absolute_url }}">
                             <button class="cart-btn">
@@ -194,7 +194,7 @@
   <div class="section">
 
         <div class="section-header">
-             <h1>Construction Goods</h1>
+             <h1>{% trans "Construction Goods" %}</h1>
              <!-- <a href="#">View More</a> -->
         </div>
 
@@ -239,7 +239,7 @@
                         <div class="price-container">
                             <span class="old-price">{{ product.old_price }}</span>
                             <span class="current-price">{{ product.price }}</span>
-                            <span class="currency">դրամ/հատ</span>
+                            <!-- <span class="currency">դրամ/հատ</span> -->
                         </div>
                          <a href="{{ product.get_absolute_url }}">
                             <button class="cart-btn">
@@ -261,7 +261,7 @@
     <div class="section">
 
         <div class="section-header">
-             <h1>Natural Stones</h1>
+             <h1>{% trans "Natural Stones" %}</h1>
              <!-- <a href="#">View More</a> -->
         </div>
 
@@ -385,7 +385,7 @@
     <div class="section">
 
         <div class="section-header">
-             <h1>Our Partners</h1>
+             <h1>{% trans "Our Partners" %}</h1>
         </div>
 
 
@@ -410,7 +410,7 @@
 
     <!--Contact section -->
     <div class="section">
-        <h1>Contact Us</h1>
+        <h1>{% trans "Contact Us" %}</h1>
         
 
         <form class="contact-container">
@@ -432,11 +432,6 @@
         </form>
 
     </div>
-
-
-     <!-- <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" /> -->
-
- 
 
 </div>
 
@@ -496,9 +491,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });   
 </script>
-
-
-
 
 
 {% endblock %}

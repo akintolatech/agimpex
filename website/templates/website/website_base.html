@@ -21,7 +21,7 @@
         <div class="header_contact_bar">
 
             <div class="contact-wrap">
-                <p>{% trans "Working hours – 09:00 to 18:00, Mon–Sat" %}</p>
+                <p>{% blocktrans %}  "Working hours – 09:00 to 18:00, Mon–Sat" {% endblocktrans %}</p>
                 
                 <div class="contact-wrap-item">
 
@@ -230,9 +230,9 @@
                 
                 <ul>
                     <li class="footer-heading">{% trans "Contact us" %}</li>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt=""></span>Address: Yerevan,<br/>Davit Anhaght 23/10 floor 5</li></a>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt=""></span>Phone: +374 33 40 44 40</li></a>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt=""></span>Email: info@agimpex.am</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt=""></span>{% trans "Address" %}: Yerevan,<br/>Davit Anhaght 23/10 floor 5</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt=""></span>{% trans "Phone" %}: +374 33 40 44 40</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt=""></span>{% trans "Email" %}: info@agimpex.am</li></a>
 
                 </ul>   
 

@@ -143,7 +143,6 @@ class EditUProductPropertyForm(forms.ModelForm):
 
 
 
-
 # Unit of Measure
 class CreateUnitOfMeasureForm(forms.ModelForm):
     class Meta:

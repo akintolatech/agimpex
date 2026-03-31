@@ -2,21 +2,24 @@
 {% load static %}
 {% block title %} Admin: Category {% endblock %}
 {% block styles %}
-<link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
+<link type="text/css" href="{% static 'styles/admin_form.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
-    <div class="form_container">
-        <h3>Edit Category: {{ category.name }}</h3>
+    <div class="form-page">
+        <div class="form-wrapper">
+            <h3>Edit Category: {{ category.name }}</h3>
 
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            
-            {{ form.as_p }}
-            
-            <button type="submit">Update Category</button><br/>
-            <a href="{% url 'administration:category_list' %}">Cancel</a>
-        </form>
+            <form method="post" enctype="multipart/form-data" class="product-form">
+                {% csrf_token %}
+                <div class="form-group">
+                {{ form.as_p }}
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Update Category</button><br/>
+                <a href="{% url 'administration:category_list' %}">Cancel</a>
+            </form>
+        </div>
     </div>
     
 

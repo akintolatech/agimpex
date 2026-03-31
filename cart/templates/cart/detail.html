@@ -14,8 +14,6 @@
 
 <div id="main">
     <div class="section" style="margin-top: 100px;">
-
-     
       
       {% with total_items=cart|length %}
 
@@ -52,7 +50,10 @@
                                 <p style="margin: 0;"><b class="formatted-price">{{ item.total_price }}</b></p>
                                 <!-- ${{ item.price }} @  -->
                             </div>
+
                         </div>
+
+                        {% comment %}
 
                         <div class="cart-qty-control">
 
@@ -73,6 +74,46 @@
                                 {% csrf_token %}
                               </form>
                           </div>
+
+                        </div>
+
+                        {% endcomment %}
+
+                        <div class="actions">
+                          <form action="{% url 'cart:cart_add' item.product.id %}" method="post">
+                            <div class="quantity-selector">
+
+                              <button type="button" id="minus-btn">
+                                <img src="{% static 'img/remove.svg' %}"  alt="Decrease quantity">
+                              </button>
+
+                              <!-- <input
+                                type="text"
+                                name="quantity"
+                                id="quantity-input"
+                                value="1"
+                                min="1"
+                                readonly
+                              > -->
+
+                              {{ item.update_quantity_form.quantity }}
+                              {{ item.update_quantity_form.override }}
+
+                              <button type="button" id="plus-btn">
+                                <img src="{% static 'img/add.svg' %}" class="icon" alt="Increase quantity">
+                              </button>
+
+                            </div>
+                          </form>
+
+                          <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                            <!-- <input type="image" src="{% static 'img/icons/delete.svg' %}" value="Remove" > -->
+                             <button type="submit" class="cart-btn">
+                              <img src="{% static 'img/icons/delete.svg' %}" class="icon" alt="Add to cart">
+                            </button>
+                            {% csrf_token %}
+                          </form>
+
 
                         </div>
 
@@ -144,12 +185,12 @@
 
                           <div class="qty-control-card">
 
-                         <form action="{% url 'cart:cart_add' item.product.id %}" method="post" class="update-qty">
-                            {{ item.update_quantity_form.quantity }}
-                            {{ item.update_quantity_form.override }}
-                            <input type="image" src="{% static 'img/icons/addcircle.svg' %}" alt="Update quantity">
-                            {% csrf_token %}
-                        </form>
+                          <form action="{% url 'cart:cart_add' item.product.id %}" method="post" class="update-qty">
+                              {{ item.update_quantity_form.quantity }}
+                              {{ item.update_quantity_form.override }}
+                              <input type="image" src="{% static 'img/icons/addcircle.svg' %}" alt="Update quantity">
+                              {% csrf_token %}
+                          </form>
 
                           </div>
 
@@ -176,8 +217,6 @@
             </div>
 
             <div class="aside-container aside-container-for-cart" >
-
-                <!-- <h4>Categories</h4> -->
 
                 <div class="user-profile">
 
@@ -215,42 +254,47 @@
 
           {% endcomment %}
 
-
-
-
-
-
-
-
-
-
-
-
-
         {% elif not order %}
 
-          <h1>Your cart is empty.</h1>
-          <div class="message-container">
-            <center>
-              <div class="message-container-image-box">
-                <img src="{% static 'img/none.png' %}" width="240px"/>
-              </div>
-              <a href="{% url 'shop:product_list' %}" >
-                <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
-            </a>
-            </center>
-            
-          </div>
+        <h1>Your cart is empty.</h1>
+        <div class="message-container">
+          <center>
+            <div class="message-container-image-box">
+              <img src="{% static 'img/none.png' %}" width="240px"/>
+            </div>
+            <a href="{% url 'shop:product_list' %}" >
+              <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+          </a>
+          </center>
+          
+        </div>
 
         {% endif %}
       {% endwith %}
       
-        
-
-   
-
       </div>
 </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const minusBtn = document.getElementById("minus-btn");
+    const plusBtn = document.getElementById("plus-btn");
+    const quantityInput = document.getElementById("id_quantity");
+
+    minusBtn.addEventListener("click", function () {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    plusBtn.addEventListener("click", function () {
+      let currentValue = parseInt(quantityInput.value) || 1;
+      quantityInput.value = currentValue + 1;
+    });
+  });
+</script>
 
 
 

@@ -18,13 +18,15 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Product</th>
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for property in product_property %}
                     <tr>
-                        <td data-label="Name">{{ product.name }}</td>
+                        <td data-label="Name">{{ property.name }}</td>
+                        <td data-label="Product">{{ property.product.name }}</td>
                         
                         <td data-label="Action">
 

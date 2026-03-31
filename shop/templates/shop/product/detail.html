@@ -23,19 +23,19 @@
 
      <div class="thumbnails">
       <img
-        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}/static/images/no-image.png{% endif %}"
+        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
         class="thumb active"
         alt="{{ product.name }}"
       >
 
       <img
-        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}/static/images/no-image.png{% endif %}"
+        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
         class="thumb"
         alt="{{ product.name }}"
       >
 
       <img
-        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %} /static/images/no-image.png{% endif %}"
+        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
         class="thumb"
         alt="{{ product.name }}"
       >
@@ -46,49 +46,49 @@
       <div class="info-box">
         <h1 class="title">{{ product.name }}</h1>
 
-        <h2>
+        <h4>
           <a href="{{ product.category.get_absolute_url }}">
             {{ product.category }}
           </a>
-        </h2>
+        </h4>
 
         <p class="description">{{ product.description|linebreaks }}</p>
 
         <form action="{% url 'cart:cart_add' product.id %}" method="post">
           {% csrf_token %}
 
-         {% for property in product.properties.all %}
-        <div class="spec-row">
-          <label for="property_{{ property.id }}">{{ property.name }}</label>
-          <select
-            name="property_{{ property.id }}"
-            id="property_{{ property.id }}"
-            required
-          >
-            <option value="">Select {{ property.name }}</option>
+          {% for property in product.properties.all %}
+            <div class="spec-row">
+              <label for="property_{{ property.id }}">{{ property.name }}</label>
+              <select
+                name="property_{{ property.id }}"
+                id="property_{{ property.id }}"
+                required
+              >
+                <option value="">Select {{ property.name }}</option>
 
-            {% for value in property.property_values.all %}
-              <option value="{{ value.id }}">
-                {{ value.value }}
-                {% if value.price_adjustment > 0 %}
-                  (+{{ value.price_adjustment }})
-                {% endif %}
-              </option>
-            {% endfor %}
-          </select>
-        </div>
-      {% endfor %}
+                {% for value in property.property_values.all %}
+                  <option value="{{ value.id }}">
+                    {{ value.value }}
+                    {% if value.price_adjustment > 0 %}
+                      (+{{ value.price_adjustment }})
+                    {% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
 
           <input type="hidden" name="override" value="False">
 
           <div class="purchase-bar" style="margin-top: 40px;">
             <div class="price-section">
-              <h2 class="sub-title">{{ product.name }}</h2>
+              <!-- <h2 class="sub-title">{{ product.name }}</h2> -->
 
               <div class="price-row">
                 <span class="old-price">{{ product.old_price }}</span>
                 <span class="current-price">
-                  <b class="formatted-price">{{ product.price }}</b> դրամ/հատ
+                  <b class="formatted-price">{{ product.price }}</b>
                 </span>
               </div>
             </div>
@@ -100,7 +100,7 @@
                 </button>
 
                 <input
-                  type="number"
+                  type="text"
                   name="quantity"
                   id="quantity-input"
                   value="1"
@@ -117,6 +117,8 @@
                 <img src="{% static 'img/blue_cart.svg' %}" class="icon" alt="Add to cart">
               </button>
             </div>
+
+
           </div>
         </form>
       </div>

@@ -33,7 +33,7 @@ class Cart:
             cart[str(product.id)]['product'] = product
 
         for item in cart.values():
-            # Skip cart items whose product no longer exists
+
             if 'product' not in item:
                 continue
 

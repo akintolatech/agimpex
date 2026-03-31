@@ -18,7 +18,7 @@
 
 </div>
 
-<!-- main section -->
+
 <div id="main">
 
     <div class="stats_box">
@@ -60,43 +60,41 @@
 
     </div>
 
-
-
     <div class="section">
         
        <div class="cat_container">
 
-            <div class="cat_item">
-                <img src="{% static 'img/high-quality-industrial-photo-of-modern-constructi 1.png' %}" />
-                
-                <div class="cat_item_textbox">
-                    <h3>{% trans "Construction Materials" %}</h3>
+                <div class="cat_item">
+                    <img src="{% static 'img/high-quality-industrial-photo-of-modern-constructi 1.png' %}" />
+                    
+                    <div class="cat_item_textbox">
+                        <h3>{% trans "Construction Materials" %}</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div class="cat_item">
-                <img src="{% static 'img/stone.png' %}" />
-                
-                <div class="cat_item_textbox">
-                    <h3>{% trans "Natural Stones" %}</h3>
+                <div class="cat_item">
+                    <img src="{% static 'img/stone.png' %}" />
+                    
+                    <div class="cat_item_textbox">
+                        <h3>{% trans "Natural Stones" %}</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div class="cat_item">
-                <img src="{% static 'img/polymer.png' %}" />
-                
-                <div class="cat_item_textbox">
-                    <h3>{% trans "Polymer Materials" %}</h3>
+                <div class="cat_item">
+                    <img src="{% static 'img/polymer.png' %}" />
+                    
+                    <div class="cat_item_textbox">
+                        <h3>{% trans "Polymer Materials" %}</h3>
+                    </div>
                 </div>
-            </div>
 
-            <div class="cat_item">
-                <img src="{% static 'img/asphalt-production-and-road-construction-process-- 1.png' %}" />
-                
-                <div class="cat_item_textbox">
-                    <h3>{% trans "Bituminous Materials" %}</h3>
+                <div class="cat_item">
+                    <img src="{% static 'img/asphalt-production-and-road-construction-process-- 1.png' %}" />
+                    
+                    <div class="cat_item_textbox">
+                        <h3>{% trans "Bituminous Materials" %}</h3>
+                    </div>
                 </div>
-            </div>
 
         </div>
 
@@ -107,7 +105,6 @@
         <div class="section-header">
             <h1>{% trans "Top Categories" %}</h1>
         </div>
-
 
         <div class="index_product-container">
 
@@ -171,7 +168,7 @@
 
     </div>
 
-   <div class="narrative">
+    <div class="narrative">
 
         <div class="text-box">
             <h1>{% trans "About us" %}</h1>
@@ -182,7 +179,6 @@
                 Starting from 2026, "AG IMPEX" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.
                 {% endblocktrans %}
             </p>
-            <button style="width: 160px;height: 48px;">{% trans "Read more" %}</button>
         </div>
 
         <div class="img-box">
@@ -191,71 +187,69 @@
 
     </div>
 
-  <div class="section">
+    <div class="section">
 
-        <div class="section-header">
-             <h1>{% trans "Construction Goods" %}</h1>
-             <!-- <a href="#">View More</a> -->
-        </div>
-
-
-        <div class="index_product-container">
-
-            {% for product in all_construction_goods %}
-
-            <div class="index_product-item">
-                <div class="product-card">
-                    {% if product.discount_amount%}
-                        <div class="badge-discount">-{{ product.discount_percent }}%</div>
-                    {% endif %}
-                    <button
-                        class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
-                        data-product-id="{{ product.id }}"
-                        data-url="{% url 'shop:toggle_favorite' product.id %}"
-                    >
-                        {% if product.id in favorite_product_ids %}
-                         <img
-                            src="{% static 'img/faved.svg'%}"
-                            alt="{{ product.name }}"
-                            />
-                        {% else %}
-                             <img
-                            src="{% static 'img/fave.svg'%}"
-                            alt="{{ product.name }}"
-                            />
-                        {% endif %}
-                    </button>
-                    <div class="product-image">
-                        <img
-                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-                            alt="{{ product.name }}"
-                        />
-                    </div>
-                </div>
-
-                <div class="product-info">
-                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                            <span class="old-price">{{ product.old_price }}</span>
-                            <span class="current-price">{{ product.price }}</span>
-                            <!-- <span class="currency">դրամ/հատ</span> -->
-                        </div>
-                         <a href="{{ product.get_absolute_url }}">
-                            <button class="cart-btn">
-                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
-                            </button>
-                        </a>
-                    </div>
-                </div>
-
+            <div class="section-header">
+                <h1>{% trans "Construction Goods" %}</h1>
+                <!-- <a href="#">View More</a> -->
             </div>
 
-            {% endfor %}
 
-        </div>
+            <div class="index_product-container">
 
+                {% for product in all_construction_goods %}
 
+                <div class="index_product-item">
+                    <div class="product-card">
+                        {% if product.discount_amount%}
+                            <div class="badge-discount">-{{ product.discount_percent }}%</div>
+                        {% endif %}
+                        <button
+                            class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
+                            data-product-id="{{ product.id }}"
+                            data-url="{% url 'shop:toggle_favorite' product.id %}"
+                        >
+                            {% if product.id in favorite_product_ids %}
+                            <img
+                                src="{% static 'img/faved.svg'%}"
+                                alt="{{ product.name }}"
+                                />
+                            {% else %}
+                                <img
+                                src="{% static 'img/fave.svg'%}"
+                                alt="{{ product.name }}"
+                                />
+                            {% endif %}
+                        </button>
+                        <div class="product-image">
+                            <img
+                                src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                                alt="{{ product.name }}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
+                        <div class="price-row">
+                            <div class="price-container">
+                                <span class="old-price">{{ product.old_price }}</span>
+                                <span class="current-price">{{ product.price }}</span>
+                                <!-- <span class="currency">դրամ/հատ</span> -->
+                            </div>
+                            <a href="{{ product.get_absolute_url }}">
+                                <button class="cart-btn">
+                                    <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
     </div>
 
     <div class="section">
@@ -271,7 +265,7 @@
             {% for product in all_natural_stones %}
             <div class="index_product-item">
                 <div class="product-card">
-              
+             
                     <button
                         class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
                         data-product-id="{{ product.id }}"
@@ -295,10 +289,10 @@
                             alt="{{ product.name }}"
                         />
                     </div>
+
                 </div>
 
                 <div class="product-info">
-                 
                     <div class="price-row">
                         <div class="price-container">
                             <h3 class="product-title">{{ product.name|truncatewords:3|linebreaks }}</h3>
@@ -313,7 +307,6 @@
 
             </div>
             {% endfor %}
-
 
         </div>
     </div>
@@ -363,7 +356,7 @@
             <img src="{% static 'img/bitumentruck.png' %}" alt="AG IMPEX Truck" class="truck-img">
         </div>
     </div>
-    
+
 
     <div class="section">
 
@@ -387,15 +380,12 @@
             <img src="{% static 'img/partner12.png' %}" alt="Partner 1">
         </marquee>
 
-
-
     </div>
 
     <!--Contact section -->
     <div class="section">
-        <h1>{% trans "Contact Us" %}</h1>
+        <h1>{% trans "Message" %}</h1>
         
-
         <form class="contact-container">
             <div class="input-row">
                 <input type="text" placeholder="Name">
@@ -406,16 +396,12 @@
 
             <textarea placeholder="Your Message"></textarea>
 
-            <!-- <label for="file-input" class="file-upload-wrapper">
-                Upload Files
-                <input type="file" id="file-input" multiple>
-            </label> -->
-
-            <button>Send Message</button>
+            <button>{% trans "Send Message" %}</button>
         </form>
-
+        
     </div>
 
+    <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" />
 </div>
 
 

@@ -114,14 +114,10 @@ msgid "Natural Stones"
 msgstr "Натуральный камень"
 
 #: website/templates/website/index.html:89
-#, fuzzy
-#| msgid "Construction Materials"
 msgid "Polymer Materials"
 msgstr "Полимерные материалы"
 
 #: website/templates/website/index.html:97
-#, fuzzy
-#| msgid "Construction Materials"
 msgid "Bituminous Materials"
 msgstr "Битумные материалы"
 
@@ -167,7 +163,6 @@ msgid "Read more"
 msgstr "Подробнее"
 
 #: website/templates/website/index.html:197
-#, fuzzy
 #| msgid "Construction Materials"
 msgid "Construction Goods"
 msgstr "Строительные товары"

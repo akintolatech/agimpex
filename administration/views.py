@@ -140,7 +140,6 @@ def create_category(request):
     return render(request, "administration/category/create_category.html", {"form": form})
 
 
-
 @staff_member_required
 def edit_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
@@ -343,7 +342,8 @@ def edit_product(request, product_id):
             product.properties.exclude(id__in=submitted_property_ids).delete()
 
             messages.success(request, 'Product updated successfully.')
-            return redirect('administration:edit_product', product_id=product.id)
+            # return redirect('administration:edit_product', product_id=product.id)
+            return redirect('administration:product_list')
         else:
             messages.error(request, 'Please fix the errors below.')
 

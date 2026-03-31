@@ -93,8 +93,23 @@
                 </div>
                 
                 <div class="searchbox">
-                    <input type="search" placeholder="{% trans 'Search' %}" />
-                    <button>{% trans 'Catalogs' %}</button>
+                    <!-- <form class="search-box" method="get" action="">
+                        <input type="search" name="q" placeholder="{% trans 'Search' %}" />
+                        <span class="search-icon">
+                            <img src="{% static 'img/account.svg' %}" class="icon" />
+                        </span>
+                    </form> -->
+                     <input type="search" name="q" placeholder="{% trans 'Search' %}" />
+                    <!-- <button>{% trans 'Catalogs' %}</button> -->
+                    <details class="pdf-dropdown-details">
+                    <summary>Կատալոգներ</summary>
+
+                    <div class="pdf-menu">
+                        <a href="/media/pdfs/construction.pdf" download>{% trans "Construction Goods" %} PDF</a>
+                        <a href="/media/pdfs/natural-stones.pdf" download>{% trans "Natural Stones" %} PDF</a>
+                      
+                    </div>
+                    </details>
                 </div>
 
                 <div class="app_functions">

@@ -4,6 +4,10 @@
 {% load static %}
 
 {% block title %}Agimpex: Services {% endblock %}
+
+{% block style %}
+<link type="text/css" href="{% static 'styles/services.css' %}" rel="stylesheet" />
+{% endblock %}
 {% block content %}
 
  <div class="page_hero">
@@ -14,7 +18,7 @@
                 AGIMPEX<br/>
                 Everything Materials here
             </p>
-            <button style="width: 160px;height: 48px;">{% trans "Order Now" %}</button>
+            <!-- <button style="width: 160px;height: 48px;">{% trans "Order Now" %}</button> -->
         </div>
 
     </div>
@@ -43,67 +47,110 @@
 
         </div>
 
-
-        <div class="banner-container">
-
-            <div class="blue-bar">
-                <h1 class="banner-text">{% trans "Cargo Transportation" %}</h1>
-                
-                <div class="flag-container">
-                    <div class="flag russia"></div>
-                    <div class="flag georgia"></div>
-                    <div class="flag iran"></div>
-                    <div class="flag india"></div>
-                    <div class="flag china"></div>
-                </div>
-            </div>
-
-            
-            <div class="truck-wrapper">
-                <img src="{% static 'img/truck.png' %}" alt="AG IMPEX Truck" class="truck-img">
-            </div>
-
-        </div>
-
-
-        <div class="banner-container">
-
-            <div class="blue-bar">
-                <h1 class="banner-text">{% trans "Import and Sale of Construction Materials" %}</h1>  
-            </div>
-
-            <div class="truck-wrapper">
-                <img src="{% static 'img/workers.png' %}" alt="AG IMPEX Truck" class="truck-img">
-            </div>
-        
-        </div>
-
-
-        <div class="banner-container">
-            <div class="blue-bar">
-                <h1 class="banner-text">{% trans "Bitumen Transporter" %}</h1>
-            </div>
-            
-            <div class="truck-wrapper">
-                <img src="{% static 'img/bitumentruck.png' %}" alt="AG IMPEX Truck" class="truck-img">
-            </div>
-        </div>
-        
-        <form class="contact-container">
-            <div class="input-row">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email Address">
-            </div>
-
-            <input type="text" placeholder="Subject">
-
-            <textarea placeholder="Your Message"></textarea>
-
-            <button>Send Message</button>
-        </form>
-
-        
     </div>
+
+
+    <section class="services-section">
+        <!-- Row 1 -->
+        <div class="service-row">
+            <div class="service-text">
+                <h2>{% trans "Delivery" %}</h2>
+                <p>
+                    {% blocktrans %}
+                    Expanding the field of activity, we also offer a delivery service.
+                    It includes the following: cargo loading, transportation, handling.
+                    {% endblocktrans %}
+                </p>
+            </div>
+
+            <div class="service-image-card">
+                <img src="{% static 'img/agillustration.png' %}" alt="{% trans 'AG IMPEX Truck Delivery' %}">
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="service-row reverse-mobile">
+            <div class="service-image-card truck-card">
+                <div class="vertical-label">{% trans "Transport" %}</div>
+                <img src="{% static 'img/agillustration2.png' %}" alt="{% trans 'AG IMPEX Trucking services' %}">
+            </div>
+
+            <div class="service-text">
+                <h2>{% trans "Trucking" %}</h2>
+                <p>
+                    {% blocktrans %}
+                    In order to ensure the most comfort of our partners and the high quality
+                    of cargo transportation, we replenish the range of existing vehicles and
+                    have different types of trucks, bitumen trucks, etc.
+                    {% endblocktrans %}
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="banner-container">
+
+        <div class="blue-bar">
+            <h1 class="banner-text">{% trans "Cargo Transportation" %}</h1>
+            
+            <div class="flag-container">
+                <div class="flag russia"></div>
+                <div class="flag georgia"></div>
+                <div class="flag iran"></div>
+                <div class="flag india"></div>
+                <div class="flag china"></div>
+            </div>
+        </div>
+
+        
+        <div class="truck-wrapper">
+            <img src="{% static 'img/truck.png' %}" alt="AG IMPEX Truck" class="truck-img">
+        </div>
+
+    </div>
+
+
+    <div class="banner-container">
+
+        <div class="blue-bar">
+            <h1 class="banner-text">{% trans "Import and Sale of Construction Materials" %}</h1>  
+        </div>
+
+        <div class="truck-wrapper">
+            <img src="{% static 'img/workers.png' %}" alt="AG IMPEX Truck" class="truck-img">
+        </div>
+    
+    </div>
+
+
+    <div class="banner-container">
+        <div class="blue-bar">
+            <h1 class="banner-text">{% trans "Bitumen Transporter" %}</h1>
+        </div>
+        
+        <div class="truck-wrapper">
+            <img src="{% static 'img/bitumentruck.png' %}" alt="AG IMPEX Truck" class="truck-img">
+        </div>
+    </div>
+    
+    <form class="contact-container">
+        <div class="input-row">
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email Address">
+        </div>
+
+        <input type="text" placeholder="Subject">
+
+        <textarea placeholder="Your Message"></textarea>
+
+        <button>Send Message</button>
+    </form>
+
+
+    
+
+
 </div>
 
 {% endblock %}

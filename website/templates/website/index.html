@@ -365,20 +365,37 @@
         </div>
 
 
-         <marquee behavior="scroll">
-            <img src="{% static 'img/partner1.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner2.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner3.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner4.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner5.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner6.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner7.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner8.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner9.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner10.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner11.png' %}" alt="Partner 1">
-            <img src="{% static 'img/partner12.png' %}" alt="Partner 1">
-        </marquee>
+        <div class="partner-marquee">
+            <div class="partner-track">
+                <!-- First set -->
+                <img src="{% static 'img/partner1.png' %}" alt="Partner 1">
+                <img src="{% static 'img/partner2.png' %}" alt="Partner 2">
+                <img src="{% static 'img/partner3.png' %}" alt="Partner 3">
+                <img src="{% static 'img/partner4.png' %}" alt="Partner 4">
+                <img src="{% static 'img/partner5.png' %}" alt="Partner 5">
+                <img src="{% static 'img/partner6.png' %}" alt="Partner 6">
+                <img src="{% static 'img/partner7.png' %}" alt="Partner 7">
+                <img src="{% static 'img/partner8.png' %}" alt="Partner 8">
+                <img src="{% static 'img/partner9.png' %}" alt="Partner 9">
+                <img src="{% static 'img/partner10.png' %}" alt="Partner 10">
+                <img src="{% static 'img/partner11.png' %}" alt="Partner 11">
+                <img src="{% static 'img/partner12.png' %}" alt="Partner 12">
+
+                <!-- Duplicate set for seamless loop -->
+                <img src="{% static 'img/partner1.png' %}" alt="Partner 1">
+                <img src="{% static 'img/partner2.png' %}" alt="Partner 2">
+                <img src="{% static 'img/partner3.png' %}" alt="Partner 3">
+                <img src="{% static 'img/partner4.png' %}" alt="Partner 4">
+                <img src="{% static 'img/partner5.png' %}" alt="Partner 5">
+                <img src="{% static 'img/partner6.png' %}" alt="Partner 6">
+                <img src="{% static 'img/partner7.png' %}" alt="Partner 7">
+                <img src="{% static 'img/partner8.png' %}" alt="Partner 8">
+                <img src="{% static 'img/partner9.png' %}" alt="Partner 9">
+                <img src="{% static 'img/partner10.png' %}" alt="Partner 10">
+                <img src="{% static 'img/partner11.png' %}" alt="Partner 11">
+                <img src="{% static 'img/partner12.png' %}" alt="Partner 12">
+            </div>
+        </div>
 
     </div>
 
@@ -401,7 +418,9 @@
         
     </div>
 
-    <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" />
+    <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" alt="Catalog image" class="responsive-img">
+
+
 </div>
 
 

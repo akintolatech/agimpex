@@ -67,19 +67,16 @@ a {
     
 }
 
-
 .contact-wrap {
     width: 95%;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* border: 1p solid red; */
+    
 }
 
 .contact-wrap p {
-    /* font-size: 12px; */
-    /* font-size: clamp(6px, 2vw + 0.3rem, 0.8rem); */
     font-size: calc(8px + 0.2vw);
     margin: 0;
 }
@@ -88,12 +85,13 @@ a {
 .contact-wrap-item {
     display: flex;
     align-items: center;
+    gap: 1rem;
 }
 
 .contact-wrap-item img {
     width: 24px;
-    height: 24px;
-    margin-right: 12px;
+    /* height: 24px; */
+    margin-right: 6px;
 }
 
 
@@ -107,27 +105,40 @@ a {
 .language-btn {
     display: flex;
     align-items: center;
+    height: 24px;
     gap: 8px;
-    /* background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15); */
-    /* padding: 6px 12px; */
     border-radius: 8px;
     cursor: pointer;
     color: #fff;
     font-size: 14px;
     transition: 0.3s ease;
-    /* backdrop-filter: blur(8px); */
+    backdrop-filter: blur(8px);
     /* border: 1px solid red; */
     background-color: #00315100;
+    padding: 0;
 }
 
 .language-btn:hover {
     /* background: rgba(255, 255, 255, 0.15); */
 }
 
- .arrow_down {
-    width: 12px;
+
+.btn-toggle {
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
 }
+
+
+.icon-container{
+    width: 16px;
+    /* margin-right: 12px; */
+}
+
+.icon-container img{
+    width: 100%;
+}
+
 
 .language-flag {
     width: 24px;
@@ -181,10 +192,10 @@ a {
 }
 
 
-/* .language-container{
-    border: 1px solid red;
-} */
-
+.call-header-card {
+    display: flex;
+    align-items: center;
+}
 
 .header_main_bar {
     width: 100%;
@@ -1042,10 +1053,7 @@ textarea {
 
 }
 
-.ctext {
-    /* height: 300px; */
-
-    /* border: 1px solid red; */
+/* .ctext {
     border-radius: var(--radius);
     background-image: url("../img/talk.jpg");
     background-size: cover;
@@ -1053,7 +1061,7 @@ textarea {
     color: white;
     padding: 120px 0 0px 30px;
     box-sizing: border-box;
-}
+} */
 
 
 /* footer */
@@ -1236,11 +1244,13 @@ li {
   background: #ef1c1c;
   color: #fff;
   border-radius: 10px;
-  padding: 12px 26px;
-  font-size: 16px;
-  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  /* padding: 12px 26px; */
+  /* font-size: 16px; */
+  /* font-weight: 600; */
   cursor: pointer;
-  min-width: 125px;
+  /* min-width: 125px; */
   text-align: center;
   user-select: none;
 }

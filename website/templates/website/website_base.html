@@ -26,18 +26,26 @@
                 <div class="contact-wrap-item">
 
                    <div class="language-dropdown">
-                        <button class="language-btn">
-                            {% get_current_language as LANGUAGE_CODE %}
+                        <div class="btn-toggle">
 
-                            {% if LANGUAGE_CODE == 'hy' %}
-                                <img src="{% static 'img/hy.png' %}" class="language-flag" alt="Armenian">
-                            {% elif LANGUAGE_CODE == 'ru' %}
-                                <img src="{% static 'img/ru.png' %}" class="language-flag" alt="Russian">
-                            {% else %}
-                                <img src="{% static 'img/en.png' %}" class="language-flag" alt="English">
-                            {% endif %}
-                            <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" width="20px" /> -->
-                        </button>
+                            <button class="language-btn">
+                                {% get_current_language as LANGUAGE_CODE %}
+
+                                {% if LANGUAGE_CODE == 'hy' %}
+                                    <img src="{% static 'img/hy.png' %}" class="language-flag" alt="Armenian">
+                                {% elif LANGUAGE_CODE == 'ru' %}
+                                    <img src="{% static 'img/ru.png' %}" class="language-flag" alt="Russian">
+                                {% else %}
+                                    <img src="{% static 'img/en.png' %}" class="language-flag" alt="English">
+                                {% endif %}
+                                
+                            </button>
+                            <div class="icon-container">
+                                <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" />
+                            </div>
+                            
+                        </div>
+                      
 
                         <div class="language-menu">
                             <a href="/hy/" class="language-option">
@@ -56,8 +64,12 @@
                             </a>
                         </div>
                     </div>
-                    
-                     <p>033404440</p>
+
+                    <div class="call-header-card">
+                        <img src="{% static 'img/Phone.svg' %}" alt="English">
+                        <p>033404440</p>
+                    </div>
+                     
                      
                 </div>
                 
@@ -102,7 +114,14 @@
                      <input type="search" name="q" placeholder="{% trans 'Search' %}" />
                     <!-- <button>{% trans 'Catalogs' %}</button> -->
                     <details class="pdf-dropdown-details">
-                    <summary>Կատալոգներ</summary>
+                    <summary>
+                        Catalogs
+                        <span>
+                             <div class="icon-container">
+                                <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" />
+                            </div>
+                        </span>
+                    </summary>
 
                     <div class="pdf-menu">
                         <a href="/media/pdfs/construction.pdf" download>{% trans "Construction Goods" %} PDF</a>
@@ -112,7 +131,7 @@
                     </details>
                 </div>
 
-                <div class="app_functions">
+                <div class="app_functions"> 
 
                     <a href="{% url 'login' %}">
                         <div class="icontext">

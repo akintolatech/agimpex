@@ -1,8 +1,9 @@
 {% extends "website/website_base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
-  Your shopping cart
+  {% trans "Your shopping cart" %}
 {% endblock %}
 
 {% block style %}
@@ -19,9 +20,9 @@
 
         {% if total_items > 0 %}
           <h2>
-            Your shopping cart
+            {% trans "Your shopping cart" %}
             <a href="{% url 'cart:cart_detail' %}">
-              {{ total_items }} item{{ total_items|pluralize }},
+              {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
               <b class="formatted-price">{{ cart.get_total_price }}</b>
             </a>  
           </h2>
@@ -126,12 +127,12 @@
                 </div>
 
                 <a href="{% url 'shop:product_list' %}" >
-                    <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+                    <button style="width:180px; height:44px; margin-bottom:12px;">{% trans "Continue shopping" %}</button>
                 </a>
             </div>
 
             <div class="cart-summary-box">
-                  <h3>Order Summary</h3>
+                  <h3>{% trans "Order Summary" %}</h3>
                   <ol>
                     {% for item in cart %}
                       <li>
@@ -140,11 +141,11 @@
                       </li>
                     {% endfor %}
                   </ol>
-                  <h4><b>Total:</b> <b class="formatted-price">{{ cart.get_total_price }}</b></h4>
+                  <h4><b>{% trans "Total"  %}:</b> <b class="formatted-price">{{ cart.get_total_price }}</b></h4>
 
                   <form method="post" action= "{% url 'orders:order_create' %}">
                     {{ form.as_p }}
-                    <p><input type="submit" value="Place order"></p>
+                    <p><input type="submit" value="{% blocktrans %} Place order {% endblocktrans %}"></p>
                     {% csrf_token %}
                   </form>
 
@@ -162,9 +163,9 @@
             <div class="message-container-image-box">
               <img src="{% static 'img/none.png' %}" width="240px"/>
             </div>
-            <h3>Your cart is empty.</h3>
+            <h3>{% trans "Your cart is empty." %}</h3>
             <a href="{% url 'shop:product_list' %}" >
-              <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+              <button style="width:180px; height:44px; margin-bottom:12px;">{% trans "Continue shopping" %}</button>
             </a>
           </center>
         </div>

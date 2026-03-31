@@ -15,14 +15,14 @@
                         <div class="user-func {% if not category %}selected{% endif %}" style="background-color: var(--pry-color);">
                             <div class="icon-and-text">
                                 <h3>{% trans "Product Categories" %}</h3>
-                            </div>
+                            </div>  
                         </div>
                     </a>
 
                     {% for c in categories %}
                         <a href="{{ c.get_absolute_url }}">
                             <div class="user-func {% if category.slug == c.slug %}selected{% endif %}">
-                                <div class="icon-and-text">
+                                <div class="icon-and-text"> 
                                     <h4>{{ c.name }}</h4>
                                 </div>
                                 <h4>+</h4>
@@ -63,7 +63,7 @@
                                         <span class="current-price">
                                             <b class="formatted-price">{{ product.price }}</b>
                                         </span>
-                                        <span class="currency">դրամ/հատ</span>
+                                        <!-- <span class="currency">դրամ/հատ</span> -->
                                     </div>
 
                                     <a href="{{ product.get_absolute_url }}">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                     {% empty %}
-                        <h1>There are no products here</h1>
+                        <h1>{% trans "There are no products here" %}</h1>
                     {% endfor %}
 
                 </div>

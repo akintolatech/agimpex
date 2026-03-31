@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}Agimpex: Services {% endblock %}
+{% block title %}Agimpex: {% trans "Services" %} {% endblock %}
 
 {% block style %}
 <link type="text/css" href="{% static 'styles/services.css' %}" rel="stylesheet" />
@@ -13,10 +13,10 @@
  <div class="page_hero">
 
         <div class="">
-            <h1>Our Services</h1>
+            <h1>{% trans "Our Services" %}</h1>
             <p>
-                AGIMPEX<br/>
-                Everything Materials here
+                {% blocktrans %} "AGIMPEX<br/>
+                Everything Materials here" {% endblocktrans %}
             </p>
             <!-- <button style="width: 160px;height: 48px;">{% trans "Order Now" %}</button> -->
         </div>
@@ -38,7 +38,7 @@
                     Starting from 2026, "AG IMPEX" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.
                     {% endblocktrans %}
                 </p>
-                <button style="width: 160px;height: 48px;">{% trans "Read more" %}</button>
+                <!-- <button style="width: 160px;height: 48px;">{% trans "Read more" %}</button> -->
             </div>
 
             <div class="img-box">
@@ -50,7 +50,7 @@
     </div>
 
 
-    <section class="services-section">
+    <section class="services-section" style="margin-bottom: 10rem;">
         <!-- Row 1 -->
         <div class="service-row">
             <div class="service-text">
@@ -89,7 +89,7 @@
     </section>
 
 
-    <div class="banner-container">
+    <!-- <div class="banner-container">
 
         <div class="blue-bar">
             <h1 class="banner-text">{% trans "Cargo Transportation" %}</h1>
@@ -145,7 +145,7 @@
         <textarea placeholder="Your Message"></textarea>
 
         <button>Send Message</button>
-    </form>
+    </form> -->
 
 
     

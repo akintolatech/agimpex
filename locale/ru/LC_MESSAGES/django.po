@@ -177,7 +177,6 @@ msgid "Cargo Transportation"
 msgstr "Грузоперевозки"
 
 #: website/templates/website/index.html:347
-#, fuzzy
 #| msgid "Construction Materials"
 msgid "Import and Sale of Construction Materials"
 msgstr "Импорт и продажа строительных материалов"
@@ -286,7 +285,6 @@ msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
 #: website/templates/website/website_base.html:232
-#, fuzzy
 #| msgid "Contact"
 msgid "Contact us"
 msgstr "Свяжитесь с нами"

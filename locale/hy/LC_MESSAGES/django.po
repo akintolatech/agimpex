@@ -174,7 +174,6 @@ msgid "Cargo Transportation"
 msgstr "Բեռնափոխադրումներ"
 
 #: website/templates/website/index.html:347
-#, fuzzy
 #| msgid "Construction Materials"
 msgid "Import and Sale of Construction Materials"
 msgstr "Շինարարական նյութերի ներմուծում և վաճառք"

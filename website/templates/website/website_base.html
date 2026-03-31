@@ -15,7 +15,12 @@
     {% block style %} {% endblock %}
 </head>
 <body>
-   
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p>{% trans "Loading..." %}</p>
+        </div>
+    </div>
     <div id="header">
 
         <div class="header_contact_bar">
@@ -272,6 +277,20 @@
 
     </div>
    
+
+
+    <script>
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("page-loader");
+            loader.classList.add("hide");
+
+            // Optional: remove from DOM after fade-out
+            setTimeout(() => {
+                loader.remove();
+            }, 500);
+        });
+    </script>
+
 
 </body>
 </html>

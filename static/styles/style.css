@@ -32,6 +32,7 @@ a {
   src: url("../fonts/montserrat/Montserrat-Regular.ttf") format("truetype");
 }
 
+
 #header {
     width: 100%;
     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.08);
@@ -90,16 +91,13 @@ a {
 
 .contact-wrap-item img {
     width: 24px;
-    /* height: 24px; */
     margin-right: 6px;
 }
 
 
-/* LANGUAGE DROPDOWN */
 .language-dropdown {
     position: relative;
     display: inline-block;
-    /* border: 1px solid red; */
 }
 
 .language-btn {
@@ -113,26 +111,18 @@ a {
     font-size: 14px;
     transition: 0.3s ease;
     backdrop-filter: blur(8px);
-    /* border: 1px solid red; */
     background-color: #00315100;
     padding: 0;
 }
 
-.language-btn:hover {
-    /* background: rgba(255, 255, 255, 0.15); */
-}
-
-
 .btn-toggle {
     display: flex;
     align-items: center;
-    /* border: 1px solid red; */
 }
 
 
 .icon-container{
     width: 16px;
-    /* margin-right: 12px; */
 }
 
 .icon-container img{
@@ -216,11 +206,11 @@ a {
 .logo {
     width: 200px;
     height: 61.5px;
-    /* aspect-ratio: ; */
 }
 
 .searchbox {
     display: flex;
+    gap: 16px;
     align-items: center;
     display: none;
 }
@@ -228,15 +218,28 @@ a {
 .searchbox button {
     width: 180px;
     height: 38px;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: red;
 }
 
 input[type="search"]{
     height: 38px;
-    margin-right: 12px;
+    /* margin-right: 12px; */
 }
 
+
+/* Search */
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.search-icon {
+    width: 24px;
+    display: flex;
+    align-items: center;
+}
 
 .app_functions {
     display: flex;
@@ -250,7 +253,7 @@ input[type="search"]{
     color: white;
 }
 
-/* ICONTEXT Component */
+
 .icontext {
     display: flex;
     flex-direction: column;
@@ -298,9 +301,6 @@ input[type="search"]{
     margin-block: 24px;
 }
 
-.header_bottom_bar a {
-    /* color: var(--pry-color); */
-}
 
 .wrap {
     display: flex;
@@ -335,7 +335,6 @@ input[type="search"]{
 }
 
 
-/* Add responsivity */
 .heading_spacer {
     height: 130px;
 }
@@ -351,7 +350,8 @@ input[type="search"]{
     display: none;
 }
 
-/* SVG Styling */
+
+
 .nav {
     width: 48px;
     cursor: pointer;
@@ -360,7 +360,6 @@ input[type="search"]{
 
 .st0{
     fill: white;
-    /* transform: rotate(45deg); */
 }
 
 /* Ham Nav Animation */
@@ -677,6 +676,7 @@ input[type="submit"] {
     margin: 60px auto;
     box-sizing: border-box;
 }
+
 .section h1 {
     /* margin-bottom: 60px; */
     /* margin: auto; */
@@ -1245,12 +1245,9 @@ li {
   color: #fff;
   border-radius: 10px;
   display: flex;
-  justify-content: space-between;
-  /* padding: 12px 26px; */
-  /* font-size: 16px; */
-  /* font-weight: 600; */
+  gap: 8px;
+  padding: 11px 14px;
   cursor: pointer;
-  /* min-width: 125px; */
   text-align: center;
   user-select: none;
 }
@@ -1263,7 +1260,7 @@ li {
   position: absolute;
   top: 110%;
   left: 0;
-  min-width: 220px;
+  /* min-width: 220px; */
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -1288,3 +1285,5 @@ li {
 .pdf-dropdown-details .pdf-menu a:hover {
   background: #f8f8f8;
 }
+
+

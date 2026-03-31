@@ -41,11 +41,10 @@
                                 
                             </button>
                             <div class="icon-container">
-                                <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" />
+                                <img src="{% static 'img/arrow_down.svg' %}" />
                             </div>
                             
                         </div>
-                      
 
                         <div class="language-menu">
                             <a href="/hy/" class="language-option">
@@ -67,9 +66,8 @@
 
                     <div class="call-header-card">
                         <img src="{% static 'img/Phone.svg' %}" alt="English">
-                        <p>033404440</p>
+                        <p>+37433404440</p>
                     </div>
-                     
                      
                 </div>
                 
@@ -105,17 +103,16 @@
                 </div>
                 
                 <div class="searchbox">
-                    <!-- <form class="search-box" method="get" action="">
+                    <!-- search -->
+                    <form class="input-container" method="get" action="">
                         <input type="search" name="q" placeholder="{% trans 'Search' %}" />
                         <span class="search-icon">
-                            <img src="{% static 'img/account.svg' %}" class="icon" />
+                            <img src="{% static 'img/search.svg' %}" class="icon" />
                         </span>
-                    </form> -->
-                     <input type="search" name="q" placeholder="{% trans 'Search' %}" />
-                    <!-- <button>{% trans 'Catalogs' %}</button> -->
+                    </form>
                     <details class="pdf-dropdown-details">
                     <summary>
-                        Catalogs
+                        {% trans "Catalogs" %}
                         <span>
                              <div class="icon-container">
                                 <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" />
@@ -125,8 +122,7 @@
 
                     <div class="pdf-menu">
                         <a href="/media/pdfs/construction.pdf" download>{% trans "Construction Goods" %} PDF</a>
-                        <a href="/media/pdfs/natural-stones.pdf" download>{% trans "Natural Stones" %} PDF</a>
-                      
+                        <a href="/media/pdfs/natural-stones.pdf" download>{% trans "Natural Stones" %} PDF</a>            
                     </div>
                     </details>
                 </div>

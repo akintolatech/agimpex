@@ -140,6 +140,7 @@ def create_category(request):
     return render(request, "administration/category/create_category.html", {"form": form})
 
 
+
 @staff_member_required
 def edit_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)

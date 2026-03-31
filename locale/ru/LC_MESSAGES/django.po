@@ -8,11 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-27 01:32+0100\n"
+"POT-Creation-Date: 2026-03-31 03:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,12 +24,60 @@ msgstr ""
 #, fuzzy
 #| msgid "Favourites"
 msgid "My favourites"
-msgstr "Избранное"
+msgstr "Моё избранное"
 
 #: shop/templates/shop/product/list.html:20
 #: website/templates/website/discount.html:17
 msgid "Product Categories"
-msgstr ""
+msgstr "Категории товаров"
+
+#: website/templates/website/contact.html:11
+#: website/templates/website/index.html:399
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Us"
+msgstr "Свяжитесь с нами"
+
+#: website/templates/website/contact.html:13
+msgid "AGIMPEX<br/>Everything Materials here"
+msgstr "AGIMPEX<br/>Все материалы здесь"
+
+#: website/templates/website/contact.html:15
+msgid "Send a Message"
+msgstr "Отправить сообщение"
+
+#: website/templates/website/contact.html:22
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact Details"
+msgstr "Контактные данные"
+
+#: website/templates/website/contact.html:40
+msgid "Reach Out"
+msgstr "Свяжитесь с нами"
+
+#: website/templates/website/contact.html:41
+#: website/templates/website/website_base.html:233
+msgid "Address"
+msgstr "Адрес"
+
+#: website/templates/website/contact.html:44
+#: website/templates/website/website_base.html:234
+msgid "Phone"
+msgstr "Телефон"
+
+#: website/templates/website/contact.html:47
+#: website/templates/website/website_base.html:235
+msgid "Email"
+msgstr "Эл. почта"
+
+#: website/templates/website/contact.html:59
+msgid "Message"
+msgstr "Сообщение"
+
+#: website/templates/website/contact.html:71
+msgid "Send Message"
+msgstr "Отправить сообщение"
 
 #: website/templates/website/index.html:13
 #: website/templates/website/index.html:73
@@ -61,6 +109,7 @@ msgid "Competitive Prices"
 msgstr "Конкурентные цены"
 
 #: website/templates/website/index.html:81
+#: website/templates/website/index.html:264
 msgid "Natural Stones"
 msgstr "Натуральный камень"
 
@@ -68,17 +117,17 @@ msgstr "Натуральный камень"
 #, fuzzy
 #| msgid "Construction Materials"
 msgid "Polymer Materials"
-msgstr "Строительные материалы"
+msgstr "Полимерные материалы"
 
 #: website/templates/website/index.html:97
 #, fuzzy
 #| msgid "Construction Materials"
 msgid "Bituminous Materials"
-msgstr "Строительные материалы"
+msgstr "Битумные материалы"
 
 #: website/templates/website/index.html:108
 msgid "Top Categories"
-msgstr ""
+msgstr "Популярные категории"
 
 #: website/templates/website/index.html:177
 #: website/templates/website/services.html:29
@@ -100,14 +149,14 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                ООО \"AG IMPEX\" была основана в 2018 году с одной ясной "
-"целью: стать надежным и долгосрочным партнером в строительном секторе "
+"                ООО \"AG IMPEX\" было основано в 2018 году с одной ясной "
+"целью: стать надёжным и долгосрочным партнёром в строительной отрасли "
 "Армении.\n"
-"                Более 7 лет мы обеспечиваем армянский рынок "
+"                Уже более 7 лет мы обеспечиваем армянский рынок "
 "высококачественными, сертифицированными строительными товарами по "
-"конкурентоспособным ценам как через импорт, так и через оптовую/розничную "
-"продажу, удовлетворяя потребности как крупных строительных компаний, так и "
-"частных клиентов.\n"
+"конкурентоспособным ценам как за счёт импорта, так и через оптовую и "
+"розничную продажу, удовлетворяя потребности как крупных строительных "
+"компаний, так и частных клиентов.\n"
 "                Начиная с 2026 года, ООО \"AG IMPEX\" также выходит на рынок "
 "с двумя новыми брендами: Metals Holding и Prime Stone.\n"
 "                "
@@ -117,9 +166,33 @@ msgstr ""
 msgid "Read more"
 msgstr "Подробнее"
 
+#: website/templates/website/index.html:197
+#, fuzzy
+#| msgid "Construction Materials"
+msgid "Construction Goods"
+msgstr "Строительные товары"
+
+#: website/templates/website/index.html:325
+msgid "Cargo Transportation"
+msgstr "Грузоперевозки"
+
+#: website/templates/website/index.html:347
+#, fuzzy
+#| msgid "Construction Materials"
+msgid "Import and Sale of Construction Materials"
+msgstr "Импорт и продажа строительных материалов"
+
+#: website/templates/website/index.html:359
+msgid "Bitumen Transporter"
+msgstr "Перевозка битума"
+
+#: website/templates/website/index.html:374
+msgid "Our Partners"
+msgstr "Наши партнёры"
+
 #: website/templates/website/services.html:17
 msgid "Order Now"
-msgstr ""
+msgstr "Заказать сейчас"
 
 #: website/templates/website/services.html:31
 #, fuzzy
@@ -151,21 +224,21 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"                ООО \"AG IMPEX\" была основана в 2018 году с одной ясной "
-"целью: стать надежным и долгосрочным партнером в строительном секторе "
+"                    ООО \"AG IMPEX\" было основано в 2018 году с одной ясной "
+"целью: стать надёжным и долгосрочным партнёром в строительной отрасли "
 "Армении.\n"
-"                Более 7 лет мы обеспечиваем армянский рынок "
+"                    Уже более 7 лет мы обеспечиваем армянский рынок "
 "высококачественными, сертифицированными строительными товарами по "
-"конкурентоспособным ценам как через импорт, так и через оптовую/розничную "
-"продажу, удовлетворяя потребности как крупных строительных компаний, так и "
-"частных клиентов.\n"
-"                Начиная с 2026 года, ООО \"AG IMPEX\" также выходит на рынок "
+"конкурентоспособным ценам как за счёт импорта, так и через оптовую и "
+"розничную продажу, удовлетворяя потребности как крупных строительных "
+"компаний, так и частных клиентов.\n"
+"                    Начиная с 2026 года, ООО \"AG IMPEX\" также выходит на рынок "
 "с двумя новыми брендами: Metals Holding и Prime Stone.\n"
-"                "
+"                    "
 
 #: website/templates/website/website_base.html:24
-msgid "Working hours – 09:00 to 18:00, Mon–Sat"
-msgstr ""
+msgid "  \"Working hours – 09:00 to 18:00, Mon–Sat\" "
+msgstr "  \"Часы работы — с 09:00 до 18:00, Пн–Сб\" "
 
 #: website/templates/website/website_base.html:96
 msgid "Search"
@@ -177,7 +250,7 @@ msgstr "Каталоги"
 
 #: website/templates/website/website_base.html:105
 msgid "Login/Sign in"
-msgstr "Войти/Регистрация"
+msgstr "Войти / Регистрация"
 
 #: website/templates/website/website_base.html:112
 msgid "Favourites"
@@ -216,7 +289,7 @@ msgstr "Быстрые ссылки"
 #, fuzzy
 #| msgid "Contact"
 msgid "Contact us"
-msgstr "Связаться с нами"
+msgstr "Свяжитесь с нами"
 
 #, python-format
 #~ msgid "Special Offer (Discount 25%%)"

@@ -214,7 +214,7 @@
 /* Purchase Bar */
 .purchase-bar {
   background: var(--bg-gray);
-  padding: 15px 25px;
+  /* padding: 15px 25px; */
   border-radius: 12px;
   display: flex;
   justify-content: space-between;

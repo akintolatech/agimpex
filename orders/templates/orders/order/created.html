@@ -1,4 +1,5 @@
 {% extends "website/website_base.html" %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
@@ -13,11 +14,11 @@
       <div class="message-container-image-box">
         <img src="{% static 'img/check.svg' %}" width="240px"/>
       </div>
-      <p>Your order has been successfully completed. Your Tracking code has been sent to <br/>
+      <p>{% blocktrans %} Your order has been successfully completed. Your Tracking code has been sent to {% endblocktrans %} <br/>
          <strong>{{ order.email }}</strong>.
       </p>
       <a href="{% url 'shop:product_list' %}" >
-        <button style="width:180px; height:44px; margin-bottom:12px;">Continue shopping</button>
+        <button class="checkout-btn">{% trans "Continue shopping" %}</button>
       </a>
     </center>
   </div>

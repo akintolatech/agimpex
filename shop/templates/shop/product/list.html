@@ -40,7 +40,7 @@
                 <div class="product-container">
 
                     {% for product in products %}
-                        <div class="product-item" style="width: 252px;">
+                        <div class="product-item">
                             <div class="product-card">
                                 {% if product.discount_amount%}
                                 <div class="badge-discount">-{{ product.discount_percent }}%</div>

@@ -109,8 +109,8 @@
                 
                 <div class="searchbox">
                     <!-- search -->
-                    <form class="input-container" method="get" action="">
-                        <input type="search" name="q" placeholder="{% trans 'Search' %}" />
+                    <form class="input-container" method="get" action="{% url 'website:search' %}">
+                        <input type="search" name="q" placeholder="{% trans 'Search' %}" value="{{ request.GET.q }}">
                         <span class="search-icon">
                             <img src="{% static 'img/search.svg' %}" class="icon" />
                         </span>

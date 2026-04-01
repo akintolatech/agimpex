@@ -1,4 +1,8 @@
+from django.db.models import Q
 from django.shortcuts import render
+from django.utils import translation
+from shop.models import Product
+
 
 # Create your views here.
 def index(request):
@@ -19,3 +23,28 @@ def services(request):
 
 def discount(request):
     return render(request, 'website/discount.html')
+
+def search_products(request):
+    query = request.GET.get('q', '')
+    products = []
+
+    if query:
+        # List all language fields for name and description
+        search_fields = [
+            'name_en', 'description_en',
+            'name_hy', 'description_hy',
+            'name_ru', 'description_ru',
+        ]
+
+        # Build dynamic Q objects
+        q_objects = Q()
+        for field in search_fields:
+            q_objects |= Q(**{f"{field}__icontains": query})
+
+        products = Product.objects.filter(q_objects).distinct()
+
+    context = {
+        'products': products,
+        'query': query,
+    }
+    return render(request, 'website/search.html', context)

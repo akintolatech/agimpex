@@ -1,6 +1,8 @@
 {% extends "administration/admin_base.html" %}
 {% load static %}
-{% block title %} Admin: Edit Unit {% endblock %}
+
+{% block title %} Admin: Edit Product {% endblock %}
+
 {% block styles %}
 <link type="text/css" href="{% static 'styles/admin_form.css' %}" rel="stylesheet" />
 {% endblock %}
@@ -8,7 +10,7 @@
 {% block content %}
 <div class="form-page">
     <div class="form-wrapper">
-
+    
         <h2 class="page-title">Edit Product</h2>
 
         {% if messages %}
@@ -32,8 +34,8 @@
 
                 <div class="form-card-body">
 
+                    <!-- Name + Category -->
                     <div class="form-grid two-columns">
-
                         <div class="form-group">
                             <label for="{{ form.name.id_for_label }}">Name</label>
                             {{ form.name }}
@@ -51,24 +53,26 @@
                         </div>
                     </div>
 
+                    <!-- Translated Names -->
                     <div class="form-grid two-columns">
                         <div class="form-group">
                             <label for="{{ form.name_hy.id_for_label }}">Name hy</label>
                             {{ form.name_hy }}
                             {% if form.name_hy.errors %}
-                                <div class="field-error">{{ form.form.name_hy.errors }}</div>
+                                <div class="field-error">{{ form.name_hy.errors }}</div>
                             {% endif %}
                         </div>
 
                         <div class="form-group">
-                            <label for="{{ form.unit_of_measure.id_for_label }}">Name ru</label>
+                            <label for="{{ form.name_ru.id_for_label }}">Name ru</label>
                             {{ form.name_ru }}
-                            {% if form.name_hy.errors %}
-                                <div class="field-error">{{ form.form.name_ru.errors }}</div>
+                            {% if form.name_ru.errors %}
+                                <div class="field-error">{{ form.name_ru.errors }}</div>
                             {% endif %}
                         </div>
                     </div>
 
+                    <!-- Unit + Price -->
                     <div class="form-grid two-columns">
                         <div class="form-group">
                             <label for="{{ form.unit_of_measure.id_for_label }}">Unit of Measure</label>
@@ -87,6 +91,7 @@
                         </div>
                     </div>
 
+                    <!-- Old Price + Stock -->
                     <div class="form-grid two-columns">
                         <div class="form-group">
                             <label for="{{ form.old_price.id_for_label }}">Old Price</label>
@@ -105,28 +110,20 @@
                         </div>
                     </div>
 
-
                     <!-- Image Uploads -->
                     <div class="image-upload-grid">
+
                         <!-- Main Image -->
                         <div class="image-upload-card">
                             <label for="{{ form.image.id_for_label }}">Main Image</label>
                             <div class="image-frame">
                                 <div class="image-preview-wrapper">
                                     {% if form.instance.pk and form.instance.image %}
-                                        <img 
-                                            src="{{ form.instance.image.url }}" 
-                                            alt="Main Image Preview" 
-                                            id="preview-image"
-                                            class="preview-image active"
-                                        >
+                                        <img src="{{ form.instance.image.url }}" alt="Main Image Preview" id="preview-image" class="preview-image active">
+                                        <button type="button" class="delete-image-btn" id="delete-image">×</button>
                                     {% else %}
-                                        <img 
-                                            src="" 
-                                            alt="Main Image Preview" 
-                                            id="preview-image"
-                                            class="preview-image"
-                                        >
+                                        <img src="" alt="Main Image Preview" id="preview-image" class="preview-image">
+                                        <button type="button" class="delete-image-btn hidden" id="delete-image">×</button>
                                     {% endif %}
 
                                     <div class="image-placeholder {% if form.instance.pk and form.instance.image %}hidden{% endif %}" id="placeholder-image">
@@ -135,6 +132,9 @@
                                     </div>
                                 </div>
                                 {{ form.image }}
+                                {% if form.image.errors %}
+                                    <div class="field-error">{{ form.image.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -144,19 +144,11 @@
                             <div class="image-frame">
                                 <div class="image-preview-wrapper">
                                     {% if form.instance.pk and form.instance.thumbnail %}
-                                        <img 
-                                            src="{{ form.instance.thumbnail.url }}" 
-                                            alt="Thumbnail 1 Preview" 
-                                            id="preview-thumbnail"
-                                            class="preview-image active"
-                                        >
+                                        <img src="{{ form.instance.thumbnail.url }}" alt="Thumbnail 1 Preview" id="preview-thumbnail" class="preview-image active">
+                                        <button type="button" class="delete-image-btn" id="delete-thumbnail">×</button>
                                     {% else %}
-                                        <img 
-                                            src="" 
-                                            alt="Thumbnail 1 Preview" 
-                                            id="preview-thumbnail"
-                                            class="preview-image"
-                                        >
+                                        <img src="" alt="Thumbnail 1 Preview" id="preview-thumbnail" class="preview-image">
+                                        <button type="button" class="delete-image-btn hidden" id="delete-thumbnail">×</button>
                                     {% endif %}
 
                                     <div class="image-placeholder {% if form.instance.pk and form.instance.thumbnail %}hidden{% endif %}" id="placeholder-thumbnail">
@@ -165,6 +157,9 @@
                                     </div>
                                 </div>
                                 {{ form.thumbnail }}
+                                {% if form.thumbnail.errors %}
+                                    <div class="field-error">{{ form.thumbnail.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -174,19 +169,11 @@
                             <div class="image-frame">
                                 <div class="image-preview-wrapper">
                                     {% if form.instance.pk and form.instance.thumbnail2 %}
-                                        <img 
-                                            src="{{ form.instance.thumbnail2.url }}" 
-                                            alt="Thumbnail 2 Preview" 
-                                            id="preview-thumbnail2"
-                                            class="preview-image active"
-                                        >
+                                        <img src="{{ form.instance.thumbnail2.url }}" alt="Thumbnail 2 Preview" id="preview-thumbnail2" class="preview-image active">
+                                        <button type="button" class="delete-image-btn" id="delete-thumbnail2">×</button>
                                     {% else %}
-                                        <img 
-                                            src="" 
-                                            alt="Thumbnail 2 Preview" 
-                                            id="preview-thumbnail2"
-                                            class="preview-image"
-                                        >
+                                        <img src="" alt="Thumbnail 2 Preview" id="preview-thumbnail2" class="preview-image">
+                                        <button type="button" class="delete-image-btn hidden" id="delete-thumbnail2">×</button>
                                     {% endif %}
 
                                     <div class="image-placeholder {% if form.instance.pk and form.instance.thumbnail2 %}hidden{% endif %}" id="placeholder-thumbnail2">
@@ -195,6 +182,9 @@
                                     </div>
                                 </div>
                                 {{ form.thumbnail2 }}
+                                {% if form.thumbnail2.errors %}
+                                    <div class="field-error">{{ form.thumbnail2.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -204,19 +194,11 @@
                             <div class="image-frame">
                                 <div class="image-preview-wrapper">
                                     {% if form.instance.pk and form.instance.thumbnail3 %}
-                                        <img 
-                                            src="{{ form.instance.thumbnail3.url }}" 
-                                            alt="Thumbnail 3 Preview" 
-                                            id="preview-thumbnail3"
-                                            class="preview-image active"
-                                        >
+                                        <img src="{{ form.instance.thumbnail3.url }}" alt="Thumbnail 3 Preview" id="preview-thumbnail3" class="preview-image active">
+                                        <button type="button" class="delete-image-btn" id="delete-thumbnail3">×</button>
                                     {% else %}
-                                        <img 
-                                            src="" 
-                                            alt="Thumbnail 3 Preview" 
-                                            id="preview-thumbnail3"
-                                            class="preview-image"
-                                        >
+                                        <img src="" alt="Thumbnail 3 Preview" id="preview-thumbnail3" class="preview-image">
+                                        <button type="button" class="delete-image-btn hidden" id="delete-thumbnail3">×</button>
                                     {% endif %}
 
                                     <div class="image-placeholder {% if form.instance.pk and form.instance.thumbnail3 %}hidden{% endif %}" id="placeholder-thumbnail3">
@@ -225,11 +207,17 @@
                                     </div>
                                 </div>
                                 {{ form.thumbnail3 }}
+                                {% if form.thumbnail3.errors %}
+                                    <div class="field-error">{{ form.thumbnail3.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
+
                     </div>
 
+        
 
+                    <!-- Description -->
                     <div class="form-group">
                         <label for="{{ form.description.id_for_label }}">Description</label>
                         {{ form.description }}
@@ -238,10 +226,31 @@
                         {% endif %}
                     </div>
 
+                    <div class="form-grid two-columns">
+                        <div class="form-group">
+                            <label for="{{ form.name_hy.id_for_label }}">Name hy</label>
+                            {{ form.description_hy }}
+                            {% if form.description_hy.errors %}
+                                <div class="field-error">{{ form.description_hy.errors }}</div>
+                            {% endif %}
+                        </div>
 
+                        <div class="form-group">
+                            <label for="{{ form.name_ru.id_for_label }}">Name ru</label>
+                            {{ form.description_ru }}
+                            {% if form.description_ru.errors %}
+                                <div class="field-error">{{ form.description_ru.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Available -->
                     <div class="checkbox-group">
                         {{ form.available }}
                         <label for="{{ form.available.id_for_label }}">Available</label>
+                        {% if form.available.errors %}
+                            <div class="field-error">{{ form.available.errors }}</div>
+                        {% endif %}
                     </div>
 
                 </div>
@@ -249,33 +258,128 @@
 
             <!-- Product Properties -->
             <section class="form-card">
-                <div class="form-card-header property-header">
-                    <h4>Product Properties</h4>
-                    <button type="button" class="btn btn-primary" id="addPropertyBtn">
-                        + Add Property
+    <div class="form-card-header property-header">
+        <h4>Product Properties</h4>
+        <button type="button" class="btn btn-primary" id="addPropertyBtn">
+            + Add Property
+        </button>
+    </div>
+
+    <div class="form-card-body">
+        <div id="propertiesContainer">
+
+            {% for property in properties %}
+                <div class="property-block" data-property-index="{{ forloop.counter0 }}">
+
+                    <!-- Hidden property id -->
+                    <input type="hidden" name="property_id[]" value="{{ property.id }}">
+
+                    <div class="property-top">
+                        <h5>Property</h5>
+                        <button type="button" class="btn btn-outline-danger remove-property-btn">
+                            Remove Property
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Property Name</label>
+                        <input type="text"
+                               name="property_name[]"
+                               class="custom-input"
+                               value="{{ property.name }}"
+                               placeholder="e.g. Color">
+                    </div>
+
+                    <div class="values-container">
+                        {% for value in property.property_values.all %}
+                            <div class="value-row">
+
+                                <!-- Hidden value id -->
+                                <input type="hidden"
+                                       name="property_value_id_{{ forloop.parentloop.counter0 }}[]"
+                                       value="{{ value.id }}">
+
+                                <div class="value-grid">
+                                    <div class="form-group">
+                                        <label>Value</label>
+                                        <input type="text"
+                                               name="property_values_{{ forloop.parentloop.counter0 }}[]"
+                                               class="custom-input"
+                                               value="{{ value.value }}"
+                                               placeholder="e.g. Red">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Price Adjustment</label>
+                                        <input type="number"
+                                               step="0.01"
+                                               name="property_price_adjustment_{{ forloop.parentloop.counter0 }}[]"
+                                               class="custom-input"
+                                               value="{{ value.price_adjustment }}"
+                                               placeholder="0.00">
+                                    </div>
+
+                                    <div class="value-action">
+                                        <button type="button" class="btn btn-danger remove-value-btn">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <!-- Fallback if no values exist -->
+                            <div class="value-row">
+                                <input type="hidden" name="property_value_id_{{ forloop.counter0 }}[]" value="">
+                                <div class="value-grid">
+                                    <div class="form-group">
+                                        <label>Value</label>
+                                        <input type="text"
+                                               name="property_values_{{ forloop.counter0 }}[]"
+                                               class="custom-input"
+                                               placeholder="e.g. Red">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Price Adjustment</label>
+                                        <input type="number"
+                                               step="0.01"
+                                               name="property_price_adjustment_{{ forloop.counter0 }}[]"
+                                               class="custom-input"
+                                               placeholder="0.00">
+                                    </div>
+                                    <div class="value-action">
+                                        <button type="button" class="btn btn-danger remove-value-btn">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <button type="button" class="btn btn-secondary add-value-btn">
+                        + Add Value
                     </button>
                 </div>
+            {% endfor %}
 
-                <div class="form-card-body">
-                    <div id="propertiesContainer"></div>
-                </div>
-            </section>
+        </div>
+    </div>
+</section>
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-success">Update Product</button>
             </div>
-            
+
         </form>
     </div>
 </div>
 
-
+<!-- Product Properties Script -->
 <script>
-    let propertyIndex = 0;
+    // Start after existing properties so indexes don't clash
+    let propertyIndex = {{ properties|length }};
 
     function createValueRow(propertyIdx) {
         return `
             <div class="value-row">
+                <input type="hidden" name="property_value_id_${propertyIdx}[]" value="">
+
                 <div class="value-grid">
                     <div class="form-group">
                         <label>Value</label>
@@ -298,6 +402,8 @@
     function createPropertyBlock(index) {
         return `
             <div class="property-block" data-property-index="${index}">
+                <input type="hidden" name="property_id[]" value="">
+
                 <div class="property-top">
                     <h5>Property</h5>
                     <button type="button" class="btn btn-outline-danger remove-property-btn">
@@ -328,6 +434,7 @@
     });
 
     document.addEventListener('click', function (e) {
+        // Add value
         if (e.target.classList.contains('add-value-btn')) {
             const propertyBlock = e.target.closest('.property-block');
             const propertyIdx = propertyBlock.getAttribute('data-property-index');
@@ -335,6 +442,7 @@
             valuesContainer.insertAdjacentHTML('beforeend', createValueRow(propertyIdx));
         }
 
+        // Remove value
         if (e.target.classList.contains('remove-value-btn')) {
             const valueRow = e.target.closest('.value-row');
             const valuesContainer = e.target.closest('.values-container');
@@ -346,51 +454,64 @@
             }
         }
 
+        // Remove property
         if (e.target.classList.contains('remove-property-btn')) {
             e.target.closest('.property-block').remove();
         }
     });
 </script>
 
+<!-- Image Preview Script -->
 <script>
-    function setupImagePreview(inputId, previewId, placeholderId) {
-        const input = document.getElementById(inputId);
-        const preview = document.getElementById(previewId);
-        const placeholder = document.getElementById(placeholderId);
+function setupImagePreview(inputId, previewId, placeholderId, deleteBtnId) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const placeholder = document.getElementById(placeholderId);
+    const deleteBtn = document.getElementById(deleteBtnId);
 
-        if (!input || !preview || !placeholder) return;
+    if (!input || !preview || !placeholder) return;
 
-        input.addEventListener('change', function () {
-            const file = this.files && this.files[0];
+    // Show preview when file is selected
+    input.addEventListener('change', function () {
+        const file = this.files && this.files[0];
 
-            if (file) {
-                const reader = new FileReader();
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.classList.add('active');
+                placeholder.classList.add('hidden');
+                if (deleteBtn) deleteBtn.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // If cleared
+            preview.src = '';
+            preview.classList.remove('active');
+            placeholder.classList.remove('hidden');
+            if (deleteBtn) deleteBtn.classList.add('hidden');
+        }
+    });
 
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.classList.add('active');
-                    placeholder.classList.add('hidden');
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                // If no file selected, revert only if no existing image src
-                if (!preview.getAttribute('src')) {
-                    preview.classList.remove('active');
-                    placeholder.classList.remove('hidden');
-                }
-            }
+    // Delete button logic
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function () {
+            preview.src = '';
+            preview.classList.remove('active');
+            placeholder.classList.remove('hidden');
+            deleteBtn.classList.add('hidden');
+            input.value = '';  // Clear the input so Django treats it as removed
         });
     }
+}
 
-    // Wait until DOM is ready
-    document.addEventListener('DOMContentLoaded', function () {
-        setupImagePreview('{{ form.image.id_for_label }}', 'preview-image', 'placeholder-image');
-        setupImagePreview('{{ form.thumbnail.id_for_label }}', 'preview-thumbnail', 'placeholder-thumbnail');
-        setupImagePreview('{{ form.thumbnail2.id_for_label }}', 'preview-thumbnail2', 'placeholder-thumbnail2');
-        setupImagePreview('{{ form.thumbnail3.id_for_label }}', 'preview-thumbnail3', 'placeholder-thumbnail3');
-    });
+// Initialize all previews
+document.addEventListener('DOMContentLoaded', function () {
+    setupImagePreview('{{ form.image.id_for_label }}', 'preview-image', 'placeholder-image', 'delete-image');
+    setupImagePreview('{{ form.thumbnail.id_for_label }}', 'preview-thumbnail', 'placeholder-thumbnail', 'delete-thumbnail');
+    setupImagePreview('{{ form.thumbnail2.id_for_label }}', 'preview-thumbnail2', 'placeholder-thumbnail2', 'delete-thumbnail2');
+    setupImagePreview('{{ form.thumbnail3.id_for_label }}', 'preview-thumbnail3', 'placeholder-thumbnail3', 'delete-thumbnail3');
+});
 </script>
-
 
 {% endblock %}

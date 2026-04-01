@@ -17,7 +17,7 @@
             <table class="modern-table">
                 <thead>
                     <tr>
-                        <th>Photo</th>
+                        <!-- <th>Photo</th> -->
                         <th>Name</th>
                         <th colspan="2">Actions</th>
                     </tr>
@@ -25,9 +25,9 @@
                 <tbody>
                     {% for category in categories %}
                     <tr>
-                        <td data-label="Photo">
+                        <!-- <td data-label="Photo">
                             <img src="{% if category.icon %} {{ category.icon.url }} {% else %} {% static 'img/categories.svg' %}  {% endif %}" />
-                        </td>
+                        </td> -->
                         <td data-label="Name">{{ category.name }}</td>
                         
                         <td data-label="Action">

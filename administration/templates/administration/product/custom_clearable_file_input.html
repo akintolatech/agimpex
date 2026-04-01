@@ -1,0 +1,3 @@
+{# Render only the file input, ignore initial, clear checkbox, etc. #}
+<input type="{{ widget.type }}" name="{{ widget.name }}"
+       {% include "django/forms/widgets/attrs.html" %}>

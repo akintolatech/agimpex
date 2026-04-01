@@ -257,6 +257,7 @@ def edit_product(request, product_id):
             submitted_value_ids = []
 
             property_ids = request.POST.getlist('property_id[]')
+            print(property_ids)
             property_names = request.POST.getlist('property_name[]')
 
             for i, prop_name in enumerate(property_names):
@@ -341,7 +342,7 @@ def edit_product(request, product_id):
             # Delete removed properties (and cascade delete their values)
             product.properties.exclude(id__in=submitted_property_ids).delete()
 
-            messages.success(request, 'Product updated successfully.')
+            messages.success(request, f'{product.name} updated successfully.')
             # return redirect('administration:edit_product', product_id=product.id)
             return redirect('administration:product_list')
         else:

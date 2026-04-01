@@ -20,6 +20,8 @@
 .title_container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 td img {
@@ -28,9 +30,11 @@ td img {
 
 .table-title {
     font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
     color: #2b4c7e;
 }
+
+
 
 .modern-table {
     width: 100%;
@@ -147,4 +151,45 @@ td img {
 
 .modern-table tbody tr {
     animation: fadeIn 0.5s ease-out forwards;
+}
+
+
+.create-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 24px;
+    background: var(--pry-color);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px; /* pill shape */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.create-btn:hover {
+    background: linear-gradient(135deg, #5AA0F2, #4680C8);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.create-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon inside the button */
+.create-btn .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px; 
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
 }

@@ -42,17 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'account.apps.AccountConfig',
+    'modeltranslation',
     "website.apps.WebsiteConfig",
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
     'shop.apps.ShopConfig',
     "administration.apps.AdministrationConfig",
-    'modeltranslation',
+
 ]
 
 MIDDLEWARE = [
@@ -79,7 +78,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'cart.context_processors.cart',
                 'orders.context_processors.order_form',
                 'shop.context_processors.product_list',
@@ -140,7 +138,10 @@ LANGUAGES = [
     ('ru', 'Russian'),
 ]
 
+
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+MODELTRANSLATION_LANGUAGES = ('en', 'hy', 'ru')
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('en',)
 
 LOCALE_PATHS = [
     BASE_DIR / 'locale',

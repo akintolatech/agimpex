@@ -35,84 +35,44 @@
 
       <nav class="menu">
 
-    <a href="{% url 'administration:administration' %}" 
-       class="menu-item {% if request.resolver_match.url_name == 'administration' %}active{% endif %}">
-        <div class="menu-icon"><img src="{% static 'img/dashboard.svg' %}"/></div>
-        <span>Dashboard</span>
-    </a>
+        <a href="{% url 'administration:administration' %}" 
+          class="menu-item {% if request.resolver_match.url_name == 'administration' %}active{% endif %}">
+            <div class="menu-icon"><img src="{% static 'img/dashboard.svg' %}"/></div>
+            <span>Dashboard</span>
+        </a>
 
-    <a href="{% url 'administration:order_list' %}" class="menu-item {% if request.resolver_match.url_name == 'order_list' %}active{% endif %}">
-        <div class="menu-icon"><img src="{% static 'img/bag.svg' %}"/></div>
-        <span>Orders</span>
-    </a>
+        <a href="{% url 'administration:order_list' %}" class="menu-item {% if 'order' in request.resolver_match.url_name %}active{% endif %}">
+            <div class="menu-icon"><img src="{% static 'img/bag.svg' %}"/></div>
+            <span>Orders</span>
+        </a>
 
-    <a href="{% url 'administration:product_list' %}" class="menu-item {% if request.resolver_match.url_name == 'product_list' %}active{% endif %}">
-        <div class="menu-icon"><img src="{% static 'img/product.svg' %}"/></div>
-        <span>Products</span>
-    </a>
+        <a href="{% url 'administration:product_list' %}" class="menu-item {% if 'product' in request.resolver_match.url_name and 'product_property' not in request.resolver_match.url_name %}active{% endif %}">
+            <div class="menu-icon"><img src="{% static 'img/product.svg' %}"/></div>
+            <span>Products</span>
+        </a>
 
-    <a href="{% url 'administration:category_list' %}" 
-       class="menu-item {% if request.resolver_match.url_name == 'category_list' %}active{% endif %}">
-        <div class="menu-icon"><img src="{% static 'img/categories.svg' %}"/></div>
-        <span>Category</span>
-    </a>
+        <a href="{% url 'administration:category_list' %}" 
+          class="menu-item {% if 'category' in request.resolver_match.url_name %}active{% endif %}">
+            <div class="menu-icon"><img src="{% static 'img/categories.svg' %}"/></div>
+            <span>Category</span>
+        </a>
 
-    <a href="{% url 'administration:product_property_list' %}" class="menu-item {% if request.resolver_match.url_name == 'product_property_list' %}active{% endif %} ">
-        <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
-        <span>Product Property</span>
-    </a>
+        <a href="{% url 'administration:product_property_list' %}" class="menu-item {% if 'product_property' in request.resolver_match.url_name %}active{% endif %} ">
+            <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
+            <span>Product Property</span>
+        </a>
 
-    <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item {% if request.resolver_match.url_name == 'unit_of_measure_list' %}active{% endif %}">
-        <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
-        <span>Unit of Measure</span>
-    </a>
-
-    <a href="#" class="menu-item">
-        <div class="menu-icon"><img src="{% static 'img/love_icn.svg' %}"/></div>
-        <span>Subscribers</span>
-    </a>
-
-</nav>
-
-      <!-- <nav class="menu">
-
-        <a href="{% url 'administration:administration' %}" class="menu-item {% if request.path == '/administration/categories/' %}active{% endif %}">
-          <div class="menu-icon"><img src="{% static 'img/dashboard.svg' %}"/></div>
-          <span>Dashboard</span>
+        <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item {% if 'unit_of_measure' in request.resolver_match.url_name %}active{% endif %}">
+            <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
+            <span>Unit of Measure</span>
         </a>
 
         <a href="#" class="menu-item">
-          <div class="menu-icon"><img src="{% static 'img/bag.svg' %}"/></div>
-          <span>Orders</span>
+            <div class="menu-icon"><img src="{% static 'img/love_icn.svg' %}"/></div>
+            <span>Subscribers</span>
         </a>
 
-        <a href="#" class="menu-item">
-          <div class="menu-icon"><img src="{% static 'img/product.svg' %}"/></div>
-          <span>Products</span>
-        </a>
-
-        <a href="{% url 'administration:category_list' %}" class="menu-item {% if request.path|slice:'4:' == '/administration/category_list/' %}active{% endif %}">
-          <div class="menu-icon"><img src="{% static 'img/categories.svg' %}"/></div>
-          <span>Category</span>
-        </a>
-
-        <a href="#" class="menu-item">
-          <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
-          <span>Product Property</span>
-        </a>
-
-        <a href="#" class="menu-item">
-          <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
-          <span>Unit of Measure</span>
-        </a>
-
-         <a href="#" class="menu-item">
-          <div class="menu-icon"><img src="{% static 'img/love_icn.svg' %}"/></div>
-          <span>Subscribers</span>
-        </a>
-
-      </nav> -->
-
+    </nav>
 
     </aside>
 

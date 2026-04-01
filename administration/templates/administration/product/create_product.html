@@ -52,7 +52,7 @@
                         </div>
                     </div>
 
-                    <!-- <div class="form-grid two-columns">
+                    <div class="form-grid two-columns">
                         <div class="form-group">
                             <label for="{{ form.name_hy.id_for_label }}">Name hy</label>
                             {{ form.name_hy }}
@@ -68,7 +68,7 @@
                                 <div class="field-error">{{ form.form.name_ru.errors }}</div>
                             {% endif %}
                         </div>
-                    </div> -->
+                    </div> 
 
                     <div class="form-grid two-columns">
                         <div class="form-group">
@@ -239,6 +239,24 @@
                         {% endif %}
                     </div>
 
+                    <div class="form-grid two-columns">
+                        <div class="form-group">
+                            <label for="{{ form.name_hy.id_for_label }}">Name hy</label>
+                            {{ form.description_hy }}
+                            {% if form.description_hy.errors %}
+                                <div class="field-error">{{ form.description_hy.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.name_ru.id_for_label }}">Name ru</label>
+                            {{ form.description_ru }}
+                            {% if form.description_ru.errors %}
+                                <div class="field-error">{{ form.description_ru.errors }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
 
                     <div class="checkbox-group">
                         {{ form.available }}
@@ -289,7 +307,7 @@
                     </div>
 
                     <div class="value-action">
-                        <button type="button" class="btn btn-danger remove-value-btn">Remove</button>
+                        <button type="button" class="btn btn-danger remove-value-btn">Remove Value</button>
                     </div>
                 </div>
             </div>

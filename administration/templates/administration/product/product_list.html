@@ -11,7 +11,12 @@
         <div class="table-wrapper">
             <div class="title_container">
                 <h2 class="table-title">Products</h2>
-                <a href="{% url 'administration:create_product' %}">Create Product</a>
+                <a href="{% url 'administration:create_product' %}">
+                    <button class="create-btn">
+                        <span class="icon"><img src="{% static 'img/add_circle.svg' %}" /></span>
+                        Create Product
+                    </button>
+                </a>
             </div>
 
              {% if messages %}

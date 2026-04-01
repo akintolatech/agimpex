@@ -3,10 +3,11 @@ class Favorites:
         self.session = request.session
         favorites = self.session.get('favorites')
 
-        if not favorites:
-            favorites = self.session['favorites'] = []
+        if favorites is None:
+            favorites = []
+            self.session['favorites'] = favorites
 
-        self.favorites = favorites
+        self.favorites = [int(pid) for pid in favorites]
 
     def add(self, product_id):
         product_id = int(product_id)
@@ -29,13 +30,14 @@ class Favorites:
         if product_id in self.favorites:
             self.favorites.remove(product_id)
             self.save()
-            return False   # now removed
+            return False
         else:
             self.favorites.append(product_id)
             self.save()
-            return True    # now added
+            return True
 
     def save(self):
+        self.session['favorites'] = self.favorites
         self.session.modified = True
 
     def __contains__(self, product_id):

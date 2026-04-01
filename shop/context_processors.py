@@ -1,3 +1,4 @@
+from .favourites import Favorites
 from .models import Category, Product
 from django.db.models import F
 
@@ -48,4 +49,13 @@ def product_list(request):
             old_price__gt=F('price')
         ).order_by('-created')[:5],
 
+    }
+
+
+
+
+def favorite_products(request):
+    favorites = Favorites(request)
+    return {
+        'favorite_product_ids': favorites.get_ids()
     }

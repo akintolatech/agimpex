@@ -10,6 +10,7 @@
     <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
     <link type="x-icon" href="{% static 'img/ag.png' %}" rel="icon" />
     <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/fav.js' %}"></script>
     <link type="text/css" href="{% static 'styles/shop.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
     {% block style %} {% endblock %}
@@ -143,7 +144,55 @@
                     </details>
                 </div>
 
-                <div class="app_functions"> 
+                <div class="app_functions">
+
+                    <!-- USER -->
+                    <a href="{% url 'login' %}">
+                        <div class="icontext">
+                            <div class="icon-wrapper">
+                                <img src="{% static 'img/account.svg' %}" class="icon" />
+
+                                {% if request.user.is_authenticated %}
+                                    <span class="status-dot online"></span>
+                                {% else %}
+                                    <span class="status-dot offline"></span>
+                                {% endif %}
+                            </div>
+                            <h6>{% trans 'Login/Sign in' %}</h6>
+                        </div>
+                    </a>
+
+                    <!-- FAVOURITES -->
+                    <a href="{% url 'shop:favorite_list' %}">
+                        <div class="icontext">
+                            <div class="icon-wrapper">
+                                <img src="{% static 'img/fave.svg' %}" class="icon" />
+
+                                {% if request.session.favorites %}
+                                    <span class="badge-count">{{ request.session.favorites|length }}</span>
+                                {% endif %}
+                            </div>
+                            <h6>{% trans 'Favourites' %}</h6>
+                        </div>
+                    </a>
+
+                    <!-- CART -->
+                    <a href="{% url 'cart:cart_detail' %}">
+                        <div class="icontext">
+                            <div class="icon-wrapper">
+                                <img src="{% static 'img/cart.svg' %}" class="icon" />
+
+                                {% if cart|length > 0 %}
+                                    <span class="badge-count">{{ cart|length }}</span>
+                                {% endif %}
+                            </div>
+                            <h6>{% trans 'Cart' %}</h6>
+                        </div>
+                    </a>
+
+                </div>
+
+                <!-- <div class="app_functions"> 
 
                     <a href="{% url 'login' %}">
                         <div class="icontext">
@@ -166,7 +215,7 @@
                         </div>
                     </a>
 
-                </div>
+                </div> -->
             </div>
         </div>
 

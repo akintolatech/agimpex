@@ -70,7 +70,23 @@
                                 {% if product.discount_amount%}
                                 <div class="badge-discount">-{{ product.discount_percent }}%</div>
                                 {% endif %}
-                                <button class="wishlist-btn">❤</button>
+                                 <button
+                                    class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
+                                    data-product-id="{{ product.id }}"
+                                    data-url="{% url 'shop:toggle_favorite' product.id %}"
+                                >
+                                    {% if product.id in favorite_product_ids %}
+                                    <img
+                                        src="{% static 'img/faved.svg'%}"
+                                        alt="{{ product.name }}"
+                                        />
+                                    {% else %}
+                                        <img
+                                        src="{% static 'img/fave.svg'%}"
+                                        alt="{{ product.name }}"
+                                        />
+                                    {% endif %}
+                                </button>
 
                                 <div class="product-image">
                                     <img

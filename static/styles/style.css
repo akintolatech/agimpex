@@ -53,6 +53,47 @@ a {
     transition: opacity 0.5s ease, visibility 0.5s ease;
 } */
 
+summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Link inside summary needs to be block to be clickable */
+summary a {
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+}
+
+summary::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-bottom: 4px;
+    margin-left: 10px;
+}
+
+
+
+
 #page-loader {
     position: fixed;
     inset: 0;
@@ -67,6 +108,7 @@ a {
     z-index: 99999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
+
 
 
 #page-loader.hide {
@@ -303,7 +345,94 @@ input[type="search"]{
     align-items: center;
 }
 
+
 .app_functions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    /* remove one of the display declarations */
+    /* display: none;  <-- use only when needed in media query */
+}
+
+.app_functions a {
+    color: white;
+    text-decoration: none;
+}
+
+.icontext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-inline: 8px;
+    position: relative;
+}
+
+.icon-wrapper {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icontext img{
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.icontext h6 {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* NUMBER BADGE (for cart and favourites) */
+.badge-count {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: red;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
+    border: 2px solid #fff; /* makes it neat over icon */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STATUS DOT (for user online/offline) */
+.status-dot {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+.status-dot.online {
+    background: #22c55e; /* green */
+}
+
+.status-dot.offline {
+    background: #9ca3af; /* gray */
+}
+
+/* .app_functions {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -332,7 +461,7 @@ input[type="search"]{
 .icontext h6 {
     font-size: 12px;
     margin: 0;
-}
+} */
 
 
 .header_bottom_bar {
@@ -367,7 +496,7 @@ input[type="search"]{
 .wrap {
     display: flex;
     align-items: center;
-    gap: 20px;
+    /* gap: 20px; */
     flex-wrap: wrap;
 }
 

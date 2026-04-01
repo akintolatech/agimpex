@@ -1,0 +1,88 @@
+:root {
+    --pry-color: #002d4b;
+    --border-color: #a5b5c0;
+    --text-color: #002d4b;
+}
+
+.menu-container {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Shared styling for both the static box and the details blocks */
+.menu-item {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Styling for the first box (Static) and summaries (Toggle) */
+.header-link, 
+summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Link inside summary needs to be block to be clickable */
+summary a {
+    text-decoration: none;
+    color: inherit;
+    flex-grow: 1;
+}
+
+/* THE ARROW (Only for the details/summary items) */
+summary::after {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-bottom: 4px;
+    margin-left: 10px;
+}
+
+details[open] summary::after {
+    transform: rotate(-135deg);
+    margin-bottom: -4px;
+}
+
+/* Highlighted/Selected States */
+.menu-item.highlight,
+.menu-item.selected {
+    background-color: var(--pry-color);
+    border-color: var(--pry-color);
+}
+
+.menu-item.highlight .header-link,
+.menu-item.selected summary {
+    color: #ffffff;
+}
+
+/* Dropdown Content Area */
+.content {
+    padding: 15px 18px;
+    background-color: #fafafa;
+    border-top: 1px solid #eeeeee;
+    font-size: 0.95rem;
+    color: #444;
+}

@@ -1,0 +1,102 @@
+{% extends "website/website_base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+  Agimpex: {% trans "Search" %}
+{% endblock %}
+
+{% block content %}
+
+<div id="main">
+        <div class="section">
+
+        <div class="section-header">
+            <h1>{% trans "Search" %}</h1>
+        </div>
+
+        {% if products %}
+        <div class="index_product-container">
+
+           
+            {% for product in products %}
+
+            <div class="index_product-item">
+                <div class="product-card">
+                    {% if product.discount_amount%}
+                        <div class="badge-discount">-{{ product.discount_percent }}%</div>
+                    {% endif %}
+
+                    <button
+                        class="wishlist-btn {% if product.id in favorite_product_ids %}active{% endif %}"
+                        data-product-id="{{ product.id }}"
+                        data-url="{% url 'shop:toggle_favorite' product.id %}"
+                    >
+                        {% if product.id in favorite_product_ids %}
+                         <img
+                            src="{% static 'img/faved.svg'%}"
+                            alt="{{ product.name }}"
+                            />
+                        {% else %}
+                             <img
+                            src="{% static 'img/fave.svg'%}"
+                            alt="{{ product.name }}"
+                            />
+                        {% endif %}
+                    </button>
+
+                    <div class="product-image">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
+                    </div>
+                </div>
+
+                <div class="product-info">
+                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
+                    <div class="price-row">
+                        <div class="price-container">
+                            <span class="old-price">{{ product.old_price }}</span>
+                            <span class="current-price">{{ product.price }}</span>
+                            <span class="currency">$</span>
+                        </div>
+                         <a href="{{ product.get_absolute_url }}">
+                            <button class="cart-btn">
+                                <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            {% empty %}
+            
+            
+
+            {% endfor %}
+
+
+        </div>
+        {% else %}
+            <div class="message-container">
+                <center>
+                    <div class="message-container-image-box">
+                        <img src="{% static 'img/none.png' %}" width="240px"/>
+                    </div>
+                    <h3>{% trans "No Search results here" %}</h3>
+                    <a href="{% url 'shop:product_list' %}" >
+                    <button style="width:180px; height:44px; margin-bottom:12px;">{% trans "Continue shopping" %}</button>
+                    </a>
+                </center>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+

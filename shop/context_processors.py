@@ -21,6 +21,11 @@ def product_list(request):
             available=True
         ).order_by('-created')[:5],
 
+        'total_construction_goods': Product.objects.filter(
+            category__slug='construction-materials',
+            available=True
+        ).order_by('-created'),
+
         'natural_stones': Product.objects.filter(
             category__slug='natural-stones',
             available=True

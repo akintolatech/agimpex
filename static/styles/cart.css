@@ -283,6 +283,12 @@
   gap: 10px;
 }
 
+.checkout-btn.sec {
+  background: white;
+  border: 1px solid var(--pry-color);
+  color: var(--pry-color);
+}
+
 .checkout-btn span {
   font-size: 18px;
   line-height: 1;

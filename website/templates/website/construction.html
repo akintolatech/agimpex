@@ -1,0 +1,35 @@
+{% extends "website/website_base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}Agimpex: {% trans "Construction" %} {% endblock %}
+
+
+{% block style %}<link type="text/css" href="{% static 'styles/menu.css' %}" rel="stylesheet" />{% endblock %}
+
+{% block content %}
+<div id="main">
+    <div class="section" style="margin-top: 100px;">
+
+        <div class="product-grid-container">        
+             {% for product in total_construction_goods %}
+             <a href="{{ product.get_absolute_url }}">
+                <div class="product-grid-item">
+                    <div class="product-item-name">{{ product.name|truncatewords:3|linebreaks }}</div>
+                    <div class="product-item-image">
+                        <img
+                            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+                            alt="{{ product.name }}"
+                        />
+                    </div>
+                </div>
+            </a>
+            {% empty %}
+                <h1>{% trans "There are no products here" %}</h1>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

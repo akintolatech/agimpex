@@ -13,6 +13,17 @@
     <link type="text/css" href="{% static 'styles/shop.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'styles/form.css' %}" rel="stylesheet" />
     {% block style %} {% endblock %}
+    <script>
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("page-loader");
+            loader.classList.add("hide");
+
+            // Optional: remove from DOM after fade-out
+            setTimeout(() => {
+                loader.remove();
+            }, 500);
+        });
+    </script>
 </head>
 <body>
     <div id="page-loader">
@@ -120,7 +131,7 @@
                         {% trans "Catalogs" %}
                         <span>
                              <div class="icon-container">
-                                <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" />
+                                <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" /> -->
                             </div>
                         </span>
                     </summary>
@@ -165,14 +176,15 @@
                     {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b>
                 </a>
 
-                {% for cat in categories %}
-                {% if cat.slug == "construction-materials" or cat.slug == "natural-stones" %}
+                <!-- {% for cat in categories %}
+                {% if cat.slug == "construction-materials" %}
                     <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="nav-item" >
                         {{ cat.name }}
                     </a>
                     {% endif %}
-                {% endfor %}
-
+                {% endfor %} -->
+                <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a>
+                <a href="{% url 'website:natural_stones' %}" class="nav-item">{% trans "Natural Stones" %}</a>
                 <a href="{% url 'website:services' %}" class="nav-item">{% trans "Services" %}</a>
                 <a href="{% url 'website:index' %}#contact-map" class="nav-item">{% trans "Contact" %}</a>
             </div>
@@ -214,12 +226,15 @@
                     <li class="footer-heading">{% trans "Quick Links" %}</li>
                     <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b></li></a>
                     {% for cat in categories %}
-                    {% if cat.slug == "construction-materials" or cat.slug == "natural-stones" %}
+                    <!-- {% if cat.slug == "construction-materials"%}
                         <a href="{% url 'shop:product_list_by_category' cat.slug %}">
                             <li>{{ cat.name }}</li>
                             </a>
                         {% endif %}
-                    {% endfor %}
+                    {% endfor %} -->
+                    <!-- <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a> -->
+                    <a href="{% url 'website:construction_goods' %}"><li>{% trans "Construction Goods" %}</li></a>
+                    <a href="{% url 'website:natural_stones' %}"><li>{% trans "Natural Stones" %}</li></a>
                     <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>
                     <a href="#contact-map"><li>{% trans "Contact" %}</li></a>
                 </ul>
@@ -272,19 +287,6 @@
         </div>
 
     </div>
-
-    <script>
-        window.addEventListener("load", function () {
-            const loader = document.getElementById("page-loader");
-            loader.classList.add("hide");
-
-            // Optional: remove from DOM after fade-out
-            setTimeout(() => {
-                loader.remove();
-            }, 500);
-        });
-    </script>
-
 
 </body>
 </html>

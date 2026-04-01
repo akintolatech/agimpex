@@ -24,6 +24,12 @@ def services(request):
 def discount(request):
     return render(request, 'website/discount.html')
 
+def natural_stones(request):
+    return render(request, 'website/natural_stones.html')
+
+def construction_goods(request):
+    return render(request, 'website/construction.html')
+
 def search_products(request):
     query = request.GET.get('q', '')
     products = []

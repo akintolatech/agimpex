@@ -101,8 +101,12 @@
               <button class="checkout-btn">Place order<span>→</span></button>
               {% csrf_token %}
             </form>
+            <a href="{% url 'shop:product_list' %}" >
+             <button class="checkout-btn sec" style="margin-top: 24px;">{% trans "Continue shopping" %}</button>
+            </a>
           </aside>
 
+        </div>
       {% else %}
         <div class="message-container">
           <center>

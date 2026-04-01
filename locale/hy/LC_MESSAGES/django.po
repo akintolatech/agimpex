@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 23:41+0100\n"
+"POT-Creation-Date: 2026-04-01 01:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cart/templates/cart/detail.html:23
-#| msgid "Continue shopping"
+#: cart/templates/cart/detail.html:6 cart/templates/cart/detail.html:23
 msgid "Your shopping cart"
 msgstr "Շարունակել գնումները"
 
 #: cart/templates/cart/detail.html:25
 msgid "item"
 msgstr "ապրանք"
+
+#: cart/templates/cart/detail.html:131 cart/templates/cart/detail.html:169
+#: shop/templates/shop/product/favorite_list.html:83
+msgid "Continue shopping"
+msgstr "Շարունակել գնումները"
 
 #: cart/templates/cart/detail.html:136
 msgid "Order Summary"
@@ -42,11 +46,6 @@ msgstr " Ձևակերպել պատվերը "
 #: cart/templates/cart/detail.html:167
 msgid "Your cart is empty."
 msgstr "Ձեր զամբյուղը դատարկ է:"
-
-#: cart/templates/cart/detail.html:169
-#: shop/templates/shop/product/favorite_list.html:83
-msgid "Continue shopping"
-msgstr "Շարունակել գնումները"
 
 #: shop/templates/shop/product/favorite_list.html:15
 msgid "My favourites"
@@ -87,17 +86,17 @@ msgid "Reach Out"
 msgstr "Հետադարձ կապ"
 
 #: website/templates/website/contact.html:41
-#: website/templates/website/website_base.html:259
+#: website/templates/website/website_base.html:264
 msgid "Address"
 msgstr "Հասցե"
 
 #: website/templates/website/contact.html:44
-#: website/templates/website/website_base.html:260
+#: website/templates/website/website_base.html:265
 msgid "Phone"
 msgstr "Հեռախոս"
 
 #: website/templates/website/contact.html:47
-#: website/templates/website/website_base.html:261
+#: website/templates/website/website_base.html:266
 msgid "Email"
 msgstr "Էլ. փոստ"
 
@@ -106,14 +105,18 @@ msgid "Call Now"
 msgstr "Զանգահարել հիմա"
 
 #: website/templates/website/contact.html:59
-#: website/templates/website/index.html:404
+#: website/templates/website/index.html:405
 msgid "Message"
 msgstr "Հաղորդագրություն"
 
 #: website/templates/website/contact.html:71
-#: website/templates/website/index.html:416
+#: website/templates/website/index.html:417
 msgid "Send Message"
 msgstr "Ուղարկել հաղորդագրությունը"
+
+#: website/templates/website/index.html:5
+msgid "Home"
+msgstr "Գլխավոր"
 
 #: website/templates/website/index.html:13
 #: website/templates/website/index.html:71
@@ -146,7 +149,7 @@ msgstr "Մրցակցային գներ"
 
 #: website/templates/website/index.html:79
 #: website/templates/website/index.html:258
-#: website/templates/website/website_base.html:125
+#: website/templates/website/website_base.html:130
 msgid "Natural Stones"
 msgstr "Բնական քարեր"
 
@@ -194,7 +197,7 @@ msgstr ""
 "                "
 
 #: website/templates/website/index.html:193
-#: website/templates/website/website_base.html:124
+#: website/templates/website/website_base.html:129
 msgid "Construction Goods"
 msgstr "Շինարարական ապրանքներ"
 
@@ -203,28 +206,32 @@ msgstr "Շինարարական ապրանքներ"
 msgid "Cargo Transportation"
 msgstr "Բեռնափոխադրումներ"
 
-#: website/templates/website/index.html:340
+#: website/templates/website/index.html:341
 #: website/templates/website/services.html:117
 msgid "Import and Sale of Construction Materials"
 msgstr "Շինանյութերի ներմուծում և վաճառք"
 
-#: website/templates/website/index.html:352
+#: website/templates/website/index.html:353
 #: website/templates/website/services.html:129
 msgid "Bitumen Transporter"
 msgstr "Բիտումի փոխադրում"
 
-#: website/templates/website/index.html:364
+#: website/templates/website/index.html:365
 msgid "Our Partners"
 msgstr "Մեր գործընկերները"
 
+#: website/templates/website/services.html:6
+#: website/templates/website/website_base.html:176
+#: website/templates/website/website_base.html:223
+msgid "Services"
+msgstr "Ծառայություններ"
+
 #: website/templates/website/services.html:16
-#, fuzzy
 #| msgid "Services"
 msgid "Our Services"
 msgstr "Ծառայություններ"
 
 #: website/templates/website/services.html:18
-#, fuzzy
 #| msgid "AGIMPEX<br/>Everything Materials here"
 msgid ""
 " \"AGIMPEX<br/>\n"
@@ -322,55 +329,54 @@ msgstr ""
 "բիտումատարներ և այլն:\n"
 "                    "
 
-#: website/templates/website/website_base.html:24
+#: website/templates/website/website_base.html:21
+msgid "Loading..."
+msgstr ""
+
+#: website/templates/website/website_base.html:29
 msgid "  \"Working hours – 09:00 to 18:00, Mon–Sat\" "
 msgstr "  «Աշխատանքային ժամեր – 09:00-ից 18:00, Երկ-Շաբ» "
 
-#: website/templates/website/website_base.html:108
+#: website/templates/website/website_base.html:113
 msgid "Search"
 msgstr "Փնտրել"
 
-#: website/templates/website/website_base.html:115
+#: website/templates/website/website_base.html:120
 msgid "Catalogs"
 msgstr "Կատալոգներ"
 
-#: website/templates/website/website_base.html:135
+#: website/templates/website/website_base.html:140
 msgid "Login/Sign in"
 msgstr "Մուտք / Գրանցվել"
 
-#: website/templates/website/website_base.html:142
+#: website/templates/website/website_base.html:147
 msgid "Favourites"
 msgstr "Նախընտրածներ"
 
-#: website/templates/website/website_base.html:149
+#: website/templates/website/website_base.html:154
 msgid "Cart"
 msgstr "Զամբյուղ"
 
-#: website/templates/website/website_base.html:160
-#: website/templates/website/website_base.html:210
+#: website/templates/website/website_base.html:165
+#: website/templates/website/website_base.html:215
 msgid "SPECIAL OFFER"
 msgstr "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ"
 
-#: website/templates/website/website_base.html:160
-#: website/templates/website/website_base.html:210
+#: website/templates/website/website_base.html:165
+#: website/templates/website/website_base.html:215
 #, python-format
 msgid "UP TO 25%%"
 msgstr "ՄԻՆՉԵՎ 25%%"
 
-#: website/templates/website/website_base.html:171
-#: website/templates/website/website_base.html:218
-msgid "Services"
-msgstr "Ծառայություններ"
-
-#: website/templates/website/website_base.html:172
-#: website/templates/website/website_base.html:219
+#: website/templates/website/website_base.html:177
+#: website/templates/website/website_base.html:224
 msgid "Contact"
 msgstr "Կապ"
 
-#: website/templates/website/website_base.html:209
+#: website/templates/website/website_base.html:214
 msgid "Quick Links"
 msgstr "Արագ հղումներ"
 
-#: website/templates/website/website_base.html:258
+#: website/templates/website/website_base.html:263
 msgid "Contact us"
 msgstr "Կապ մեզ հետ"

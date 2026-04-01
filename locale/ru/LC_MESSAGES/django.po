@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AG IMPEX 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-31 23:41+0100\n"
+"POT-Creation-Date: 2026-04-01 01:05+0100\n"
 "PO-Revision-Date: 2026-03-31 23:30+0100\n"
 "Last-Translator: Akintola <akintolatechnologies@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -18,14 +18,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: cart/templates/cart/detail.html:23
-#| msgid "Continue shopping"
+#: cart/templates/cart/detail.html:6 cart/templates/cart/detail.html:23
 msgid "Your shopping cart"
 msgstr "Продолжить покупки"
 
 #: cart/templates/cart/detail.html:25
 msgid "item"
 msgstr "товар"
+
+#: cart/templates/cart/detail.html:131 cart/templates/cart/detail.html:169
+#: shop/templates/shop/product/favorite_list.html:83
+msgid "Continue shopping"
+msgstr "Продолжить покупки"
 
 #: cart/templates/cart/detail.html:136
 msgid "Order Summary"
@@ -42,11 +46,6 @@ msgstr " Оформить заказ "
 #: cart/templates/cart/detail.html:167
 msgid "Your cart is empty."
 msgstr "Ваша корзина пуста."
-
-#: cart/templates/cart/detail.html:169
-#: shop/templates/shop/product/favorite_list.html:83
-msgid "Continue shopping"
-msgstr "Продолжить покупки"
 
 #: shop/templates/shop/product/favorite_list.html:15
 msgid "My favourites"
@@ -87,17 +86,17 @@ msgid "Reach Out"
 msgstr "Свяжитесь с нами"
 
 #: website/templates/website/contact.html:41
-#: website/templates/website/website_base.html:259
+#: website/templates/website/website_base.html:264
 msgid "Address"
 msgstr "Адрес"
 
 #: website/templates/website/contact.html:44
-#: website/templates/website/website_base.html:260
+#: website/templates/website/website_base.html:265
 msgid "Phone"
 msgstr "Телефон"
 
 #: website/templates/website/contact.html:47
-#: website/templates/website/website_base.html:261
+#: website/templates/website/website_base.html:266
 msgid "Email"
 msgstr "Электронная почта"
 
@@ -106,14 +105,18 @@ msgid "Call Now"
 msgstr "Позвонить сейчас"
 
 #: website/templates/website/contact.html:59
-#: website/templates/website/index.html:404
+#: website/templates/website/index.html:405
 msgid "Message"
 msgstr "Сообщение"
 
 #: website/templates/website/contact.html:71
-#: website/templates/website/index.html:416
+#: website/templates/website/index.html:417
 msgid "Send Message"
 msgstr "Отправить сообщение"
+
+#: website/templates/website/index.html:5
+msgid "Home"
+msgstr "Главная"
 
 #: website/templates/website/index.html:13
 #: website/templates/website/index.html:71
@@ -146,7 +149,7 @@ msgstr "Конкурентные цены"
 
 #: website/templates/website/index.html:79
 #: website/templates/website/index.html:258
-#: website/templates/website/website_base.html:125
+#: website/templates/website/website_base.html:130
 msgid "Natural Stones"
 msgstr "Натуральные камни"
 
@@ -195,7 +198,7 @@ msgstr ""
 "                "
 
 #: website/templates/website/index.html:193
-#: website/templates/website/website_base.html:124
+#: website/templates/website/website_base.html:129
 msgid "Construction Goods"
 msgstr "Строительные товары"
 
@@ -204,28 +207,32 @@ msgstr "Строительные товары"
 msgid "Cargo Transportation"
 msgstr "Грузоперевозки"
 
-#: website/templates/website/index.html:340
+#: website/templates/website/index.html:341
 #: website/templates/website/services.html:117
 msgid "Import and Sale of Construction Materials"
 msgstr "Импорт и продажа строительных материалов"
 
-#: website/templates/website/index.html:352
+#: website/templates/website/index.html:353
 #: website/templates/website/services.html:129
 msgid "Bitumen Transporter"
 msgstr "Перевозка битума"
 
-#: website/templates/website/index.html:364
+#: website/templates/website/index.html:365
 msgid "Our Partners"
 msgstr "Наши партнеры"
 
+#: website/templates/website/services.html:6
+#: website/templates/website/website_base.html:176
+#: website/templates/website/website_base.html:223
+msgid "Services"
+msgstr "Услуги"
+
 #: website/templates/website/services.html:16
-#, fuzzy
 #| msgid "Services"
 msgid "Our Services"
 msgstr "Услуги"
 
 #: website/templates/website/services.html:18
-#, fuzzy
 #| msgid "AGIMPEX<br/>Everything Materials here"
 msgid ""
 " \"AGIMPEX<br/>\n"
@@ -320,55 +327,54 @@ msgstr ""
 "средств и располагаем различными типами грузовиков, битумовозов и т.д.\n"
 "                    "
 
-#: website/templates/website/website_base.html:24
+#: website/templates/website/website_base.html:21
+msgid "Loading..."
+msgstr ""
+
+#: website/templates/website/website_base.html:29
 msgid "  \"Working hours – 09:00 to 18:00, Mon–Sat\" "
 msgstr "  «Рабочие часы – с 09:00 до 18:00, Пн–Сб» "
 
-#: website/templates/website/website_base.html:108
+#: website/templates/website/website_base.html:113
 msgid "Search"
 msgstr "Поиск"
 
-#: website/templates/website/website_base.html:115
+#: website/templates/website/website_base.html:120
 msgid "Catalogs"
 msgstr "Каталоги"
 
-#: website/templates/website/website_base.html:135
+#: website/templates/website/website_base.html:140
 msgid "Login/Sign in"
 msgstr "Войти / Регистрация"
 
-#: website/templates/website/website_base.html:142
+#: website/templates/website/website_base.html:147
 msgid "Favourites"
 msgstr "Избранное"
 
-#: website/templates/website/website_base.html:149
+#: website/templates/website/website_base.html:154
 msgid "Cart"
 msgstr "Корзина"
 
-#: website/templates/website/website_base.html:160
-#: website/templates/website/website_base.html:210
+#: website/templates/website/website_base.html:165
+#: website/templates/website/website_base.html:215
 msgid "SPECIAL OFFER"
 msgstr "СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ"
 
-#: website/templates/website/website_base.html:160
-#: website/templates/website/website_base.html:210
+#: website/templates/website/website_base.html:165
+#: website/templates/website/website_base.html:215
 #, python-format
 msgid "UP TO 25%%"
 msgstr "ДО 25%%"
 
-#: website/templates/website/website_base.html:171
-#: website/templates/website/website_base.html:218
-msgid "Services"
-msgstr "Услуги"
-
-#: website/templates/website/website_base.html:172
-#: website/templates/website/website_base.html:219
+#: website/templates/website/website_base.html:177
+#: website/templates/website/website_base.html:224
 msgid "Contact"
 msgstr "Контакты"
 
-#: website/templates/website/website_base.html:209
+#: website/templates/website/website_base.html:214
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: website/templates/website/website_base.html:258
+#: website/templates/website/website_base.html:263
 msgid "Contact us"
 msgstr "Связаться с нами"

@@ -120,13 +120,15 @@
                 </div>
                 
                 <div class="searchbox">
-                    <!-- search -->
-                    <form class="input-container" method="get" action="{% url 'website:search' %}">
+              
+                   <form class="input-container" method="get" action="{% url 'website:search' %}" id="searchForm">
                         <input type="search" name="q" placeholder="{% trans 'Search' %}" value="{{ request.GET.q }}">
-                        <span class="search-icon">
+
+                        <span class="search-icon" onclick="document.getElementById('searchForm').submit();" style="cursor: pointer;">
                             <img src="{% static 'img/search.svg' %}" class="icon" />
                         </span>
                     </form>
+
                     <details class="pdf-dropdown-details">
                     <summary>
                         {% trans "Catalogs" %}
@@ -249,14 +251,15 @@
                 <ul>
                     <li class="footer-heading">{% trans "Quick Links" %}</li>
                     <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b></li></a>
-                    {% for cat in categories %}
-                    <!-- {% if cat.slug == "construction-materials"%}
+
+                    <!-- {% for cat in categories %}
+                    {% if cat.slug == "construction-materials"%}
                         <a href="{% url 'shop:product_list_by_category' cat.slug %}">
                             <li>{{ cat.name }}</li>
                             </a>
                         {% endif %}
                     {% endfor %} -->
-                    <!-- <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a> -->
+                    
                     <a href="{% url 'website:construction_goods' %}"><li>{% trans "Construction Goods" %}</li></a>
                     <a href="{% url 'website:natural_stones' %}"><li>{% trans "Natural Stones" %}</li></a>
                     <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>

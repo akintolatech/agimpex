@@ -159,7 +159,7 @@ td img {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 8px 24px;
+    padding: 10px 20px;
     background: var(--pry-color);
     color: #ffffff;
     font-size: 16px;

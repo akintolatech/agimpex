@@ -6,8 +6,6 @@ from .favourites import Favorites
 from .models import Category, Product
 
 
-
-
 def toggle_favorite(request, product_id):
     if request.method != "POST":
         return JsonResponse({'error': 'Invalid request'}, status=400)

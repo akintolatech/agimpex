@@ -1,33 +1,53 @@
 from django.shortcuts import render
-
 from cart.cart import Cart
 from .forms import OrderCreateForm
-from .models import OrderItem
-# from .tasks import order_created
+from .models import OrderItem, OrderItemPropertyValue
 
-# create order view
+
 def order_create(request):
     cart = Cart(request)
+
+    if len(cart) == 0:
+        form = OrderCreateForm()
+        return render(
+            request,
+            'orders/order/create.html',
+            {'cart': cart, 'form': form}
+        )
+
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
+
         if form.is_valid():
             order = form.save()
+
             for item in cart:
-                OrderItem.objects.create(
+                order_item = OrderItem.objects.create(
                     order=order,
                     product=item['product'],
-                    price=item['price'],
+                    price=item['price'],   # final unit price including adjustments
                     quantity=item['quantity'],
                 )
-            # clear the cart
+
+                for prop in item.get('selected_properties', []):
+                    OrderItemPropertyValue.objects.create(
+                        order_item=order_item,
+                        product_property=prop['property_name'],
+                        property_value=prop['value_name'],
+                        price_adjustment=prop['price_adjustment'],
+                    )
+
+            # clear cart after successful order creation
             cart.clear()
-            # launch asynchronous task
-            # order_created.delay(order.id)
+
             return render(
-                request, 'orders/order/created.html', {'order': order}
+                request,
+                'orders/order/created.html',
+                {'order': order}
             )
     else:
         form = OrderCreateForm()
+
     return render(
         request,
         'orders/order/create.html',

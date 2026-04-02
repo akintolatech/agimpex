@@ -11,7 +11,12 @@
         <div class="table-wrapper">
             <div class="title_container">
                 <h2 class="table-title"> Unit of Measure</h2>
-                <a href="{% url 'administration:create_unit_of_measure' %}">Create</a>
+                <a href="{% url 'administration:create_unit_of_measure' %}">
+                    <button class="create-btn">
+                        <span class="icon"><img src="{% static 'img/add_circle.svg' %}" /></span>
+                        Create Unit
+                    </button>
+                </a>
             </div>
             
             <table class="modern-table">

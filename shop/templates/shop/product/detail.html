@@ -7,6 +7,198 @@
 
 {% block content %}
 <div id="main">
+
+
+
+  {% load static %}
+
+  <div class="product-detail-container">
+
+    <div class="product-gallery">
+      <div class="main-image-container">
+        {% if product.discount_amount %}
+          <span class="discount-badge">-{{ product.discount_percent }}%</span>
+        {% endif %}
+
+        <img
+          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="main-image"
+          alt="{{ product.name }}"
+          id="main-product-image"
+        >
+      </div>
+
+      <div class="thumbnails">
+        <img
+          src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb active"
+          alt="{{ product.name }}"
+        >
+
+        <img
+          src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+
+        <img
+          src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+      </div>
+    </div>
+
+    <div class="product-specs">
+      <div class="info-box">
+        <h1 class="title">{{ product.name }}</h1>
+
+        <h4>
+          <a href="{{ product.category.get_absolute_url }}">
+            {{ product.category }}
+          </a>
+        </h4>
+
+        <p class="description">{{ product.description|linebreaks }}</p>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post" id="add-to-cart-form">
+          {% csrf_token %}
+
+          {% for property in product.properties.all %}
+            <div class="spec-row">
+              <label for="property_{{ property.id }}">{{ property.name }}</label>
+              <select
+                name="property_{{ property.id }}"
+                id="property_{{ property.id }}"
+                required
+                class="property-select"
+              >
+                <option value="">Select {{ property.name }}</option>
+
+                {% for value in property.property_values.all %}
+                  <option
+                    value="{{ value.id }}"
+                    data-price-adjustment="{{ value.price_adjustment }}"
+                  >
+                    {{ value.value }}
+                    {% if value.price_adjustment > 0 %}
+                      (+{{ value.price_adjustment }})
+                    {% elif value.price_adjustment < 0 %}
+                      ({{ value.price_adjustment }})
+                    {% endif %}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
+
+          <input type="hidden" name="override" value="False">
+
+          <div class="purchase-bar" style="margin-top: 40px;">
+            <div class="price-section">
+              <div class="price-row">
+                {% if product.old_price %}
+                  <span class="old-price" id="old-price-display">{{ product.old_price }}</span>
+                {% endif %}
+
+                <span class="current-price">
+                  <b
+                    class="formatted-price"
+                    id="dynamic-price"
+                    data-base-price="{{ product.price }}"
+                  >
+                    {{ product.price }}
+                  </b>
+                </span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <div class="quantity-selector">
+                <button type="button" id="minus-btn">
+                  <img src="{% static 'img/remove.svg' %}" class="icon" alt="Decrease quantity">
+                </button>
+
+                <input
+                  type="text"
+                  name="quantity"
+                  id="quantity-input"
+                  value="1"
+                  min="1"
+                  readonly
+                >
+
+                <button type="button" id="plus-btn">
+                  <img src="{% static 'img/add.svg' %}" class="icon" alt="Increase quantity">
+                </button>
+              </div>
+
+              <button type="submit" class="cart-btn">
+                <img src="{% static 'img/blue_cart.svg' %}" class="icon" alt="Add to cart">
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const priceElement = document.getElementById('dynamic-price');
+    const quantityInput = document.getElementById('quantity-input');
+    const minusBtn = document.getElementById('minus-btn');
+    const plusBtn = document.getElementById('plus-btn');
+    const propertySelects = document.querySelectorAll('.property-select');
+    const thumbs = document.querySelectorAll('.thumb');
+    const mainImage = document.getElementById('main-product-image');
+
+    const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
+
+    function updatePrice() {
+      let total = basePrice;
+
+      propertySelects.forEach(select => {
+        const selectedOption = select.options[select.selectedIndex];
+        if (selectedOption && selectedOption.dataset.priceAdjustment) {
+          total += parseFloat(selectedOption.dataset.priceAdjustment || 0);
+        }
+      });
+
+      priceElement.textContent = total.toFixed(2);
+    }
+
+    propertySelects.forEach(select => {
+      select.addEventListener('change', updatePrice);
+    });
+
+    minusBtn.addEventListener('click', function () {
+      let current = parseInt(quantityInput.value || 1);
+      if (current > 1) {
+        quantityInput.value = current - 1;
+      }
+    });
+
+    plusBtn.addEventListener('click', function () {
+      let current = parseInt(quantityInput.value || 1);
+      quantityInput.value = current + 1;
+    });
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', function () {
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.src;
+      });
+    });
+
+    updatePrice();
+  });
+  </script>
+
+
+  {% comment %}
   <div class="product-detail-container">
 
     <div class="product-gallery">
@@ -125,6 +317,7 @@
     </div>
 
   </div>
+  {% endcomment %}
 </div>
 
 <script>

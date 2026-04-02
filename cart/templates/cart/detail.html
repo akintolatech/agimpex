@@ -47,7 +47,7 @@
                 <div class="cart-item-right">
 
                   <!-- Remove item -->
-                  <form action="{% url 'cart:cart_remove' product.id %}" method="post" class="cart-delete-form">
+                  <form action="{% url 'cart:cart_remove' item.cart_key %}" method="post" class="cart-delete-form">
                     {% csrf_token %}
                     <button type="submit" class="cart-btn">
                       <img src="{% static 'img/delete.svg' %}" class="icon" alt="Remove">

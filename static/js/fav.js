@@ -32,9 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
 
+                // Update favourite badge count asynchronously
                 const favCount = document.getElementById("favorite-count");
                 if (favCount) {
                     favCount.textContent = data.favorite_count;
+
+                    if (data.favorite_count > 0) {
+                        favCount.style.display = "inline-flex";
+                    } else {
+                        favCount.style.display = "none";
+                    }
                 }
             })
             .catch(error => console.error("Favorite error:", error));

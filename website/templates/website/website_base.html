@@ -19,7 +19,6 @@
             const loader = document.getElementById("page-loader");
             loader.classList.add("hide");
 
-            // Optional: remove from DOM after fade-out
             setTimeout(() => {
                 loader.remove();
             }, 500);
@@ -140,7 +139,7 @@
                     </summary>
 
                     <div class="pdf-menu">
-                        <a href="/media/pdfs/construction.pdf" download>{% trans "Construction Goods" %} PDF</a>
+                        <a href="{% static 'files/catalog_for_CP.pdf' %}" download>{% trans "Construction Goods" %} PDF</a>
                         <a href="/media/pdfs/natural-stones.pdf" download>{% trans "Natural Stones" %} PDF</a>            
                     </div>
                     </details>
@@ -168,17 +167,20 @@
                     <a href="{% url 'shop:favorite_list' %}">
                         <div class="icontext">
                             <div class="icon-wrapper">
-                                <img src="{% static 'img/fave.svg' %}" class="icon" />
+                                <img src="{% static 'img/fave_icn.svg' %}" class="icon" />
 
-                                {% if request.session.favorites %}
-                                    <span class="badge-count">{{ request.session.favorites|length }}</span>
-                                {% endif %}
+                                <span
+                                    id="favorite-count"
+                                    class="badge-count"
+                                    {% if not request.session.favorites %}style="display: none;"{% endif %}
+                                >
+                                    {{ request.session.favorites|length }}
+                                </span>
                             </div>
                             <h6>{% trans 'Favourites' %}</h6>
                         </div>
                     </a>
 
-                    <!-- CART -->
                     <a href="{% url 'cart:cart_detail' %}">
                         <div class="icontext">
                             <div class="icon-wrapper">
@@ -212,7 +214,7 @@
                 <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a>
                 <a href="{% url 'website:natural_stones' %}" class="nav-item">{% trans "Natural Stones" %}</a>
                 <a href="{% url 'website:services' %}" class="nav-item">{% trans "Services" %}</a>
-                <a href="{% url 'website:index' %}#contact-map" class="nav-item">{% trans "Contact" %}</a>
+                <a href="{% url 'website:contact' %}" class="nav-item">{% trans "Contact" %}</a>
             </div>
         </div>
 
@@ -233,7 +235,7 @@
 
     </div>
 
-    <!-- <div class="back-drop"></div> -->
+
     <div  class ="heading_spacer"></div>
 
     {% block content %}
@@ -251,19 +253,10 @@
                 <ul>
                     <li class="footer-heading">{% trans "Quick Links" %}</li>
                     <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b></li></a>
-
-                    <!-- {% for cat in categories %}
-                    {% if cat.slug == "construction-materials"%}
-                        <a href="{% url 'shop:product_list_by_category' cat.slug %}">
-                            <li>{{ cat.name }}</li>
-                            </a>
-                        {% endif %}
-                    {% endfor %} -->
-                    
                     <a href="{% url 'website:construction_goods' %}"><li>{% trans "Construction Goods" %}</li></a>
                     <a href="{% url 'website:natural_stones' %}"><li>{% trans "Natural Stones" %}</li></a>
                     <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>
-                    <a href="#contact-map"><li>{% trans "Contact" %}</li></a>
+                    <a href="{% url 'website:contact' %}"><li>{% trans "Contact" %}</li></a>
                 </ul>
 
                 <ul>
@@ -274,26 +267,35 @@
                 
                         <div class="social-media">
 
-                             <div class="contact-icon">
-                                <img src="{% static 'img/fb.svg' %}"/>
-                            </div>
-                        
-                            <div class="contact-icon">
-                                <img src="{% static 'img/insta.svg' %}"/>
-                            </div>
+                            <a href="https://www.facebook.com/agimpexarm" target="_blank">
+                                <div class="contact-icon">
+                                    <img src="{% static 'img/fb.svg' %}"/>
+                                </div>
+                            </a>
 
-                        
-                            <div class="contact-icon">
-                                <img src="{% static 'img/link.svg' %}"/>
-                            </div>
+                            <a href="https://www.instagram.com/agimpex.am?" target="_blank">
+                                <div class="contact-icon">
+                                    <img src="{% static 'img/insta.svg' %}"/>
+                                </div>
+                            </a>
 
-                            <div class="contact-icon">
-                                <img src="{% static 'img/tiktok.svg' %}"/>
-                            </div>
+                            <a href="https://www.linkedin.com/company/ag-impex-llc/" target="_blank">
+                                <div class="contact-icon">
+                                    <img src="{% static 'img/link.svg' %}"/>
+                                </div>
+                            </a>
 
-                            <div class="contact-icon">
-                                <img src="{% static 'img/youtube.svg' %}"/> 
-                            </div>
+                            <a href="" target="_blank">
+                                <div class="contact-icon">
+                                    <img src="{% static 'img/tiktok.svg' %}"/>
+                                </div>
+                            </a>
+
+                            <a href="" target="_blank">
+                                <div class="contact-icon">
+                                    <img src="{% static 'img/youtube.svg' %}"/> 
+                                </div>
+                            </a>
 
                     </li>
                      </center>

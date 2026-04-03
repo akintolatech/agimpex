@@ -8,8 +8,6 @@
 {% block content %}
 <div id="main">
 
-
-
   {% load static %}
 
   <div class="product-detail-container">
@@ -65,32 +63,26 @@
           {% csrf_token %}
 
           {% for property in product.properties.all %}
-            <div class="spec-row">
-              <label for="property_{{ property.id }}">{{ property.name }}</label>
-              <select
-                name="property_{{ property.id }}"
-                id="property_{{ property.id }}"
-                required
-                class="property-select"
-              >
-                <option value="">Select {{ property.name }}</option>
+          <div class="spec-row">
+            <label for="property_{{ property.id }}">{{ property.name }}</label>
+            <select
+              name="property_{{ property.id }}"
+              id="property_{{ property.id }}"
+              required
+              class="property-select"
+              data-property-id="{{ property.id }}"
+            >
+              <option value="">Select {{ property.name }}</option>
+              {% for value in property.property_values.all %}
+                <option value="{{ value.id }}">{{ value.value }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endfor %}
 
-                {% for value in property.property_values.all %}
-                  <option
-                    value="{{ value.id }}"
-                    data-price-adjustment="{{ value.price_adjustment }}"
-                  >
-                    {{ value.value }}
-                    {% if value.price_adjustment > 0 %}
-                      (+{{ value.price_adjustment }})
-                    {% elif value.price_adjustment < 0 %}
-                      ({{ value.price_adjustment }})
-                    {% endif %}
-                  </option>
-                {% endfor %}
-              </select>
-            </div>
-          {% endfor %}
+        {{ combinations_json|json_script:"combinations-data" }}
+
+      
 
           <input type="hidden" name="override" value="False">
 
@@ -144,180 +136,68 @@
 
   </div>
 
-  <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
-    const priceElement = document.getElementById('dynamic-price');
-    const quantityInput = document.getElementById('quantity-input');
-    const minusBtn = document.getElementById('minus-btn');
-    const plusBtn = document.getElementById('plus-btn');
-    const propertySelects = document.querySelectorAll('.property-select');
-    const thumbs = document.querySelectorAll('.thumb');
-    const mainImage = document.getElementById('main-product-image');
-
-    const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
-
-    function updatePrice() {
-      let total = basePrice;
-
-      propertySelects.forEach(select => {
-        const selectedOption = select.options[select.selectedIndex];
-        if (selectedOption && selectedOption.dataset.priceAdjustment) {
-          total += parseFloat(selectedOption.dataset.priceAdjustment || 0);
-        }
-      });
-
-      priceElement.textContent = total.toFixed(2);
+    // Check if the element exists and parse it correctly
+    const scriptElement = document.getElementById('combinations-data');
+    if (!scriptElement) {
+        console.error("Combinations data not found!");
+        return;
     }
 
-    propertySelects.forEach(select => {
-      select.addEventListener('change', updatePrice);
-    });
+    let combinations = JSON.parse(scriptElement.textContent);
 
-    minusBtn.addEventListener('click', function () {
-      let current = parseInt(quantityInput.value || 1);
-      if (current > 1) {
-        quantityInput.value = current - 1;
+    // FIX: If combinations is somehow still a string (due to double encoding), parse it again
+    if (typeof combinations === 'string') {
+        combinations = JSON.parse(combinations);
+    }
+
+      const propertySelects = document.querySelectorAll('.property-select');
+      const priceElement = document.getElementById('dynamic-price');
+      const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
+
+      function updateOptions() {
+          // ... rest of your updateOptions logic from the previous message ...
+          const selectedValues = Array.from(propertySelects)
+              .map(s => parseInt(s.value))
+              .filter(v => !isNaN(v));
+
+          propertySelects.forEach(currentSelect => {
+              Array.from(currentSelect.options).forEach(option => {
+                  if (option.value === "") return;
+                  const valId = parseInt(option.value);
+
+                  // Now .some() will work because combinations is definitely an Array
+                  const isPossible = combinations.some(comb => {
+                      if (!comb.values.includes(valId)) return false;
+                      return selectedValues.every(selectedId => {
+                          const otherSelect = document.querySelector(`.property-select option[value="${selectedId}"]`).parentElement;
+                          if (otherSelect === currentSelect) return true;
+                          return comb.values.includes(selectedId);
+                      });
+                  });
+                  option.disabled = !isPossible;
+              });
+          });
+          
+          // Price update logic...
+          const currentCombo = combinations.find(comb => 
+              comb.values.length === propertySelects.length && // Must match ALL properties
+              selectedValues.length === propertySelects.length &&
+              selectedValues.every(id => comb.values.includes(id))
+          );
+
+          if (currentCombo) {
+              priceElement.textContent = parseFloat(currentCombo.price).toFixed(2);
+          }
       }
-    });
 
-    plusBtn.addEventListener('click', function () {
-      let current = parseInt(quantityInput.value || 1);
-      quantityInput.value = current + 1;
-    });
-
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', function () {
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        mainImage.src = thumb.src;
-      });
-    });
-
-    updatePrice();
+      propertySelects.forEach(select => select.addEventListener('change', updateOptions));
+      updateOptions();
   });
-  </script>
+</script>
 
 
-  {% comment %}
-  <div class="product-detail-container">
-
-    <div class="product-gallery">
-      <div class="main-image-container">
-        {% if product.discount_amount%}
-        <span class="discount-badge">-{{ product.discount_percent }}%</span>
-        {% endif %}
-        <img
-          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-          class="main-image"
-          alt="{{ product.name }}"
-        >
-      </div>
-
-     <div class="thumbnails">
-      <img
-        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb active"
-        alt="{{ product.name }}"
-      >
-
-      <img
-        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb"
-        alt="{{ product.name }}"
-      >
-
-      <img
-        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb"
-        alt="{{ product.name }}"
-      >
-    </div>
-    </div>
-
-    <div class="product-specs">
-      <div class="info-box">
-        <h1 class="title">{{ product.name }}</h1>
-
-        <h4>
-          <a href="{{ product.category.get_absolute_url }}">
-            {{ product.category }}
-          </a>
-        </h4>
-
-        <p class="description">{{ product.description|linebreaks }}</p>
-
-        <form action="{% url 'cart:cart_add' product.id %}" method="post">
-          {% csrf_token %}
-
-          {% for property in product.properties.all %}
-            <div class="spec-row">
-              <label for="property_{{ property.id }}">{{ property.name }}</label>
-              <select
-                name="property_{{ property.id }}"
-                id="property_{{ property.id }}"
-                required
-              >
-                <option value="">Select {{ property.name }}</option>
-
-                {% for value in property.property_values.all %}
-                  <option value="{{ value.id }}">
-                    {{ value.value }}
-                    {% if value.price_adjustment > 0 %}
-                      (+{{ value.price_adjustment }})
-                    {% endif %}
-                  </option>
-                {% endfor %}
-              </select>
-            </div>
-          {% endfor %}
-
-          <input type="hidden" name="override" value="False">
-
-          <div class="purchase-bar" style="margin-top: 40px;">
-            <div class="price-section">
-              <!-- <h2 class="sub-title">{{ product.name }}</h2> -->
-
-              <div class="price-row">
-                <span class="old-price">{{ product.old_price }}</span>
-                <span class="current-price">
-                  <b class="formatted-price">{{ product.price }}</b>
-                </span>
-              </div>
-            </div>
-
-            <div class="actions">
-              <div class="quantity-selector">
-                <button type="button" id="minus-btn">
-                  <img src="{% static 'img/remove.svg' %}" class="icon" alt="Decrease quantity">
-                </button>
-
-                <input
-                  type="text"
-                  name="quantity"
-                  id="quantity-input"
-                  value="1"
-                  min="1"
-                  readonly
-                >
-
-                <button type="button" id="plus-btn">
-                  <img src="{% static 'img/add.svg' %}" class="icon" alt="Increase quantity">
-                </button>
-              </div>
-
-              <button type="submit" class="cart-btn">
-                <img src="{% static 'img/blue_cart.svg' %}" class="icon" alt="Add to cart">
-              </button>
-            </div>
-
-
-          </div>
-        </form>
-      </div>
-    </div>
-
-  </div>
-  {% endcomment %}
 </div>
 
 <script>

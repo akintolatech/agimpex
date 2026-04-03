@@ -78,7 +78,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processors.cart',
+                # 'cart.context_processors.cart',
                 'orders.context_processors.order_form',
                 'shop.context_processors.product_list',
                 'shop.context_processors.favorite_products',

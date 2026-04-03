@@ -1,3 +1,5 @@
+from decimal import Decimal, InvalidOperation
+
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
@@ -15,7 +17,7 @@ import json
 from administration.forms import EditCategoryForm, CreateCategoryForm, OrderApprovalForm, CreateUnitOfMeasureForm, \
     EditUnitOfMeasureForm, CreateProductPropertyForm, ProductForm
 from orders.models import OrderItem
-from shop.models import Category, UnitOfMeasure, ProductProperty, ProductPropertyValue, Product
+from shop.models import Category, UnitOfMeasure, ProductProperty, Product, ProductPricing, ProductPropertyValue
 
 
 @staff_member_required
@@ -181,68 +183,119 @@ def product_list(request):
     return render(request, "administration/product/product_list.html", context)
 
 
-@login_required
+
+def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
+    """
+    Save or rebuild product properties, property values, and pricing rows.
+
+    If rebuild=True:
+        - delete old pricing rows
+        - delete old properties (which cascades property values)
+        - recreate from POST data
+    """
+
+    if rebuild:
+        # Delete old pricing rows first (M2M links auto-clear)
+        product.pricing_rows.all().delete()
+
+        # Delete old properties (cascades ProductPropertyValue)
+        product.properties.all().delete()
+
+    property_names = [p.strip() for p in request.POST.getlist('property_names[]') if p.strip()]
+
+    # If no properties submitted, leave product as simple/base-price product
+    if not property_names:
+        return
+
+    # Create properties in exact order
+    property_objects = []
+    for prop_name in property_names:
+        prop = ProductProperty.objects.create(product=product, name=prop_name)
+        property_objects.append(prop)
+
+    row_prices = request.POST.getlist('row_price[]')
+    row_count = len(row_prices)
+
+    # Cache values per property to avoid duplicate ProductPropertyValue creation
+    # key = (property_id, value_lower)
+    value_cache = {}
+
+    for row_index in range(row_count):
+        selected_values = []
+
+        # For each property column, get the row's value
+        for col_index, prop_obj in enumerate(property_objects):
+            column_values = request.POST.getlist(f'row_val_{col_index}[]')
+
+            if row_index >= len(column_values):
+                continue
+
+            raw_value = column_values[row_index].strip()
+            if not raw_value:
+                continue
+
+            cache_key = (prop_obj.id, raw_value.lower())
+
+            if cache_key in value_cache:
+                value_obj = value_cache[cache_key]
+            else:
+                value_obj, _ = ProductPropertyValue.objects.get_or_create(
+                    product_property=prop_obj,
+                    value=raw_value
+                )
+                value_cache[cache_key] = value_obj
+
+            selected_values.append(value_obj)
+
+        # Price for this row
+        raw_price = row_prices[row_index].strip() if row_index < len(row_prices) else ''
+        if not raw_price:
+            continue
+
+        try:
+            final_price = Decimal(raw_price)
+        except (InvalidOperation, TypeError):
+            continue
+
+        pricing = ProductPricing.objects.create(
+            product=product,
+            price=final_price
+        )
+
+        if selected_values:
+            pricing.property_values.set(selected_values)
+
+
 @transaction.atomic
-@staff_member_required
+@transaction.atomic
 def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
 
-        if form.is_valid():
-            product = form.save()
+        try:
+            if form.is_valid():
+                product = form.save()
 
-            # Get all property names submitted
-            property_names = request.POST.getlist('property_name[]')
+                # Save dynamic properties + pricing
+                save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
 
-            # Loop through each property
-            for i, prop_name in enumerate(property_names):
-                prop_name = prop_name.strip()
+                messages.success(request, 'Product created successfully.')
+                return redirect('administration:product_list')
+            else:
+                messages.error(request, 'Please fix the form errors.')
 
-                if not prop_name:
-                    continue
-
-                # Create ProductProperty
-                product_property = ProductProperty.objects.create(
-                    product=product,
-                    name=prop_name
-                )
-
-                # Get values for this property
-                value_names = request.POST.getlist(f'property_values_{i}[]')
-                value_adjustments = request.POST.getlist(f'property_price_adjustment_{i}[]')
-
-                for j, value_name in enumerate(value_names):
-                    value_name = value_name.strip()
-
-                    if not value_name:
-                        continue
-
-                    price_adjustment = 0.00
-                    if j < len(value_adjustments):
-                        try:
-                            price_adjustment = float(value_adjustments[j]) if value_adjustments[j] else 0.00
-                        except ValueError:
-                            price_adjustment = 0.00
-
-                    ProductPropertyValue.objects.create(
-                        product_property=product_property,
-                        value=value_name,
-                        price_adjustment=price_adjustment
-                    )
-
-            messages.success(request, 'Product created successfully.')
-            return redirect('administration:create_product')
-
-        else:
-            messages.error(request, 'Please fix the errors below.')
-
+        except Exception as e:
+            messages.error(request, f'Error creating product: {str(e)}')
     else:
         form = ProductForm()
 
-    return render(request, 'administration/product/create_product.html', {'form': form})
+    context = {
+        'form': form,
+    }
 
+    return render(request, 'administration/product/create_product.html', context)
 
-@login_required
+@transaction.atomic
 @transaction.atomic
 def edit_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -250,113 +303,55 @@ def edit_product(request, product_id):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
 
-        if form.is_valid():
-            product = form.save()
+        try:
+            if form.is_valid():
+                product = form.save()
 
-            submitted_property_ids = []
-            submitted_value_ids = []
+                # Rebuild pricing structure from submitted form
+                save_or_rebuild_product_pricing_structure(request, product, rebuild=True)
 
-            property_ids = request.POST.getlist('property_id[]')
-            print(property_ids)
-            property_names = request.POST.getlist('property_name[]')
+                messages.success(request, f'{product.name} updated successfully.')
+                return redirect('administration:product_list')
+            else:
+                messages.error(request, 'Please fix the form errors.')
 
-            for i, prop_name in enumerate(property_names):
-                prop_name = prop_name.strip()
-                if not prop_name:
-                    continue
-
-                prop_id = property_ids[i].strip() if i < len(property_ids) else ''
-
-                # Update existing property or create new one
-                if prop_id:
-                    product_property = ProductProperty.objects.filter(
-                        id=prop_id,
-                        product=product
-                    ).first()
-
-                    if product_property:
-                        product_property.name = prop_name
-                        product_property.save()
-                    else:
-                        product_property = ProductProperty.objects.create(
-                            product=product,
-                            name=prop_name
-                        )
-                else:
-                    product_property = ProductProperty.objects.create(
-                        product=product,
-                        name=prop_name
-                    )
-
-                submitted_property_ids.append(product_property.id)
-
-                # Values for this property block
-                value_ids = request.POST.getlist(f'property_value_id_{i}[]')
-                value_names = request.POST.getlist(f'property_values_{i}[]')
-                value_adjustments = request.POST.getlist(f'property_price_adjustment_{i}[]')
-
-                current_property_value_ids = []
-
-                for j, value_name in enumerate(value_names):
-                    value_name = value_name.strip()
-                    if not value_name:
-                        continue
-
-                    value_id = value_ids[j].strip() if j < len(value_ids) else ''
-
-                    try:
-                        price_adjustment = float(value_adjustments[j]) if j < len(value_adjustments) and value_adjustments[j] else 0.00
-                    except ValueError:
-                        price_adjustment = 0.00
-
-                    # Update existing value or create new one
-                    if value_id:
-                        property_value = ProductPropertyValue.objects.filter(
-                            id=value_id,
-                            product_property=product_property
-                        ).first()
-
-                        if property_value:
-                            property_value.value = value_name
-                            property_value.price_adjustment = price_adjustment
-                            property_value.save()
-                        else:
-                            property_value = ProductPropertyValue.objects.create(
-                                product_property=product_property,
-                                value=value_name,
-                                price_adjustment=price_adjustment
-                            )
-                    else:
-                        property_value = ProductPropertyValue.objects.create(
-                            product_property=product_property,
-                            value=value_name,
-                            price_adjustment=price_adjustment
-                        )
-
-                    current_property_value_ids.append(property_value.id)
-                    submitted_value_ids.append(property_value.id)
-
-                # Delete removed values for this property only
-                product_property.property_values.exclude(id__in=current_property_value_ids).delete()
-
-            # Delete removed properties (and cascade delete their values)
-            product.properties.exclude(id__in=submitted_property_ids).delete()
-
-            messages.success(request, f'{product.name} updated successfully.')
-            # return redirect('administration:edit_product', product_id=product.id)
-            return redirect('administration:product_list')
-        else:
-            messages.error(request, 'Please fix the errors below.')
-
+        except Exception as e:
+            messages.error(request, f'Error updating product: {str(e)}')
     else:
         form = ProductForm(instance=product)
 
-    properties = product.properties.prefetch_related('property_values').all()
+    # Build existing data for edit template JS
+    properties = list(product.properties.all().order_by('id'))
+
+    existing_pricing_data = {
+        'properties': [prop.name for prop in properties],
+        'rows': []
+    }
+
+    pricing_rows = product.pricing_rows.prefetch_related(
+        'property_values',
+        'property_values__product_property'
+    ).all()
+
+    for pricing in pricing_rows:
+        row_map = {}
+
+        for pv in pricing.property_values.all():
+            row_map[pv.product_property_id] = pv.value
+
+        ordered_values = []
+        for prop in properties:
+            ordered_values.append(row_map.get(prop.id, ''))
+
+        existing_pricing_data['rows'].append({
+            'values': ordered_values,
+            'price': str(pricing.price)
+        })
 
     context = {
-        'form': form,
         'product': product,
-        'properties': properties,
+        'form': form,
+        'existing_pricing_data': existing_pricing_data,
     }
 
     return render(request, 'administration/product/edit_product.html', context)
@@ -369,7 +364,7 @@ def delete_product(request, product_id):
 
     if request.method == 'POST':
         product.delete()
-        messages.success(request, 'Product deleted successfully.')
+        messages.success(request, f'{product.name} deleted successfully.')
         return redirect('administration:product_list')
 
     return redirect('administration:product_list')

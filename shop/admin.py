@@ -1,9 +1,12 @@
 from django.contrib import admin
-from .models import Product, ProductProperty, ProductPropertyValue, Category
+from .models import Product, ProductProperty, ProductPropertyValue, Category, ProductPricing
 
 # Register your models here.
 admin.site.register(ProductProperty)
 admin.site.register(ProductPropertyValue)
+admin.site.register(ProductPricing)
+
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

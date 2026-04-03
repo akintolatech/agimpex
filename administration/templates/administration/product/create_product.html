@@ -4,6 +4,7 @@
 
 {% block styles %}
 <link type="text/css" href="{% static 'styles/admin_form.css' %}" rel="stylesheet" />
+<link type="text/css" href="{% static 'styles/table.css' %}" rel="stylesheet" />
 {% endblock %}
 
 {% block content %}
@@ -26,6 +27,7 @@
             {% csrf_token %}
 
             <!-- Product Main Details -->
+
             <section class="form-card">
                 <div class="form-card-header">
                     <h4>Product Main Details</h4>
@@ -265,20 +267,49 @@
 
                 </div>
             </section>
+    
 
             <!-- Product Properties -->
             <section class="form-card">
-                <div class="form-card-header property-header">
-                    <h4>Product Properties</h4>
-                    <button type="button" class="btn btn-primary" id="addPropertyBtn">
-                        + Add Property
-                    </button>
+
+                <div class="form-card-header">
+                    <h4>1. Add Product Properties(Columns)</h4>
+                    
                 </div>
 
                 <div class="form-card-body">
-                    <div id="propertiesContainer"></div>
+
+                    <div id="propertyInputsContainer" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="addPropertyBtn" style="margin-top: 22px;">+ Add Column</button>
                 </div>
+
             </section>
+
+            <section class="form-card">
+                <div class="form-card-header">
+                    <h4>2. Pricing Table</h4>
+                    
+                </div>
+                <div class="form-card-body" style="overflow-x: auto;">
+                    <table  id="pricingTable" class="modern-table">
+                        <thead>
+                            <tr id="tableHeader">
+                                <th>Price (AMD)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tableBody">
+                        </tbody>
+
+                    </table>
+                    <button type="button" class="btn btn-success" id="addRowBtn" disabled style="margin-top: 22px;" >+ Add Pricing Row</button>
+                </div>
+
+            </section>
+
 
             <div class="form-actions">
                 <button type="submit" class="btn btn-success">Save Product</button>
@@ -290,85 +321,216 @@
 
 
 <script>
-    let propertyIndex = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    const propertyContainer = document.getElementById('propertyInputsContainer');
+    const tableHeader = document.getElementById('tableHeader');
+    const tableBody = document.getElementById('tableBody');
+    const addPropertyBtn = document.getElementById('addPropertyBtn');
+    const addRowBtn = document.getElementById('addRowBtn');
 
-    function createValueRow(propertyIdx) {
-        return `
-            <div class="value-row">
-                <div class="value-grid">
-                    <div class="form-group">
-                        <label>Value</label>
-                        <input type="text" name="property_values_${propertyIdx}[]" class="custom-input" placeholder="e.g. Red">
-                    </div>
+    let properties = [];
 
-                    <div class="form-group">
-                        <label>Price Adjustment</label>
-                        <input type="number" step="0.01" name="property_price_adjustment_${propertyIdx}[]" class="custom-input" placeholder="0.00">
-                    </div>
-
-                    <div class="value-action">
-                        <button type="button" class="btn btn-danger remove-value-btn">Remove Value</button>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-
-    function createPropertyBlock(index) {
-        return `
-            <div class="property-block" data-property-index="${index}">
-                <div class="property-top">
-                    <h5>Property</h5>
-                    <button type="button" class="btn btn-outline-danger remove-property-btn">
-                        Remove Property
-                    </button>
-                </div>
-
-                <div class="form-group">
-                    <label>Property Name</label>
-                    <input type="text" name="property_name[]" class="custom-input" placeholder="e.g. Color">
-                </div>
-
-                <div class="values-container">
-                    ${createValueRow(index)}
-                </div>
-
-                <button type="button" class="btn btn-secondary add-value-btn">
-                    + Add Value
-                </button>
-            </div>
-        `;
-    }
-
-    document.getElementById('addPropertyBtn').addEventListener('click', function () {
-        const container = document.getElementById('propertiesContainer');
-        container.insertAdjacentHTML('beforeend', createPropertyBlock(propertyIndex));
-        propertyIndex++;
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('add-value-btn')) {
-            const propertyBlock = e.target.closest('.property-block');
-            const propertyIdx = propertyBlock.getAttribute('data-property-index');
-            const valuesContainer = propertyBlock.querySelector('.values-container');
-            valuesContainer.insertAdjacentHTML('beforeend', createValueRow(propertyIdx));
-        }
-
-        if (e.target.classList.contains('remove-value-btn')) {
-            const valueRow = e.target.closest('.value-row');
-            const valuesContainer = e.target.closest('.values-container');
-
-            if (valuesContainer.querySelectorAll('.value-row').length > 1) {
-                valueRow.remove();
-            } else {
-                alert('A property should have at least one value row.');
+    function reindexRows() {
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach((row, idx) => {
+            const indexCell = row.querySelector('td.row-index');
+            if (indexCell) {
+                indexCell.textContent = idx + 1;
             }
-        }
+        });
+    }
 
-        if (e.target.classList.contains('remove-property-btn')) {
-            e.target.closest('.property-block').remove();
+    function reindexRowInputs() {
+        const rows = tableBody.querySelectorAll('tr');
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+
+            // structure:
+            // 0 = index
+            // 1..properties.length = property cells
+            properties.forEach((prop, index) => {
+                const input = cells[index + 1]?.querySelector('input');
+                if (input) {
+                    input.name = `row_val_${index}[]`;
+                }
+            });
+        });
+    }
+
+    function updateTableStructure() {
+        tableHeader.innerHTML = '';
+
+        // Index header
+        const indexTh = document.createElement('th');
+        indexTh.textContent = '#';
+        tableHeader.appendChild(indexTh);
+
+        // Dynamic property headers
+        properties.forEach((prop, index) => {
+            const th = document.createElement('th');
+            const propName = prop || `Property ${index + 1}`;
+            th.textContent = propName;
+            tableHeader.appendChild(th);
+        });
+
+        // Price header
+        const priceTh = document.createElement('th');
+        priceTh.textContent = 'Price (AMD)';
+        tableHeader.appendChild(priceTh);
+
+        // Action header
+        const actionTh = document.createElement('th');
+        actionTh.textContent = 'Action';
+        tableHeader.appendChild(actionTh);
+
+        // Update data-labels + input names for all existing rows
+        const rows = tableBody.querySelectorAll('tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+
+            // Remove all old property cells first
+            while (cells.length > properties.length + 3) {
+                // total expected = index + properties + price + action
+                row.removeChild(cells[cells.length - 3]); 
+            }
+
+            // Add missing property cells if needed
+            while (row.querySelectorAll('td').length < properties.length + 3) {
+                const td = document.createElement('td');
+                const propIndex = row.querySelectorAll('td').length - 1; // after index
+                td.innerHTML = `<input type="text" class="custom-input" required placeholder="Value...">`;
+
+                const priceCell = row.querySelectorAll('td')[row.querySelectorAll('td').length - 2];
+                row.insertBefore(td, priceCell);
+            }
+
+            const updatedCells = row.querySelectorAll('td');
+
+            // Update property cells labels and names
+            properties.forEach((prop, index) => {
+                const td = updatedCells[index + 1];
+                if (td) {
+                    td.setAttribute('data-label', prop || `Property ${index + 1}`);
+                    const input = td.querySelector('input');
+                    if (input) {
+                        input.name = `row_val_${index}[]`;
+                    }
+                }
+            });
+
+            // Update price/action positions labels
+            const priceCell = updatedCells[properties.length + 1];
+            const actionCell = updatedCells[properties.length + 2];
+
+            if (priceCell) priceCell.setAttribute('data-label', 'Price (AMD)');
+            if (actionCell) actionCell.setAttribute('data-label', 'Action');
+        });
+
+        addRowBtn.disabled = properties.length === 0;
+
+        if (properties.length === 0) {
+            tableBody.innerHTML = '';
+        }
+    }
+
+    addPropertyBtn.addEventListener('click', function () {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'property-input-wrapper';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'property_names[]';
+        input.className = 'custom-input';
+        input.placeholder = 'Property Name';
+        input.required = true;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.className = 'btn btn-danger btn-sm';
+        removeBtn.style = "width:40px; height: 40px; padding:0; margin-left:4px;";
+
+        input.addEventListener('input', () => {
+            const allInputs = Array.from(propertyContainer.querySelectorAll('input[name="property_names[]"]'));
+            const idx = allInputs.indexOf(input);
+            properties[idx] = input.value;
+            updateTableStructure();
+        });
+
+        removeBtn.addEventListener('click', () => {
+            const allInputs = Array.from(propertyContainer.querySelectorAll('input[name="property_names[]"]'));
+            const idx = allInputs.indexOf(input);
+
+            // Remove property from array
+            properties.splice(idx, 1);
+
+            // Remove that column from every row (idx + 1 because td[0] is row index)
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const targetCell = cells[idx + 1];
+                if (targetCell) {
+                    targetCell.remove();
+                }
+            });
+
+            // Remove input wrapper
+            wrapper.remove();
+
+            // Rebuild headers + rename remaining inputs
+            updateTableStructure();
+            reindexRowInputs();
+        });
+
+        wrapper.appendChild(input);
+        wrapper.appendChild(removeBtn);
+        propertyContainer.appendChild(wrapper);
+
+        properties.push("");
+        updateTableStructure();
+    });
+
+    addRowBtn.addEventListener('click', function () {
+        const row = document.createElement('tr');
+
+        // Index
+        const indexTd = document.createElement('td');
+        indexTd.className = "row-index";
+        indexTd.setAttribute('data-label', 'ID');
+        indexTd.textContent = tableBody.children.length + 1;
+        row.appendChild(indexTd);
+
+        // Property cells
+        properties.forEach((prop, index) => {
+            const td = document.createElement('td');
+            td.setAttribute('data-label', prop || `Property ${index + 1}`);
+            td.innerHTML = `<input type="text" name="row_val_${index}[]" class="custom-input" required placeholder="Value...">`;
+            row.appendChild(td);
+        });
+
+        // Price
+        const priceTd = document.createElement('td');
+        priceTd.setAttribute('data-label', 'Price (AMD)');
+        priceTd.innerHTML = `<input type="number" step="0.01" name="row_price[]" class="custom-input" required placeholder="0.00">`;
+        row.appendChild(priceTd);
+
+        // Action
+        const actionTd = document.createElement('td');
+        actionTd.setAttribute('data-label', 'Action');
+        actionTd.innerHTML = `<button type="button" class="btn btn-danger btn-sm remove-row-btn">Remove</button>`;
+        row.appendChild(actionTd);
+
+        tableBody.appendChild(row);
+    });
+
+    tableBody.addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-row-btn')) {
+            e.target.closest('tr').remove();
+            reindexRows();
         }
     });
+});
 </script>
 
 <script>

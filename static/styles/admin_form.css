@@ -29,6 +29,16 @@
 
 
 
+
+/* Product creation form dynamic element styles */
+/* The container holding all property boxes */
+.property-input-wrapper{
+    display: flex;
+    align-items: center;
+    /* gap: 4px; */
+}
+
+
 /* =========================
    Form Cards
 ========================= */

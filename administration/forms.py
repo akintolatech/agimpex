@@ -2,7 +2,7 @@ from django import forms
 from modeltranslation.forms import TranslationModelForm
 
 from orders.models import Order, OrderItem
-from shop.models import Category, Product, ProductProperty, ProductPropertyValue, UnitOfMeasure
+from shop.models import Category, Product, ProductProperty, UnitOfMeasure
 
 
 from django import forms

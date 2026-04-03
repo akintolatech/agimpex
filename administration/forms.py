@@ -140,7 +140,6 @@ class EditUProductPropertyForm(forms.ModelForm):
         model = UnitOfMeasure
         fields = ['unit']
 
-
 # Unit of Measure
 class CreateUnitOfMeasureForm(forms.ModelForm):
     class Meta:

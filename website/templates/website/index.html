@@ -233,7 +233,10 @@
                         <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
                         <div class="price-row">
                             <div class="price-container">
-                                <span class="old-price">{{ product.old_price }}</span>
+                                {% if product.discount_amount%}
+                                   <span class="old-price">{{ product.old_price }}</span>
+                                {% endif %}
+                        
                                 <span class="current-price">{{ product.price }}</span>
                                 <!-- <span class="currency">դրամ/հատ</span> -->
                             </div>

@@ -77,7 +77,10 @@
 
                                 <div class="price-row">
                                     <div class="price-container">
+                                        {% if product.discount_amount%}
                                         <span class="old-price">{{ product.old_price }}</span>
+                                        {% endif %}
+
                                         <span class="current-price">
                                             <b class="formatted-price">{{ product.price }}</b>
                                         </span>

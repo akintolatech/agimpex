@@ -13,39 +13,42 @@
   <div class="product-detail-container">
 
     <div class="product-gallery">
-      <div class="main-image-container">
-        {% if product.discount_amount %}
-          <span class="discount-badge">-{{ product.discount_percent }}%</span>
-        {% endif %}
+  <div class="main-image-container">
+      {% if product.discount_amount %}
+        <span class="discount-badge">-{{ product.discount_percent }}%</span>
+      {% endif %}
 
-        <img
-          src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-          class="main-image"
-          alt="{{ product.name }}"
-          id="main-product-image"
-        >
-      </div>
-
-      <div class="thumbnails">
-        <img
-          src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-          class="thumb active"
-          alt="{{ product.name }}"
-        >
-
-        <img
-          src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-          class="thumb"
-          alt="{{ product.name }}"
-        >
-
-        <img
-          src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-          class="thumb"
-          alt="{{ product.name }}"
-        >
-      </div>
+      <img
+        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        class="main-image"
+        alt="{{ product.name }}"
+        id="main-product-image"
+      >
     </div>
+
+    <div class="thumbnails">
+      <img
+        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        data-image="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        class="thumb active"
+        alt="{{ product.name }}"
+      >
+
+      <img
+        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        data-image="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        class="thumb"
+        alt="{{ product.name }}"
+      >
+
+      <img
+        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        data-image="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+        class="thumb"
+        alt="{{ product.name }}"
+      >
+    </div>
+  </div>
 
     <div class="product-specs">
       <div class="info-box">
@@ -81,8 +84,6 @@
         {% endfor %}
 
         {{ combinations_json|json_script:"combinations-data" }}
-
-      
 
           <input type="hidden" name="override" value="False">
 
@@ -135,6 +136,24 @@
     </div>
 
   </div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const mainImage = document.getElementById("main-product-image");
+    const thumbnails = document.querySelectorAll(".thumb");
+
+    thumbnails.forEach((thumb) => {
+      thumb.addEventListener("click", function () {
+        mainImage.src = this.dataset.image;
+
+        thumbnails.forEach((t) => t.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+  });
+</script>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

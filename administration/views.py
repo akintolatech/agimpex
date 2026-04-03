@@ -370,7 +370,6 @@ def delete_product(request, product_id):
     return redirect('administration:product_list')
 
 
-
 #Product Property
 @staff_member_required
 def product_property_list(request):

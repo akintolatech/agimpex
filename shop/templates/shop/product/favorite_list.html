@@ -7,13 +7,27 @@
 {% endblock %}
 
 {% block content %}
+<div class="page_hero">
+
+    <div class="">
+        <h1>{% trans "My favourites" %}</h1>
+        <!-- <h2>
+          {% trans "Your shopping cart" %}
+          <a href="{% url 'cart:cart_detail' %}" style="color: white;">
+            {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
+            <b class="formatted-price">{{ cart.get_total_price }}</b>
+          </a>  
+        </h2> -->
+    </div>
+
+</div>
 
 <div id="main">
         <div class="section">
 
-        <div class="section-header">
+        <!-- <div class="section-header">
             <h1>{% trans "My favourites" %}</h1>
-        </div>
+        </div> -->
 
 
         <div class="index_product-container">
@@ -80,7 +94,7 @@
                     </div>
                     <h3>{% trans "There are no favourite products here" %}</h3>
                     <a href="{% url 'shop:product_list' %}" >
-                    <button style="width:180px; height:44px; margin-bottom:12px;">{% trans "Continue shopping" %}</button>
+                    <button style="padding: 12px 24px; margin-bottom:12px;">{% trans "Continue shopping" %}</button>
                     </a>
                 </center>
             </div>

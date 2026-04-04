@@ -13,12 +13,8 @@ urlpatterns = [
         name='cart_add'
     ),
 
-    # path(
-    #
-    #     'remove/<int:product_id>/',
-    #     views.cart_remove,
-    #     name='cart_remove',
-    # ),
+    path('increment/<path:cart_key>/', views.cart_increment, name='cart_increment'),
+    path('decrement/<path:cart_key>/', views.cart_decrement, name='cart_decrement'),
 
     path('remove/<str:cart_key>/', views.cart_remove, name='cart_remove')
 

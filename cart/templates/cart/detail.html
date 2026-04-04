@@ -31,14 +31,6 @@
     {% with total_items=cart|length %}
 
       {% if total_items > 0 %}
-        <!-- <h2>
-          {% trans "Your shopping cart" %}
-          <a href="{% url 'cart:cart_detail' %}">
-            {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
-            <b class="formatted-price">{{ cart.get_total_price }}</b>
-          </a>  
-        </h2> -->
-
         <div class="cart-wrapper">
 
           <!-- LEFT: Cart Items -->
@@ -72,7 +64,7 @@
 
                   <!-- Quantity selector -->
                   <div class="quantity-control">
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post" style="display:inline;">
+                    <form action="{% url 'cart:cart_decrement' item.cart_key  %}" method="post" style="display:inline;">
                       {% csrf_token %}
                       <input type="hidden" name="quantity" value="{{ item.quantity|add:-1 }}">
                       <input type="hidden" name="override" value="True">
@@ -81,7 +73,7 @@
 
                     <span>{{ item.quantity }}</span>
 
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post" style="display:inline;">
+                    <form action="{% url 'cart:cart_increment' item.cart_key %}" method="post" style="display:inline;">
                       {% csrf_token %}
                       <input type="hidden" name="quantity" value="{{ item.quantity|add:1 }}">
                       <input type="hidden" name="override" value="True">
@@ -137,6 +129,7 @@
         </div>
       {% endif %}
     {% endwith %}
+
   </section>
 
 </div>

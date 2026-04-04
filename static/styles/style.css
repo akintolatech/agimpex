@@ -736,7 +736,6 @@ input[type="search"]{
 }
 
 
-
 button {
     width: auto;
     height: 48px;
@@ -775,7 +774,6 @@ input[type="submit"] {
 #main {
     width: 92%;
     margin: auto;
-    
     /* overflow: hidden; */
 }
 

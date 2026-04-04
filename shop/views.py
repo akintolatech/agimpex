@@ -37,6 +37,9 @@ def favorite_list(request):
     return render(request, 'shop/product/favorite_list.html', context)
 
 
+
+
+
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -60,14 +63,18 @@ def product_list(request, category_slug=None):
         },
     )
 
-
 def product_detail(request, id, slug):
-    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    product = get_object_or_404(
+        Product,
+        id=id,
+        slug=slug,
+        available=True
+    )
 
-    # Create a list of valid combinations for JS
-    # Example: [{"price": 5000, "values": [1, 5, 10]}, ...]
     combinations = []
-    for pricing in product.pricing_rows.prefetch_related('property_values'):
+    pricing_rows = product.pricing_rows.prefetch_related('property_values').all()
+
+    for pricing in pricing_rows:
         combinations.append({
             'price': str(pricing.price),
             'values': list(pricing.property_values.values_list('id', flat=True))
@@ -81,18 +88,31 @@ def product_detail(request, id, slug):
         {
             'product': product,
             'cart_product_form': cart_product_form,
-            'combinations_json': json.dumps(combinations)  # Pass this to JS
+            'combinations_json': combinations,
         },
     )
 
 
 # def product_detail(request, id, slug):
-#     product = get_object_or_404(
-#         Product, id=id, slug=slug, available=True
-#     )
+#     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+#
+#     # Create a list of valid combinations for JS
+#     # Example: [{"price": 5000, "values": [1, 5, 10]}, ...]
+#     combinations = []
+#     for pricing in product.pricing_rows.prefetch_related('property_values'):
+#         combinations.append({
+#             'price': str(pricing.price),
+#             'value_ids': list(pricing.property_values.values_list('id', flat=True))
+#         })
+#
 #     cart_product_form = CartAddProductForm()
+#
 #     return render(
 #         request,
 #         'shop/product/detail.html',
-#         {'product': product, 'cart_product_form': cart_product_form},
+#         {
+#             'product': product,
+#             'cart_product_form': cart_product_form,
+#             'combinations_json': json.dumps(combinations)  # Pass this to JS
+#         },
 #     )

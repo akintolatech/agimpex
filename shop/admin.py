@@ -7,7 +7,6 @@ admin.site.register(ProductPropertyValue)
 admin.site.register(ProductPricing)
 
 
-
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']

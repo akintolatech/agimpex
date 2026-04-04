@@ -8,20 +8,36 @@
 <link rel="stylesheet" href="{% static 'styles/cart.css' %}">
 {% endblock %}
 
+
 {% block content %}
+<div class="page_hero">
+
+    <div class="">
+        <h1>{% trans "Cart" %}</h1>
+        <h2>
+          {% trans "Your shopping cart" %}
+          <a href="{% url 'cart:cart_detail' %}" style="color: white;">
+            {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
+            <b class="formatted-price">{{ cart.get_total_price }}</b>
+          </a>  
+        </h2>
+    </div>
+
+</div>
+
 <div id="main">
 
-  <section class="cart-section" style="margin-top: 100px;">
+  <section class="cart-section">
     {% with total_items=cart|length %}
 
       {% if total_items > 0 %}
-        <h2>
+        <!-- <h2>
           {% trans "Your shopping cart" %}
           <a href="{% url 'cart:cart_detail' %}">
             {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
             <b class="formatted-price">{{ cart.get_total_price }}</b>
           </a>  
-        </h2>
+        </h2> -->
 
         <div class="cart-wrapper">
 
@@ -102,7 +118,7 @@
               {% csrf_token %}
             </form>
             <a href="{% url 'shop:product_list' %}" >
-             <button class="checkout-btn sec" style="margin-top: 24px;">{% trans "Continue shopping" %}</button>
+             <button class="checkout-btn sec" style="margin-top: 18px;">{% trans "Continue shopping" %}</button>
             </a>
           </aside>
 

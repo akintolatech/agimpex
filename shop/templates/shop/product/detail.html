@@ -13,42 +13,44 @@
   <div class="product-detail-container">
 
     <div class="product-gallery">
-  <div class="main-image-container">
-      {% if product.discount_amount %}
-        <span class="discount-badge">-{{ product.discount_percent }}%</span>
-      {% endif %}
 
-      <img
-        src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="main-image"
-        alt="{{ product.name }}"
-        id="main-product-image"
-      >
+      <div class="main-image-container">
+          {% if product.discount_amount %}
+            <span class="discount-badge">-{{ product.discount_percent }}%</span>
+          {% endif %}
+
+          <img
+            src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+            class="main-image"
+            alt="{{ product.name }}"
+            id="main-product-image"
+          >
+      </div>
+
+      <div class="thumbnails">
+        <img
+          src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          data-image="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb active"
+          alt="{{ product.name }}"
+        >
+
+        <img
+          src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          data-image="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+
+        <img
+          src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          data-image="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          class="thumb"
+          alt="{{ product.name }}"
+        >
+      </div>
+
     </div>
-
-    <div class="thumbnails">
-      <img
-        src="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        data-image="{% if product.thumbnail %}{{ product.thumbnail.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb active"
-        alt="{{ product.name }}"
-      >
-
-      <img
-        src="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        data-image="{% if product.thumbnail2 %}{{ product.thumbnail2.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb"
-        alt="{{ product.name }}"
-      >
-
-      <img
-        src="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        data-image="{% if product.thumbnail3 %}{{ product.thumbnail3.url }}{% elif product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
-        class="thumb"
-        alt="{{ product.name }}"
-      >
-    </div>
-  </div>
 
     <div class="product-specs">
       <div class="info-box">
@@ -66,28 +68,29 @@
           {% csrf_token %}
 
           {% for property in product.properties.all %}
-          <div class="spec-row">
-            <label for="property_{{ property.id }}">{{ property.name }}</label>
-            <select
-              name="property_{{ property.id }}"
-              id="property_{{ property.id }}"
-              required
-              class="property-select"
-              data-property-id="{{ property.id }}"
-            >
-              <option value="">Select {{ property.name }}</option>
-              {% for value in property.property_values.all %}
-                <option value="{{ value.id }}">{{ value.value }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        {% endfor %}
+            <div class="spec-row">
+              <label for="property_{{ property.id }}">{{ property.name }}</label>
+              <select
+                name="property_{{ property.id }}"
+                id="property_{{ property.id }}"
+                required
+                class="property-select"
+                data-property-id="{{ property.id }}"
+              >
+                <option value="">Select {{ property.name }}</option>
+                {% for value in property.property_values.all %}
+                  <option value="{{ value.id }}">{{ value.value }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          {% endfor %}
 
         {{ combinations_json|json_script:"combinations-data" }}
 
           <input type="hidden" name="override" value="False">
 
           <div class="purchase-bar" style="margin-top: 40px;">
+            
             <div class="price-section">
               <div class="price-row">
                 {% if product.old_price %}
@@ -104,7 +107,12 @@
                   </b>
                 </span>
               </div>
+
+              <!-- <div class="total-price-row" style="margin-top: 6px;">
+                <small>Total: ₦<span id="dynamic-total-price">{{ product.price }}</span></small>
+              </div> -->
             </div>
+
 
             <div class="actions">
               <div class="quantity-selector">
@@ -129,15 +137,19 @@
               <button type="submit" class="cart-btn">
                 <img src="{% static 'img/blue_cart.svg' %}" class="icon" alt="Add to cart">
               </button>
+
             </div>
           </div>
         </form>
+
+
       </div>
     </div>
 
   </div>
 
 
+<!-- CART MECHANICS -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const mainImage = document.getElementById("main-product-image");
@@ -156,86 +168,201 @@
 
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    // Check if the element exists and parse it correctly
-    const scriptElement = document.getElementById('combinations-data');
-    if (!scriptElement) {
-        console.error("Combinations data not found!");
-        return;
+document.addEventListener("DOMContentLoaded", function () {
+  const minusBtn = document.getElementById("minus-btn");
+  const plusBtn = document.getElementById("plus-btn");
+  const quantityInput = document.getElementById("quantity-input");
+  const priceElement = document.getElementById("dynamic-price");
+
+  const scriptElement = document.getElementById('combinations-data');
+  let combinations = [];
+  if (scriptElement) {
+    combinations = JSON.parse(scriptElement.textContent);
+    if (typeof combinations === 'string') combinations = JSON.parse(combinations);
+  }
+
+  const propertySelects = document.querySelectorAll('.property-select');
+  const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
+
+  function updatePrice() {
+    const quantity = parseInt(quantityInput.value) || 1;
+
+    // Find selected combination
+    const selectedValues = Array.from(propertySelects)
+      .map(select => parseInt(select.value))
+      .filter(v => !isNaN(v));
+
+    let comboPrice = basePrice;
+
+    const currentCombo = combinations.find(comb =>
+      comb.values.length === propertySelects.length &&
+      selectedValues.length === propertySelects.length &&
+      selectedValues.every(id => comb.values.includes(id))
+    );
+
+    if (currentCombo) comboPrice = parseFloat(currentCombo.price);
+
+    const totalPrice = comboPrice * quantity;
+    priceElement.textContent = totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  // Quantity buttons
+  minusBtn.addEventListener("click", () => {
+    let currentValue = parseInt(quantityInput.value) || 1;
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+      updatePrice();
     }
-
-    let combinations = JSON.parse(scriptElement.textContent);
-
-    // FIX: If combinations is somehow still a string (due to double encoding), parse it again
-    if (typeof combinations === 'string') {
-        combinations = JSON.parse(combinations);
-    }
-
-      const propertySelects = document.querySelectorAll('.property-select');
-      const priceElement = document.getElementById('dynamic-price');
-      const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
-
-      function updateOptions() {
-          // ... rest of your updateOptions logic from the previous message ...
-          const selectedValues = Array.from(propertySelects)
-              .map(s => parseInt(s.value))
-              .filter(v => !isNaN(v));
-
-          propertySelects.forEach(currentSelect => {
-              Array.from(currentSelect.options).forEach(option => {
-                  if (option.value === "") return;
-                  const valId = parseInt(option.value);
-
-                  // Now .some() will work because combinations is definitely an Array
-                  const isPossible = combinations.some(comb => {
-                      if (!comb.values.includes(valId)) return false;
-                      return selectedValues.every(selectedId => {
-                          const otherSelect = document.querySelector(`.property-select option[value="${selectedId}"]`).parentElement;
-                          if (otherSelect === currentSelect) return true;
-                          return comb.values.includes(selectedId);
-                      });
-                  });
-                  option.disabled = !isPossible;
-              });
-          });
-          
-          // Price update logic...
-          const currentCombo = combinations.find(comb => 
-              comb.values.length === propertySelects.length && // Must match ALL properties
-              selectedValues.length === propertySelects.length &&
-              selectedValues.every(id => comb.values.includes(id))
-          );
-
-          if (currentCombo) {
-              priceElement.textContent = parseFloat(currentCombo.price).toFixed(2);
-          }
-      }
-
-      propertySelects.forEach(select => select.addEventListener('change', updateOptions));
-      updateOptions();
   });
+
+  plusBtn.addEventListener("click", () => {
+    let currentValue = parseInt(quantityInput.value) || 1;
+    quantityInput.value = currentValue + 1;
+    updatePrice();
+  });
+
+  // Option change
+  propertySelects.forEach(select => select.addEventListener("change", updatePrice));
+
+  // Initial load
+  updatePrice();
+});
 </script>
 
-
-</div>
-
-<script>
+<!-- <script>
   document.addEventListener("DOMContentLoaded", function () {
     const minusBtn = document.getElementById("minus-btn");
     const plusBtn = document.getElementById("plus-btn");
     const quantityInput = document.getElementById("quantity-input");
+    const priceElement = document.getElementById("dynamic-price");
+    const totalPriceElement = document.getElementById("dynamic-price");
+
+    function updateTotalPrice() {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const unitPrice = parseFloat(priceElement.textContent.replace(/,/g, "")) || 0;
+      const total = unitPrice * quantity;
+
+      totalPriceElement.textContent = total.toLocaleString();
+    }
 
     minusBtn.addEventListener("click", function () {
       let currentValue = parseInt(quantityInput.value) || 1;
       if (currentValue > 1) {
         quantityInput.value = currentValue - 1;
+        updateTotalPrice();
       }
     });
 
     plusBtn.addEventListener("click", function () {
       let currentValue = parseInt(quantityInput.value) || 1;
       quantityInput.value = currentValue + 1;
+      updateTotalPrice();
     });
+
+    // Run once on page load
+    updateTotalPrice();
+  });
+</script> -->
+
+
+<!-- This is what constitutes the filter logic -->
+ <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const scriptElement = document.getElementById('combinations-data');
+    if (!scriptElement) {
+      console.error("Combinations data not found!");
+      return;
+    }
+
+    let combinations = JSON.parse(scriptElement.textContent);
+
+    // Safety: handle accidental double-encoded JSON
+    if (typeof combinations === 'string') {
+      combinations = JSON.parse(combinations);
+    }
+
+    const propertySelects = document.querySelectorAll('.property-select');
+    const priceElement = document.getElementById('dynamic-price');
+    const totalPriceElement = document.getElementById('dynamic-price');
+    const quantityInput = document.getElementById('quantity-input');
+
+    if (!priceElement) {
+      console.error("Price element #dynamic-price not found!");
+      return;
+    }
+
+    const basePrice = parseFloat(priceElement.dataset.basePrice || 0);
+
+    function updateTotalPrice() {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const unitPrice = parseFloat(priceElement.textContent.replace(/,/g, "")) || 0;
+      const total = unitPrice * quantity;
+
+      totalPriceElement.textContent = total.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function updateOptions() {
+      const selectedValues = Array.from(propertySelects)
+        .map(select => parseInt(select.value))
+        .filter(value => !isNaN(value));
+
+      // Enable/disable options based on valid combinations
+      propertySelects.forEach(currentSelect => {
+        Array.from(currentSelect.options).forEach(option => {
+          if (option.value === "") return;
+
+          const valId = parseInt(option.value);
+
+          const isPossible = combinations.some(comb => {
+            if (!comb.values.includes(valId)) return false;
+
+            return selectedValues.every(selectedId => {
+              const selectedOption = document.querySelector(`.property-select option[value="${selectedId}"]`);
+              if (!selectedOption) return true;
+
+              const otherSelect = selectedOption.parentElement;
+              if (otherSelect === currentSelect) return true;
+
+              return comb.values.includes(selectedId);
+            });
+          });
+
+          option.disabled = !isPossible;
+        });
+      });
+
+      // Find exact selected combination for price update
+      const currentCombo = combinations.find(comb =>
+        comb.values.length === propertySelects.length &&
+        selectedValues.length === propertySelects.length &&
+        selectedValues.every(id => comb.values.includes(id))
+      );
+
+      if (currentCombo) {
+        priceElement.textContent = parseFloat(currentCombo.price).toFixed(2);
+      } else {
+        priceElement.textContent = basePrice.toFixed(2);
+      }
+
+      // IMPORTANT: update total after changing unit price
+      updateTotalPrice();
+    }
+
+    propertySelects.forEach(select => {
+      select.addEventListener('change', updateOptions);
+    });
+
+    updateOptions();
   });
 </script>
+
+
+
+
+
+
+
 {% endblock %}

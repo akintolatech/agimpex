@@ -1,4 +1,3 @@
-
 from decimal import Decimal
 from django.db import models
 from django.urls import reverse
@@ -202,7 +201,6 @@ class ProductPropertyValue(models.Model):
 
     def __str__(self):
         return f"{self.product_property.name}: {self.value}"
-
 
 
 class ProductPricing(models.Model):

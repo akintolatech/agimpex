@@ -89,7 +89,7 @@
 /* Responsive */
 @media (max-width: 760px) {
   .services-section {
-    padding: 40px 20px;
+    /* padding: 40px 20px; */
   }
 
   .service-row {

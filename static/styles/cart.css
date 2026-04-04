@@ -2,9 +2,10 @@
 /* GENERAL CART SECTION */
 .cart-section {
   width: 100%;
-  padding: 24px 16px;
+  /* padding: 24px 16px; */
   box-sizing: border-box;
 }
+
 
 .cart-wrapper {
   width: 100%;
@@ -12,6 +13,7 @@
   grid-template-columns: minmax(0, 1.6fr) minmax(280px, 420px);
   gap: 20px;
   align-items: start;
+  margin-block: 32px;
 }
 
 /* LEFT PANEL */
@@ -30,7 +32,7 @@
   justify-content: space-between;
   align-items: stretch;
   gap: 18px;
-  padding: 14px 10px;
+  /* padding: 14px 10px; */
   border-bottom: 1px solid #ececec;
   flex-wrap: wrap;
   position: relative; /* for delete icon */
@@ -48,9 +50,7 @@
 }
 
 .cart-item-image {
-  width: 90px;
-  min-width: 90px;
-  height: 90px;
+  width: 100px;
   border-radius: 14px;
   background: #f6f6f6;
   overflow: hidden;
@@ -273,7 +273,7 @@
   background: var(--pry-color);
   color: #fff;
   border-radius: 999px;
-  height: 58px;
+  /* height: 58px; */
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;

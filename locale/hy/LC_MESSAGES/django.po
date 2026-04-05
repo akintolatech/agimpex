@@ -146,7 +146,7 @@ msgstr "Գլխավոր"
 #: website/templates/website/index.html:13
 #: website/templates/website/index.html:71
 msgid "Construction Materials"
-msgstr "Շինարարական նյութեր"
+msgstr "Ապրանքներ"
 
 #: website/templates/website/index.html:14
 msgid "Everything on One place"

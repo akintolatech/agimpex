@@ -67,19 +67,27 @@
                     </div>
                 </div>
 
-                <div class="product-info">
-                    <h3 class="product-title"> {{ product.name|truncatewords:3|linebreaks }}</h3>
-                    <div class="price-row">
-                        <div class="price-container">
-                            <span class="old-price">{{ product.old_price }}</span>
-                            <span class="current-price">{{ product.price }}</span>
-                            <span class="currency">$</span>
+               <div class="product-info">
+                    <div class="product-info-row">
+                        
+                        <div>
+                            <p style="margin: 0;">{{ product.name|truncatewords:3|linebreaksbr }}</p>
+                            <div class="price-container">
+                                {% if product.discount_amount%}
+                                    <span class="old-price">{{ product.old_price }}</span>
+                                {% endif %}
+                                <span class="current-price">{{ product.price }}</span>
+                                <span class="currency">dram/{{ product.unit_of_measure.unit }}</span>
+                            </div>
                         </div>
-                         <a href="{{ product.get_absolute_url }}">
+                        
+                        
+                        <a href="{{ product.get_absolute_url }}">
                             <button class="cart-btn">
                                 <img src="{% static 'img/blue_cart.svg' %}" class="icon" />
                             </button>
                         </a>
+
                     </div>
                 </div>
 

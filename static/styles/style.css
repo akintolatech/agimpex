@@ -774,7 +774,7 @@ input[type="submit"] {
 #main {
     width: 92%;
     margin: auto;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 
@@ -1032,6 +1032,7 @@ input[type="submit"] {
   border-radius: 8px;
   padding: 10px;
   box-shadow: var(--shadow);
+  /* border: 1px solid red; */
 }
 
 .product-title {
@@ -1039,13 +1040,15 @@ input[type="submit"] {
   color: #2c3e50;
   margin: 0 0 0px 0;
   margin-bottom: 0;
+  text-transform: capitalize;
 }
 
-.product-tile p {
-    margin-bottom: 0;
+.product-tile h3 p {
+    margin: 0;
 }
 
-.price-row {
+
+.product-info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1077,21 +1080,10 @@ input[type="submit"] {
   cursor: pointer;
   color: #003366; /* Dark blue from the image */
 
-
-
-
-
-
 }
 
 
 
-
-
-
-:root {
-    --pry-color: #003b63; /* adjust to your exact blue */
-}
 
 /* =========================
    MAIN BANNER
@@ -1381,7 +1373,7 @@ textarea {
 .footer {
     /* width: auto; */
     width: 100%;
-    padding-block: 80px;
+    padding-block: 40px;
     background-color: var(--pry-color);
     color: white;
 }
@@ -1392,12 +1384,7 @@ textarea {
 }
 
 
-/* for more larger screens */
-@media screen and (min-width:1400px) {
-    .footer-wrap {
-        width: 1400px;
-    }
-}
+
 
 ul {
     margin: 0;
@@ -1410,7 +1397,7 @@ li {
 }
 
 .footer_icn {
-    width: 32px;
+    width: 28px;
 }
 
 .footer-text-container {
@@ -1419,15 +1406,15 @@ li {
     justify-content: space-between;
 }
 
-/* for larger screens */
-@media screen and (min-width: 760px){
 
-    .footer-text-container {
-        flex-direction: row;
-        
+/* for more larger screens */
+@media screen and (min-width:1400px) {
+    .footer-wrap {
+        width: 1400px;
     }
-
 }
+
+
 
 .footer-text-container ul li{
     text-decoration: none;
@@ -1459,6 +1446,21 @@ li {
     text-decoration: none;
     margin: 0;
     padding: 0;
+}
+
+
+/* for larger screens */
+@media screen and (min-width: 760px){
+
+    .footer-text-container {
+        flex-direction: row;   
+    }
+
+    .footer-text-container ul {
+        margin-bottom: 0px;
+    }
+
+
 }
 
 /* Social media */

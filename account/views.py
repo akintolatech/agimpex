@@ -1,5 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
+from django.urls import reverse_lazy
+
 from .models import Profile
 
 from .forms import (
@@ -7,6 +10,22 @@ from .forms import (
     UserEditForm,
     ProfileEditForm
 )
+
+
+
+
+class CustomLoginView(LoginView):
+    template_name = 'registration/login.html'  # your custom login page
+
+    def get_success_url(self):
+        user = self.request.user
+
+        # Staff users go to admin/administration page
+        if user.is_staff:
+            return reverse_lazy('administration:administration')  # change to your admin page name
+
+        # Normal users go to normal dashboard
+        return reverse_lazy('website:index')
 
 
 def register(request):

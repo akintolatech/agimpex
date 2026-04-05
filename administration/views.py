@@ -1,7 +1,7 @@
 from decimal import Decimal, InvalidOperation
 
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.db import transaction
 from django.urls import reverse
 from django.contrib import messages
@@ -19,12 +19,13 @@ from administration.forms import EditCategoryForm, CreateCategoryForm, OrderAppr
 from orders.models import OrderItem
 from shop.models import Category, UnitOfMeasure, ProductProperty, Product, ProductPricing, ProductPropertyValue
 
-
+@login_required(login_url='login')
+# @user_passes_test(is_staff_user, login_url='login')
 @staff_member_required
 def administration_dashboard(request):
     today = date.today()
     last_30_days = [today - timedelta(days=i) for i in range(30)]  # Fetch data for last 7 days
-    #
+
     # # Fetching counts per day
     # deposits = (
     #     Deposit.objects.filter(created__gte=min(last_30_days))

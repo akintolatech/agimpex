@@ -93,7 +93,7 @@
             
             <div class="price-section">
               <div class="price-row">
-                {% if product.old_price %}
+                {% if product.discount_amount %}
                   <span class="old-price" id="old-price-display">{{ product.old_price }}</span>
                 {% endif %}
 
@@ -107,10 +107,6 @@
                   </b>
                 </span>
               </div>
-
-              <!-- <div class="total-price-row" style="margin-top: 6px;">
-                <small>Total: ₦<span id="dynamic-total-price">{{ product.price }}</span></small>
-              </div> -->
             </div>
 
 

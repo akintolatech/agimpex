@@ -57,14 +57,16 @@
             <span>Category</span>
         </a>
 
-        <a href="{% url 'administration:product_property_list' %}" class="menu-item {% if 'product_property' in request.resolver_match.url_name %}active{% endif %} ">
+        {% comment %}
+        <!-- <a href="{% url 'administration:product_property_list' %}" class="menu-item {% if 'product_property' in request.resolver_match.url_name %}active{% endif %} ">
             <div class="menu-icon"><img src="{% static 'img/info.svg' %}"/></div>
             <span>Product Property</span>
-        </a>
+        </a> -->
+        {% endcomment %}
 
         <a href="{% url 'administration:unit_of_measure_list' %}" class="menu-item {% if 'unit_of_measure' in request.resolver_match.url_name %}active{% endif %}">
             <div class="menu-icon"><img src="{% static 'img/balance.svg' %}"/></div>
-            <span>Unit of Measure</span>
+            <span>Units of Measure</span>
         </a>
 
         <a href="#" class="menu-item">

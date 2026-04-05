@@ -30,8 +30,8 @@ urlpatterns = [
 
 
     # Product Property
-    path('product_property_list/', views.product_property_list, name='product_property_list'),
-    path('create_product_property/', views.create_product_property, name='create_product_property'),
+    # path('product_property_list/', views.product_property_list, name='product_property_list'),
+    # path('create_product_property/', views.create_product_property, name='create_product_property'),
     # path('edit_product_property/<int:property_id>', views.edit_product_property, name='edit_product_property'),
     # path('delete_product_property/<int:unit_id>', views.delete_product_property, name='delete_product_property'),
 

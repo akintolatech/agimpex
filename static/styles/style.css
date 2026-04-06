@@ -8,7 +8,10 @@
     --border-gray: #e0e0e0;
     --text-gray: #666;
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
+    --header-height: 0px;
 }
+
+
 
 html, body {
     margin: 0;
@@ -30,6 +33,12 @@ html, body {
 
 body {
     /* background-color: whitesmoke; */
+}
+
+
+
+#main-content {
+    padding-top: var(--header-height);
 }
 
 a {
@@ -683,12 +692,10 @@ input[type="search"]{
 .page_hero {
     width: 100%;
     height: 300px;
-    
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* margin-top: 10px; */
     background-image: url("../img/banner-44.jpg");
     background-repeat: no-repeat;
     background-position: center center;
@@ -714,10 +721,6 @@ input[type="search"]{
         /* width: 48%; */
     }
 
-    .page_hero {
-        margin-top: 70px;
-    }
-
 }
 
 
@@ -741,7 +744,7 @@ button {
     /* border: 2px solid var(--pry-color); */
     cursor: pointer;
     border: none;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     color: var(--light);
     background-color: var(--dark);
     padding: 12px;
@@ -826,7 +829,7 @@ input[type="submit"] {
 
 .text-box {
     margin-bottom: 30px;
-    /* background-color: whitesmoke; */
+
     text-align: justify;
     color: var(--pry-color);
 }
@@ -837,7 +840,7 @@ input[type="submit"] {
 }
 
 .text-box h1 {
-    font-size: 58px;
+    font-size: clamp(2rem, 5vw, 58px);
 }
 
 /* .img-box {
@@ -879,7 +882,7 @@ input[type="submit"] {
 
 
 
-section {
+.section {
     margin: 60px auto;
     box-sizing: border-box;
 }
@@ -1108,9 +1111,36 @@ section {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
-    background: #f5f7fa;
     isolation: isolate;
 }
+
+
+/* =========================
+   REVERSE BANNER VERSION
+========================= */
+.transport-banner--reverse .transport-banner__image-wrap {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: clamp(10px, 3vw, 40px);
+}
+
+.transport-banner--reverse .transport-banner__bar {
+    margin-left: auto;
+    margin-right: clamp(12px, 3vw, 40px);
+}
+
+.transport-banner--reverse .transport-banner__title {
+    max-width: 100%;
+}
+
+.transport-banner--reverse .transport-banner__bar-inner {
+    justify-content: flex-end;
+}
+
+.transport-banner--reverse .transport-banner__title {
+    text-align: right;
+}
+
 
 /* =========================
    TRUCK IMAGE AREA
@@ -1474,6 +1504,13 @@ li {
 
 }
 
+.footer-social-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* Social media */
 .social-media{
     width: fit-content;
@@ -1490,8 +1527,8 @@ li {
 }
 
 .contact-icon{
-     width: 48px;
-     height: 48px;
+     width: 38px;
+     height: 38px;
      margin-right: 16px;
 }
 .contact-icon img{
@@ -1519,6 +1556,9 @@ li {
     margin: auto;
     padding: 40px;
 }
+
+
+
 
 
 .responsive-img {
@@ -1615,6 +1655,35 @@ li {
   background: #f8f8f8;
 }
 
+.upload-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    width: 100%;            
+    height: 64px;            
+    
+    border: 2px solid var(--pry-color); 
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .upload-container:hover {
+    background-color: #f0f9ff;
+  }
+
+  /* The Armenian text styling */
+  .upload-text {
+    font-family: sans-serif;
+    color: #333;
+    font-size: 16px;
+  }
+
+  /* Hide the default system button */
+  #pdf-upload {
+    display: none;
+  }
 
 /* Container Layout */
 .contact-detail-container {

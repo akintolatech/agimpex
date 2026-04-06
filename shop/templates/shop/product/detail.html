@@ -1,5 +1,6 @@
 {% extends "website/website_base.html" %}
 {% load static %}
+ {% load humanize l10n %}
 
 {% block title %}
   {{ product.name }}
@@ -94,7 +95,7 @@
             <div class="price-section">
               <div class="price-row">
                 {% if product.discount_amount %}
-                  <span class="old-price" id="old-price-display">{{ product.old_price }}</span>
+                  <span class="old-price" id="old-price-display">{{ product.old_price|unlocalize|floatformat:0|intcomma }}</span>
                 {% endif %}
 
                 <span class="current-price">
@@ -103,7 +104,7 @@
                     id="dynamic-price"
                     data-base-price="{{ product.price }}"
                   >
-                    {{ product.price }}
+                    {{ product.price|unlocalize|floatformat:0|intcomma }}
                   </b>
                 </span>
               </div>

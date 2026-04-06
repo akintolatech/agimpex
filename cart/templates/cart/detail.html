@@ -1,7 +1,7 @@
 {% extends "website/website_base.html" %}
 {% load i18n %}
 {% load static %}
-
+ {% load humanize l10n %}
 {% block title %}{% trans "Your shopping cart" %}{% endblock %}
 
 {% block style %}
@@ -18,7 +18,7 @@
           {% trans "Your shopping cart" %}
           <a href="{% url 'cart:cart_detail' %}" style="color: white;">
             {{ total_items }} {% trans "item" %}{{ total_items|pluralize }},
-            <b class="formatted-price">{{ cart.get_total_price }}</b>
+            <b >{{ cart.get_total_price|unlocalize|floatformat:0|intcomma }}</b>
           </a>  
         </h2>
     </div>
@@ -95,13 +95,13 @@
             {% for item in cart %}
               <div class="summary-row">
                 <span>{{ item.quantity }}x {{ item.product.name }} @</span>
-                <strong>{{ item.total_price }}</strong>
+                <strong>{{ item.total_price|unlocalize|floatformat:0|intcomma }}</strong>
               </div>
             {% endfor %}
 
             <div class="summary-total">
               <span>{% trans "Total"  %}:</span>
-              <strong>{{ cart.get_total_price }}</strong>
+              <strong>{{ cart.get_total_price|unlocalize|floatformat:0|intcomma }}</strong>
             </div>
 
             <form method="post" action="{% url 'orders:order_create' %}">

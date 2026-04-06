@@ -1,6 +1,7 @@
 {% extends "website/website_base.html" %}
 {% load i18n %}
 {% load static %}
+ {% load humanize l10n %}
 
 {% block title %}Agimpex: {% trans "Discount" %} {% endblock %}
 {% block style %}<link type="text/css" href="{% static 'styles/menu.css' %}" rel="stylesheet" />{% endblock %}
@@ -74,9 +75,9 @@
                                         <p style="margin: 0;">{{ product.name|truncatewords:3|linebreaksbr }}</p>
                                         <div class="price-container">
                                             {% if product.discount_amount%}
-                                                <span class="old-price">{{ product.old_price }}</span>
+                                                <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma }}</span>
                                             {% endif %}
-                                            <span class="current-price">{{ product.price }}</span>
+                                            <span class="current-price">{{ product.price|unlocalize|floatformat:0|intcomma }}</span>
                                             <span class="currency">dram/{{ product.unit_of_measure.unit }}</span>
                                         </div>
                                     </div>

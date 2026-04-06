@@ -1,7 +1,7 @@
 {% extends "website/website_base.html" %}
 {% load i18n %}
 {% load static %}
-
+{% load humanize l10n %}
 {% block title %}
   {% if category %}{{ category.name }}{% else %}Products{% endif %}
 {% endblock %}
@@ -78,11 +78,11 @@
                                 <div class="price-row">
                                     <div class="price-container">
                                         {% if product.discount_amount%}
-                                        <span class="old-price">{{ product.old_price }}</span>
+                                        <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma }}</span>
                                         {% endif %}
 
                                         <span class="current-price">
-                                            <b class="formatted-price">{{ product.price }}</b>
+                                            <b class="formatted-price">{{ product.price|unlocalize|floatformat:0|intcomma }}</b>
                                         </span>
                                         <!-- <span class="currency">դրամ/հատ</span> -->
                                     </div>

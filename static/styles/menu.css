@@ -6,7 +6,7 @@
 
 .menu-container {
     width: 100%;
-    max-width: 350px;
+    /* max-width: 350px; */
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -86,3 +86,33 @@ details[open] summary::after {
     font-size: 0.95rem;
     color: #444;
 }
+
+
+
+.shopping-header {
+    /* Layout */
+    display: flex;
+    justify-content: space-between; 
+    
+    /* Styling */
+    background-color: var(--pry-color);    
+    padding: 15px 30px;            
+    width: 100%;                  
+    box-sizing: border-box;    
+    /* margin-block: 40px; */
+  }
+
+  .header-text {
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cart-icon {
+    width: 35px;
+    height: 35px;
+    fill: white;
+  }

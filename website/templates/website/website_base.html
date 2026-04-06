@@ -237,11 +237,12 @@
     </div>
 
 
-    <div  class ="heading_spacer"></div>
+   
 
-    {% block content %}
-
-    {% endblock %}
+    <main id="main-content">
+        {% block content %}
+        {% endblock %}
+    </main>
 
 
   
@@ -261,45 +262,50 @@
                 </ul>
 
                 <ul>
-                    <center>
-                    <img src="{% static 'img/agimpexfooterlogo.png' %}"  alt="" width="260px"/>
-                   
-                    <li>
-                
-                        <div class="social-media">
+                    <div class="footer-social-container">
 
-                            <a href="https://www.facebook.com/agimpexarm" target="_blank">
-                                <div class="contact-icon">
-                                    <img src="{% static 'img/fb.svg' %}"/>
-                                </div>
-                            </a>
+                    
+                        <img src="{% static 'img/agimpexfooterlogo.png' %}"  alt="" width="260px"/>
+                    
+                        <li>
+                    
+                            <div class="social-media">
 
-                            <a href="https://www.instagram.com/agimpex.am?" target="_blank">
-                                <div class="contact-icon">
-                                    <img src="{% static 'img/insta.svg' %}"/>
-                                </div>
-                            </a>
+                                <a href="https://www.facebook.com/agimpexarm" target="_blank">
+                                    <div class="contact-icon">
+                                        <img src="{% static 'img/fb.svg' %}"/>
+                                    </div>
+                                </a>
 
-                            <a href="https://www.linkedin.com/company/ag-impex-llc/" target="_blank">
-                                <div class="contact-icon">
-                                    <img src="{% static 'img/link.svg' %}"/>
-                                </div>
-                            </a>
+                                <a href="https://www.instagram.com/agimpex.am?" target="_blank">
+                                    <div class="contact-icon">
+                                        <img src="{% static 'img/insta.svg' %}"/>
+                                    </div>
+                                </a>
 
-                            <a href="" target="_blank">
-                                <div class="contact-icon">
-                                    <img src="{% static 'img/tiktok.svg' %}"/>
-                                </div>
-                            </a>
+                                <a href="https://www.linkedin.com/company/ag-impex-llc/" target="_blank">
+                                    <div class="contact-icon">
+                                        <img src="{% static 'img/link.svg' %}"/>
+                                    </div>
+                                </a>
 
-                            <a href="" target="_blank">
-                                <div class="contact-icon">
-                                    <img src="{% static 'img/youtube.svg' %}"/> 
-                                </div>
-                            </a>
+                                <a href="" target="">
+                                    <div class="contact-icon">
+                                        <img src="{% static 'img/tiktok.svg' %}"/>
+                                    </div>
+                                </a>
 
-                    </li>
-                     </center>
+                                <a href="" target="">
+                                    <div class="contact-icon">
+                                        <img src="{% static 'img/youtube.svg' %}"/> 
+                                    </div>
+                                </a>
+                            </div>
+
+                        </li>
+
+                        
+                    </div>
                    
                 </ul>
                 
@@ -318,6 +324,20 @@
 
     </div>
 
+<script>
+    function updateHeaderHeight() {
+        const header = document.getElementById('header');
+        if (header) {
+            document.documentElement.style.setProperty(
+                '--header-height',
+                header.offsetHeight + 'px'
+            );
+        }
+    }
+
+    window.addEventListener('load', updateHeaderHeight);
+    window.addEventListener('resize', updateHeaderHeight);
+</script>
 
     
 </body>

@@ -15,7 +15,7 @@
 
 <div id="main">
 
-   <div class="contact-detail-container">
+   <div class="contact-detail-container" style="margin-top: 64px;">
         <div class="contact-detail-item">
             <div class="icon-circle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
@@ -52,45 +52,13 @@
 
     </div>
 
-    <!-- <div class="section">
-        <h1>{% trans "Contact Details" %}</h1>
-
-        <div class="contact-map-container">
-
-            <div class="contact-map-box">
-                <div id="map">
-                </div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3046.949050209317!2d44.52723591500024!3d40.21019627938956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406aa2cbf97cd585%3A0x7d4bb64064b8a92c!2zMjcg1LHVptWh1b_VuNaC1anVtdWh1bYg1brVuNWy1bjVv9WhLCDUtdaA1ofVodW2LCDVgNWh1bXVodW91b_VodW2!5e0!3m2!1shy!2s!4v1654158544151!5m2!1shy!2s" 
-                    width="100%" 
-                    height="450px" 
-                    style="border:0; margin: auto;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-
-            <div class="contact-map-details">
-                <h2 style="margin-top: 0;">{% trans "Reach Out" %}</h2>
-                <h3>{% trans "Address" %}</h3>
-                <p>Yerevan, Davit Anhaght 23/10 floor 5</p>
-
-                <h3>{% trans "Phone" %}</h3>
-                <p>+374 33 40 44 40</p>
-
-                <h3>{% trans "Email" %}</h3>
-                <p>info@agimpex.am</p>
-
-                <a href="tel:+37433404440" ><button style="margin-top: 30px; width: 160px;">{% trans "Call Now" %}</button></a>
-                
-            </div>
- 
-        </div>
-        
-    </div> -->
-
+    <!--Contact section -->
     <div class="section">
-        <h1>{% trans "Message" %}</h1>
+
+        <div class="section-header">
+             <h1>{% trans "Message" %}</h1>
+             <!-- <a href="#">View More</a> -->
+        </div>
         
         <form class="contact-container">
             <div class="input-row">
@@ -100,9 +68,15 @@
 
             <input type="text" placeholder="Subject">
 
-            <textarea placeholder="Your Message"></textarea>
+            <textarea placeholder="Your Message" ></textarea>
 
-            <button>{% trans "Send Message" %}</button>
+           <label for="pdf-upload" class="upload-container">
+                <span class="upload-text">Ներբեռնել ֆայլերը</span>
+            </label>
+
+            <input id="pdf-upload" type="file" accept=".pdf" />
+
+            <button >{% trans "Send Message" %}</button>
         </form>
         
     </div>

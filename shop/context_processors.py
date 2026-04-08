@@ -53,7 +53,6 @@ def product_list(request):
 
 
 
-
 def favorite_products(request):
     favorites = Favorites(request)
     return {

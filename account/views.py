@@ -12,8 +12,6 @@ from .forms import (
 )
 
 
-
-
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'  # your custom login page
 

@@ -280,7 +280,7 @@ def create_product(request):
                 # Save dynamic properties + pricing
                 save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
 
-                messages.success(request, 'Product created successfully.')
+                messages.success(request, f'{ product.name }Product created successfully.')
                 return redirect('administration:product_list')
             else:
                 messages.error(request, 'Please fix the form errors.')

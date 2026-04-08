@@ -228,6 +228,10 @@ a {
     color: #66728c;
     font-weight: 500;
     cursor: pointer;
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .icon-btn {

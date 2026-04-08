@@ -20,7 +20,7 @@ def product_list(request):
         'all_construction_goods': Product.objects.filter(
             category__slug='construction-materials',
             available=True
-        ).order_by('-created')[:5],
+        ).order_by('created')[:5],
 
         'total_construction_goods': Product.objects.filter(
             category__slug='construction-materials',

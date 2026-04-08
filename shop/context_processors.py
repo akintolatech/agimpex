@@ -15,7 +15,7 @@ def product_list(request):
         'construction_goods': Product.objects.filter(
             category__slug='construction-materials',
             available=True
-        ).order_by('-created')[:5],
+        ).order_by('created')[:5],
 
         'all_construction_goods': Product.objects.filter(
             category__slug='construction-materials',
@@ -25,29 +25,29 @@ def product_list(request):
         'total_construction_goods': Product.objects.filter(
             category__slug='construction-materials',
             available=True
-        ).order_by('-created'),
+        ).order_by('created'),
 
         'natural_stones': Product.objects.filter(
             category__slug='natural-stones',
             available=True
-        ).order_by('-created')[:5],
+        ).order_by('created')[:5],
 
         'all_natural_stones': Product.objects.filter(
             category__slug='natural-stones',
             available=True
-        ).order_by('-created'),
+        ).order_by('created'),
 
        'discounted_products': Product.objects.filter(
         available=True,
         old_price__isnull=False,
         old_price__gt=F('price')
-        ).order_by('-created')[:4],
+        ).order_by('created')[:4],
 
         'top_products': Product.objects.filter(
             available=True,
             old_price__isnull=False,
             old_price__gt=F('price')
-        ).order_by('-created')[:5],
+        ).order_by('created')[:5],
 
     }
 

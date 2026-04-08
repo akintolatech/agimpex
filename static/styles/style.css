@@ -18,7 +18,6 @@ html, body {
     padding: 0;
     box-sizing: border-box;
     font-family: Montserrat-Regular;
-
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -237,7 +236,7 @@ summary::after {
     position: absolute;
     top: 110%;
     left: 0;
-    min-width: 170px;
+    /* min-width: 170px; */
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);

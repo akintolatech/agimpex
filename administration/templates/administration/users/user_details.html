@@ -1,4 +1,5 @@
 {% extends "administration/admin_base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %} User Profile {% endblock %}
 {% block content %}
@@ -11,62 +12,59 @@
 
 
 <!-- Top Banner -->
-    <div class="banner"></div>
+<div class="banner"></div>
 
-    <!-- Profile Summary Card -->
-    <div class="profile-card">
-      <div class="avatar-wrap">
-        <!-- Replace with your real image -->
-        <img src="{% if user_account.user.profile.photo %} {{ user_account.user.profile.photo.url }} {% else %} {% static 'img/user.jpg' %}  {% endif %}" alt="Profile" class="avatar">
-        <button class="edit-avatar">✎</button>
+<!-- Profile Summary Card -->
+<div class="profile-card">
+  <div class="avatar-wrap">
+    <!-- Replace with your real image -->
+    <img src="{% if user_account.user.profile.photo %} {{ user_account.user.profile.photo.url }} {% else %} {% static 'img/user.jpg' %}  {% endif %}" alt="{% trans 'Profile' %}" class="avatar">
+    <button class="edit-avatar">✎</button>
+  </div>
+
+  <div class="profile-text">
+    <h2>{{ user_account.user.username }}</h2>
+    <p>{% trans "CEO / Co-Founder" %}</p>
+  </div>
+</div>
+
+<!-- Form Section -->
+<div class="form-card">
+  <h3 class="form-title">{% trans "Profile Information" %}</h3>
+
+  <form class="profile-form">
+    <div class="grid">
+      <div class="field">
+        <label for="fullname">{% trans "Full Name" %}</label>
+        <input type="text" id="fullname" value="{{ user_account.user.username }}">
       </div>
 
-      <div class="profile-text">
-        <h2>{{ user_account.user.username }}</h2>
-        <p>CEO / Co-Founder</p>
+      <div class="field">
+        <label for="email">{% trans "Email" %}</label>
+        <input type="email" id="email" value="{{ user_account.user.email }}">
+      </div>
+
+      <div class="field">
+        <label for="phone">{% trans "Phone" %}</label>
+        <input type="text" id="phone" value="{{ user_account.user.profile.phone_number }}">
+      </div>
+
+      <div class="field">
+        <label for="location">{% trans "Location" %}</label>
+        <input type="text" id="location" placeholder="{% trans 'Location' %}">
+      </div>
+
+      <div class="field full">
+        <label for="about">{% trans "About Me" %}</label>
+        <textarea id="about" placeholder="{% trans 'Say something about yourself' %}"></textarea>
       </div>
     </div>
 
-    <!-- Form Section -->
-    <div class="form-card">
-      <h3 class="form-title">Profile Information</h3>
-
-      <form class="profile-form">
-        <div class="grid">
-          <div class="field">
-            <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" value="{{ user_account.user.username }}">
-          </div>
-
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" value="{{ user_account.user.email }}">
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" value="{{ user_account.user.profile.phone_number }}">
-          </div>
-
-          <div class="field">
-            <label for="location">Location</label>
-            <input type="text" id="location" placeholder="Location">
-          </div>
-
-          <div class="field full">
-            <label for="about">About Me</label>
-            <textarea id="about" placeholder="Say something about yourself"></textarea>
-          </div>
-        </div>
-
-        <div class="btn-row">
-          <button type="submit" class="save-btn">SAVE CHANGES</button>
-        </div>
-      </form>
+    <div class="btn-row">
+      <button type="submit" class="save-btn">{% trans "SAVE CHANGES" %}</button>
     </div>
-
-
-
+  </form>
+</div>
 
 
 

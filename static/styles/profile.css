@@ -5,7 +5,7 @@
     border-radius: 18px;
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, #ff9a5a, #f66b3d, #de4d52, #a63b66);
+    background: linear-gradient(135deg, #e9110e, #f6a93d, #4d8ade, #603ba6);
 }
 
 .banner::before {

@@ -27,12 +27,16 @@
     {% block extra_scripts %} {% endblock %}
 </head>
 <body>
+
+
     <div id="page-loader">
         <div class="loader-content">
             <div class="spinner"></div>
             <p>{% trans "Loading..." %}</p>
         </div>
     </div>
+
+
     <div id="header">
 
         <div class="header_contact_bar">
@@ -66,17 +70,17 @@
                         <div class="language-menu">
                             <a href="/hy/" class="language-option">
                                 <img src="{% static 'img/hy.png' %}" alt="Armenian">
-                                <span>Arm</span>
+                                <!-- <span>Arm</span> -->
                             </a>
 
                             <a href="/ru/" class="language-option">
                                 <img src="{% static 'img/ru.png' %}" alt="Russian">
-                                <span>Ru</span>
+                                <!-- <span>Ru</span> -->
                             </a>
 
                             <a href="/en/" class="language-option">
                                 <img src="{% static 'img/en.png' %}" alt="English">
-                                <span>En</span>
+                                <!-- <span>En</span> -->
                             </a>
                         </div>
                     </div>

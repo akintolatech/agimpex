@@ -119,7 +119,7 @@ class CreateCategoryForm(forms.ModelForm):
 class EditCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ['name', 'icon']
+        fields = ['name',  'name_hy', 'name_ru']
 
         # widgets = {
         #     # 'username': forms.TextInput(attrs={'readonly': 'readonly'}),
@@ -132,7 +132,7 @@ class EditCategoryForm(forms.ModelForm):
 class CreateProductPropertyForm(forms.ModelForm):
     class Meta:
         model = ProductProperty
-        fields = ['name']
+        fields = ['name', 'name_hy', 'name_ru']
 
 
 class EditUProductPropertyForm(forms.ModelForm):

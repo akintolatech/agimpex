@@ -328,113 +328,297 @@ document.addEventListener('DOMContentLoaded', function () {
     const addPropertyBtn = document.getElementById('addPropertyBtn');
     const addRowBtn = document.getElementById('addRowBtn');
 
-    let properties = [];
+    const languages = ['en', 'hy', 'ru']; // supported languages
+    let properties = []; // array of objects {en: '', hy: '', ru: ''}
 
-    function reindexRows() {
-        const rows = tableBody.querySelectorAll('tr');
-        rows.forEach((row, idx) => {
-            const indexCell = row.querySelector('td.row-index');
-            if (indexCell) {
-                indexCell.textContent = idx + 1;
-            }
-        });
-    }
+    /** -------------------------------
+     * Add new property input fields
+     * ------------------------------- */
+    function addPropertyInput(existingProp = null) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'property-input-wrapper';
+        const propData = {};
 
-    function reindexRowInputs() {
-        const rows = tableBody.querySelectorAll('tr');
+        languages.forEach(lang => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = `property_name_${lang}[]`;
+            input.className = 'custom-input';
+            input.placeholder = `Property Name (${lang.toUpperCase()})`;
+            input.required = true;
 
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('td');
+            if (existingProp) input.value = existingProp[lang] || '';
 
-            // structure:
-            // 0 = index
-            // 1..properties.length = property cells
-            properties.forEach((prop, index) => {
-                const input = cells[index + 1]?.querySelector('input');
-                if (input) {
-                    input.name = `row_val_${index}[]`;
+            input.addEventListener('input', () => {
+                const allWrappers = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper'));
+                const idx = allWrappers.indexOf(wrapper);
+                if (idx >= 0) {
+                    languages.forEach(l => {
+                        properties[idx][l] = allWrappers[idx].querySelector(`input[name="property_name_${l}[]"]`).value;
+                    });
+                    updateTableStructure();
                 }
             });
+
+            wrapper.appendChild(input);
+            propData[lang] = existingProp ? existingProp[lang] || '' : '';
         });
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.innerHTML = '&times;';
+        removeBtn.className = 'btn btn-danger btn-sm';
+        removeBtn.style = "width:40px; height:40px; padding:0; margin-left:4px;";
+        removeBtn.addEventListener('click', () => {
+            const idx = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper')).indexOf(wrapper);
+            if (idx >= 0) {
+                properties.splice(idx, 1);
+                wrapper.remove();
+                updateTableStructure();
+            }
+        });
+
+        wrapper.appendChild(removeBtn);
+        propertyContainer.appendChild(wrapper);
+        properties.push(propData);
+
+        updateTableStructure();
     }
 
+    /** -------------------------------
+     * Update pricing table structure
+     * ------------------------------- */
     function updateTableStructure() {
         tableHeader.innerHTML = '';
-
-        // Index header
         const indexTh = document.createElement('th');
         indexTh.textContent = '#';
         tableHeader.appendChild(indexTh);
 
-        // Dynamic property headers
+        // Add property headers (use EN by default)
         properties.forEach((prop, index) => {
             const th = document.createElement('th');
-            const propName = prop || `Property ${index + 1}`;
-            th.textContent = propName;
+            th.textContent = prop['en'] || `Property ${index + 1}`;
             tableHeader.appendChild(th);
         });
 
-        // Price header
         const priceTh = document.createElement('th');
         priceTh.textContent = 'Price (AMD)';
         tableHeader.appendChild(priceTh);
 
-        // Action header
         const actionTh = document.createElement('th');
         actionTh.textContent = 'Action';
         tableHeader.appendChild(actionTh);
 
-        // Update data-labels + input names for all existing rows
+        // Update all rows
         const rows = tableBody.querySelectorAll('tr');
         rows.forEach(row => {
             const cells = row.querySelectorAll('td');
 
-            // Remove all old property cells first
-            while (cells.length > properties.length + 3) {
-                // total expected = index + properties + price + action
-                row.removeChild(cells[cells.length - 3]); 
+            // Remove excess property cells
+            while (cells.length > properties.length + 2) {
+                row.removeChild(cells[1]);
             }
 
-            // Add missing property cells if needed
-            while (row.querySelectorAll('td').length < properties.length + 3) {
+            // Add missing property cells
+            while (row.querySelectorAll('td').length < properties.length + 2) {
                 const td = document.createElement('td');
-                const propIndex = row.querySelectorAll('td').length - 1; // after index
                 td.innerHTML = `<input type="text" class="custom-input" required placeholder="Value...">`;
-
-                const priceCell = row.querySelectorAll('td')[row.querySelectorAll('td').length - 2];
+                const priceCell = row.querySelectorAll('td')[row.querySelectorAll('td').length - 1];
                 row.insertBefore(td, priceCell);
             }
 
-            const updatedCells = row.querySelectorAll('td');
-
-            // Update property cells labels and names
-            properties.forEach((prop, index) => {
-                const td = updatedCells[index + 1];
-                if (td) {
-                    td.setAttribute('data-label', prop || `Property ${index + 1}`);
-                    const input = td.querySelector('input');
-                    if (input) {
-                        input.name = `row_val_${index}[]`;
-                    }
-                }
+            // Update property inputs names
+            properties.forEach((prop, idx) => {
+                const td = row.querySelectorAll('td')[idx + 1];
+                const input = td.querySelector('input');
+                if (input) input.name = `row_val_${idx}[]`;
             });
 
-            // Update price/action positions labels
-            const priceCell = updatedCells[properties.length + 1];
-            const actionCell = updatedCells[properties.length + 2];
-
+            // Update price and action data-labels
+            const priceCell = row.querySelectorAll('td')[properties.length + 1];
             if (priceCell) priceCell.setAttribute('data-label', 'Price (AMD)');
-            if (actionCell) actionCell.setAttribute('data-label', 'Action');
         });
 
         addRowBtn.disabled = properties.length === 0;
-
-        if (properties.length === 0) {
-            tableBody.innerHTML = '';
-        }
+        if (properties.length === 0) tableBody.innerHTML = '';
     }
 
-    addPropertyBtn.addEventListener('click', function () {
+    /** -------------------------------
+     * Add new pricing row
+     * ------------------------------- */
+    addRowBtn.addEventListener('click', () => {
+        const row = document.createElement('tr');
+        const indexTd = document.createElement('td');
+        indexTd.className = 'row-index';
+        indexTd.textContent = tableBody.children.length + 1;
+        row.appendChild(indexTd);
+
+        properties.forEach((prop, index) => {
+            const td = document.createElement('td');
+            td.innerHTML = `<input type="text" name="row_val_${index}[]" class="custom-input" required placeholder="Value...">`;
+            row.appendChild(td);
+        });
+
+        const priceTd = document.createElement('td');
+        priceTd.innerHTML = `<input type="number" step="0.01" name="row_price[]" class="custom-input" required placeholder="0.00">`;
+        row.appendChild(priceTd);
+
+        const actionTd = document.createElement('td');
+        actionTd.innerHTML = `<button type="button" class="btn btn-danger btn-sm remove-row-btn">Remove</button>`;
+        row.appendChild(actionTd);
+
+        tableBody.appendChild(row);
+    });
+
+    /** -------------------------------
+     * Remove pricing row
+     * ------------------------------- */
+    tableBody.addEventListener('click', e => {
+        if (e.target.classList.contains('remove-row-btn')) {
+            e.target.closest('tr').remove();
+            // Reindex
+            tableBody.querySelectorAll('tr').forEach((row, idx) => {
+                row.querySelector('.row-index').textContent = idx + 1;
+            });
+        }
+    });
+
+    /** -------------------------------
+     * Pre-fill existing properties (edit mode)
+     * ------------------------------- */
+    if (window.existing_pricing_data) {
+        window.existing_pricing_data.properties.forEach(prop => addPropertyInput(prop));
+
+        window.existing_pricing_data.rows.forEach(row => {
+            addRowBtn.click();
+            const lastRow = tableBody.lastChild;
+            row.values.forEach((val, idx) => {
+                lastRow.querySelectorAll('td')[idx + 1].querySelector('input').value = val;
+            });
+            lastRow.querySelectorAll('td')[properties.length + 1].querySelector('input').value = row.price;
+        });
+    }
+
+    // Initialize with one property if empty (optional)
+    if (!window.existing_pricing_data) addRowBtn.disabled = true;
+});
+</script>
+
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const propertyContainer = document.getElementById('propertyInputsContainer');
+        const tableHeader = document.getElementById('tableHeader');
+        const tableBody = document.getElementById('tableBody');
+        const addPropertyBtn = document.getElementById('addPropertyBtn');
+        const addRowBtn = document.getElementById('addRowBtn');
+
+        let properties = [];
+
+        function reindexRows() {
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach((row, idx) => {
+                const indexCell = row.querySelector('td.row-index');
+                if (indexCell) {
+                    indexCell.textContent = idx + 1;
+                }
+            });
+        }
+
+        function reindexRowInputs() {
+            const rows = tableBody.querySelectorAll('tr');
+
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+
+                // structure:
+                // 0 = index
+                // 1..properties.length = property cells
+                properties.forEach((prop, index) => {
+                    const input = cells[index + 1]?.querySelector('input');
+                    if (input) {
+                        input.name = `row_val_${index}[]`;
+                    }
+                });
+            });
+        }
+
+        function updateTableStructure() {
+            tableHeader.innerHTML = '';
+
+            // Index header
+            const indexTh = document.createElement('th');
+            indexTh.textContent = '#';
+            tableHeader.appendChild(indexTh);
+
+            // Dynamic property headers
+            properties.forEach((prop, index) => {
+                const th = document.createElement('th');
+                const propName = prop || `Property ${index + 1}`;
+                th.textContent = propName;
+                tableHeader.appendChild(th);
+            });
+
+            // Price header
+            const priceTh = document.createElement('th');
+            priceTh.textContent = 'Price (AMD)';
+            tableHeader.appendChild(priceTh);
+
+            // Action header
+            const actionTh = document.createElement('th');
+            actionTh.textContent = 'Action';
+            tableHeader.appendChild(actionTh);
+
+            // Update data-labels + input names for all existing rows
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+
+                // Remove all old property cells first
+                while (cells.length > properties.length + 3) {
+                    // total expected = index + properties + price + action
+                    row.removeChild(cells[cells.length - 3]); 
+                }
+
+                // Add missing property cells if needed
+                while (row.querySelectorAll('td').length < properties.length + 3) {
+                    const td = document.createElement('td');
+                    const propIndex = row.querySelectorAll('td').length - 1; // after index
+                    td.innerHTML = `<input type="text" class="custom-input" required placeholder="Value...">`;
+
+                    const priceCell = row.querySelectorAll('td')[row.querySelectorAll('td').length - 2];
+                    row.insertBefore(td, priceCell);
+                }
+
+                const updatedCells = row.querySelectorAll('td');
+
+                // Update property cells labels and names
+                properties.forEach((prop, index) => {
+                    const td = updatedCells[index + 1];
+                    if (td) {
+                        td.setAttribute('data-label', prop || `Property ${index + 1}`);
+                        const input = td.querySelector('input');
+                        if (input) {
+                            input.name = `row_val_${index}[]`;
+                        }
+                    }
+                });
+
+                // Update price/action positions labels
+                const priceCell = updatedCells[properties.length + 1];
+                const actionCell = updatedCells[properties.length + 2];
+
+                if (priceCell) priceCell.setAttribute('data-label', 'Price (AMD)');
+                if (actionCell) actionCell.setAttribute('data-label', 'Action');
+            });
+
+            addRowBtn.disabled = properties.length === 0;
+
+            if (properties.length === 0) {
+                tableBody.innerHTML = '';
+            }
+        }
+
+        addPropertyBtn.addEventListener('click', function () {
         const wrapper = document.createElement('div');
         wrapper.className = 'property-input-wrapper';
 
@@ -491,6 +675,63 @@ document.addEventListener('DOMContentLoaded', function () {
         updateTableStructure();
     });
 
+    // addPropertyBtn.addEventListener('click', function () {
+    //     const wrapper = document.createElement('div');
+    //     wrapper.className = 'property-input-wrapper';
+
+    //     const input = document.createElement('input');
+    //     input.type = 'text';
+    //     input.name = 'property_names[]';
+    //     input.className = 'custom-input';
+    //     input.placeholder = 'Property Name';
+    //     input.required = true;
+
+    //     const removeBtn = document.createElement('button');
+    //     removeBtn.type = 'button';
+    //     removeBtn.innerHTML = '&times;';
+    //     removeBtn.className = 'btn btn-danger btn-sm';
+    //     removeBtn.style = "width:40px; height: 40px; padding:0; margin-left:4px;";
+
+    //     input.addEventListener('input', () => {
+    //         const allInputs = Array.from(propertyContainer.querySelectorAll('input[name="property_names[]"]'));
+    //         const idx = allInputs.indexOf(input);
+    //         properties[idx] = input.value;
+    //         updateTableStructure();
+    //     });
+
+    //     removeBtn.addEventListener('click', () => {
+    //         const allInputs = Array.from(propertyContainer.querySelectorAll('input[name="property_names[]"]'));
+    //         const idx = allInputs.indexOf(input);
+
+    //         // Remove property from array
+    //         properties.splice(idx, 1);
+
+    //         // Remove that column from every row (idx + 1 because td[0] is row index)
+    //         const rows = tableBody.querySelectorAll('tr');
+    //         rows.forEach(row => {
+    //             const cells = row.querySelectorAll('td');
+    //             const targetCell = cells[idx + 1];
+    //             if (targetCell) {
+    //                 targetCell.remove();
+    //             }
+    //         });
+
+    //         // Remove input wrapper
+    //         wrapper.remove();
+
+    //         // Rebuild headers + rename remaining inputs
+    //         updateTableStructure();
+    //         reindexRowInputs();
+    //     });
+
+    //     wrapper.appendChild(input);
+    //     wrapper.appendChild(removeBtn);
+    //     propertyContainer.appendChild(wrapper);
+
+    //     properties.push("");
+    //     updateTableStructure();
+    // });
+
     addRowBtn.addEventListener('click', function () {
         const row = document.createElement('tr');
 
@@ -531,7 +772,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-</script>
+</script> -->
 
 <script>
     function setupImagePreview(inputId, previewId, placeholderId) {

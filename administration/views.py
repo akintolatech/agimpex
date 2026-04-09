@@ -267,24 +267,19 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
             pricing.property_values.set(selected_values)
 
 
-@transaction.atomic
+
 @transaction.atomic
 def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-
         try:
             if form.is_valid():
                 product = form.save()
-
-                # Save dynamic properties + pricing
                 save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
-
-                messages.success(request, f'{ product.name }Product created successfully.')
+                messages.success(request, f'{product.name} created successfully.')
                 return redirect('administration:product_list')
             else:
                 messages.error(request, 'Please fix the form errors.')
-
         except Exception as e:
             messages.error(request, f'Error creating product: {str(e)}')
     else:
@@ -292,9 +287,36 @@ def create_product(request):
 
     context = {
         'form': form,
+        'existing_pricing_data': None,
     }
-
     return render(request, 'administration/product/create_product.html', context)
+# def create_product(request):
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES)
+#
+#         try:
+#             if form.is_valid():
+#                 product = form.save()
+#
+#                 # Save dynamic properties + pricing
+#                 save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
+#
+#                 messages.success(request, f'{ product.name }Product created successfully.')
+#                 return redirect('administration:product_list')
+#             else:
+#                 messages.error(request, 'Please fix the form errors.')
+#
+#         except Exception as e:
+#             messages.error(request, f'Error creating product: {str(e)}')
+#     else:
+#         form = ProductForm()
+#
+#     context = {
+#         'form': form,
+#     }
+#
+#     return render(request, 'administration/product/create_product.html', context)
+
 
 @transaction.atomic
 @transaction.atomic
@@ -303,61 +325,104 @@ def edit_product(request, product_id):
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
-
         try:
             if form.is_valid():
                 product = form.save()
-
-                # Rebuild pricing structure from submitted form
                 save_or_rebuild_product_pricing_structure(request, product, rebuild=True)
-
                 messages.success(request, f'{product.name} updated successfully.')
                 return redirect('administration:product_list')
             else:
                 messages.error(request, 'Please fix the form errors.')
-
         except Exception as e:
             messages.error(request, f'Error updating product: {str(e)}')
     else:
         form = ProductForm(instance=product)
 
-    # Build existing data for edit template JS
+    # Build existing data for JS
     properties = list(product.properties.all().order_by('id'))
-
     existing_pricing_data = {
-        'properties': [prop.name for prop in properties],
+        'properties': [
+            {'en': p.name, 'hy': p.name_hy, 'ru': p.name_ru} for p in properties
+        ],
         'rows': []
     }
 
-    pricing_rows = product.pricing_rows.prefetch_related(
-        'property_values',
-        'property_values__product_property'
-    ).all()
-
-    for pricing in pricing_rows:
-        row_map = {}
-
-        for pv in pricing.property_values.all():
-            row_map[pv.product_property_id] = pv.value
-
-        ordered_values = []
-        for prop in properties:
-            ordered_values.append(row_map.get(prop.id, ''))
-
+    for pricing in product.pricing_rows.prefetch_related('property_values', 'property_values__product_property'):
+        row_map = {pv.product_property_id: pv.value for pv in pricing.property_values.all()}
+        ordered_values = [row_map.get(p.id, '') for p in properties]
         existing_pricing_data['rows'].append({
             'values': ordered_values,
             'price': str(pricing.price)
         })
 
     context = {
-        'product': product,
         'form': form,
+        'product': product,
         'existing_pricing_data': existing_pricing_data,
     }
-
     return render(request, 'administration/product/edit_product.html', context)
 
 
+# def edit_product(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES, instance=product)
+#
+#         try:
+#             if form.is_valid():
+#                 product = form.save()
+#
+#                 # Rebuild pricing structure from submitted form
+#                 save_or_rebuild_product_pricing_structure(request, product, rebuild=True)
+#
+#                 messages.success(request, f'{product.name} updated successfully.')
+#                 return redirect('administration:product_list')
+#             else:
+#                 messages.error(request, 'Please fix the form errors.')
+#
+#         except Exception as e:
+#             messages.error(request, f'Error updating product: {str(e)}')
+#     else:
+#         form = ProductForm(instance=product)
+#
+#     # Build existing data for edit template JS
+#     properties = list(product.properties.all().order_by('id'))
+#
+#     existing_pricing_data = {
+#         'properties': [prop.name for prop in properties],
+#         'rows': []
+#     }
+#
+#     pricing_rows = product.pricing_rows.prefetch_related(
+#         'property_values',
+#         'property_values__product_property'
+#     ).all()
+#
+#     for pricing in pricing_rows:
+#         row_map = {}
+#
+#         for pv in pricing.property_values.all():
+#             row_map[pv.product_property_id] = pv.value
+#
+#         ordered_values = []
+#         for prop in properties:
+#             ordered_values.append(row_map.get(prop.id, ''))
+#
+#         existing_pricing_data['rows'].append({
+#             'values': ordered_values,
+#             'price': str(pricing.price)
+#         })
+#
+#     context = {
+#         'product': product,
+#         'form': form,
+#         'existing_pricing_data': existing_pricing_data,
+#     }
+#
+#     return render(request, 'administration/product/edit_product.html', context)
+#
+#
 @login_required
 @transaction.atomic
 def delete_product(request, product_id):

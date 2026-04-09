@@ -1,4 +1,5 @@
 {% extends "administration/admin_base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %} Admin: Category {% endblock %}
 {% block styles %}
@@ -8,7 +9,7 @@
 {% block content %}
     <div class="form-page">
         <div class="form-wrapper">
-            <h3>Edit Category: {{ category.name }}</h3>
+            <h3>{% trans "Edit Category" %}: {{ category.name }}</h3>
 
             <form method="post" enctype="multipart/form-data" class="product-form">
                 {% csrf_token %}
@@ -16,8 +17,8 @@
                 {{ form.as_p }}
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Update Category</button><br/>
-                <a href="{% url 'administration:category_list' %}">Cancel</a>
+                <button type="submit" class="btn btn-primary">{% trans "Update Category" %}</button><br/>
+                <a href="{% url 'administration:category_list' %}">{% trans "Cancel" %}</a>
             </form>
         </div>
     </div>

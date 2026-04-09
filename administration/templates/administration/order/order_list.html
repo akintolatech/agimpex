@@ -1,4 +1,5 @@
 {% extends "administration/admin_base.html" %}
+{% load i18n %}
 {% load static %}
 {% block title %} Admin: Order{% endblock %}
 {% block styles %}
@@ -7,34 +8,34 @@
 
 {% block content %}
 
-   <div class="table_container"></div>
+<div class="table_container"></div>
         <div class="table-wrapper">
             <div class="title_container">
-                <h2 class="table-title">Orders</h2>
+                <h2 class="table-title">{% trans "Orders" %}</h2>
                 <!-- <a href="{% url 'administration:create_category' %}">Create Order?</a> -->
             </div>
             
             <table class="modern-table">
                 <thead>
                     <tr>
-                        <th>Email</th>
-                        <th>Desc</th>
-                        <th>Created</th>
-                        <th>Price</th>
-                        <th>Paid</th>
-                        <th colspan="2">Actions</th>
+                        <th>{% trans "Email" %}</th>
+                        <th>{% trans "Desc" %}</th>
+                        <th>{% trans "Created" %}</th>
+                        <th>{% trans "Price" %}</th>
+                        <th>{% trans "Paid" %}</th>
+                        <th colspan="2">{% trans "Actions" %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for order in order_item %}
                     <tr>
-                        <td data-label="Email">{{ order.order.email }}</td>
-                        <td data-label="Desc">{{ order.product.name }}</td>
-                        <td data-label="Created">{{ order.order.created }}</td>
-                        <td data-label="Price">{{ order.price}}</td>
-                        <td data-label="Paid">{{ order.order.paid}}</td>
+                        <td data-label="{% trans 'Email' %}">{{ order.order.email }}</td>
+                        <td data-label="{% trans 'Desc' %}">{{ order.product.name }}</td>
+                        <td data-label="{% trans 'Created' %}">{{ order.order.created }}</td>
+                        <td data-label="{% trans 'Price' %}">{{ order.price}}</td>
+                        <td data-label="{% trans 'Paid' %}">{{ order.order.paid}}</td>
                         
-                        <td data-label="Action">
+                        <td data-label="{% trans 'Action' %}">
 
                             <a href="#">
                                 <img src="{% static 'img/gavel.svg' %}" />
@@ -45,8 +46,8 @@
                             <button type="submit" 
                                    
                                     style="background: none; border: none; padding: 0; cursor: pointer;"
-                                    title="Delete Order">
-                                <img src="{% static 'img/mail.svg' %}" alt="Delete"/>
+                                    title="{% trans 'Delete Order' %}">
+                                <img src="{% static 'img/mail.svg' %}" alt="{% trans 'Delete' %}"/>
                             </button>
                         </form>
 
@@ -55,7 +56,7 @@
                     </tr>
                     {% empty %}
                     <tr >
-                        <td colspan="6"><span class="status status-inactive">There are no orders here</span></td>
+                        <td colspan="6"><span class="status status-inactive">{% trans "There are no orders here" %}</span></td>
                     </tr>
                     {% endfor %}
                 </tbody>

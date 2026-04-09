@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-08 15:59+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2026-04-09 18:39+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.10.3\n"
 
 #: administration/templates/administration/admin_base.html:32
 msgid "Agimpex"
@@ -233,23 +234,23 @@ msgstr "Հաջորդ"
 
 #: website/templates/website/index.html:75
 msgid "Together towards one goal"
-msgstr "Համատեղ մեկ նպատակով"
+msgstr "ՇԻՆԱՐԱՐԱԿԱՆ ԱՊՐԱՆՔՆԵՐ"
 
 #: website/templates/website/index.html:77
 msgid "Everything on One place"
-msgstr "Ամենը մեկտեղ"
+msgstr "ԱՆՄԻՋԱՊԵՍ ԱՐՏԱԴՐՈՂՆԵՐԻՑ"
 
 #: website/templates/website/index.html:84
 msgid "Natural stone materials"
-msgstr "Բնական քարեր"
+msgstr "ԲՆԱԿԱՆ ՔԱՐԵՐԻ"
 
 #: website/templates/website/index.html:85
 msgid "Wide range of products"
-msgstr "Ապրանքների լայն տեսականի"
+msgstr "ԼԱՅՆ ՏԵՍԱԿԱՆԻ"
 
 #: website/templates/website/index.html:92
 msgid "Construction products"
-msgstr "Շինարարական ապրանքներ"
+msgstr "ՄԻԱՍԻՆ ԴԵՊԻ ՄԵԿ ՆՊԱՏԱԿ"
 
 #: website/templates/website/index.html:93
 msgid "Directly from manufacturers"
@@ -257,27 +258,37 @@ msgstr "Համենայն առաջինից արտադրողներից"
 
 #: website/templates/website/index.html:112
 msgid "Reliable Partner"
-msgstr "Ազնիվ գործընկեր"
+msgstr ""
+"Վստահելի\n"
+"գործընկեր"
 
 #: website/templates/website/index.html:119
 msgid "Specialized Team"
-msgstr "Մասնագիտական թիմ"
+msgstr ""
+"Մասնագիտացված\n"
+"թիմ"
 
 #: website/templates/website/index.html:126
 msgid "Quality Product Range"
-msgstr "Որակյալ ապրանքների տեսականի"
+msgstr ""
+"Որակյալ\n"
+"ապրանքատեսականի"
 
 #: website/templates/website/index.html:133
 msgid "Fast and Reliable Delivery"
-msgstr "Արագ և վստահելի առաքում"
+msgstr ""
+"Արագ և հուսալի\n"
+"առաքում"
 
 #: website/templates/website/index.html:140
 msgid "Competitive Prices"
-msgstr "Բարեկազմային գներ"
+msgstr "Մրցունակ գներ"
 
 #: website/templates/website/index.html:153
 msgid "Construction Materials"
-msgstr "Շինանյութեր"
+msgstr ""
+"Շինարարական\n"
+"Ապրանքներ"
 
 #: website/templates/website/index.html:161
 #: website/templates/website/index.html:369
@@ -287,15 +298,19 @@ msgstr "Շինանյութեր"
 #: website/templates/website/website_base.html:220
 #: website/templates/website/website_base.html:263
 msgid "Natural Stones"
-msgstr "Բնական քարեր"
+msgstr "Բնական Քարեր"
 
 #: website/templates/website/index.html:169
 msgid "Polymer Materials"
-msgstr "Պոլիմերային նյութեր"
+msgstr ""
+"Պոլիմերային\n"
+"Նյութեր"
 
 #: website/templates/website/index.html:177
 msgid "Bituminous Materials"
-msgstr "Բիտումային նյութեր"
+msgstr ""
+"Նավթաքիմիական\n"
+"Նյութեր"
 
 #: website/templates/website/index.html:188
 msgid "Special offers"
@@ -309,27 +324,15 @@ msgstr "Մեր մասին"
 #: website/templates/website/index.html:266
 msgid ""
 "\n"
-"                \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to "
-"become a reliable and long-term partner in the construction sector in "
-"Armenia.\n"
-"                For more than 7 years, we have been providing the Armenian "
-"market with high-quality, certified construction goods at competitive prices "
-"through both import and wholesale/retail sales, satisfying the requirements "
-"of both large construction companies and individual customers.\n"
-"                Starting from 2026, \"AG IMPEX\" LLC is also entering the "
-"market with two new brands: Metals Holding and Prime Stone.\n"
+"                \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
+"                For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.\n"
+"                Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
 "                "
 msgstr ""
 "\n"
-"                \"AG IMPEX\" ՍՊԸ-ն հիմնադրվել է 2018 թվականին մեկ հստակ "
-"նպատակով՝ դառնալու վստահելի և երկարաժամկետ գործընկեր շինարարության ոլորտում "
-"Հայաստանում։\n"
-"                Ավելի քան 7 տարի մենք տրամադրում ենք հայկական շուկային "
-"բարձրորակ, վերահսկված շինարարական ապրանքներ մրցունակ գներով՝ ներմուծման և "
-"մեծածախ/փոքրածախ վաճառքի միջոցով, բավարարելով ինչպես խոշոր շինարարական "
-"ընկերությունների, այնպես էլ անհատական հաճախորդների պահանջները։\n"
-"                2026 թվականից «AG IMPEX» ՍՊԸ-ն նույնպես մտնում է շուկա երկու "
-"նոր ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
+"                \"AG IMPEX\" ՍՊԸ-ն հիմնադրվել է 2018 թվականին մեկ հստակ նպատակով՝ դառնալու վստահելի և երկարաժամկետ գործընկեր շինարարության ոլորտում Հայաստանում։\n"
+"                Ավելի քան 7 տարի մենք տրամադրում ենք հայկական շուկային բարձրորակ, վերահսկված շինարարական ապրանքներ մրցունակ գներով՝ ներմուծման և մեծածախ/փոքրածախ վաճառքի միջոցով, բավարարելով ինչպես խոշոր շինարարական ընկերությունների, այնպես էլ անհատական հաճախորդների պահանջները։\n"
+"                2026 թվականից «AG IMPEX» ՍՊԸ-ն նույնպես մտնում է շուկա երկու նոր ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
 "                "
 
 #: website/templates/website/index.html:283
@@ -378,7 +381,7 @@ msgstr "Այստեղ որոնման արդյունքներ չկան"
 
 #: website/templates/website/services.html:16
 msgid "Our Services"
-msgstr "Մեր ծառայությունները"
+msgstr "Ծառայություններ"
 
 #: website/templates/website/services.html:18
 msgid ""
@@ -395,28 +398,15 @@ msgstr "Պատվիրել հիմա"
 #: website/templates/website/services.html:35
 msgid ""
 "\n"
-"                    \"AG IMPEX\" LLC was founded in 2018 with one clear "
-"goal: to become a reliable and long-term partner in the construction sector "
-"in Armenia.\n"
-"                    For more than 7 years, we have been providing the "
-"Armenian market with high-quality, certified construction goods at "
-"competitive prices through both import and wholesale/retail sales, "
-"satisfying the requirements of both large construction companies and "
-"individual customers.\n"
-"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
-"the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
+"                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
 "                    "
 msgstr ""
 "\n"
-"                    «AG IMPEX» ՍՊԸ-ն հիմնադրվել է 2018 թվականին մեկ հստակ "
-"նպատակով՝ դառնալու վստահելի և երկարաժամկետ գործընկեր շինարարության ոլորտում "
-"Հայաստանում։\n"
-"                    Ավելի քան 7 տարի մենք տրամադրում ենք հայկական շուկային "
-"բարձրորակ, վերահսկված շինարարական ապրանքներ մրցունակ գներով՝ ներմուծման և "
-"մեծածախ/փոքրածախ վաճառքի միջոցով, բավարարելով ինչպես խոշոր շինարարական "
-"ընկերությունների, այնպես էլ անհատական հաճախորդների պահանջները։\n"
-"                    2026 թվականից «AG IMPEX» ՍՊԸ-ն նույնպես մտնում է շուկա "
-"երկու նոր ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
+"                    «AG IMPEX» ՍՊԸ-ն հիմնադրվել է 2018 թվականին մեկ հստակ նպատակով՝ դառնալու վստահելի և երկարաժամկետ գործընկեր շինարարության ոլորտում Հայաստանում։\n"
+"                    Ավելի քան 7 տարի մենք տրամադրում ենք հայկական շուկային բարձրորակ, վերահսկված շինարարական ապրանքներ մրցունակ գներով՝ ներմուծման և մեծածախ/փոքրածախ վաճառքի միջոցով, բավարարելով ինչպես խոշոր շինարարական ընկերությունների, այնպես էլ անհատական հաճախորդների պահանջները։\n"
+"                    2026 թվականից «AG IMPEX» ՍՊԸ-ն նույնպես մտնում է շուկա երկու նոր ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
 "                    "
 
 #: website/templates/website/services.html:41
@@ -430,17 +420,13 @@ msgstr "Առաքում"
 #: website/templates/website/services.html:59
 msgid ""
 "\n"
-"                    Expanding the field of activity, we also offer a "
-"delivery service.\n"
-"                    It includes the following: cargo loading, "
-"transportation, handling.\n"
+"                    Expanding the field of activity, we also offer a delivery service.\n"
+"                    It includes the following: cargo loading, transportation, handling.\n"
 "                    "
 msgstr ""
 "\n"
-"                    Գործունեության ոլորտը ընդլայնելով՝ մենք նաև առաջարկում "
-"ենք առաքման ծառայություն։\n"
-"                    Այն ներառում է հետևյալը՝ բեռների լիցքավորում, փոխադրում, "
-"հետազոտում։\n"
+"                    Գործունեության ոլորտը ընդլայնելով՝ մենք նաև առաջարկում ենք առաքման ծառայություն։\n"
+"                    Այն ներառում է հետևյալը՝ բեռների լիցքավորում, փոխադրում, հետազոտում։\n"
 "                    "
 
 #: website/templates/website/services.html:67
@@ -462,18 +448,13 @@ msgstr "Բեռնափոխադրում"
 #: website/templates/website/services.html:81
 msgid ""
 "\n"
-"                    In order to ensure the most comfort of our partners and "
-"the high quality\n"
-"                    of cargo transportation, we replenish the range of "
-"existing vehicles and\n"
+"                    In order to ensure the most comfort of our partners and the high quality\n"
+"                    of cargo transportation, we replenish the range of existing vehicles and\n"
 "                    have different types of trucks, bitumen trucks, etc.\n"
 "                    "
 msgstr ""
 "\n"
-"                    Մեր գործընկերների հարմարավետությունն ու բեռների "
-"փոխադրման բարձր որակը ապահովելու համար, մենք համալրում ենք առկա "
-"տրանսպորտային միջոցների շարքը՝ ունենալով տարբեր տեսակի բեռնատարներ, "
-"բիտումային բեռնատարներ և այլն։\n"
+"                    Մեր գործընկերների հարմարավետությունն ու բեռների փոխադրման բարձր որակը ապահովելու համար, մենք համալրում ենք առկա տրանսպորտային միջոցների շարքը՝ ունենալով տարբեր տեսակի բեռնատարներ, բիտումային բեռնատարներ և այլն։\n"
 "                    "
 
 #: website/templates/website/services.html:95
@@ -502,22 +483,22 @@ msgstr "Կատալոգներ"
 
 #: website/templates/website/website_base.html:167
 msgid "Login/Sign in"
-msgstr "Մուտք / Գրանցվել"
+msgstr "Մուտք"
 
 #: website/templates/website/website_base.html:185
 msgid "Favourites"
-msgstr "Սիրվածներ"
+msgstr "Ընտրվածներ"
 
 #: website/templates/website/website_base.html:209
 #: website/templates/website/website_base.html:261
 msgid "SPECIAL OFFER"
-msgstr "ՄԱՐԴԱՅԻՆ ԱՌԱՋԱՐԿ"
+msgstr "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ"
 
 #: website/templates/website/website_base.html:209
 #: website/templates/website/website_base.html:261
 #, python-format
 msgid "UP TO 25%%"
-msgstr "ՄԵՐՆՈՒՄ 25%%"
+msgstr "ԶԵՂՉ %"
 
 #: website/templates/website/website_base.html:260
 msgid "Quick Links"

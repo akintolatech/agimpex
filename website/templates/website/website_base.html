@@ -29,11 +29,15 @@
 <body>
 
 
-    <div id="page-loader">
+    <!-- <div id="page-loader">
         <div class="loader-content">
             <div class="spinner"></div>
             <p>{% trans "Loading..." %}</p>
         </div>
+    </div> -->
+
+    <div id="page-loader">
+      <img src="{% static 'img/5.gif' %}" />
     </div>
 
 
@@ -107,7 +111,6 @@
                     <script src="{% static 'js/toggle.js' %}"></script>
             
                     <div class="nav">
-        
                         <svg version="1.1"  x="0px" y="0px"
                             viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve">
                             
@@ -118,7 +121,6 @@
                             </g>
 
                         </svg>
-
                     </div>  
 
                 </div>
@@ -126,7 +128,7 @@
                 <div class="searchbox">
               
                    <form class="input-container" method="get" action="{% url 'website:search' %}" id="searchForm">
-                        <input type="search" name="q" placeholder="{% trans 'Search' %}" value="{{ request.GET.q }}">
+                        <input type="search" name="q" placeholder="{% trans 'Search' %}..." value="{{ request.GET.q }}">
 
                         <span class="search-icon" onclick="document.getElementById('searchForm').submit();" style="cursor: pointer;">
                             <img src="{% static 'img/search.svg' %}" class="icon" />
@@ -218,7 +220,7 @@
                 {% endfor %} -->
                 <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a>
                 <a href="{% url 'website:natural_stones' %}" class="nav-item">{% trans "Natural Stones" %}</a>
-                <a href="{% url 'website:services' %}" class="nav-item">{% trans "Services" %}</a>
+                <a href="{% url 'website:index' %}#transport-section" class="nav-item">{% trans "Services" %}</a>
                 <a href="{% url 'website:contact' %}" class="nav-item">{% trans "Contact" %}</a>
             </div>
         </div>

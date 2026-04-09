@@ -96,12 +96,12 @@ summary::after {
     margin-left: 10px;
 }
 
-/* #page-loader {
+#page-loader {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
-    background: rgba(20, 20, 20, 0.25)
+    background: rgba(20, 20, 20, 0.25);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     display: flex;
@@ -109,9 +109,9 @@ summary::after {
     align-items: center;
     z-index: 99999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-} */
+}
 
-#page-loader {
+/* #page-loader {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -127,11 +127,12 @@ summary::after {
   opacity: 0.9;
   transition: all 0.3s ease;
 }
+
 #page-loader img {
   display: block;
   width: 100%;
   max-width: 100%;
-}
+} */
 
 
 

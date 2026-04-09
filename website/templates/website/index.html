@@ -184,7 +184,7 @@
     <div class="section">
 
         <div class="section-header">
-            <h1>{% trans "Special offers" %}</h1>
+            <h1>{% trans "Special offers" %}%</h1>
         </div>
 
         <div class="index_product-container">
@@ -263,9 +263,18 @@
             <h1>{% trans "About us" %}</h1>
             <p>
                 {% blocktrans %}
-                "AG IMPEX" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
-                For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.
-                Starting from 2026, "AG IMPEX" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.
+                    "AG IMPEX" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
+                {% endblocktrans %}
+            </p>
+            <p>
+                {% blocktrans %}
+                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, 
+                    satisfying the requirements of both large construction companies and individual customers.
+                {% endblocktrans %}
+            </p>
+            <p>
+                {% blocktrans %}
+                    Starting from 2026, "AG IMPEX" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.
                 {% endblocktrans %}
             </p>
         </div>
@@ -280,7 +289,6 @@
 
             <div class="section-header">
                 <h1>{% trans "Construction Goods" %}</h1>
-                <!-- <a href="#">View More</a> -->
             </div>
 
             <div class="stones-slider-wrap">
@@ -323,7 +331,7 @@
                             </div>
                         </div>
 
-                        <div class="product-info">
+                        <div class="product-info" style="margin-top: 12px;">
                             <div class="product-info-row">
                                 
                                 <div>

@@ -31,7 +31,7 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "MontserratArm", sans-serif;
+    font-family: "MontserratArm";
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -791,7 +791,7 @@ input[type="submit"] {
 #main {
     width: 92%;
     margin: auto;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 
@@ -804,12 +804,12 @@ input[type="submit"] {
 
 
 .stats_box {
-    /* width: 90%; */
+    /* font-family: "MontserratArm"; */
     border-radius: var(--radius);
-    background-color: rgb(235, 234, 234);
+    background: #F7F7F7;
     padding: 40px;
     box-sizing: border-box;
-    box-shadow: 1px 1px 1px var(--dark);
+    box-shadow: 0px 0px 13.07px -3.79px #003151;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -828,6 +828,10 @@ input[type="submit"] {
 
 .stat-item h2 {
     font-weight: bolder
+}
+
+.stat-item p {
+    text-align: center;
 }
 
 
@@ -858,12 +862,6 @@ input[type="submit"] {
 .text-box h1 {
     font-size: clamp(2rem, 5vw, 58px);
 }
-
-/* .img-box {
-    width: 100%;
-    border: 1px solid red; 
-} */
-
 
 .img-box img {
     width: 100%;
@@ -939,14 +937,18 @@ input[type="submit"] {
 }
 
 .cat_item_textbox{
-    height: 54px;
+    height: 87px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 9px;
     margin-top: 12px;
     background-color: white;
     color: var(--pry-color);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border: 2px solid #9797972E;
+    text-align: center;
+
 }
 
 .cat_item_textbox:hover{

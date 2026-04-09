@@ -32,11 +32,13 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+
     'account.apps.AccountConfig',
     'modeltranslation',
     "website.apps.WebsiteConfig",
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
+    'rosetta',
     'shop.apps.ShopConfig',
     "administration.apps.AdministrationConfig",
     'django.contrib.admin',

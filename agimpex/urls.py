@@ -32,7 +32,7 @@ urlpatterns  += i18n_patterns (
     path('admin/', admin.site.urls),
     path('', include('website.urls')),
     path('account/', include('account.urls')),
-    path('rosetta/', include('rosetta.urls')),
+    # path('rosetta/', include('rosetta.urls')),
     path('shop/', include('shop.urls', namespace="shop")),
     path('cart/', include('cart.urls', namespace="cart")),
     path('orders/', include('orders.urls', namespace='orders')),

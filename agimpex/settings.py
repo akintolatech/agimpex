@@ -30,9 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 # Application definition
-
 INSTALLED_APPS = [
-
     'account.apps.AccountConfig',
     'modeltranslation',
     "website.apps.WebsiteConfig",

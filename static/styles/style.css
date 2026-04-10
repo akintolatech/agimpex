@@ -28,6 +28,14 @@
   font-style: normal;
 }
 
+/* Bold */
+@font-face {
+  font-family: "MontserratArm";
+  src: url("../fonts/marm/Montserratarm-Bold.otf") format("opentype");
+  font-weight: 700; /* Changed from 800 to 600 */
+  font-style: normal;
+}
+
 /* ExtraBold */
 @font-face {
   font-family: "MontserratArm";
@@ -1452,9 +1460,9 @@ textarea {
 }
 
 
-/* footer */
+/* FOOTER*/
 .footer {
-    /* width: auto; */
+
     width: 100%;
     padding-block: 40px;
     background-color: var(--pry-color);
@@ -1465,8 +1473,6 @@ textarea {
     width: 95%;
     margin: auto;
 }
-
-
 
 
 ul {
@@ -1497,12 +1503,10 @@ li {
     }
 }
 
-
-
 .footer-text-container ul li{
     text-decoration: none;
     list-style-type: none;
-    margin-bottom: 12px;
+    margin-bottom: 32px;
     cursor: pointer;
     display: flex;
     gap: 12px;
@@ -1513,15 +1517,32 @@ li {
 
 .footer-text-container ul {
     margin-bottom: 30px;
+    /* border: 1px solid red; */
+    max-width: 430px;
 }
 
 .footer-text-container ul a{
     color: white;
 }
 
+.footer-text-container ul a li {
+    font-family: Montserrat arm;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
 .footer-heading {
-    font-size: 24px;
-    font-weight: bold;
+    font-family: Montserrat arm;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    /* leading-trim: NONE; */
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding-left: 32px;
 }
 
 
@@ -1551,6 +1572,20 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.footer-contact-icons {
+    /* width: 42px; */
+    display: inline-flex;
+    gap: 6px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.footer-contact-icons img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
 }
 
 /* Social media */
@@ -1598,10 +1633,6 @@ li {
     margin: auto;
     padding: 40px;
 }
-
-
-
-
 
 .responsive-img {
     width: 100%;

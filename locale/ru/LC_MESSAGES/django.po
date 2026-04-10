@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 00:58+0100\n"
+"POT-Creation-Date: 2026-04-10 05:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 #: administration/templates/administration/order/order_list.html:32
 #: administration/templates/administration/users/user_details.html:43
 #: website/templates/website/contact.html:49
-#: website/templates/website/website_base.html:323
+#: website/templates/website/website_base.html:338
 msgid "Email"
 msgstr "Эл. почта"
 
@@ -153,6 +153,7 @@ msgstr "Полное имя"
 
 #: administration/templates/administration/users/user_details.html:48
 #: website/templates/website/website_base.html:322
+#: website/templates/website/website_base.html:329
 msgid "Phone"
 msgstr "Телефон"
 
@@ -273,7 +274,7 @@ msgid "Message"
 msgstr "Сообщение"
 
 #: website/templates/website/contact.html:79
-#: website/templates/website/index.html:588
+#: website/templates/website/index.html:591
 msgid "Send Message"
 msgstr "Отправить сообщение"
 
@@ -451,6 +452,32 @@ msgstr "Перевозка битума"
 msgid "Our Partners"
 msgstr "Наши партнеры"
 
+#: website/templates/website/index.html:577
+#, fuzzy
+#| msgid "Full Name"
+msgid "Name"
+msgstr "Полное имя"
+
+#: website/templates/website/index.html:578
+#, fuzzy
+#| msgid "Address"
+msgid "Email Address"
+msgstr "Адрес"
+
+#: website/templates/website/index.html:581
+msgid "Subject"
+msgstr ""
+
+#: website/templates/website/index.html:583
+#, fuzzy
+#| msgid "Message"
+msgid "Your Message"
+msgstr "Сообщение"
+
+#: website/templates/website/index.html:586
+msgid "Upload Files"
+msgstr ""
+
 #: website/templates/website/natural_stones.html:17
 msgid "Wide range / Large variety"
 msgstr "Широкий ассортимент / Большой выбор"
@@ -599,6 +626,10 @@ msgstr "Быстрые ссылки"
 #: website/templates/website/website_base.html:320
 msgid "Contact us"
 msgstr "Связаться с нами"
+
+#: website/templates/website/website_base.html:321
+msgid ": Yerevan, Davit Anhaght 23/10 floor 5 "
+msgstr ""
 
 #~ msgid "Freight Transport / Shipping"
 #~ msgstr "Грузоперевозки / Доставка"

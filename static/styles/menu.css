@@ -116,3 +116,57 @@ details[open] summary::after {
     height: 35px;
     fill: white;
   }
+
+
+
+
+
+
+  /* Container */
+.category-menu-container {
+    width: 320px;
+    border: 1px solid #0b4a6f;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.category-menu-header {
+    background: #063a5b;
+    color: #fff;
+    /* padding: 14px 16px; */
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Each item */
+.category-menu-item {
+    border-top: 1px solid #0b4a6f;
+}
+
+/* Button */
+.category-menu-button {
+    width: 100%;
+    background: #fff;
+    border: none;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #063a5b;
+}
+
+/* Plus icon */
+/* .category-menu-button::after {
+    content: "+";
+    font-size: 18px;
+    font-weight: bold;
+    color: #063a5b;
+} */
+
+/* Optional hover effect */
+.category-menu-button:hover {
+    background: #f2f7fb;
+}

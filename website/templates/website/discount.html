@@ -11,7 +11,34 @@
         <div class="shop-container">
 
             <div class="aside-container">
-                <div class="menu-container">
+
+                <div class="category-menu-container">
+
+                    <div class="category-menu-header" class="menu-item highlight {% if not category %}selected{% endif %}">
+                        <a href="{% url 'shop:product_list' %}" class="category-menu-header" style="color: white;">
+                            {% trans "Product Categories" %}
+                        </a>
+                    </div>
+
+
+                    {% for c in categories %}
+                    <div class="category-menu-item" 
+                        class="menu-item 
+                                {% if category.slug == c.slug %}selected{% endif %}" 
+                        >
+                       
+                                <a href="{{ c.get_absolute_url }}">
+                            <button class="category-menu-button">
+                                {{ c.name }}
+                            </button>
+                        </a>
+                    </div>
+                    {% endfor %}
+  
+                </div>
+
+
+                <!-- <div class="menu-container">
                     <div class="menu-item highlight {% if not category %}selected{% endif %}">
                         <a href="{% url 'shop:product_list' %}" class="header-link">
                             {% trans "Product Categories" %}
@@ -29,7 +56,11 @@
                             </div>
                         </details>
                     {% endfor %}
-                </div>
+                </div> -->
+
+               
+
+
             </div>
 
             <div class="container-of-containers">

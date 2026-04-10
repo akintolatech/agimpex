@@ -69,23 +69,8 @@
     </button>
 
     <div class="hero-slider">
-        <div class="hero-slide hero-slide--1">
-            <div class="hero-slide-inner">
-                <div class="hero-text-box">
-                    <h2>{% trans "Together towards one goal" %}</h2>  
-                    <h3>{% trans "Everything on One place" %}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="hero-slide hero-slide--2">
-            <div class="hero-slide-inner">
-                <div class="hero-text-box">
-                    <h2>{% trans "Natural stone materials" %}</h2>
-                    <h3>{% trans "Wide range of products" %}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="hero-slide hero-slide--3">
+
+         <div class="hero-slide hero-slide--1">
             <div class="hero-slide-inner">
                 <div class="hero-text-box">
                     <h2 >{% trans "Construction products" %}</h2>
@@ -93,6 +78,27 @@
                 </div>
             </div>
         </div>
+
+          <div class="hero-slide hero-slide--2">
+            <div class="hero-slide-inner">
+                <div class="hero-text-box">
+                    <h2>{% trans "Natural stone materials" %}</h2>
+                    <h3>{% trans "Wide range of products" %}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide hero-slide--3">
+            <div class="hero-slide-inner">
+                <div class="hero-text-box">
+                    <h2>{% trans "Together towards one goal" %}</h2>  
+                    <h3>{% trans "Everything on One place" %}</h3>
+                </div>
+            </div>
+        </div>
+
+      
+       
     </div>
 
     <div class="hero-slider-dots-wrap">
@@ -184,7 +190,7 @@
     <div class="section">
 
         <div class="section-header">
-            <h1>{% trans "Special offers" %}%</h1>
+            <h1>{% trans "Special offers" %}</h1>
         </div>
 
         <div class="index_product-container">
@@ -374,7 +380,6 @@
 
         <div class="section-header">
              <h1>{% trans "Natural Stones" %}</h1>
-             <!-- <a href="#">View More</a> -->
         </div>
 
         <div class="stones-slider-wrap">
@@ -585,11 +590,29 @@
             <label for="pdf-upload" class="upload-container">
                 <span class="upload-text">{% trans 'Upload Files' %}</span>
             </label>
+            
+
+            <p id="file-name" style="font-size: 13px; color: #555;"></p>
+
+           
 
             <input id="pdf-upload" name="file" type="file" accept=".pdf" />
 
             <button type="submit" style="width: clamp(300px, 24.82vw, 476.63px); margin-top: 24px; margin-left: -24px;">{% trans "Send Message" %}</button>
         </form>
+
+         <script>
+                const fileInput = document.getElementById('pdf-upload');
+                const fileNameDisplay = document.getElementById('file-name');
+
+                fileInput.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = 'send';
+                    }
+                });
+            </script>
         
     </div>
 
@@ -597,11 +620,11 @@
     {% get_current_language as LANGUAGE_CODE %}
 
     {% if LANGUAGE_CODE == 'hy' %}
-        <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" alt="Catalog image" class="responsive-img">
+        <img src="{% static 'img/cat-hy.jpeg' %}" alt="Catalog image" class="responsive-img">
     {% elif LANGUAGE_CODE == 'ru' %}
-        <img src="{% static 'img/CatalogRU.png' %}" alt="Catalog image" class="responsive-img">
+        <img src="{% static 'img/cat-ru.jpeg' %}" alt="Catalog image" class="responsive-img">
     {% else %}
-        <img src="{% static 'img/CatalogEN.png' %}" class="responsive-img" alt="English">
+        <img src="{% static 'img/cat-en.jpeg' %}" class="responsive-img" alt="English">
     {% endif %}
 
     

@@ -24,9 +24,21 @@
             }, 500);
         });
     </script>
+    
     {% block extra_scripts %} {% endblock %}
 </head>
 <body>
+
+
+    {% if messages %}
+        <div class="message-wrapper">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
 
     <div id="page-loader">
@@ -357,6 +369,12 @@
     window.addEventListener('resize', updateHeaderHeight);
 </script>
 
+
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('.message').forEach(el => el.remove());
+    }, 4500);
+</script>
     
 </body>
 </html>

@@ -1,2 +1,2 @@
-email = "zenitha1@zenith-achievers.com"
-password = "zenith2026"
+email = "apptester@zenith-achievers.com"
+password = "Zenith@2026"

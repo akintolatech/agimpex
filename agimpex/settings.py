@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "website.apps.WebsiteConfig",
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
-    # 'rosetta',
+    'rosetta',
     'shop.apps.ShopConfig',
     "administration.apps.AdministrationConfig",
     'django.contrib.admin',
@@ -178,6 +178,6 @@ EMAIL_USE_SSL = True  # Use SSL for secure connection
 EMAIL_USE_TLS = False  # Set to True only if using port 587
 EMAIL_HOST_USER = key.email
 EMAIL_HOST_PASSWORD = key.password
-DEFAULT_FROM_EMAIL = 'zenith@zenithachievers.com'
+DEFAULT_FROM_EMAIL = 'zenith@zenith-achievers.com'
 
 

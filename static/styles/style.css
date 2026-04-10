@@ -12,6 +12,30 @@
 }
 
 
+/* Thin */
+@font-face {
+  font-family: "Montserratarm";
+  src: url("../fonts/marm/Montserratarm-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* ExtraLight */
+@font-face {
+  font-family: "Montserratarm";
+  src: url("../fonts/marm/Montserratarm-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Light */
+@font-face {
+  font-family: "Montserratarm";
+  src: url("../fonts/marm/Montserratarm-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
 /* Regular */
 @font-face {
   font-family: "Montserratarm";
@@ -20,27 +44,35 @@
   font-style: normal;
 }
 
-/* SemiBold */
+/* Medium */
 @font-face {
-  font-family: "MontserratArm";
-  src: url("../fonts/marm/Montserratarm-SemiBold.otf") format("opentype");
-  font-weight: 600; /* Changed from 800 to 600 */
+  font-family: "Montserratarm";
+  src: url("../fonts/marm/Montserratarm-Medium.otf") format("opentype");
+  font-weight: 500;
   font-style: normal;
 }
 
 /* Bold */
 @font-face {
-  font-family: "MontserratArm";
+  font-family: "Montserratarm";
   src: url("../fonts/marm/Montserratarm-Bold.otf") format("opentype");
-  font-weight: 700; /* Changed from 800 to 600 */
+  font-weight: 700;
   font-style: normal;
 }
 
 /* ExtraBold */
 @font-face {
-  font-family: "MontserratArm";
+  font-family: "Montserratarm";
   src: url("../fonts/marm/Montserratarm-ExtraBold.otf") format("opentype");
   font-weight: 800;
+  font-style: normal;
+}
+
+/* Black */
+@font-face {
+  font-family: "Montserratarm";
+  src: url("../fonts/marm/Montserratarm-Black.otf") format("opentype");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -540,7 +572,6 @@ input[type="search"]{
 }
 
 .wrap .nav-item a {
-    font-family: Montserrat arm;
     font-weight: 500;
     font-style: Medium;
     font-size: 23.03px;
@@ -879,13 +910,15 @@ input[type="submit"] {
 }
 
 .text-box p {
-    line-height: 2rem;
-    font-weight: 600;
-    font-weight: 600;
-    font-style: SemiBold;
-    font-size: 24.57px;
-    /* line-height: 51.21px; */
-    letter-spacing: 0%;
+     font-family: "Montserratarm", sans-serif;
+    font-size: clamp(1.35rem, 3.5vw, 24.57px);
+    font-weight: 500;
+    margin: 0 0 12px;
+    line-height: 1.25;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.02em;
+    /* text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); */
+
 
 }
 
@@ -1419,6 +1452,17 @@ textarea {
     resize: vertical;
 }
 
+
+.upload-container {
+    display: inline-block;
+    padding: 12px;
+    border: 1px dashed #aaa;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+
 .contact-items{
     height: 450px;
     margin-bottom: 30px;
@@ -1532,7 +1576,6 @@ li {
 }
 
 .footer-text-container ul a li {
-    font-family: Montserrat arm;
     font-weight: 700;
     font-style: Bold;
     font-size: 22px;
@@ -1541,7 +1584,6 @@ li {
 }
 
 .footer-heading {
-    font-family: Montserrat arm;
     font-weight: 700;
     font-style: Bold;
     font-size: 32px;
@@ -1754,7 +1796,6 @@ li {
 
   /* The Armenian text styling */
   .upload-text {
-    font-family: sans-serif;
     color: #333;
     font-size: 16px;
   }
@@ -1772,7 +1813,6 @@ li {
   gap: 20px;
   padding: 40px;
   background-color: #f5f5f5;
-  font-family: 'Arial', sans-serif;
 }
 
 /* Individual Card */
@@ -1832,4 +1872,49 @@ li {
   .contact-detail-item {
     width: 100%;
   }
+}
+
+
+
+
+/* MESSAGE TOAST */
+.message-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    border: 1px solid red;
+}
+
+.message {
+    background: #333;
+    color: #fff;
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideIn 0.4s forwards, fadeOut 0.4s forwards 4s;
+}
+
+.message.success {
+    background: #28a745;
+}
+
+.message.error {
+    background: #dc3545;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }

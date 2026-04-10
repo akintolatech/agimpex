@@ -85,7 +85,7 @@ def send_message(request):
                 subject=subject,
                 body=full_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=['yourcompanyemail@gmail.com'],
+                to=['akintolatechnologies@gmail.com'],
             )
 
             if uploaded_file:

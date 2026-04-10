@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-10 08:29+0100\n"
+"POT-Creation-Date: 2026-04-10 13:50+0100\n"
 "PO-Revision-Date: 2026-04-10 08:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
@@ -79,7 +79,6 @@ msgstr "Отмена"
 #: administration/templates/administration/order/order_list.html:32
 #: administration/templates/administration/users/user_details.html:43
 #: website/templates/website/contact.html:49
-#: website/templates/website/website_base.html:336
 msgid "Email"
 msgstr "Эл. почта"
 
@@ -136,8 +135,7 @@ msgid "Full Name"
 msgstr "Полное имя"
 
 #: administration/templates/administration/users/user_details.html:48
-#: website/templates/website/website_base.html:320
-#: website/templates/website/website_base.html:327
+#: website/templates/website/website_base.html:321
 msgid "Phone"
 msgstr "Телефон"
 
@@ -246,13 +244,13 @@ msgid "Contact Us"
 msgstr "Свяжитесь с нами"
 
 #: website/templates/website/contact.html:26
-#: website/templates/website/website_base.html:319
 msgid "Address"
 msgstr "Адрес"
 
 #: website/templates/website/contact.html:38
-#: website/templates/website/website_base.html:224
-#: website/templates/website/website_base.html:267
+#: website/templates/website/website_base.html:225
+#: website/templates/website/website_base.html:268
+#: website/templates/website/website_base.html:319
 msgid "Contact"
 msgstr "Контакт"
 
@@ -339,8 +337,8 @@ msgstr "Строительные материалы"
 #: website/templates/website/natural_stones.html:6
 #: website/templates/website/natural_stones.html:16
 #: website/templates/website/website_base.html:150
-#: website/templates/website/website_base.html:222
-#: website/templates/website/website_base.html:265
+#: website/templates/website/website_base.html:223
+#: website/templates/website/website_base.html:266
 msgid "Natural Stones"
 msgstr "Натуральные камни"
 
@@ -407,15 +405,15 @@ msgstr ""
 
 #: website/templates/website/index.html:291
 #: website/templates/website/website_base.html:149
-#: website/templates/website/website_base.html:221
-#: website/templates/website/website_base.html:264
+#: website/templates/website/website_base.html:222
+#: website/templates/website/website_base.html:265
 msgid "Construction Goods"
 msgstr "Строительные товары"
 
 #: website/templates/website/index.html:453
 #: website/templates/website/services.html:6
-#: website/templates/website/website_base.html:223
-#: website/templates/website/website_base.html:266
+#: website/templates/website/website_base.html:224
+#: website/templates/website/website_base.html:267
 msgid "Services"
 msgstr "Услуги"
 
@@ -601,26 +599,29 @@ msgid "Favourites"
 msgstr "Избранное"
 
 #: website/templates/website/website_base.html:211
-#: website/templates/website/website_base.html:263
+#: website/templates/website/website_base.html:264
 msgid "SPECIAL OFFER"
 msgstr "СПЕЦПРЕДЛОЖЕНИЕ"
 
 #: website/templates/website/website_base.html:211
-#: website/templates/website/website_base.html:263
-#, python-format
+#, fuzzy, python-format
+#| msgid "UP TO 25"
 msgid "UP TO 25%%"
-msgstr "ДО 25%%"
+msgstr "ДО 25"
 
-#: website/templates/website/website_base.html:262
+#: website/templates/website/website_base.html:263
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: website/templates/website/website_base.html:318
-msgid "Contact us"
-msgstr "Связаться с нами"
+#: website/templates/website/website_base.html:264
+msgid "UP TO 25"
+msgstr "ДО 25"
 
-#: website/templates/website/website_base.html:319
+#: website/templates/website/website_base.html:320
 #, fuzzy
 #| msgid ": Yerevan, Davit Anhaght 23/10 floor 5 "
 msgid "Yerevan, Davit Anhaght 23/10 floor 5 "
 msgstr ": Ереван, Давит Аньахт 23/10, 5 этаж"
+
+#~ msgid "Contact us"
+#~ msgstr "Связаться с нами"

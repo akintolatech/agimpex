@@ -91,7 +91,7 @@
 
                     <div class="call-header-card">
                         <img src="{% static 'img/Phone.svg' %}" alt="English">
-                        <p style="color: white;">+37433404440</p>
+                        <p style="color: white;">033 40 44 40</p>
                     </div>
                      
                 </div>
@@ -209,6 +209,7 @@
             <div class="wrap">
                 <a href="{% url 'website:discount' %}" class="nav-item">
                     {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b>
+                    
                 </a>
 
                 <!-- {% for cat in categories %}
@@ -260,7 +261,7 @@
 
                 <ul>
                     <li class="footer-heading">{% trans "Quick Links" %}</li>
-                    <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b></li></a>
+                    <a href="{% url 'website:discount' %}"><li>{% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25" %}%)</b></li></a>
                     <a href="{% url 'website:construction_goods' %}"><li>{% trans "Construction Goods" %}</li></a>
                     <a href="{% url 'website:natural_stones' %}"><li>{% trans "Natural Stones" %}</li></a>
                     <a href="{% url 'website:services' %}"><li>{% trans "Services" %}</li></a>
@@ -315,16 +316,14 @@
                 
                 
                 <ul>
-                    <li class="footer-heading">{% trans "Contact us" %}</li>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt="" class="footer_icn"></span>{% trans "Address" %}: {% blocktrans %}Yerevan, Davit Anhaght 23/10 floor 5 {% endblocktrans %}</li></a>
+                    <li class="footer-heading">{% trans "Contact" %}</li>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt="" class="footer_icn"></span>{% blocktrans %}Yerevan, Davit Anhaght 23/10 floor 5 {% endblocktrans %}</li></a>
                     <!-- <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt="" class="footer_icn"></span>{% trans "Phone" %}: +374 33 40 44 40</li></a> -->
                     <a href="#">
                         <li>
                             <span style="margin-right: 12px;">
                                 <img src="{% static 'img/call.svg' %}" alt="" class="footer_icn">
-                            </span>
-                            
-                            {% trans "Phone" %}: +374 33 40 44 40
+                            </span> 033 40 44 40
                             
                             <span class="footer-contact-icons">
                                 <img src="{% static 'img/tg.png' %}" alt="">
@@ -333,7 +332,7 @@
                             </span>
                         </li>
                     </a>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt="" class="footer_icn"></span>{% trans "Email" %}: info@agimpex.am</li></a>
+                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt="" class="footer_icn"></span>info@agimpex.am</li></a>
 
                 </ul>   
 

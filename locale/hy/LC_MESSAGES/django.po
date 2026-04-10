@@ -3,13 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
-msgid ""
-msgstr ""
+
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-09 22:00+0100\n"
-"PO-Revision-Date: 2026-04-09 21:23+0000\n"
+"POT-Creation-Date: 2026-04-10 00:59+0100\n"
+"PO-Revision-Date: 2026-04-10 00:04+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -67,13 +65,11 @@ msgid "Sign Out"
 msgstr "Դուրս գալ"
 
 #: administration/templates/administration/category/edit_category.html:12
-#, fuzzy
 #| msgid "Category"
 msgid "Edit Category"
 msgstr "Կատեգորիա"
 
 #: administration/templates/administration/category/edit_category.html:20
-#, fuzzy
 #| msgid "Category"
 msgid "Update Category"
 msgstr "Կատեգորիա"
@@ -111,19 +107,16 @@ msgid "Paid"
 msgstr ""
 
 #: administration/templates/administration/order/order_list.html:26
-#, fuzzy
 #| msgid "Location"
 msgid "Actions"
 msgstr "Գտնվելու վայր"
 
 #: administration/templates/administration/order/order_list.html:38
-#, fuzzy
 #| msgid "Location"
 msgid "Action"
 msgstr "Գտնվելու վայր"
 
 #: administration/templates/administration/order/order_list.html:49
-#, fuzzy
 #| msgid "Place order"
 msgid "Delete Order"
 msgstr "Անցկացնել պատվերը"
@@ -133,7 +126,6 @@ msgid "Delete"
 msgstr ""
 
 #: administration/templates/administration/order/order_list.html:59
-#, fuzzy
 #| msgid "There are no products here"
 msgid "There are no orders here"
 msgstr "Այստեղ ապրանքներ չկան"
@@ -267,12 +259,12 @@ msgid "Contact"
 msgstr "Կապ"
 
 #: website/templates/website/contact.html:59
-#: website/templates/website/index.html:574
+#: website/templates/website/index.html:568
 msgid "Message"
 msgstr "Հաղորդագրություն"
 
 #: website/templates/website/contact.html:79
-#: website/templates/website/index.html:594
+#: website/templates/website/index.html:588
 msgid "Send Message"
 msgstr "Ուղարկել հաղորդագրություն"
 
@@ -285,14 +277,14 @@ msgid "Home"
 msgstr "Գլխավոր"
 
 #: website/templates/website/index.html:64
-#: website/templates/website/index.html:297
-#: website/templates/website/index.html:383
+#: website/templates/website/index.html:296
+#: website/templates/website/index.html:382
 msgid "Previous"
 msgstr "Նախորդ"
 
 #: website/templates/website/index.html:67
-#: website/templates/website/index.html:365
-#: website/templates/website/index.html:444
+#: website/templates/website/index.html:364
+#: website/templates/website/index.html:442
 msgid "Next"
 msgstr "Հաջորդ"
 
@@ -355,7 +347,7 @@ msgstr ""
 "Ապրանքներ "
 
 #: website/templates/website/index.html:160
-#: website/templates/website/index.html:377
+#: website/templates/website/index.html:376
 #: website/templates/website/natural_stones.html:6
 #: website/templates/website/natural_stones.html:16
 #: website/templates/website/website_base.html:150
@@ -421,26 +413,29 @@ msgstr ""
 msgid "Construction Goods"
 msgstr "ՇԻՆԱՐԱՐԱԿԱՆ ԱՊՐԱՆՔՆԵՐ"
 
-#: website/templates/website/index.html:455
+#: website/templates/website/index.html:453
 #: website/templates/website/services.html:6
 #: website/templates/website/website_base.html:223
 #: website/templates/website/website_base.html:266
 msgid "Services"
 msgstr "Ծառայություններ"
 
-#: website/templates/website/index.html:468
-msgid "Freight Transport / Shipping"
-msgstr "Բեռնափոխադրումներ / Առաքում"
+#: website/templates/website/index.html:466
+#: website/templates/website/services.html:95
+msgid "Cargo Transportation"
+msgstr "Բեռնափոխադրում"
 
-#: website/templates/website/index.html:502
-msgid "Import and sale of construction products"
-msgstr "Շինարարական ապրանքների ներմուծում և վաճառք"
+#: website/templates/website/index.html:500
+#| msgid "Import and sale of construction products"
+msgid " Import and sale of <br/> construction products "
+msgstr "Շինարարական  ապրանքների ներմուծում և վաճառք"
 
-#: website/templates/website/index.html:517
-msgid "Bitumen Tanker / Bitumen Transport"
-msgstr "Բիտումային տանկեր / Բիտումային փոխադրում"
+#: website/templates/website/index.html:515
+#| msgid "Bitumen Transporter"
+msgid "Bitumen Tanker"
+msgstr "Բիտումատար"
 
-#: website/templates/website/index.html:532
+#: website/templates/website/index.html:526
 msgid "Our Partners"
 msgstr "Մեր գործընկերները"
 
@@ -529,17 +524,13 @@ msgstr ""
 "                    Մեր գործընկերների հարմարավետությունն ու բեռների փոխադրման բարձր որակը ապահովելու համար, մենք համալրում ենք առկա տրանսպորտային միջոցների շարքը՝ ունենալով տարբեր տեսակի բեռնատարներ, բիտումային բեռնատարներ և այլն։\n"
 "                    "
 
-#: website/templates/website/services.html:95
-msgid "Cargo Transportation"
-msgstr "Բեռների փոխադրում"
-
 #: website/templates/website/services.html:117
 msgid "Import and Sale of Construction Materials"
 msgstr "Շինանյութերի ներմուծում և վաճառք"
 
 #: website/templates/website/services.html:129
 msgid "Bitumen Transporter"
-msgstr "Բիտումային փոխադրում"
+msgstr "Բիտումատար"
 
 #: website/templates/website/website_base.html:35
 msgid "Loading..."
@@ -579,6 +570,12 @@ msgstr "Արագ հղումներ"
 #: website/templates/website/website_base.html:320
 msgid "Contact us"
 msgstr "Կապ մեզ հետ"
+
+#~ msgid "Freight Transport / Shipping"
+#~ msgstr "Բեռնափոխադրումներ / Առաքում"
+
+#~ msgid "Bitumen Tanker / Bitumen Transport"
+#~ msgstr "Բիտումային տանկեր / Բիտումային փոխադրում"
 
 #~ msgid "User Details"
 #~ msgstr "Օգտատիրոջ տվյալներ"

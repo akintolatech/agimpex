@@ -184,7 +184,7 @@ def product_list(request):
     return render(request, "administration/product/product_list.html", context)
 
 
-
+@transaction.atomic
 def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
     """
     Save or rebuild product properties, property values, and pricing rows.

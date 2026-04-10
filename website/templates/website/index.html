@@ -413,10 +413,9 @@
                                 alt="{{ product.name }}"
                             />
                         </div>
-
                     </div>
 
-                    <div class="product-info">
+                    <div class="product-info nat-stn" style="margin-top: 12px;">
                         <div class="product-info-row">
                             
                             <div>
@@ -464,7 +463,7 @@
                 <!-- Blue Overlay Bar -->
                 <div class="transport-banner__bar">
                     <div class="transport-banner__bar-inner">
-                        <h1 class="transport-banner__title">{% trans "Freight Transport / Shipping" %}</h1>
+                        <h1 class="transport-banner__title">{% trans "Cargo Transportation" %}</h1>
 
                         <div class="transport-banner__flags">
                             <span class="transport-banner__flag">
@@ -498,7 +497,7 @@
                 <!-- Blue Overlay Bar -->
                 <div class="transport-banner__bar">
                     <div class="transport-banner__bar-inner">
-                        <h1 class="transport-banner__title">{% trans "Import and sale of construction products" %}</h1>
+                        <h1 class="transport-banner__title">{% blocktrans %} Import and sale of <br/> construction products {% endblocktrans %}</h1>
                     </div>
                 </div>
             </div>
@@ -513,14 +512,10 @@
                 <!-- Blue Overlay Bar -->
                 <div class="transport-banner__bar">
                     <div class="transport-banner__bar-inner">
-                        <h1 class="transport-banner__title">{% trans "Bitumen Tanker / Bitumen Transport" %}</h1>
+                        <h1 class="transport-banner__title">{% trans "Bitumen Tanker" %}</h1>
                     </div>
                 </div>
             </div>
-        
-
-
-
     </div>
   
 
@@ -573,8 +568,30 @@
              <h1>{% trans "Message" %}</h1>
              <!-- <a href="#">View More</a> -->
         </div>
+
+
+        <form action="{% url 'website:send_message' %}" method="POST" enctype="multipart/form-data" class="contact-container">
+            {% csrf_token %}
+
+            <div class="input-row">
+                <input type="text" name="name" placeholder="{% trans 'Name' %}">
+                <input type="email" name="email" placeholder="{% trans 'Email Address' %}">
+            </div>
+
+            <input type="text" name="subject" placeholder="{% trans 'Subject' %}">
+
+            <textarea name="message" placeholder="{% trans 'Your Message' %}"></textarea>
+
+            <label for="pdf-upload" class="upload-container">
+                <span class="upload-text">{% trans 'Upload Files' %}</span>
+            </label>
+
+            <input id="pdf-upload" name="file" type="file" accept=".pdf" />
+
+            <button type="submit" style="width: clamp(300px, 24.82vw, 476.63px); margin-top: 24px; margin-left: -24px;">{% trans "Send Message" %}</button>
+        </form>
         
-        <form class="contact-container">
+        <!-- <form class="contact-container">
             <div class="input-row">
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email Address">
@@ -591,11 +608,23 @@
             <input id="pdf-upload" type="file" accept=".pdf" />
 
             <button  >{% trans "Send Message" %}</button>
-        </form>
+        </form> -->
+
         
     </div>
 
-    <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" alt="Catalog image" class="responsive-img">
+
+    {% get_current_language as LANGUAGE_CODE %}
+
+    {% if LANGUAGE_CODE == 'hy' %}
+        <img src="{% static 'img/Catalog AG IMPEX-13 1.png' %}" alt="Catalog image" class="responsive-img">
+    {% elif LANGUAGE_CODE == 'ru' %}
+        <img src="{% static 'img/CatalogRU.png' %}" alt="Catalog image" class="responsive-img">
+    {% else %}
+        <img src="{% static 'img/CatalogEN.png' %}" class="responsive-img" alt="English">
+    {% endif %}
+
+    
 
 
 </div>

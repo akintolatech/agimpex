@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+import key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -168,4 +169,15 @@ LOGIN_REDIRECT_URL = 'website:index'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.zenith-achievers.com'
+EMAIL_PORT = 465  # SSL port
+EMAIL_USE_SSL = True  # Use SSL for secure connection
+EMAIL_USE_TLS = False  # Set to True only if using port 587
+EMAIL_HOST_USER = key.email
+EMAIL_HOST_PASSWORD = key.password
+DEFAULT_FROM_EMAIL = 'zenith@zenithachievers.com'
+
 

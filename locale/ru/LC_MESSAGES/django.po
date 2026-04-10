@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-09 22:00+0100\n"
+"POT-Creation-Date: 2026-04-10 00:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -268,12 +268,12 @@ msgid "Contact"
 msgstr "Контакт"
 
 #: website/templates/website/contact.html:59
-#: website/templates/website/index.html:574
+#: website/templates/website/index.html:568
 msgid "Message"
 msgstr "Сообщение"
 
 #: website/templates/website/contact.html:79
-#: website/templates/website/index.html:594
+#: website/templates/website/index.html:588
 msgid "Send Message"
 msgstr "Отправить сообщение"
 
@@ -286,14 +286,14 @@ msgid "Home"
 msgstr "Главная"
 
 #: website/templates/website/index.html:64
-#: website/templates/website/index.html:297
-#: website/templates/website/index.html:383
+#: website/templates/website/index.html:296
+#: website/templates/website/index.html:382
 msgid "Previous"
 msgstr "Назад"
 
 #: website/templates/website/index.html:67
-#: website/templates/website/index.html:365
-#: website/templates/website/index.html:444
+#: website/templates/website/index.html:364
+#: website/templates/website/index.html:442
 msgid "Next"
 msgstr "Вперед"
 
@@ -346,7 +346,7 @@ msgid "Construction Materials"
 msgstr "Строительные материалы"
 
 #: website/templates/website/index.html:160
-#: website/templates/website/index.html:377
+#: website/templates/website/index.html:376
 #: website/templates/website/natural_stones.html:6
 #: website/templates/website/natural_stones.html:16
 #: website/templates/website/website_base.html:150
@@ -398,10 +398,10 @@ msgid ""
 msgstr ""
 "\n"
 "                    Уже более 7 лет мы обеспечиваем армянский рынок "
-"высококачественными сертифицированными строительными товарами по выгодным ценам "
-"посредством импорта, а также оптовых и розничных продаж, \n"
-"                    удовлетворяя потребности как крупных строительных компаний, "
-"так и частных клиентов.\n"
+"высококачественными сертифицированными строительными товарами по выгодным "
+"ценам посредством импорта, а также оптовых и розничных продаж, \n"
+"                    удовлетворяя потребности как крупных строительных "
+"компаний, так и частных клиентов.\n"
 "                "
 
 #: website/templates/website/index.html:276
@@ -412,8 +412,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит "
-"на рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
+"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит на "
+"рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
 "                "
 
 #: website/templates/website/index.html:291
@@ -423,26 +423,31 @@ msgstr ""
 msgid "Construction Goods"
 msgstr "Строительные товары"
 
-#: website/templates/website/index.html:455
+#: website/templates/website/index.html:453
 #: website/templates/website/services.html:6
 #: website/templates/website/website_base.html:223
 #: website/templates/website/website_base.html:266
 msgid "Services"
 msgstr "Услуги"
 
-#: website/templates/website/index.html:468
-msgid "Freight Transport / Shipping"
-msgstr "Грузоперевозки / Доставка"
+#: website/templates/website/index.html:466
+#: website/templates/website/services.html:95
+msgid "Cargo Transportation"
+msgstr "Перевозка грузов"
 
-#: website/templates/website/index.html:502
-msgid "Import and sale of construction products"
+#: website/templates/website/index.html:500
+#, fuzzy
+#| msgid "Import and sale of construction products"
+msgid " Import and sale of <br/> construction products "
 msgstr "Импорт и продажа строительной продукции"
 
-#: website/templates/website/index.html:517
-msgid "Bitumen Tanker / Bitumen Transport"
-msgstr "Битумовоз / Перевозка битума"
+#: website/templates/website/index.html:515
+#, fuzzy
+#| msgid "Bitumen Transporter"
+msgid "Bitumen Tanker"
+msgstr "Перевозка битума"
 
-#: website/templates/website/index.html:532
+#: website/templates/website/index.html:526
 msgid "Our Partners"
 msgstr "Наши партнеры"
 
@@ -548,10 +553,6 @@ msgstr ""
 "                    имеем различные типы грузовиков, битумовозов и т.д.\n"
 "                    "
 
-#: website/templates/website/services.html:95
-msgid "Cargo Transportation"
-msgstr "Перевозка грузов"
-
 #: website/templates/website/services.html:117
 msgid "Import and Sale of Construction Materials"
 msgstr "Импорт и продажа строительных материалов"
@@ -598,6 +599,12 @@ msgstr "Быстрые ссылки"
 #: website/templates/website/website_base.html:320
 msgid "Contact us"
 msgstr "Связаться с нами"
+
+#~ msgid "Freight Transport / Shipping"
+#~ msgstr "Грузоперевозки / Доставка"
+
+#~ msgid "Bitumen Tanker / Bitumen Transport"
+#~ msgstr "Битумовоз / Перевозка битума"
 
 #~ msgid "User Details"
 #~ msgstr "Данные пользователя"

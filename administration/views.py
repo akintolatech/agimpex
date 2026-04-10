@@ -12,7 +12,8 @@ from datetime import date, timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render
 # from .forms import DepositApprovalForm, WithdrawApprovalForm, WhatsappScreenshotApprovalForm
-import json
+# import json
+
 
 from administration.forms import EditCategoryForm, CreateCategoryForm, OrderApprovalForm, CreateUnitOfMeasureForm, \
     EditUnitOfMeasureForm, CreateProductPropertyForm, ProductForm

@@ -61,43 +61,58 @@ def search_products(request):
 
 
 
-
 def send_message(request):
     if request.method == 'POST':
         form = ContactForm(request.POST, request.FILES)
 
         if form.is_valid():
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            uploaded_file = form.cleaned_data.get('file')
+            try:
+                name = form.cleaned_data['name']
+                email = form.cleaned_data['email']
+                subject = form.cleaned_data['subject']
+                message = form.cleaned_data['message']
+                uploaded_file = form.cleaned_data.get('file')
 
-            full_message = f"""
-            Name: {name}
-            Email: {email}
+                full_message = f"""
+                Name: {name}
+                Email: {email}
 
-            Message:
-            {message}
-            """
+                Message:
+                {message}
+                """
 
-            mail = EmailMessage(
-                subject=subject,
-                body=full_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                to=['akintolatechnologies@gmail.com'],
+                mail = EmailMessage(
+                    subject=subject,
+                    body=full_message,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=['akintolatechnologies@gmail.com'],
+                )
+
+                if uploaded_file:
+                    mail.attach(
+                        uploaded_file.name,
+                        uploaded_file.read(),
+                        uploaded_file.content_type
+                    )
+
+                mail.send()
+
+                messages.success(request, "Message sent successfully.")
+                return redirect('website:index')
+
+            except Exception as e:
+                # Email sending or unexpected error
+                messages.error(request, f"Error sending message: {str(e)}")
+                return redirect('website:index')
+
+        else:
+            # Form validation errors
+            errors = " ".join(
+                [f"{field}: {','.join(err_list)}" for field, err_list in form.errors.items()]
             )
-
-            if uploaded_file:
-                mail.attach(uploaded_file.name, uploaded_file.read(), uploaded_file.content_type)
-
-            mail.send()
-            messages.success(request, f'Message Sent.')
+            messages.error(request, f"Form error: {errors}")
             return redirect('website:index')
 
-            # return render(request, 'contact_success.html')
-
-    else:
-        form = ContactForm()
-
-    return render(request, 'contact.html', {'form': form})
+    # If not POST
+    messages.error(request, "Invalid request.")
+    return redirect('website:index')

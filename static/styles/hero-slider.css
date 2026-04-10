@@ -68,13 +68,7 @@
 .hero-slide-inner h2 {
     font-size: clamp(1.35rem, 3.5vw, 70px);
     font-weight: 800;
-    /* margin: 0 0 12px; */
-    /* line-height: 1.25; */
-    /* text-transform: uppercase; */
-    /* letter-spacing: 0.02em; */
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-
-    /* font-size: clamp(1.2rem, 2.2vw, 1000px); */
     line-height: 130%;
     letter-spacing: 0%;
     text-align: center;

@@ -6,17 +6,24 @@
 {% block title %}Agimpex: {% trans "Natural Stones" %} {% endblock %}
 
 
-{% block style %}<link type="text/css" href="{% static 'styles/menu.css' %}" rel="stylesheet" />{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'styles/slick.css' %}">
+<link rel="stylesheet" href="{% static 'styles/hero-slider.css' %}">
+<link rel="stylesheet" href="{% static 'styles/stones-slider.css' %}">
+<link type="text/css" href="{% static 'styles/menu.css' %}" rel="stylesheet" />
+{% endblock %}
+
+
 
 {% block content %}
 <div class="hero-section about-hero">
 
     <div class="hero-text">
         <div class="hero-text-box">
-             <h2>{% trans "Natural Stones" %}</h2>
-            <h3>{% trans "Wide range / Large variety" %}</h3>
+            <h2>{% trans "Natural stone materials" %}</h2>
+            <h3>{% trans "Wide range of products" %}</h3>
         </div>
-      
     </div>
 
 </div>

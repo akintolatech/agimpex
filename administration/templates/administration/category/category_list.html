@@ -27,6 +27,15 @@
                         <th colspan="2">Actions</th>
                     </tr>
                 </thead>
+                {% if messages %}
+                    <div class="messages-wrapper">
+                        {% for message in messages %}
+                            <div class="alert-box alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
                 <tbody>
                     {% for category in categories %}
                     <tr>

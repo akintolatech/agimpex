@@ -5,13 +5,14 @@
 <link type="text/css" href="{% static 'styles/admin_form.css' %}" rel="stylesheet" />
 {% endblock %}
 
+
 {% block content %}
     <div class="form-page">
         <div class="form-wrapper">
 
             <h2>Add a New Category</h2>
 
-            <form method="post" enctype="multipart/form-data" class="product-form">
+            <form method="post" enctype="multipart/form-data" class="product-form" style="margin-block: 40px;">
                 {% csrf_token %}
                 
                 <div class="form-group">
@@ -25,3 +26,4 @@
          </div>
     </div>   
 {% endblock %}
+

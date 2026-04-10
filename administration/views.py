@@ -135,9 +135,16 @@ def category_list(request):
 def create_category(request):
     if request.method == "POST":
         form = CreateCategoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("administration:category_list")
+        try:
+            if form.is_valid():
+                category = form.save()
+                messages.success(request, f"{category.name} Category created successfully")
+                return redirect("administration:category_list")
+            else:
+                messages.warning(request, "Try Again")
+        except Exception as e:
+            messages.error(request, f'Error:: {str(e)}')
+
     else:
         form = CreateCategoryForm()
 
@@ -203,7 +210,24 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
         # Delete old properties (cascades ProductPropertyValue)
         product.properties.all().delete()
 
-    property_names = [p.strip() for p in request.POST.getlist('property_names[]') if p.strip()]
+        property_names_en = request.POST.getlist('property_name_en[]')
+        property_names_hy = request.POST.getlist('property_name_hy[]')
+        property_names_ru = request.POST.getlist('property_name_ru[]')
+
+        property_names = []
+
+        for i in range(len(property_names_en)):
+            en = property_names_en[i].strip() if i < len(property_names_en) else ''
+            hy = property_names_hy[i].strip() if i < len(property_names_hy) else ''
+            ru = property_names_ru[i].strip() if i < len(property_names_ru) else ''
+
+            if en:
+                property_names.append({
+                    'en': en,
+                    'hy': hy,
+                    'ru': ru
+                })
+
 
     # If no properties submitted, leave product as simple/base-price product
     if not property_names:
@@ -211,8 +235,11 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
 
     # Create properties in exact order
     property_objects = []
-    for prop_name in property_names:
-        prop = ProductProperty.objects.create(product=product, name=prop_name)
+    for prop_data in property_names:
+        prop = ProductProperty.objects.create(
+            product=product,
+            name=prop_data['en']  # store EN as base
+        )
         property_objects.append(prop)
 
     row_prices = request.POST.getlist('row_price[]')
@@ -268,7 +295,6 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
             pricing.property_values.set(selected_values)
 
 
-
 @transaction.atomic
 def create_product(request):
     if request.method == 'POST':
@@ -291,6 +317,9 @@ def create_product(request):
         'existing_pricing_data': None,
     }
     return render(request, 'administration/product/create_product.html', context)
+
+
+
 # def create_product(request):
 #     if request.method == 'POST':
 #         form = ProductForm(request.POST, request.FILES)

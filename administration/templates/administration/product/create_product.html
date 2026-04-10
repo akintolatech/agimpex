@@ -328,6 +328,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const addPropertyBtn = document.getElementById('addPropertyBtn');
     const addRowBtn = document.getElementById('addRowBtn');
 
+    addPropertyBtn.addEventListener('click', () => {
+        addPropertyInput();
+    });
+
     const languages = ['en', 'hy', 'ru']; // supported languages
     let properties = []; // array of objects {en: '', hy: '', ru: ''}
 
@@ -335,55 +339,120 @@ document.addEventListener('DOMContentLoaded', function () {
      * Add new property input fields
      * ------------------------------- */
     function addPropertyInput(existingProp = null) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'property-input-wrapper';
-        const propData = {};
+    const wrapper = document.createElement('div');
+    wrapper.className = 'property-input-wrapper';
 
-        languages.forEach(lang => {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.name = `property_name_${lang}[]`;
-            input.className = 'custom-input';
-            input.placeholder = `Property Name (${lang.toUpperCase()})`;
-            input.required = true;
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.gap = '8px';
+    row.style.alignItems = 'center';
 
-            if (existingProp) input.value = existingProp[lang] || '';
+    const propData = {};
 
-            input.addEventListener('input', () => {
-                const allWrappers = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper'));
-                const idx = allWrappers.indexOf(wrapper);
-                if (idx >= 0) {
-                    languages.forEach(l => {
-                        properties[idx][l] = allWrappers[idx].querySelector(`input[name="property_name_${l}[]"]`).value;
-                    });
-                    updateTableStructure();
-                }
-            });
+    const fields = [
+        { lang: 'en', placeholder: 'Name (EN)' },
+        { lang: 'hy', placeholder: 'Name (HY)' },
+        { lang: 'ru', placeholder: 'Name (RU)' }
+    ];
 
-            wrapper.appendChild(input);
-            propData[lang] = existingProp ? existingProp[lang] || '' : '';
-        });
+    fields.forEach(field => {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = `property_name_${field.lang}[]`;
+        input.className = 'custom-input';
+        input.placeholder = field.placeholder;
+        input.style.flex = '1';
+        input.required = field.lang === 'en';
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.innerHTML = '&times;';
-        removeBtn.className = 'btn btn-danger btn-sm';
-        removeBtn.style = "width:40px; height:40px; padding:0; margin-left:4px;";
-        removeBtn.addEventListener('click', () => {
-            const idx = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper')).indexOf(wrapper);
+        if (existingProp) input.value = existingProp[field.lang] || '';
+
+        input.addEventListener('input', () => {
+            const allWrappers = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper'));
+            const idx = allWrappers.indexOf(wrapper);
+
             if (idx >= 0) {
-                properties.splice(idx, 1);
-                wrapper.remove();
+                properties[idx][field.lang] = input.value;
                 updateTableStructure();
             }
         });
 
-        wrapper.appendChild(removeBtn);
-        propertyContainer.appendChild(wrapper);
-        properties.push(propData);
+        row.appendChild(input);
+        propData[field.lang] = existingProp ? existingProp[field.lang] || '' : '';
+    });
 
-        updateTableStructure();
-    }
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.innerHTML = '&times;';
+    removeBtn.className = 'btn btn-danger btn-sm';
+    removeBtn.style = "width:40px;height:40px;padding:0;";
+
+    removeBtn.addEventListener('click', () => {
+        const idx = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper')).indexOf(wrapper);
+        if (idx >= 0) {
+            properties.splice(idx, 1);
+            wrapper.remove();
+            updateTableStructure();
+        }
+    });
+
+    row.appendChild(removeBtn);
+    wrapper.appendChild(row);
+    propertyContainer.appendChild(wrapper);
+
+    properties.push(propData);
+
+    updateTableStructure();
+}
+    // function addPropertyInput(existingProp = null) {
+    //     const wrapper = document.createElement('div');
+    //     wrapper.className = 'property-input-wrapper';
+    //     const propData = {};
+
+    //     languages.forEach(lang => {
+    //         const input = document.createElement('input');
+    //         input.type = 'text';
+    //         input.name = `property_name_${lang}[]`;
+    //         input.className = 'custom-input';
+    //         input.placeholder = `Property Name (${lang.toUpperCase()})`;
+    //         input.required = true;
+
+    //         if (existingProp) input.value = existingProp[lang] || '';
+
+    //         input.addEventListener('input', () => {
+    //             const allWrappers = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper'));
+    //             const idx = allWrappers.indexOf(wrapper);
+    //             if (idx >= 0) {
+    //                 languages.forEach(l => {
+    //                     properties[idx][l] = allWrappers[idx].querySelector(`input[name="property_name_${l}[]"]`).value;
+    //                 });
+    //                 updateTableStructure();
+    //             }
+    //         });
+
+    //         wrapper.appendChild(input);
+    //         propData[lang] = existingProp ? existingProp[lang] || '' : '';
+    //     });
+
+    //     const removeBtn = document.createElement('button');
+    //     removeBtn.type = 'button';
+    //     removeBtn.innerHTML = '&times;';
+    //     removeBtn.className = 'btn btn-danger btn-sm';
+    //     removeBtn.style = "width:40px; height:40px; padding:0; margin-left:4px;";
+    //     removeBtn.addEventListener('click', () => {
+    //         const idx = Array.from(propertyContainer.querySelectorAll('.property-input-wrapper')).indexOf(wrapper);
+    //         if (idx >= 0) {
+    //             properties.splice(idx, 1);
+    //             wrapper.remove();
+    //             updateTableStructure();
+    //         }
+    //     });
+
+    //     wrapper.appendChild(removeBtn);
+    //     propertyContainer.appendChild(wrapper);
+    //     properties.push(propData);
+
+    //     updateTableStructure();
+    // }
 
     /** -------------------------------
      * Update pricing table structure

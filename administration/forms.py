@@ -113,7 +113,7 @@ class OrderApprovalForm(forms.ModelForm):
 class CreateCategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ['name', 'icon']
+        fields = ['name', 'name_hy', 'name_ru']
 
 
 class EditCategoryForm(forms.ModelForm):
@@ -144,7 +144,7 @@ class EditUProductPropertyForm(forms.ModelForm):
 class CreateUnitOfMeasureForm(forms.ModelForm):
     class Meta:
         model = UnitOfMeasure
-        fields = ['unit']
+        fields = ['unit', 'unit_hy', 'unit_ru']
 
 
 class EditUnitOfMeasureForm(forms.ModelForm):

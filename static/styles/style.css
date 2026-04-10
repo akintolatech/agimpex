@@ -912,14 +912,12 @@ input[type="submit"] {
 }
 
 .text-box p {
-     font-family: "Montserratarm", sans-serif;
-    font-size: clamp(1.35rem, 3.5vw, 24.57px);
-    font-weight: 500;
+    font-family: "Montserratarm", sans-serif;
+    font-size: clamp(.8rem, 3.5vw, 19.82px);
+    font-weight: 600;
     margin: 0 0 12px;
-    line-height: 1.25;
-    /* text-transform: uppercase; */
+    line-height: 51.21px;
     letter-spacing: 0.02em;
-    /* text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45); */
 }
 
 
@@ -1192,8 +1190,7 @@ input[type="submit"] {
 .transport-banner {
     position: relative;
     width: 100%;
-    min-height: 260px;
-    height: clamp(260px, 34vw, 430px);
+    height: clamp(220px, 34vw, 430px);
     overflow: hidden;
     display: flex;
     align-items: center;

@@ -74,7 +74,6 @@
             <div class="hero-slide-inner">
                 <div class="hero-text-box">
                     <h2 >{% trans "Construction products" %}</h2>
-                    <!-- <h3>{% trans "Directly from manufacturers" %}</h3> -->
                 </div>
             </div>
         </div>
@@ -264,8 +263,10 @@
         <div class="text-box">
             <h1>{% trans "About us" %}</h1>
             <p>
-                {% blocktrans %}
-                    "AG IMPEX" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
+                
+                <b style="font-size: 34.57px;"><<{% trans "AG IMPEX" %}>></b>
+                {% blocktrans %} 
+                    LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
                 {% endblocktrans %}
             </p>
             <p>
@@ -464,7 +465,7 @@
                 <!-- Blue Overlay Bar -->
                 <div class="transport-banner__bar">
                     <div class="transport-banner__bar-inner">
-                        <h1 class="transport-banner__title">{% trans "Cargo Transportation" %}</h1>
+                        <h1 class="transport-banner__title" style="margin-right: 16px;">{% trans "Cargo Transportation" %}</h1>
 
                         <div class="transport-banner__flags">
                             <span class="transport-banner__flag">
@@ -518,8 +519,6 @@
                 </div>
             </div>
     </div>
-  
-
 
     <div class="section">
 
@@ -612,7 +611,6 @@
         
     </div>
 
-
     {% get_current_language as LANGUAGE_CODE %}
 
     {% if LANGUAGE_CODE == 'hy' %}
@@ -622,9 +620,6 @@
     {% else %}
         <img src="{% static 'img/cat-en.jpeg' %}" class="responsive-img" alt="English">
     {% endif %}
-
-    
-
 
 </div>
 

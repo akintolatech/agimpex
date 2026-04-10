@@ -59,28 +59,49 @@
              <h1>{% trans "Message" %}</h1>
              <!-- <a href="#">View More</a> -->
         </div>
-        
-        <form class="contact-container">
+
+
+        <form action="{% url 'website:send_message' %}" method="POST" enctype="multipart/form-data" class="contact-container">
+            {% csrf_token %}
+
             <div class="input-row">
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email Address">
+                <input type="text" name="name" placeholder="{% trans 'Name' %}">
+                <input type="email" name="email" placeholder="{% trans 'Email Address' %}">
             </div>
 
-            <input type="text" placeholder="Subject">
+            <input type="text" name="subject" placeholder="{% trans 'Subject' %}">
 
-            <textarea placeholder="Your Message" ></textarea>
+            <textarea name="message" placeholder="{% trans 'Your Message' %}"></textarea>
 
-           <label for="pdf-upload" class="upload-container">
-                <span class="upload-text">Ներբեռնել ֆայլերը</span>
+            <label for="pdf-upload" class="upload-container">
+                <span class="upload-text">{% trans 'Upload Files' %}</span>
             </label>
+            
 
-            <input id="pdf-upload" type="file" accept=".pdf" />
+            <p id="file-name" style="font-size: 13px; color: #555;"></p>
 
-            <button >{% trans "Send Message" %}</button>
+           
+
+            <input id="pdf-upload" name="file" type="file" accept=".pdf" />
+
+            <button type="submit" style="width: clamp(300px, 24.82vw, 476.63px); margin-top: 24px; margin-left: -24px;">{% trans "Send Message" %}</button>
         </form>
+
+         <script>
+                const fileInput = document.getElementById('pdf-upload');
+                const fileNameDisplay = document.getElementById('file-name');
+
+                fileInput.addEventListener('change', function () {
+                    if (this.files.length > 0) {
+                        fileNameDisplay.textContent = this.files[0].name;
+                    } else {
+                        fileNameDisplay.textContent = 'send';
+                    }
+                });
+            </script>
         
     </div>
-
+    
     <div class="section">
         <div>
             <div id="map">

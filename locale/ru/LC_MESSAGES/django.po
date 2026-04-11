@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-11 16:04+0100\n"
+"POT-Creation-Date: 2026-04-11 18:00+0100\n"
 "PO-Revision-Date: 2026-04-11 10:37+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: Russian\n"
@@ -64,17 +64,9 @@ msgstr "☰"
 msgid "Sign Out"
 msgstr "Выйти"
 
-#: administration/templates/administration/category/edit_category.html:12
+#: administration/templates/administration/category/edit_category.html:14
 msgid "Edit Category"
 msgstr "Редактировать категорию"
-
-#: administration/templates/administration/category/edit_category.html:20
-msgid "Update Category"
-msgstr "Обновить категорию"
-
-#: administration/templates/administration/category/edit_category.html:21
-msgid "Cancel"
-msgstr "Отмена"
 
 #: administration/templates/administration/order/order_list.html:21
 #: administration/templates/administration/order/order_list.html:32
@@ -301,6 +293,7 @@ msgstr "Отправить сообщение"
 
 #: website/templates/website/discount.html:6
 #: website/templates/website/website_base.html:222
+#: website/templates/website/website_base.html:264
 msgid "Discount"
 msgstr "Скидка"
 
@@ -656,13 +649,18 @@ msgstr "СПЕЦПРЕДЛОЖЕНИЕ"
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: website/templates/website/website_base.html:264
-msgid "UP TO 25"
-msgstr "UP TO 25"
-
 #: website/templates/website/website_base.html:320
 msgid "Yerevan, Davit Anhaght 23/10 floor 5 "
 msgstr ": Ереван, Давит Аньахт 23/10, 5 этаж"
+
+#~ msgid "Update Category"
+#~ msgstr "Обновить категорию"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
+
+#~ msgid "UP TO 25"
+#~ msgstr "UP TO 25"
 
 #, python-format
 #~ msgid "UP TO 25%%"

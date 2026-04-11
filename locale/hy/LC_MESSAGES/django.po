@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-11 16:04+0100\n"
+"POT-Creation-Date: 2026-04-11 18:00+0100\n"
 "PO-Revision-Date: 2026-04-11 15:07+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: Armenian <LL@li.org>\n"
@@ -65,17 +65,9 @@ msgstr "☰"
 msgid "Sign Out"
 msgstr "Դուրս գալ"
 
-#: administration/templates/administration/category/edit_category.html:12
+#: administration/templates/administration/category/edit_category.html:14
 msgid "Edit Category"
 msgstr "Խմբագրել կատեգորիան"
-
-#: administration/templates/administration/category/edit_category.html:20
-msgid "Update Category"
-msgstr "Թարմացնել կատեգորիան"
-
-#: administration/templates/administration/category/edit_category.html:21
-msgid "Cancel"
-msgstr "Չեղարկել"
 
 #: administration/templates/administration/order/order_list.html:21
 #: administration/templates/administration/order/order_list.html:32
@@ -304,6 +296,7 @@ msgstr "Ուղարկել հաղորդագրություն"
 
 #: website/templates/website/discount.html:6
 #: website/templates/website/website_base.html:222
+#: website/templates/website/website_base.html:264
 msgid "Discount"
 msgstr "ԶԵՂՉ "
 
@@ -402,7 +395,8 @@ msgstr "ԱԳ ԻՄՊԵՔՍ"
 #: website/templates/website/index.html:340
 msgid ""
 " \n"
-"                    LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
+"                    LLC was founded in 2018 with one clear goal: to become a "
+"reliable and long-term partner in the construction sector in Armenia.\n"
 "                "
 msgstr ""
 "ՍՊԸ-ն հիմնադրվել է 2018 թվականին՝ մեկ հստակ նպատակով՝ դառնալ շինարարական "
@@ -411,21 +405,29 @@ msgstr ""
 #: website/templates/website/index.html:344
 msgid ""
 "\n"
-"                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, \n"
-"                    satisfying the requirements of both large construction companies and individual customers.\n"
+"                    For more than 7 years, we have been providing the "
+"Armenian market with high-quality, certified construction goods at "
+"competitive prices through both import and wholesale/retail sales, \n"
+"                    satisfying the requirements of both large construction "
+"companies and individual customers.\n"
 "                "
 msgstr ""
 "\n"
-"Ավելի քան 7 տարի մենք ՀՀ շուկայում ապահովում ենք բարձրորակ, սերտիֆիկացված և մրցունակ գներով շինարարական ապրանքների ներմուծում և մանրամեծածախ վաճառք՝ բավարարելով թե՛ խոշոր շինարարական ընկերությունների, թե՛ անհատ պատվիրատուների պահանջները։"
+"Ավելի քան 7 տարի մենք ՀՀ շուկայում ապահովում ենք բարձրորակ, սերտիֆիկացված և "
+"մրցունակ գներով շինարարական ապրանքների ներմուծում և մանրամեծածախ վաճառք՝ "
+"բավարարելով թե՛ խոշոր շինարարական ընկերությունների, թե՛ անհատ պատվիրատուների "
+"պահանջները։"
 
 #: website/templates/website/index.html:349
 msgid ""
 "\n"
-"                    Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
+"the market with two new brands: Metals Holding and Prime Stone.\n"
 "                "
 msgstr ""
 "\n"
-"2026 թվականից «ԱԳ ԻՄՊԵՔՍ» ՍՊԸ-ն շուկայում հանդես է գալիս նաև երկու նոր ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
+"2026 թվականից «ԱԳ ԻՄՊԵՔՍ» ՍՊԸ-ն շուկայում հանդես է գալիս նաև երկու նոր "
+"ապրանքանիշերով՝ Metals Holding և Prime Stone։\n"
 "Ձեր շինարարության ամուր հենարանը։"
 
 #: website/templates/website/index.html:366
@@ -530,13 +532,23 @@ msgstr "Պատվիրել հիմա"
 #: website/templates/website/services.html:35
 msgid ""
 "\n"
-"                    \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
-"                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.\n"
-"                    Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    \"AG IMPEX\" LLC was founded in 2018 with one clear "
+"goal: to become a reliable and long-term partner in the construction sector "
+"in Armenia.\n"
+"                    For more than 7 years, we have been providing the "
+"Armenian market with high-quality, certified construction goods at "
+"competitive prices through both import and wholesale/retail sales, "
+"satisfying the requirements of both large construction companies and "
+"individual customers.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
+"the market with two new brands: Metals Holding and Prime Stone.\n"
 "                    "
 msgstr ""
 "\n"
-"Ավելի քան 7 տարի մենք ՀՀ շուկայում ապահովում ենք բարձրորակ, սերտիֆիկացված և մրցունակ գներով շինարարական ապրանքների ներմուծում և մանրամեծածախ վաճառք՝ բավարարելով թե՛ խոշոր շինարարական ընկերությունների, թե՛ անհատ պատվիրատուների պահանջները։"
+"Ավելի քան 7 տարի մենք ՀՀ շուկայում ապահովում ենք բարձրորակ, սերտիֆիկացված և "
+"մրցունակ գներով շինարարական ապրանքների ներմուծում և մանրամեծածախ վաճառք՝ "
+"բավարարելով թե՛ խոշոր շինարարական ընկերությունների, թե՛ անհատ պատվիրատուների "
+"պահանջները։"
 
 #: website/templates/website/services.html:41
 msgid "Read more"
@@ -549,12 +561,15 @@ msgstr "Առաքում"
 #: website/templates/website/services.html:59
 msgid ""
 "\n"
-"                    Expanding the field of activity, we also offer a delivery service.\n"
-"                    It includes the following: cargo loading, transportation, handling.\n"
+"                    Expanding the field of activity, we also offer a "
+"delivery service.\n"
+"                    It includes the following: cargo loading, "
+"transportation, handling.\n"
 "                    "
 msgstr ""
 "\n"
-"Ընդլայնելով գործունեության ոլորտը՝ մենք առաջարկում ենք նաև առաքման ծառայություն: Այն ներառում է՝ բեռների բարձում, տեղափոխում և բեռնաթափում:"
+"Ընդլայնելով գործունեության ոլորտը՝ մենք առաջարկում ենք նաև առաքման "
+"ծառայություն: Այն ներառում է՝ բեռների բարձում, տեղափոխում և բեռնաթափում:"
 
 #: website/templates/website/services.html:67
 msgid "AG IMPEX Truck Delivery"
@@ -575,13 +590,17 @@ msgstr "Բեռնափոխադրում"
 #: website/templates/website/services.html:81
 msgid ""
 "\n"
-"                    In order to ensure the most comfort of our partners and the high quality\n"
-"                    of cargo transportation, we replenish the range of existing vehicles and\n"
+"                    In order to ensure the most comfort of our partners and "
+"the high quality\n"
+"                    of cargo transportation, we replenish the range of "
+"existing vehicles and\n"
 "                    have different types of trucks, bitumen trucks, etc.\n"
 "                    "
 msgstr ""
 "\n"
-"Մեր գործընկերների առավելագույն հարմարավետությունն ու բեռնափոխադրումների բարձր որակն ապահովելու նպատակով մենք համալրում ենք առկա տրանսպորտային միջոցների շարքը և ունենք տարբեր տեսակի բեռնատարներ, բիտումատարներ և այլն։"
+"Մեր գործընկերների առավելագույն հարմարավետությունն ու բեռնափոխադրումների "
+"բարձր որակն ապահովելու նպատակով մենք համալրում ենք առկա տրանսպորտային "
+"միջոցների շարքը և ունենք տարբեր տեսակի բեռնատարներ, բիտումատարներ և այլն։"
 
 #: website/templates/website/services.html:117
 #, fuzzy
@@ -624,13 +643,18 @@ msgstr "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ"
 msgid "Quick Links"
 msgstr "ԱՐԱԳ ՀՂՈՒՄՆԵՐ"
 
-#: website/templates/website/website_base.html:264
-msgid "UP TO 25"
-msgstr "ԶԵՂՉ "
-
 #: website/templates/website/website_base.html:320
 msgid "Yerevan, Davit Anhaght 23/10 floor 5 "
 msgstr "Երևան, Դավիթ Անհաղթ 23/10, 5-րդ հարկ"
+
+#~ msgid "Update Category"
+#~ msgstr "Թարմացնել կատեգորիան"
+
+#~ msgid "Cancel"
+#~ msgstr "Չեղարկել"
+
+#~ msgid "UP TO 25"
+#~ msgstr "ԶԵՂՉ "
 
 #, python-format
 #~ msgid "UP TO 25%%"

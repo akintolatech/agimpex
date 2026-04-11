@@ -219,17 +219,9 @@
        <div class="header_bottom_bar">
             <div class="wrap">
                 <a href="{% url 'website:discount' %}" class="nav-item">
-                    {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25" %}%)</b>
+                    {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "Discount" %}%)</b>
                     
                 </a>
-
-                <!-- {% for cat in categories %}
-                {% if cat.slug == "construction-materials" %}
-                    <a href="{% url 'shop:product_list_by_category' cat.slug %}" class="nav-item" >
-                        {{ cat.name }}
-                    </a>
-                    {% endif %}
-                {% endfor %} -->
                 <a href="{% url 'website:construction_goods' %}" class="nav-item">{% trans "Construction Goods" %}</a>
                 <a href="{% url 'website:natural_stones' %}" class="nav-item">{% trans "Natural Stones" %}</a>
                 <a href="{% url 'website:index' %}#transport-section" class="nav-item">{% trans "Services" %}</a>
@@ -253,9 +245,6 @@
         </script>
 
     </div>
-
-
-   
 
     <main id="main-content">
         {% block content %}

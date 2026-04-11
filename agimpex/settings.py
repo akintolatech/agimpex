@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     "website.apps.WebsiteConfig",
     'orders.apps.OrdersConfig',
     'cart.apps.CartConfig',
-    # 'rosetta',
+    'rosetta',
     'shop.apps.ShopConfig',
     "administration.apps.AdministrationConfig",
     'django.contrib.admin',

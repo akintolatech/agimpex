@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-11 11:32+0100\n"
+"POT-Creation-Date: 2026-04-11 16:04+0100\n"
 "PO-Revision-Date: 2026-04-11 10:37+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: Russian\n"
@@ -13,7 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Translated-Using: django-rosetta 0.10.3\n"
 
 #: administration/templates/administration/admin_base.html:27
@@ -135,7 +136,7 @@ msgid "Full Name"
 msgstr "Полное имя"
 
 #: administration/templates/administration/users/user_details.html:48
-#: website/templates/website/website_base.html:333
+#: website/templates/website/website_base.html:321
 msgid "Phone"
 msgstr "Телефон"
 
@@ -156,58 +157,57 @@ msgstr "Расскажите что-нибудь о себе"
 msgid "SAVE CHANGES"
 msgstr "СОХРАНИТЬ ИЗМЕНЕНИЯ"
 
-#: cart/templates/cart/detail.html:5 cart/templates/cart/detail.html:18
+#: cart/templates/cart/detail.html:5 cart/templates/cart/detail.html:19
 #: shop/templates/shop/product/favorite_list.html:15
 msgid "Your shopping cart"
 msgstr "Ваша корзина"
 
-#: cart/templates/cart/detail.html:16
-#: website/templates/website/website_base.html:212
+#: cart/templates/cart/detail.html:17
+#: website/templates/website/website_base.html:211
 msgid "Cart"
 msgstr "Корзина"
 
-#: cart/templates/cart/detail.html:20
+#: cart/templates/cart/detail.html:21
 #: shop/templates/shop/product/favorite_list.html:17
 msgid "item"
 msgstr "товар"
 
-#: cart/templates/cart/detail.html:93 static/styles/cart_artifact.html:264
+#: cart/templates/cart/detail.html:94 static/styles/cart_artifact.html:264
 msgid "Order Summary"
 msgstr "Сводка заказа"
 
-#: cart/templates/cart/detail.html:103 static/styles/cart_artifact.html:273
+#: cart/templates/cart/detail.html:104 static/styles/cart_artifact.html:273
 msgid "Total"
 msgstr "Итого"
 
-#: cart/templates/cart/detail.html:109
+#: cart/templates/cart/detail.html:110
 msgid "Place order"
 msgstr "Оформить заказ"
 
-#: cart/templates/cart/detail.html:113 cart/templates/cart/detail.html:126
-#: orders/templates/orders/order/created.html:21
-#: shop/templates/shop/product/favorite_list.html:105
+#: cart/templates/cart/detail.html:114 cart/templates/cart/detail.html:127
+#: orders/templates/orders/order/created.html:20
+#: shop/templates/shop/product/favorite_list.html:100
 #: static/styles/cart_artifact.html:259 static/styles/cart_artifact.html:297
 #: website/templates/website/construction.html:118
 #: website/templates/website/search.html:90
 msgid "Continue shopping"
 msgstr "Продолжить покупки"
 
-#: cart/templates/cart/detail.html:124 static/styles/cart_artifact.html:295
+#: cart/templates/cart/detail.html:125 static/styles/cart_artifact.html:295
 msgid "Your cart is empty."
 msgstr "Ваша корзина пуста."
 
-#: orders/templates/orders/order/created.html:17
+#: orders/templates/orders/order/created.html:16
 msgid ""
 " Your order has been successfully completed. Your Tracking code has been "
 "sent to "
 msgstr "Ваш заказ успешно оформлен. Код отслеживания был отправлен на "
 
 #: shop/templates/shop/product/favorite_list.html:13
-#: shop/templates/shop/product/favorite_list.html:29
 msgid "My favourites"
 msgstr "Мои избранные"
 
-#: shop/templates/shop/product/favorite_list.html:103
+#: shop/templates/shop/product/favorite_list.html:98
 msgid "There are no favourite products here"
 msgstr "Здесь нет избранных товаров"
 
@@ -219,15 +219,15 @@ msgstr "Здесь нет избранных товаров"
 msgid "Product Categories"
 msgstr "Категории товаров"
 
-#: shop/templates/shop/product/list.html:158
-#: website/templates/website/discount.html:104
-#: website/templates/website/index.html:240
-#: website/templates/website/index.html:348
+#: shop/templates/shop/product/list.html:162
+#: website/templates/website/discount.html:108
+#: website/templates/website/index.html:311
+#: website/templates/website/index.html:423
 msgid "dram"
 msgstr "драм"
 
-#: shop/templates/shop/product/list.html:176
-#: website/templates/website/discount.html:146
+#: shop/templates/shop/product/list.html:180
+#: website/templates/website/discount.html:150
 #: website/templates/website/natural_stones.html:145
 msgid "There are no products here"
 msgstr "Здесь нет товаров"
@@ -250,7 +250,7 @@ msgid "Happy shopping"
 msgstr "Приятных покупок!"
 
 #: website/templates/website/contact.html:11
-#: website/templates/website/website_base.html:331
+#: website/templates/website/website_base.html:319
 msgid "Contact Us"
 msgstr "Свяжитесь с нами"
 
@@ -259,47 +259,48 @@ msgid "Address"
 msgstr "Адрес"
 
 #: website/templates/website/contact.html:38
-#: website/templates/website/website_base.html:237
-#: website/templates/website/website_base.html:280
+#: website/templates/website/website_base.html:228
+#: website/templates/website/website_base.html:268
 msgid "Contact"
 msgstr "Контакт"
 
 #: website/templates/website/contact.html:59
-#: website/templates/website/index.html:568
+#: website/templates/website/index.html:643
 msgid "Message"
 msgstr "Сообщение"
 
 #: website/templates/website/contact.html:68
-#: website/templates/website/index.html:577
+#: website/templates/website/index.html:652
 msgid "Name"
 msgstr "Имя"
 
 #: website/templates/website/contact.html:69
-#: website/templates/website/index.html:578
+#: website/templates/website/index.html:653
 msgid "Email Address"
 msgstr "Эл. почта"
 
 #: website/templates/website/contact.html:72
-#: website/templates/website/index.html:581
+#: website/templates/website/index.html:656
 msgid "Subject"
 msgstr "Тема"
 
 #: website/templates/website/contact.html:74
-#: website/templates/website/index.html:583
+#: website/templates/website/index.html:658
 msgid "Your Message"
 msgstr "Ваше сообщение"
 
 #: website/templates/website/contact.html:77
-#: website/templates/website/index.html:586
+#: website/templates/website/index.html:661
 msgid "Upload Files"
 msgstr "Загрузить файлы"
 
 #: website/templates/website/contact.html:87
-#: website/templates/website/index.html:596
+#: website/templates/website/index.html:671
 msgid "Send Message"
 msgstr "Отправить сообщение"
 
 #: website/templates/website/discount.html:6
+#: website/templates/website/website_base.html:222
 msgid "Discount"
 msgstr "Скидка"
 
@@ -307,151 +308,162 @@ msgstr "Скидка"
 msgid "Home"
 msgstr "Главная"
 
-#: website/templates/website/index.html:63
-#: website/templates/website/index.html:300
-#: website/templates/website/index.html:385
+#: website/templates/website/index.html:130
+#: website/templates/website/index.html:371
+#: website/templates/website/index.html:460
 msgid "Previous"
 msgstr "Назад"
 
-#: website/templates/website/index.html:66
-#: website/templates/website/index.html:368
-#: website/templates/website/index.html:444
+#: website/templates/website/index.html:133
+#: website/templates/website/index.html:443
+#: website/templates/website/index.html:519
 msgid "Next"
 msgstr "Вперед"
 
-#: website/templates/website/index.html:74
+#: website/templates/website/index.html:141
 msgid "CONSTRUCTION PRODUCTS"
 msgstr "СТРОИТЕЛЬНЫЕ ТОВАРЫ"
 
-#: website/templates/website/index.html:83
+#: website/templates/website/index.html:150
 msgid "NATURAL STONES MATERIALS"
 msgstr "МАТЕРИАЛЫ ИЗ НАТУРАЛЬНОГО КАМНЯ"
 
-#: website/templates/website/index.html:84
+#: website/templates/website/index.html:151
 msgid "WIDE RANGE OF PRODUCTS"
 msgstr "ШИРОКИЙ АССОРТИМЕНТ ПРОДУКЦИИ"
 
-#: website/templates/website/index.html:92
+#: website/templates/website/index.html:159
 msgid "TOGETHER TOWARDS ONE GOAL"
 msgstr "ВМЕСТЕ К ОДНОЙ ЦЕЛИ"
 
-#: website/templates/website/index.html:93
+#: website/templates/website/index.html:160
 msgid "EVERYTHING ON ONE PLACE"
 msgstr "ВСЁ В ОДНОМ МЕСТЕ"
 
-#: website/templates/website/index.html:113
+#: website/templates/website/index.html:180
 msgid "Reliable Partner"
 msgstr "Надежный партнер"
 
-#: website/templates/website/index.html:120
+#: website/templates/website/index.html:187
 msgid "Specialized Team"
 msgstr "Специализированная команда"
 
-#: website/templates/website/index.html:127
+#: website/templates/website/index.html:194
 msgid "Quality Product Range"
 msgstr "Качественный ассортимент продукции"
 
-#: website/templates/website/index.html:134
+#: website/templates/website/index.html:201
 msgid "Fast and Reliable Delivery"
 msgstr "Быстрая и надежная доставка"
 
-#: website/templates/website/index.html:141
+#: website/templates/website/index.html:208
 msgid "Competitive Prices"
 msgstr "Конкурентные цены"
 
-#: website/templates/website/index.html:154
+#: website/templates/website/index.html:221
 msgid "Construction Materials"
 msgstr "Строительные материалы"
 
-#: website/templates/website/index.html:162
-#: website/templates/website/index.html:380
+#: website/templates/website/index.html:229
+#: website/templates/website/index.html:455
 #: website/templates/website/natural_stones.html:6
-#: website/templates/website/website_base.html:162
-#: website/templates/website/website_base.html:235
-#: website/templates/website/website_base.html:278
+#: website/templates/website/website_base.html:161
+#: website/templates/website/website_base.html:226
+#: website/templates/website/website_base.html:266
 msgid "Natural Stones"
 msgstr "Натуральные камни"
 
-#: website/templates/website/index.html:170
+#: website/templates/website/index.html:237
 msgid "Polymer Materials"
 msgstr "Полимерные материалы"
 
-#: website/templates/website/index.html:178
+#: website/templates/website/index.html:245
 msgid "Bituminous Materials"
 msgstr "Битумные материалы"
 
-#: website/templates/website/index.html:189
+#: website/templates/website/index.html:256
 msgid "Special offers"
 msgstr "Специальные предложения"
 
-#: website/templates/website/index.html:265
+#: website/templates/website/index.html:336
 #: website/templates/website/services.html:33
 msgid "About us"
 msgstr "О нас"
 
-#: website/templates/website/index.html:268
+#: website/templates/website/index.html:339
 msgid "AG IMPEX"
 msgstr "AG IMPEX"
 
-#: website/templates/website/index.html:269
+#: website/templates/website/index.html:340
 msgid ""
 " \n"
-"                    LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
+"                    LLC was founded in 2018 with one clear goal: to become a "
+"reliable and long-term partner in the construction sector in Armenia.\n"
 "                "
 msgstr ""
-"                    ООО «ЭЙДЖИ ИМПЭКС» было основано в 2018 году с одной четкой целью: стать надежным и долгосрочным партнером в строительном секторе Армении.\n"
+"                    ООО «ЭЙДЖИ ИМПЭКС» было основано в 2018 году с одной "
+"четкой целью: стать надежным и долгосрочным партнером в строительном секторе "
+"Армении.\n"
 "                "
 
-#: website/templates/website/index.html:273
+#: website/templates/website/index.html:344
 msgid ""
 "\n"
-"                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, \n"
-"                    satisfying the requirements of both large construction companies and individual customers.\n"
+"                    For more than 7 years, we have been providing the "
+"Armenian market with high-quality, certified construction goods at "
+"competitive prices through both import and wholesale/retail sales, \n"
+"                    satisfying the requirements of both large construction "
+"companies and individual customers.\n"
 "                "
 msgstr ""
 "\n"
-"                    Уже более 7 лет мы обеспечиваем армянский рынок высококачественными сертифицированными строительными товарами по выгодным ценам посредством импорта, а также оптовых и розничных продаж, \n"
-"                    удовлетворяя потребности как крупных строительных компаний, так и частных клиентов.\n"
+"                    Уже более 7 лет мы обеспечиваем армянский рынок "
+"высококачественными сертифицированными строительными товарами по выгодным "
+"ценам посредством импорта, а также оптовых и розничных продаж, \n"
+"                    удовлетворяя потребности как крупных строительных "
+"компаний, так и частных клиентов.\n"
 "                "
 
-#: website/templates/website/index.html:278
+#: website/templates/website/index.html:349
 msgid ""
 "\n"
-"                    Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
+"the market with two new brands: Metals Holding and Prime Stone.\n"
 "                "
 msgstr ""
 "\n"
-"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит на рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
+"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит на "
+"рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
 "                "
 
-#: website/templates/website/index.html:295
-#: website/templates/website/website_base.html:161
-#: website/templates/website/website_base.html:234
-#: website/templates/website/website_base.html:277
+#: website/templates/website/index.html:366
+#: website/templates/website/website_base.html:160
+#: website/templates/website/website_base.html:225
+#: website/templates/website/website_base.html:265
 msgid "Construction Goods"
 msgstr "Строительные товары"
 
-#: website/templates/website/index.html:455
+#: website/templates/website/index.html:530
 #: website/templates/website/services.html:6
-#: website/templates/website/website_base.html:236
-#: website/templates/website/website_base.html:279
+#: website/templates/website/website_base.html:227
+#: website/templates/website/website_base.html:267
 msgid "Services"
 msgstr "Услуги"
 
-#: website/templates/website/index.html:468
+#: website/templates/website/index.html:543
 #: website/templates/website/services.html:95
 msgid "Cargo Transportation"
 msgstr "Перевозка грузов"
 
-#: website/templates/website/index.html:502
+#: website/templates/website/index.html:577
 msgid " Import and sale of <br/> construction products "
 msgstr " Импорт и продажа <br/> строительной продукции "
 
-#: website/templates/website/index.html:517
+#: website/templates/website/index.html:592
 msgid "Bitumen Tanker"
 msgstr "Битумовоз"
 
-#: website/templates/website/index.html:526
+#: website/templates/website/index.html:601
 msgid "Our Partners"
 msgstr "Наши партнеры"
 
@@ -499,7 +511,7 @@ msgstr "Действие"
 
 #: website/templates/website/search.html:6
 #: website/templates/website/search.html:15
-#: website/templates/website/website_base.html:143
+#: website/templates/website/website_base.html:142
 msgid "Search"
 msgstr "Поиск"
 
@@ -524,16 +536,29 @@ msgstr "Заказать сейчас"
 #: website/templates/website/services.html:35
 msgid ""
 "\n"
-"                    \"AG IMPEX\" LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.\n"
-"                    For more than 7 years, we have been providing the Armenian market with high-quality, certified construction goods at competitive prices through both import and wholesale/retail sales, satisfying the requirements of both large construction companies and individual customers.\n"
-"                    Starting from 2026, \"AG IMPEX\" LLC is also entering the market with two new brands: Metals Holding and Prime Stone.\n"
+"                    \"AG IMPEX\" LLC was founded in 2018 with one clear "
+"goal: to become a reliable and long-term partner in the construction sector "
+"in Armenia.\n"
+"                    For more than 7 years, we have been providing the "
+"Armenian market with high-quality, certified construction goods at "
+"competitive prices through both import and wholesale/retail sales, "
+"satisfying the requirements of both large construction companies and "
+"individual customers.\n"
+"                    Starting from 2026, \"AG IMPEX\" LLC is also entering "
+"the market with two new brands: Metals Holding and Prime Stone.\n"
 "                    "
 msgstr ""
 "\n"
-"                    ООО «ЭЙДЖИ ИМПЭКС» было основано в 2018 году с одной четкой целью: стать надежным и долгосрочным партнером в строительном секторе Армении.\n"
-"                    Уже более 7 лет мы обеспечиваем армянский рынок высококачественными сертифицированными строительными товарами по выгодным ценам посредством импорта, а также оптовых и розничных продаж, \n"
-"                    удовлетворяя потребности как крупных строительных компаний, так и частных клиентов.\n"
-"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит на рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
+"                    ООО «ЭЙДЖИ ИМПЭКС» было основано в 2018 году с одной "
+"четкой целью: стать надежным и долгосрочным партнером в строительном секторе "
+"Армении.\n"
+"                    Уже более 7 лет мы обеспечиваем армянский рынок "
+"высококачественными сертифицированными строительными товарами по выгодным "
+"ценам посредством импорта, а также оптовых и розничных продаж, \n"
+"                    удовлетворяя потребности как крупных строительных "
+"компаний, так и частных клиентов.\n"
+"                    Начиная с 2026 года, ООО «ЭЙДЖИ ИМПЭКС» также выходит на "
+"рынок с двумя новыми брендами: Metals Holding и Prime Stone.\n"
 "                    "
 
 #: website/templates/website/services.html:41
@@ -547,13 +572,17 @@ msgstr "Доставка"
 #: website/templates/website/services.html:59
 msgid ""
 "\n"
-"                    Expanding the field of activity, we also offer a delivery service.\n"
-"                    It includes the following: cargo loading, transportation, handling.\n"
+"                    Expanding the field of activity, we also offer a "
+"delivery service.\n"
+"                    It includes the following: cargo loading, "
+"transportation, handling.\n"
 "                    "
 msgstr ""
 "\n"
-"                    Расширяя сферу деятельности, мы также предлагаем услугу доставки.\n"
-"                    Она включает следующее: погрузка, транспортировка, разгрузка.\n"
+"                    Расширяя сферу деятельности, мы также предлагаем услугу "
+"доставки.\n"
+"                    Она включает следующее: погрузка, транспортировка, "
+"разгрузка.\n"
 "                    "
 
 #: website/templates/website/services.html:67
@@ -575,14 +604,18 @@ msgstr "Грузоперевозки"
 #: website/templates/website/services.html:81
 msgid ""
 "\n"
-"                    In order to ensure the most comfort of our partners and the high quality\n"
-"                    of cargo transportation, we replenish the range of existing vehicles and\n"
+"                    In order to ensure the most comfort of our partners and "
+"the high quality\n"
+"                    of cargo transportation, we replenish the range of "
+"existing vehicles and\n"
 "                    have different types of trucks, bitumen trucks, etc.\n"
 "                    "
 msgstr ""
 "\n"
-"                    Для обеспечения максимального комфорта наших партнеров и высокого качества\n"
-"                    перевозки грузов мы обновляем парк транспортных средств и\n"
+"                    Для обеспечения максимального комфорта наших партнеров и "
+"высокого качества\n"
+"                    перевозки грузов мы обновляем парк транспортных средств "
+"и\n"
 "                    имеем различные типы грузовиков, битумовозов и т.д.\n"
 "                    "
 
@@ -594,47 +627,46 @@ msgstr "Импорт и продажа строительных материал
 msgid "Bitumen Transporter"
 msgstr "Битумовоз"
 
-#: website/templates/website/website_base.html:47
+#: website/templates/website/website_base.html:51
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: website/templates/website/website_base.html:61
+#: website/templates/website/website_base.html:60
 msgid "  \"Working hours – 09:00 to 18:00, Mon–Sat\" "
 msgstr "  «Часы работы – 09:00 до 18:00, Пн–Сб» "
 
-#: website/templates/website/website_base.html:152
+#: website/templates/website/website_base.html:151
 msgid "Catalogs"
 msgstr "Каталоги"
 
-#: website/templates/website/website_base.html:181
+#: website/templates/website/website_base.html:180
 msgid "Login/Sign in"
 msgstr "Вход/Авторизация"
 
-#: website/templates/website/website_base.html:199
+#: website/templates/website/website_base.html:198
 msgid "Favourites"
 msgstr "Избранное"
 
-#: website/templates/website/website_base.html:223
-#: website/templates/website/website_base.html:276
+#: website/templates/website/website_base.html:222
+#: website/templates/website/website_base.html:264
 msgid "SPECIAL OFFER"
 msgstr "СПЕЦПРЕДЛОЖЕНИЕ"
 
-#: website/templates/website/website_base.html:223
-#, python-format
-msgid "UP TO 25%%"
-msgstr "UP TO 25"
-
-#: website/templates/website/website_base.html:275
+#: website/templates/website/website_base.html:263
 msgid "Quick Links"
 msgstr "Быстрые ссылки"
 
-#: website/templates/website/website_base.html:276
+#: website/templates/website/website_base.html:264
 msgid "UP TO 25"
 msgstr "UP TO 25"
 
-#: website/templates/website/website_base.html:332
+#: website/templates/website/website_base.html:320
 msgid "Yerevan, Davit Anhaght 23/10 floor 5 "
 msgstr ": Ереван, Давит Аньахт 23/10, 5 этаж"
+
+#, python-format
+#~ msgid "UP TO 25%%"
+#~ msgstr "UP TO 25"
 
 #~ msgid "Limestone"
 #~ msgstr "Известняк"

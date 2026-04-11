@@ -70,10 +70,8 @@
     <div class="hero-slider">
 
          <div class="hero-slide hero-slide--3">
-           
-
             <div class="hero-slide-inner">
-                     <h2 >{% trans "Construction products" %}</h2>
+                     <h2 >{% trans "CONSTRUCTION PRODUCTS" %}</h2>
 
             </div>
 
@@ -82,8 +80,8 @@
           <div class="hero-slide hero-slide--2">
             <div class="hero-slide-inner">
                 <div class="hero-text-box">
-                    <h2>{% trans "Natural stone materials" %}</h2>
-                    <h3>{% trans "Wide range of products" %}</h3>
+                    <h2>{% trans "NATURAL STONES MATERIALS" %}</h2>
+                    <h3>{% trans "WIDE RANGE OF PRODUCTS" %}</h3>
                 </div>
             </div>
         </div>
@@ -91,12 +89,11 @@
         <div class="hero-slide hero-slide--1">
 
             <div class="hero-slide-inner">   
-                <h2>{% trans "Together towards one goal" %}</h2>  
-                <h3>{% trans "Everything on One place" %}</h3>
+                <h2>{% trans "TOGETHER TOWARDS ONE GOAL" %}</h2>  
+                <h3>{% trans "EVERYTHING ON ONE PLACE" %}</h3>
             </div>
 
         </div>
-
     </div>
 
     <div class="hero-slider-dots-wrap">
@@ -240,7 +237,7 @@
                                     <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma  }}</span>
                                 {% endif %}
                                 <span class="current-price">{{ product.price|unlocalize|floatformat:0|intcomma }}</span>
-                                <span class="currency">dram/{{ product.unit_of_measure.unit }}</span>
+                                <span class="currency">{% trans "dram" %}/{{ product.unit_of_measure.unit }}</span>
                             </div>
                         </div>
                         
@@ -268,7 +265,7 @@
             <h1>{% trans "About us" %}</h1>
             <p>
                 
-                <b style="font-size: 34.57px;"><<{% trans "AG IMPEX" %}>></b>
+                <b style="font-size: 34.57px;">{% trans "AG IMPEX" %}</b>
                 {% blocktrans %} 
                     LLC was founded in 2018 with one clear goal: to become a reliable and long-term partner in the construction sector in Armenia.
                 {% endblocktrans %}
@@ -348,7 +345,7 @@
                                             <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma }}</span>
                                         {% endif %}
                                         <span class="current-price">{{ product.price|unlocalize|floatformat:0|intcomma  }}</span>
-                                        <span class="currency">dram/{{ product.unit_of_measure.unit }}</span>
+                                        <span class="currency">{% trans "dram" %}/{{ product.unit_of_measure.unit }}</span>
                                     </div>
                                 </div>
                                 

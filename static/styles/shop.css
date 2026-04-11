@@ -75,7 +75,7 @@
 }
 
 .container-of-containers {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 
@@ -334,10 +334,6 @@
 .wishlist-btn.active {
     color: red;
 }
-
-
-
-
 
  .product-grid-container {
       display: grid;

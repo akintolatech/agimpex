@@ -901,10 +901,9 @@ input[type="submit"] {
 }
 
 .text-box h1 {
-    /* font-size: clamp(2rem, 5vw, 58px); */
-    /* font-family: Montserrat arm; */
+    font-family: "Montserratarm", sans-serif;
+    font-size: clamp(2.5rem, 5vw, 64px);
     font-weight: 800;
-    font-size: 64px;
     line-height: 62px;
     letter-spacing: 0%;
 
@@ -1121,7 +1120,7 @@ input[type="submit"] {
 
 .product-info {
   background: #fff;
-  /* border: 1px solid var(--border-gray); */
+  border: 1px solid red;
   border-radius: 8px;
   padding: 10px;
   box-shadow: var(--shadow);
@@ -1878,7 +1877,7 @@ li {
     top: 20px;
     right: 20px;
     z-index: 9999;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 .message {

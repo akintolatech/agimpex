@@ -303,9 +303,9 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
 
 @transaction.atomic
 def create_product(request):
-
+    form = ProductForm(request.POST or None, request.FILES or None)
     if request.method == 'POST':
-        form = ProductForm(request.POST or None, request.FILES or None)
+
         try:
 
             if form.is_valid():
@@ -331,14 +331,12 @@ def create_product(request):
 def edit_product(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
-
-
+    form = ProductForm(request.POST or None, request.FILES or None, instance=product)
     if request.method == 'POST':
-        form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+
         try:
             if form.is_valid():
                 product = form.save()
-
                 save_or_rebuild_product_pricing_structure(
                     request, product, rebuild=True
                 )

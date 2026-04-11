@@ -34,8 +34,6 @@ td img {
     color: #2b4c7e;
 }
 
-
-
 .modern-table {
     width: 100%;
     border-collapse: collapse;
@@ -57,6 +55,12 @@ td img {
 .modern-table td {
     padding: 0.5rem;
     border-bottom: 1px solid #e2e8f0;
+}
+
+td[data-label="Action"] {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
 }
 
 .modern-table tbody tr {

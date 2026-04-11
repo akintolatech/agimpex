@@ -191,69 +191,77 @@ def product_list(request):
 
     return render(request, "administration/product/product_list.html", context)
 
-
 @transaction.atomic
 def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
-    """
-    Save or rebuild product properties, property values, and pricing rows.
-
-    If rebuild=True:
-        - delete old pricing rows
-        - delete old properties (which cascades property values)
-        - recreate from POST data
-    """
 
     if rebuild:
-        # Delete old pricing rows first (M2M links auto-clear)
         product.pricing_rows.all().delete()
-
-        # Delete old properties (cascades ProductPropertyValue)
         product.properties.all().delete()
 
-        property_names_en = request.POST.getlist('property_name_en[]')
-        property_names_hy = request.POST.getlist('property_name_hy[]')
-        property_names_ru = request.POST.getlist('property_name_ru[]')
+    # =========================
+    # READ STRUCTURED PROPERTIES
+    # =========================
+    import re
 
-        property_names = []
+    property_map = {}
 
-        for i in range(len(property_names_en)):
-            en = property_names_en[i].strip() if i < len(property_names_en) else ''
-            hy = property_names_hy[i].strip() if i < len(property_names_hy) else ''
-            ru = property_names_ru[i].strip() if i < len(property_names_ru) else ''
+    for key, value in request.POST.items():
+        match = re.match(r'properties\[(\d+)\]\[(\w+)\]', key)
+        if match:
+            idx = int(match.group(1))
+            lang = match.group(2)
 
-            if en:
-                property_names.append({
-                    'en': en,
-                    'hy': hy,
-                    'ru': ru
-                })
+            property_map.setdefault(idx, {})
+            property_map[idx][lang] = value.strip()
 
+    property_names = []
 
-    # If no properties submitted, leave product as simple/base-price product
+    for i in sorted(property_map.keys()):
+        p = property_map[i]
+
+        en = p.get('en', '')
+        hy = p.get('hy', '')
+        ru = p.get('ru', '')
+
+        if not en:
+            continue
+
+        property_names.append({
+            'en': en,
+            'hy': hy,
+            'ru': ru
+        })
+
     if not property_names:
         return
 
-    # Create properties in exact order
+    # =========================
+    # CREATE PROPERTIES
+    # =========================
     property_objects = []
-    for prop_data in property_names:
-        prop = ProductProperty.objects.create(
+
+    for p in property_names:
+        obj = ProductProperty.objects.create(
             product=product,
-            name=prop_data['en']  # store EN as base
+            name=p['en'],
+            name_hy=p.get('hy', ''),
+            name_ru=p.get('ru', '')
         )
-        property_objects.append(prop)
+        property_objects.append(obj)
 
+    # =========================
+    # PRICING ROWS
+    # =========================
     row_prices = request.POST.getlist('row_price[]')
-    row_count = len(row_prices)
 
-    # Cache values per property to avoid duplicate ProductPropertyValue creation
-    # key = (property_id, value_lower)
     value_cache = {}
 
-    for row_index in range(row_count):
+    for row_index in range(len(row_prices)):
+
         selected_values = []
 
-        # For each property column, get the row's value
         for col_index, prop_obj in enumerate(property_objects):
+
             column_values = request.POST.getlist(f'row_val_{col_index}[]')
 
             if row_index >= len(column_values):
@@ -276,66 +284,198 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
 
             selected_values.append(value_obj)
 
-        # Price for this row
-        raw_price = row_prices[row_index].strip() if row_index < len(row_prices) else ''
+        raw_price = row_prices[row_index].strip()
         if not raw_price:
             continue
 
         try:
-            final_price = Decimal(raw_price)
+            price = Decimal(raw_price)
         except (InvalidOperation, TypeError):
             continue
 
         pricing = ProductPricing.objects.create(
             product=product,
-            price=final_price
+            price=price
         )
 
-        if selected_values:
-            pricing.property_values.set(selected_values)
+        pricing.property_values.set(selected_values)
 
 
 @transaction.atomic
 def create_product(request):
+    form = ProductForm(request.POST or None, request.FILES or None)
+
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        try:
-            if form.is_valid():
-                product = form.save()
-                save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
-                messages.success(request, f'{product.name} created successfully.')
-                return redirect('administration:product_list')
-            else:
-                messages.error(request, 'Please fix the form errors.')
-        except Exception as e:
-            messages.error(request, f'Error creating product: {str(e)}')
-    else:
-        form = ProductForm()
+        if form.is_valid():
+            product = form.save()
 
-    context = {
+            save_or_rebuild_product_pricing_structure(
+                request, product, rebuild=False
+            )
+            messages.success(request, f"{product.name} Created Successfully")
+            return redirect('administration:product_list')
+
+    return render(request, 'administration/product/create_product.html', {
         'form': form,
-        'existing_pricing_data': None,
+        'existing_pricing_data': {},
+    })
+
+
+@transaction.atomic
+def edit_product(request, product_id):
+
+    product = get_object_or_404(Product, id=product_id)
+
+    form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            product = form.save()
+
+            save_or_rebuild_product_pricing_structure(
+                request, product, rebuild=True
+            )
+            messages.success(request, f"{product.name} Edited Successfully")
+
+            return redirect('administration:product_list')
+
+    properties = list(product.properties.all().order_by('id'))
+
+    existing_pricing_data = {
+        'properties': [
+            {
+                'en': p.name,
+                'hy': p.name_hy,
+                'ru': p.name_ru
+            }
+            for p in properties
+        ],
+        'rows': []
     }
-    return render(request, 'administration/product/create_product.html', context)
+
+    for pricing in product.pricing_rows.prefetch_related('property_values'):
+        row_map = {
+            pv.product_property_id: pv.value
+            for pv in pricing.property_values.all()
+        }
+
+        existing_pricing_data['rows'].append({
+            'values': [row_map.get(p.id, '') for p in properties],
+            'price': str(pricing.price)
+        })
+
+    return render(request, 'administration/product/edit_product.html', {
+        'form': form,
+        'product': product,
+        'existing_pricing_data': existing_pricing_data,
+    })
 
 
 
+
+
+
+
+# @transaction.atomic
+# def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
+#
+#     # ALWAYS define it first
+#     property_names = []
+#
+#     if rebuild:
+#         product.pricing_rows.all().delete()
+#         product.properties.all().delete()
+#
+#     property_names_en = request.POST.getlist('property_name_en[]')
+#     property_names_hy = request.POST.getlist('property_name_hy[]')
+#     property_names_ru = request.POST.getlist('property_name_ru[]')
+#
+#     for i in range(len(property_names_en)):
+#         en = property_names_en[i].strip() if i < len(property_names_en) else ''
+#         hy = property_names_hy[i].strip() if i < len(property_names_hy) else ''
+#         ru = property_names_ru[i].strip() if i < len(property_names_ru) else ''
+#
+#         if en:
+#             property_names.append({
+#                 'en': en,
+#                 'hy': hy,
+#                 'ru': ru
+#             })
+#
+#     # SAFE check now works always
+#     if not property_names:
+#         return
+#
+#     # Create properties
+#     property_objects = []
+#     for prop_data in property_names:
+#         prop = ProductProperty.objects.create(
+#             product=product,
+#             name=prop_data['en']
+#         )
+#         property_objects.append(prop)
+#
+#     row_prices = request.POST.getlist('row_price[]')
+#
+#     value_cache = {}
+#
+#     for row_index in range(len(row_prices)):
+#         selected_values = []
+#
+#         for col_index, prop_obj in enumerate(property_objects):
+#             column_values = request.POST.getlist(f'row_val_{col_index}[]')
+#
+#             if row_index >= len(column_values):
+#                 continue
+#
+#             raw_value = column_values[row_index].strip()
+#             if not raw_value:
+#                 continue
+#
+#             cache_key = (prop_obj.id, raw_value.lower())
+#
+#             if cache_key in value_cache:
+#                 value_obj = value_cache[cache_key]
+#             else:
+#                 value_obj, _ = ProductPropertyValue.objects.get_or_create(
+#                     product_property=prop_obj,
+#                     value=raw_value
+#                 )
+#                 value_cache[cache_key] = value_obj
+#
+#             selected_values.append(value_obj)
+#
+#         raw_price = row_prices[row_index].strip()
+#         if not raw_price:
+#             continue
+#
+#         try:
+#             final_price = Decimal(raw_price)
+#         except (InvalidOperation, TypeError):
+#             continue
+#
+#         pricing = ProductPricing.objects.create(
+#             product=product,
+#             price=final_price
+#         )
+#
+#         if selected_values:
+#             pricing.property_values.set(selected_values)
+#
+#
+#
+# @transaction.atomic
 # def create_product(request):
 #     if request.method == 'POST':
 #         form = ProductForm(request.POST, request.FILES)
-#
 #         try:
 #             if form.is_valid():
 #                 product = form.save()
-#
-#                 # Save dynamic properties + pricing
 #                 save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
-#
-#                 messages.success(request, f'{ product.name }Product created successfully.')
+#                 messages.success(request, f'{product.name} created successfully.')
 #                 return redirect('administration:product_list')
 #             else:
 #                 messages.error(request, 'Please fix the form errors.')
-#
 #         except Exception as e:
 #             messages.error(request, f'Error creating product: {str(e)}')
 #     else:
@@ -343,54 +483,54 @@ def create_product(request):
 #
 #     context = {
 #         'form': form,
+#         'existing_pricing_data': None,
+#     }
+#     return render(request, 'administration/product/create_product.html', context)
+#
+#
+# @transaction.atomic
+# @transaction.atomic
+# def edit_product(request, product_id):
+#     product = get_object_or_404(Product, id=product_id)
+#
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES, instance=product)
+#         try:
+#             if form.is_valid():
+#                 product = form.save()
+#                 save_or_rebuild_product_pricing_structure(request, product, rebuild=True)
+#                 messages.success(request, f'{product.name} updated successfully.')
+#                 return redirect('administration:product_list')
+#             else:
+#                 messages.error(request, 'Please fix the form errors.')
+#         except Exception as e:
+#             messages.error(request, f'Error updating product: {str(e)}')
+#     else:
+#         form = ProductForm(instance=product)
+#
+#     # Build existing data for JS
+#     properties = list(product.properties.all().order_by('id'))
+#     existing_pricing_data = {
+#         'properties': [
+#             {'en': p.name, 'hy': p.name_hy, 'ru': p.name_ru} for p in properties
+#         ],
+#         'rows': []
 #     }
 #
-#     return render(request, 'administration/product/create_product.html', context)
-
-
-@transaction.atomic
-@transaction.atomic
-def edit_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        try:
-            if form.is_valid():
-                product = form.save()
-                save_or_rebuild_product_pricing_structure(request, product, rebuild=True)
-                messages.success(request, f'{product.name} updated successfully.')
-                return redirect('administration:product_list')
-            else:
-                messages.error(request, 'Please fix the form errors.')
-        except Exception as e:
-            messages.error(request, f'Error updating product: {str(e)}')
-    else:
-        form = ProductForm(instance=product)
-
-    # Build existing data for JS
-    properties = list(product.properties.all().order_by('id'))
-    existing_pricing_data = {
-        'properties': [
-            {'en': p.name, 'hy': p.name_hy, 'ru': p.name_ru} for p in properties
-        ],
-        'rows': []
-    }
-
-    for pricing in product.pricing_rows.prefetch_related('property_values', 'property_values__product_property'):
-        row_map = {pv.product_property_id: pv.value for pv in pricing.property_values.all()}
-        ordered_values = [row_map.get(p.id, '') for p in properties]
-        existing_pricing_data['rows'].append({
-            'values': ordered_values,
-            'price': str(pricing.price)
-        })
-
-    context = {
-        'form': form,
-        'product': product,
-        'existing_pricing_data': existing_pricing_data,
-    }
-    return render(request, 'administration/product/edit_product.html', context)
+#     for pricing in product.pricing_rows.prefetch_related('property_values', 'property_values__product_property'):
+#         row_map = {pv.product_property_id: pv.value for pv in pricing.property_values.all()}
+#         ordered_values = [row_map.get(p.id, '') for p in properties]
+#         existing_pricing_data['rows'].append({
+#             'values': ordered_values,
+#             'price': str(pricing.price)
+#         })
+#
+#     context = {
+#         'form': form,
+#         'product': product,
+#         'existing_pricing_data': existing_pricing_data,
+#     }
+#     return render(request, 'administration/product/edit_product.html', context)
 
 
 # def edit_product(request, product_id):
@@ -594,6 +734,128 @@ def delete_unit_of_measure(request, unit_id):
 
 
 
+# @transaction.atomic
+# def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
+#     """
+#     Save or rebuild product properties, property values, and pricing rows.
+#
+#     If rebuild=True:
+#         - delete old pricing rows
+#         - delete old properties (which cascades property values)
+#         - recreate from POST data
+#     """
+#
+#     if rebuild:
+#         # Delete old pricing rows first (M2M links auto-clear)
+#         product.pricing_rows.all().delete()
+#
+#         # Delete old properties (cascades ProductPropertyValue)
+#         product.properties.all().delete()
+#
+#         property_names_en = request.POST.getlist('property_name_en[]')
+#         property_names_hy = request.POST.getlist('property_name_hy[]')
+#         property_names_ru = request.POST.getlist('property_name_ru[]')
+#
+#         property_names = []
+#
+#         for i in range(len(property_names_en)):
+#             en = property_names_en[i].strip() if i < len(property_names_en) else ''
+#             hy = property_names_hy[i].strip() if i < len(property_names_hy) else ''
+#             ru = property_names_ru[i].strip() if i < len(property_names_ru) else ''
+#
+#             if en:
+#                 property_names.append({
+#                     'en': en,
+#                     'hy': hy,
+#                     'ru': ru
+#                 })
+#
+#
+#     # If no properties submitted, leave product as simple/base-price product
+#     if not property_names:
+#         return
+#
+#     # Create properties in exact order
+#     property_objects = []
+#     for prop_data in property_names:
+#         prop = ProductProperty.objects.create(
+#             product=product,
+#             name=prop_data['en']  # store EN as base
+#         )
+#         property_objects.append(prop)
+#
+#     row_prices = request.POST.getlist('row_price[]')
+#     row_count = len(row_prices)
+#
+#     # Cache values per property to avoid duplicate ProductPropertyValue creation
+#     # key = (property_id, value_lower)
+#     value_cache = {}
+#
+#     for row_index in range(row_count):
+#         selected_values = []
+#
+#         # For each property column, get the row's value
+#         for col_index, prop_obj in enumerate(property_objects):
+#             column_values = request.POST.getlist(f'row_val_{col_index}[]')
+#
+#             if row_index >= len(column_values):
+#                 continue
+#
+#             raw_value = column_values[row_index].strip()
+#             if not raw_value:
+#                 continue
+#
+#             cache_key = (prop_obj.id, raw_value.lower())
+#
+#             if cache_key in value_cache:
+#                 value_obj = value_cache[cache_key]
+#             else:
+#                 value_obj, _ = ProductPropertyValue.objects.get_or_create(
+#                     product_property=prop_obj,
+#                     value=raw_value
+#                 )
+#                 value_cache[cache_key] = value_obj
+#
+#             selected_values.append(value_obj)
+#
+#         # Price for this row
+#         raw_price = row_prices[row_index].strip() if row_index < len(row_prices) else ''
+#         if not raw_price:
+#             continue
+#
+#         try:
+#             final_price = Decimal(raw_price)
+#         except (InvalidOperation, TypeError):
+#             continue
+#
+#         pricing = ProductPricing.objects.create(
+#             product=product,
+#             price=final_price
+#         )
+#
+#         if selected_values:
+#             pricing.property_values.set(selected_values)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -633,3 +895,32 @@ def delete_unit_of_measure(request, unit_id):
 #         "dormant_users_list": dormant_users_list,
 #     }
 #     return render(request, "administration/users/dormant_users.html", context)
+
+
+
+# def create_product(request):
+#     if request.method == 'POST':
+#         form = ProductForm(request.POST, request.FILES)
+#
+#         try:
+#             if form.is_valid():
+#                 product = form.save()
+#
+#                 # Save dynamic properties + pricing
+#                 save_or_rebuild_product_pricing_structure(request, product, rebuild=False)
+#
+#                 messages.success(request, f'{ product.name }Product created successfully.')
+#                 return redirect('administration:product_list')
+#             else:
+#                 messages.error(request, 'Please fix the form errors.')
+#
+#         except Exception as e:
+#             messages.error(request, f'Error creating product: {str(e)}')
+#     else:
+#         form = ProductForm()
+#
+#     context = {
+#         'form': form,
+#     }
+#
+#     return render(request, 'administration/product/create_product.html', context)

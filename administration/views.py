@@ -303,17 +303,23 @@ def save_or_rebuild_product_pricing_structure(request, product, rebuild=False):
 
 @transaction.atomic
 def create_product(request):
-    form = ProductForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
-        if form.is_valid():
-            product = form.save()
+        form = ProductForm(request.POST or None, request.FILES or None)
+        try:
 
-            save_or_rebuild_product_pricing_structure(
-                request, product, rebuild=False
-            )
-            messages.success(request, f"{product.name} Created Successfully")
-            return redirect('administration:product_list')
+            if form.is_valid():
+                product = form.save()
+
+                save_or_rebuild_product_pricing_structure(
+                    request, product, rebuild=False
+                )
+                messages.success(request, f"{product.name} Created Successfully")
+                return redirect('administration:product_list')
+            else:
+                 messages.warning(request, "Invalid Form")
+        except Exception as e:
+            messages.error(request, f'Error:: {str(e)}')
 
     return render(request, 'administration/product/create_product.html', {
         'form': form,
@@ -326,18 +332,24 @@ def edit_product(request, product_id):
 
     product = get_object_or_404(Product, id=product_id)
 
-    form = ProductForm(request.POST or None, request.FILES or None, instance=product)
 
     if request.method == 'POST':
-        if form.is_valid():
-            product = form.save()
+        form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+        try:
+            if form.is_valid():
+                product = form.save()
 
-            save_or_rebuild_product_pricing_structure(
-                request, product, rebuild=True
-            )
-            messages.success(request, f"{product.name} Edited Successfully")
+                save_or_rebuild_product_pricing_structure(
+                    request, product, rebuild=True
+                )
+                messages.success(request, f"{product.name} Updated Successfully")
+                return redirect('administration:product_list')
+            else:
+                messages.error(request, 'Invalid form.')
+        except Exception as e:
+            messages.error(request, f'Error updating product: {str(e)}')
 
-            return redirect('administration:product_list')
+
 
     properties = list(product.properties.all().order_by('id'))
 

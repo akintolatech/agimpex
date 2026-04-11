@@ -7,21 +7,24 @@
 {% endblock %}
 
 {% block content %}
-    <div class="form-page">
-        <div class="form-wrapper">
-            <h3>{% trans "Edit Category" %}: {{ category.name }}</h3>
 
-            <form method="post" enctype="multipart/form-data" class="product-form">
-                {% csrf_token %}
-                <div class="form-group">
-                {{ form.as_p }}
-                </div>
-                
-                <button type="submit" class="btn btn-primary">{% trans "Update Category" %}</button><br/>
-                <a href="{% url 'administration:category_list' %}">{% trans "Cancel" %}</a>
-            </form>
-        </div>
+    <div class="form-page">
+            <div class="form-wrapper">
+
+                <h2>{% trans "Edit Category" %}: {{ category.name }}</h2>
+
+                <form method="post" enctype="multipart/form-data" class="product-form" style="margin-block: 40px;">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{% url 'administration:category_list' %}">Cancel</a>
+                </form>
+            
+            </div>
     </div>
-    
 
 {% endblock %}

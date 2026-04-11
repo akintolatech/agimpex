@@ -150,5 +150,5 @@ class CreateUnitOfMeasureForm(forms.ModelForm):
 class EditUnitOfMeasureForm(forms.ModelForm):
     class Meta:
         model = UnitOfMeasure
-        fields = ['unit']
+        fields = ['unit', 'unit_hy', 'unit_ru']
 

@@ -8,7 +8,7 @@
     --border-gray: #e0e0e0;
     --text-gray: #666;
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
-    --h1-fontsize: 2.5rem;
+    --h1-fontsize: 2.2rem;
     --h1-fontsize-mobile : 1.7rem;
 
 }
@@ -187,10 +187,22 @@ summary::after {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 60px; 
+    width: 64px; 
     height: 60px;
     transform: translate(-50%, -50%);
 }
+
+.loader-content p {
+    color: var(--pry-color);
+    color: var(--pry-color);
+  text-shadow:
+    -1px -1px 0 #fff,
+     1px -1px 0 #fff,
+    -1px  1px 0 #fff,
+     1px  1px 0 #fff;
+}
+
+
 
 /* animation */
 @keyframes spin {
@@ -905,7 +917,7 @@ input[type="submit"] {
     font-size: clamp(.8rem, 3.5vw, 17px);
     font-weight: 600;
     margin: 0 0 12px;
-    line-height: 51.21px;
+    line-height: 41.21px;
     letter-spacing: 0.02em;
 }
 
@@ -1434,6 +1446,9 @@ textarea {
     text-align: center;
 }
 
+
+
+
 .contact-items{
     height: 450px;
     margin-bottom: 30px;
@@ -1471,6 +1486,13 @@ textarea {
     .contact-map-box {
         width: 69%;
     }
+
+    .send-btn {
+        width: clamp(300px, 24.82vw, 476.63px);
+        margin-top: 24px; 
+        margin-left: -24px;
+    }
+
 
 }
 

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-11 09:59+0100\n"
-"PO-Revision-Date: 2026-04-11 09:18+0000\n"
+"POT-Creation-Date: 2026-04-11 11:32+0100\n"
+"PO-Revision-Date: 2026-04-11 10:34+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: Armenian <LL@li.org>\n"
 "Language: hy\n"
@@ -213,15 +213,23 @@ msgstr "Իմ սիրելի ապրանքները"
 msgid "There are no favourite products here"
 msgstr "Այստեղ սիրելի ապրանքներ չկան"
 
-#: shop/templates/shop/product/list.html:21
-#: shop/templates/shop/product/list.html:44
+#: shop/templates/shop/product/list.html:22
+#: shop/templates/shop/product/list.html:47
+#: shop/templates/shop/product/list.html:70
 #: website/templates/website/discount.html:18
 #: website/templates/website/discount.html:40
 msgid "Product Categories"
 msgstr "Ապրանքների կատեգորիաներ"
 
-#: shop/templates/shop/product/list.html:123
-#: website/templates/website/discount.html:119
+#: shop/templates/shop/product/list.html:158
+#: website/templates/website/discount.html:104
+#: website/templates/website/index.html:240
+#: website/templates/website/index.html:348
+msgid "dram"
+msgstr "դրամ"
+
+#: shop/templates/shop/product/list.html:176
+#: website/templates/website/discount.html:146
 #: website/templates/website/natural_stones.html:145
 msgid "There are no products here"
 msgstr "Այստեղ ապրանքներ չկան"
@@ -240,6 +248,10 @@ msgstr "Շինարարություն"
 #: website/templates/website/construction.html:116
 msgid "There are no construction here"
 msgstr "Այստեղ շինարարական նյութեր չկան"
+
+#: website/templates/website/construction.html:35
+msgid "Happy shopping"
+msgstr "ԲԱՐԻ ԳՆՈՒՄՆԵՐ"
 
 #: website/templates/website/contact.html:11
 #: website/templates/website/website_base.html:331
@@ -378,10 +390,6 @@ msgstr "Նավթաքիմիական նյութեր"
 msgid "Special offers"
 msgstr "ՀԱՏՈՒԿ ԱՌԱՋԱՐԿ"
 
-#: website/templates/website/index.html:240
-msgid "dram"
-msgstr "դրամ"
-
 #: website/templates/website/index.html:265
 #: website/templates/website/services.html:33
 msgid "About us"
@@ -460,6 +468,40 @@ msgstr "Բնական քարեր"
 #: website/templates/website/natural_stones.html:25
 msgid "Wide range of products"
 msgstr "Լայն տեսականի"
+
+#: website/templates/website/natural_stones.html:40
+msgid "Crystal Marble"
+msgstr "Բյուրեղյա մարմար"
+
+#: website/templates/website/natural_stones.html:45
+msgid "Marble"
+msgstr "Օնիքս"
+
+#: website/templates/website/natural_stones.html:50
+msgid "Onyx"
+msgstr "Գրանիտ"
+
+#: website/templates/website/natural_stones.html:55
+msgid "Granite"
+msgstr "Տրավերտին"
+
+#: website/templates/website/natural_stones.html:60
+msgid "Travertine"
+msgstr "Կրաքար"
+
+#: website/templates/website/natural_stones.html:65
+msgid "Quartz"
+msgstr "Խորանարդ քար"
+
+#: website/templates/website/natural_stones.html:70
+msgid "Cobblestone"
+msgstr "Կիրառություն"
+
+#: website/templates/website/natural_stones.html:75
+#, fuzzy
+#| msgid "Action"
+msgid "Application"
+msgstr "Գործողություն"
 
 #: website/templates/website/search.html:6
 #: website/templates/website/search.html:15
@@ -594,6 +636,9 @@ msgstr "ԶԵՂՉ "
 #: website/templates/website/website_base.html:332
 msgid "Yerevan, Davit Anhaght 23/10 floor 5 "
 msgstr "Երևան, Դավիթ Անհաղթ 23/10, 5-րդ հարկ"
+
+#~ msgid "Limestone"
+#~ msgstr "Խորանարդ քար"
 
 #~ msgid "Construction products"
 #~ msgstr ""

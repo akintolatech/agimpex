@@ -92,7 +92,7 @@ details[open] summary::after {
     /* Layout */
     display: flex;
     justify-content: space-between; 
-    
+    align-items: center;
     /* Styling */
     background-color: var(--pry-color);    
     padding: 15px 30px;            

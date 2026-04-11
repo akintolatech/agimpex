@@ -41,9 +41,21 @@
     {% endif %}
 
 
+    <!-- <div id="page-loader">
+        <div class="loader-content">
+            <div class="spinner">
+                <img src="{% static 'img/ag.png' %}" class="logo" />
+            </div>
+            <p>{% trans "Loading..." %}</p>
+        </div>
+    </div> -->
+
     <div id="page-loader">
         <div class="loader-content">
-            <div class="spinner"></div>
+            <div class="spinner">
+                <div class="spin-circle"></div>
+                <img src="{% static 'img/ag.png' %}" class="loader_logo" />
+            </div>
             <p>{% trans "Loading..." %}</p>
         </div>
     </div>
@@ -220,7 +232,7 @@
        <div class="header_bottom_bar">
             <div class="wrap">
                 <a href="{% url 'website:discount' %}" class="nav-item">
-                    {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25%" %})</b>
+                    {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "UP TO 25" %}%)</b>
                     
                 </a>
 

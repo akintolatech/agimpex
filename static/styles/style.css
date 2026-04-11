@@ -88,18 +88,9 @@ html, body {
     justify-content: flex-start;
 }
 
-
-body {
-    /* background-color: whitesmoke; */
-}
-
-
-
 #main-content {
     padding-top: var(--header-height);
 }
-
-
 
 a {
     text-decoration: none;

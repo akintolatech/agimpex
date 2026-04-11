@@ -7,19 +7,19 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Thank you</h1>
   
-  <div class="message-container">
+  <div class="message-container" style="margin-bottom: 12px;">
     <center>
       <div class="message-container-image-box">
         <img src="{% static 'img/check.svg' %}" width="240px"/>
       </div>
       <p>{% blocktrans %} Your order has been successfully completed. Your Tracking code has been sent to {% endblocktrans %} <br/>
-         <strong>{{ order.email }}</strong>.
+         <!-- <strong>{{ order.email }}</strong>. -->
       </p>
       <a href="{% url 'shop:product_list' %}" >
         <button class="checkout-btn">{% trans "Continue shopping" %}</button>
       </a>
     </center>
   </div>
+
 {% endblock %}

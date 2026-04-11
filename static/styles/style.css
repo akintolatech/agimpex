@@ -8,9 +8,8 @@
     --border-gray: #e0e0e0;
     --text-gray: #666;
     --shadow: 0 4px 8px rgba(0,0,0,0.1);
-
-    --h1-fontsize: 3.25rem;
-    --h1-fontsize-mobile : 1.8rem;
+    --h1-fontsize: 2.5rem;
+    --h1-fontsize-mobile : 1.7rem;
 
 }
 
@@ -903,7 +902,7 @@ input[type="submit"] {
 
 .text-box p {
     font-family: "Montserratarm", sans-serif;
-    font-size: clamp(.8rem, 3.5vw, 19.82px);
+    font-size: clamp(.8rem, 3.5vw, 17px);
     font-weight: 600;
     margin: 0 0 12px;
     line-height: 51.21px;
@@ -1544,7 +1543,7 @@ li {
 
 .footer-text-container ul a li {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 100%;
     letter-spacing: 0%;
 }

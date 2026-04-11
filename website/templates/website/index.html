@@ -12,6 +12,71 @@
 
 {% block extra_scripts %}
 <script src="{% static 'js/slick.min.js' %}"></script>
+<!-- <script>
+jQuery(function ($) {
+
+    // HERO SLIDER
+    var $hero = $('.hero-slider');
+    if ($hero.length) {
+        $hero.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: true,
+            fade: true,
+            speed: 600,
+            autoplay: true,
+            autoplaySpeed: 6500,
+            pauseOnHover: true,
+            arrows: true,
+            dots: true,
+            appendDots: $('.hero-slider-root .hero-slider-dots'),
+            prevArrow: $('.hero-slider-root .hero-slider-arrow--prev'),
+            nextArrow: $('.hero-slider-root .hero-slider-arrow--next')
+        });
+    }
+
+    // STONES SLIDER
+    var $stones = $('.stones-slider');
+
+    if ($stones.length) {
+        $stones.slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            infinite: true,
+            speed: 300,
+            cssEase: 'ease',
+            arrows: true,
+
+            prevArrow: $('.section-natural-stones-slider .stones-slider-arrow--prev'),
+            nextArrow: $('.section-natural-stones-slider .stones-slider-arrow--next'),
+
+            responsive: [
+                {
+                    breakpoint: 1400,
+                    settings: { slidesToShow: 5 }
+                },
+                {
+                    breakpoint: 1200,
+                    settings: { slidesToShow: 4 }
+                },
+                {
+                    breakpoint: 992,
+                    settings: { slidesToShow: 3 }
+                },
+                {
+                    breakpoint: 640,
+                    settings: { slidesToShow: 2 }   =
+                },
+                {
+                    breakpoint: 480,
+                    settings: { slidesToShow: 2 }  
+                }
+            ]
+        });
+    }
+
+});
+</script> -->
 <script>
     jQuery(function ($) {
     var $hero = $('.hero-slider');
@@ -55,6 +120,8 @@
     }
     });
     </script>
+    
+    
 {% endblock %}
 
 {% block content %}
@@ -236,7 +303,11 @@
                                 {% if product.discount_amount%}
                                     <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma  }}</span>
                                 {% endif %}
-                                <span class="current-price">{{ product.price|unlocalize|floatformat:0|intcomma }}</span>
+                                {% if product.price %}
+                                    <span class="current-price">
+                                        {{ product.price|unlocalize|floatformat:0|intcomma }}
+                                    </span>
+                                {% endif %}
                                 <span class="currency">{% trans "dram" %}/{{ product.unit_of_measure.unit }}</span>
                             </div>
                         </div>
@@ -344,7 +415,11 @@
                                         {% if product.discount_amount%}
                                             <span class="old-price">{{ product.old_price|unlocalize|floatformat:0|intcomma }}</span>
                                         {% endif %}
-                                        <span class="current-price">{{ product.price|unlocalize|floatformat:0|intcomma  }}</span>
+                                        {% if product.price %}
+                                            <span class="current-price">
+                                                {{ product.price|unlocalize|floatformat:0|intcomma }}
+                                            </span>
+                                        {% endif %}
                                         <span class="currency">{% trans "dram" %}/{{ product.unit_of_measure.unit }}</span>
                                     </div>
                                 </div>

@@ -1168,9 +1168,8 @@ input[type="submit"] {
   
   margin: 0;
   padding: 0;
-  /* border: none; */
   cursor: pointer;
-  color: #003366; /* Dark blue from the image */
+  color: var(--pry-color) 
 
 }
 
@@ -1184,8 +1183,7 @@ input[type="submit"] {
     overflow: hidden;
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
-    isolation: isolate;
+    box-sizing: border-box;
 }
 
 
@@ -1195,7 +1193,11 @@ input[type="submit"] {
 .transport-banner--reverse .transport-banner__image-wrap {
     justify-content: flex-start;
     padding-right: 0;
-    padding-left: clamp(10px, 3vw, 40px);
+    /* padding-left: clamp(10px, 3vw, 40px); */
+}
+
+.transport-banner--reverse .transport-banner__image-wrap img {
+    margin-top: -100px;
 }
 
 .transport-banner--reverse .transport-banner__bar {
@@ -1226,19 +1228,20 @@ input[type="submit"] {
     justify-content: flex-end;
     align-items: center;
     pointer-events: none;
-    z-index: 3; /* CHANGED: image now above blue bar */
+    z-index: 3; 
     padding-right: clamp(10px, 3vw, 40px);
 }
 
 .transport-banner__image {
     width: auto;
     height: auto;
-    max-width: min(48%, 700px);
-    max-height: 88%;
+    /* max-width: min(48%, 700px); */
+    max-height: 100%;
     object-fit: contain;
     display: block;
     filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.18));
 }
+
 
 /* =========================
    BLUE BAR OVERLAY
@@ -1257,7 +1260,6 @@ input[type="submit"] {
 .transport-banner__bar-inner {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
     gap: 20px;
     flex-wrap: wrap;
 }
@@ -1270,8 +1272,9 @@ input[type="submit"] {
     color: #fff;
     font-weight: 800;
     line-height: 1.15;
-    font-size: clamp(1.1rem, 2.1vw, 2.4rem);
-    max-width: 65%;
+    font-size: clamp(1rem, 2.1vw, 2rem);
+    max-width: 768px;
+    text-transform: capitalize;
 }
 
 /* =========================
@@ -1290,8 +1293,8 @@ input[type="submit"] {
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    background: #fff;
+    /* border: 1px solid rgba(255, 255, 255, 0.35); */
+    /* background: #fff; */
 }
 
 .transport-banner__flag img {
@@ -1321,6 +1324,10 @@ input[type="submit"] {
         max-width: 52%;
         max-height: 82%;
     }
+    .transport-banner--reverse .transport-banner__image-wrap img {
+        margin-top: 0;
+    }
+
 }
 
 /* =========================
@@ -1445,9 +1452,6 @@ textarea {
     cursor: pointer;
     text-align: center;
 }
-
-
-
 
 .contact-items{
     height: 450px;
@@ -1638,8 +1642,8 @@ li {
 }
 
 .contact-icon{
-     width: 38px;
-     height: 38px;
+     width: 42px;
+     height: 42px;
      margin-right: 16px;
 }
 .contact-icon img{

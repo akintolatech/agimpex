@@ -16,6 +16,7 @@
     <link rel="preload" as="image" href="{% static 'img/ag.png' %}">
     {% block style %} {% endblock %}
     <script>
+        // page loader
         window.addEventListener("load", function () {
             const loader = document.getElementById("page-loader");
             loader.classList.add("hide");
@@ -24,6 +25,27 @@
                 loader.remove();
             }, 500);
         });
+
+        // update header height padding
+        function updateHeaderHeight() {
+            const header = document.getElementById('header');
+            if (header) {
+                document.documentElement.style.setProperty(
+                    '--header-height',
+                    header.offsetHeight + 'px'
+                );
+            }
+        }
+
+        window.addEventListener('load', updateHeaderHeight);
+        window.addEventListener('resize', updateHeaderHeight);
+
+        // fade off message
+        setTimeout(() => {
+            document.querySelectorAll('.message').forEach(el => el.remove());
+        }, 4500);
+
+
     </script>
     
     {% block extra_scripts %} {% endblock %}
@@ -57,11 +79,11 @@
         <div class="header_contact_bar">
 
             <div class="contact-wrap">
-               <p style="opacity: 0;">{% blocktrans %}  "Working hours – 09:00 to 18:00, Mon–Sat" {% endblocktrans %}</p>
+            <p style="opacity: 0;">{% blocktrans %}  "Working hours – 09:00 to 18:00, Mon–Sat" {% endblocktrans %}</p>
                 
                 <div class="contact-wrap-item">
 
-                   <div class="language-dropdown">
+                <div class="language-dropdown">
                         <div class="btn-toggle">
 
                             <button class="language-btn">
@@ -104,7 +126,7 @@
                         <img src="{% static 'img/Phone.svg' %}" alt="English">
                         <p style="color: white;">033 40 44 40</p>
                     </div>
-                     
+                    
                 </div>
                 
             </div>
@@ -116,7 +138,7 @@
             <div class="wrap">
 
                 <div class="siteid-container">
-                     
+                    
                     <a href="{% url 'website:index' %}"><img src="{% static 'img/agimpexhlogo.png' %}" class="logo" /></a>
     
                     <script src="{% static 'js/toggle.js' %}"></script>
@@ -137,8 +159,8 @@
                 </div>
                 
                 <div class="searchbox">
-              
-                   <form class="input-container" method="get" action="{% url 'website:search' %}" id="searchForm">
+            
+                <form class="input-container" method="get" action="{% url 'website:search' %}" id="searchForm">
                         <input type="search" name="q" placeholder="{% trans 'Search' %}..." value="{{ request.GET.q }}">
 
                         <span class="search-icon" onclick="document.getElementById('searchForm').submit();" style="cursor: pointer;">
@@ -150,8 +172,8 @@
                     <summary>
                         {% trans "Catalogs" %}
                         <span>
-                             <div class="icon-container">
-                                <!-- <img src="{% static 'img/arrow_down.svg' %}" class="arrow_down" /> -->
+                            <div class="icon-container">
+
                             </div>
                         </span>
                     </summary>
@@ -216,7 +238,7 @@
             </div>
         </div>
 
-       <div class="header_bottom_bar">
+    <div class="header_bottom_bar">
             <div class="wrap">
                 <a href="{% url 'website:discount' %}" class="nav-item">
                     {% trans "SPECIAL OFFER" %} <b style="color: red;">({% trans "Discount" %}%)</b>
@@ -230,10 +252,7 @@
         </div>
 
         <script>
-            // Get current path
             const currentPath = window.location.pathname;
-
-            // Select all nav links
             const navLinks = document.querySelectorAll('.wrap .nav-item');
 
             navLinks.forEach(link => {
@@ -250,9 +269,7 @@
         {% block content %}
         {% endblock %}
     </main>
-
-
-    <!-- FOOTER -->
+    
     <div class="footer">
 
         <div class="footer-wrap">
@@ -307,19 +324,15 @@
                                     </div>
                                 </a>
                             </div>
-
                         </li>
-                        
                     </div>
-                   
                 </ul>
-                
                 
                 <ul>
                     <li class="footer-heading">{% trans "Contact Us" %}</li>
                     <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/loc.svg' %}" alt="" class="footer_icn"></span>{% blocktrans %}Yerevan, Davit Anhaght 23/10 floor 5 {% endblocktrans %}</li></a>
                     <!-- <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/call.svg' %}" alt="" class="footer_icn"></span>{% trans "Phone" %}: +374 33 40 44 40</li></a> -->
-                    <a href="#">
+                    <a href="tel:033 40 44 40">
                         <li>
                             <span style="margin-right: 12px;">
                                 <img src="{% static 'img/call.svg' %}" alt="" class="footer_icn">
@@ -332,37 +345,15 @@
                             </span>
                         </li>
                     </a>
-                    <a href="#"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt="" class="footer_icn"></span>info@agimpex.am</li></a>
+                    <a href="mailto:info@agimpex.am"><li><span style="margin-right: 12px;"><img src="{% static 'img/message.svg' %}" alt="" class="footer_icn"></span>info@agimpex.am</li></a>
 
                 </ul>   
 
             </div>
-                     
+                    
         </div>
 
     </div>
-
-<script>
-    function updateHeaderHeight() {
-        const header = document.getElementById('header');
-        if (header) {
-            document.documentElement.style.setProperty(
-                '--header-height',
-                header.offsetHeight + 'px'
-            );
-        }
-    }
-
-    window.addEventListener('load', updateHeaderHeight);
-    window.addEventListener('resize', updateHeaderHeight);
-</script>
-
-
-<script>
-    setTimeout(() => {
-        document.querySelectorAll('.message').forEach(el => el.remove());
-    }, 4500);
-</script>
     
 </body>
 </html>

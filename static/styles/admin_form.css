@@ -418,7 +418,6 @@
 
     .image-upload-grid {
         grid-template-columns: 1fr;
-        border: 1px solid red;
     }
 
     .property-header,

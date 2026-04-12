@@ -193,7 +193,8 @@
   flex: 1.5 1 400px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* justify-content: space-between; */
+  /* gap: 20px; */
 }
 
 .info-box {
@@ -210,6 +211,34 @@
   color: var(--text-muted);
   line-height: 1.4;
   margin-bottom: 20px;
+}
+
+.spec-container {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.spec-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.spec-label {
+    width: 64%;
+    /* font-weight: 600; */
+}
+
+.spec-value select {
+    padding: 4px;
+    width: 100%;
+    /* all: unset; */
 }
 
 .spec-row {
@@ -232,16 +261,16 @@
 /* Purchase Bar */
 .purchase-bar {
   background: var(--bg-gray);
-  /* padding: 15px 25px; */
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  /* border: 1px solid red; */
 }
 
-.sub-title { margin: 0; font-size: 1.2rem; color: #556080; }
+.subtitle { margin: 0; font-size: 1.2rem; color: #556080; }
 
 .old-price {
   text-decoration: line-through;

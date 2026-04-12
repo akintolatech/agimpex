@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-11 18:00+0100\n"
-"PO-Revision-Date: 2026-04-12 04:19+0000\n"
+"PO-Revision-Date: 2026-04-12 09:40+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: Armenian <LL@li.org>\n"
 "Language: hy\n"
@@ -468,7 +468,7 @@ msgstr "Բյուրեղյա մարմար"
 
 #: website/templates/website/natural_stones.html:45
 msgid "Marble"
-msgstr "Օնիքս"
+msgstr "Մարմար"
 
 #: website/templates/website/natural_stones.html:50
 msgid "Onyx"

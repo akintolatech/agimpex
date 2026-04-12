@@ -13,17 +13,17 @@ def product_list(request):
         'categories': categories,
         'products': products,
         'construction_goods': Product.objects.filter(
-            category__slug='construction-materials',
+            category__slug='construction-products',
             available=True
         ).order_by('created')[:5],
 
         'all_construction_goods': Product.objects.filter(
-            category__slug='construction-materials',
+            category__slug='construction-products',
             available=True
         ).order_by('created')[:5],
 
         'total_construction_goods': Product.objects.filter(
-            category__slug='construction-materials',
+            category__slug='construction-products',
             available=True
         ).order_by('created'),
 
